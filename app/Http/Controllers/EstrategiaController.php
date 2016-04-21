@@ -25,7 +25,7 @@ class EstrategiaController extends Controller
 
 	public function find(Route $route){
 
-		$this->estrategia=Estrategia::find($route->getParameter('estrategias'));
+		$this->estrategia=Estrategia::find($route->getParameter('estrategia'));
 	}
 
 
@@ -55,6 +55,7 @@ class EstrategiaController extends Controller
     {
 
        	Estrategia::create($request->all());
+		dd($request->all());
 		return response()->json(["mensaje"=>"Creada correctamente"]);
     }
 
@@ -92,14 +93,16 @@ class EstrategiaController extends Controller
     {
 
 
+
 		if (!$this->estrategia)
 		{
 			return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una estrategia con ese id.'])],404);
 		}
-		$this->estrategia->forceFill($request->all());
+		$this->estrategia->fill($request->all());
 
 
 		$this->estrategia->save();
+
 		return response()->json(["mensaje"=>"Actualizacion exitosa",$this->estrategia]);
     }
 

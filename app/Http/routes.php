@@ -15,5 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('estrategias', 'EstrategiaController');
-Route::resource('tipo-riesgo', 'TipoRiesgoController');
+Route::resource('estrategia', 'EstrategiaController');
+Route::resource('tipoRiesgo', 'TipoRiesgoController');
+
+
+

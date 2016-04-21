@@ -24,7 +24,8 @@ class TipoRiesgoController extends Controller
 
 	public function find(Route $route){
 
-		$this->tipoRiesgo=TipoRiesgo::find($route->getParameter('tipo-riesgos'));
+		$this->tipoRiesgo=TipoRiesgo::find($route->getParameter('tipoRiesgo'));
+
 	}
 
     public function index()
@@ -53,7 +54,7 @@ class TipoRiesgoController extends Controller
      */
     public function store(Request $request)
     {
-         tipoRiesgo::create($request->all());
+        tipoRiesgo::create($request->all());
 		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
@@ -65,6 +66,7 @@ class TipoRiesgoController extends Controller
      */
     public function show($id)
     {
+
         return response()->json($this->tipoRiesgo);
     }
 
@@ -86,8 +88,8 @@ class TipoRiesgoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
        	$this->tipoRiesgo->fill($request->all());
 		$this->tipoRiesgo->save();
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
