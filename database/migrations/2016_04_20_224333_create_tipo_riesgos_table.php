@@ -13,10 +13,10 @@ class CreateTipoRiesgosTable extends Migration
     public function up()
     {
         Schema::create('tipo_riesgos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
 			$table->string('nombre');
 			$table->string('descripcion');
-            $table->SoftDeletes();
+            //$table->SoftDeletes();
 			$table->timestamps();
         });
     }

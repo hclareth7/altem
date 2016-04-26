@@ -12,5 +12,8 @@ class TipoRiesgo extends Model
 	protected $fillable=['nombre','descripcion'];
 	protected $datos="deleted_at";
 
+	public function riegos(){
+		return $this->hasMany('App\Riesgo')
+	}
 
 }

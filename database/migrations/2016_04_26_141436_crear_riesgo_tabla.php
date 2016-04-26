@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EstrategiaTabla extends Migration
+class CrearRiesgoTabla extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class EstrategiaTabla extends Migration
      */
     public function up()
     {
-         Schema::create('estrategias', function (Blueprint $table) {
+       Schema::create('riesgos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('descripcion');
-			$table->SoftDeletes();
+			$table->string('nombre');
+			$table->string('descripcion');
+		   	$table->bigInteger('tipo_riesgo_id')->unsigned();
+ 			$table->foreign('tipo_riesgo_id')->references('id')->on('tipo_riegos')->onDelete('cascade');
+            //$table->SoftDeletes();
 			$table->timestamps();
-
-
         });
     }
 
@@ -30,6 +30,6 @@ class EstrategiaTabla extends Migration
      */
     public function down()
     {
-        Schema::drop('estrategias');
+         Schema::drop('riesgos');
     }
 }

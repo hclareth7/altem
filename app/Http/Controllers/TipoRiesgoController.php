@@ -24,7 +24,7 @@ class TipoRiesgoController extends Controller
 
 	public function find(Route $route){
 
-		$this->tipoRiesgo=TipoRiesgo::find($route->getParameter('tipoRiesgo'));
+		$this->tipoRiesgo=TipoRiesgo::find($route->getParameter('tipo_riesgo'));
 
 	}
 
