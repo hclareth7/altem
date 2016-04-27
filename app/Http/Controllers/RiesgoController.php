@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Route;
-use App\Models\TipoRiesgo;
+use App\Models\Riesgo;
 
-
-class TipoRiesgoController extends Controller
+class RiesgoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,19 +21,17 @@ class TipoRiesgoController extends Controller
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
 	}
 
-	public function find(Route $route){
 
-		$this->tipoRiesgo=TipoRiesgo::find($route->getParameter('tipo_riesgo'));
-
+	public function find(Route $route)
+	{
+		$this->riesgo=Riesgo::find($route->getParameter('riesgo'));
 	}
 
     public function index()
     {
-        $tipoRiesgo = TipoRiesgo::all();
-		return response()->json($tipoRiesgo);
+         $riesgo = Riesgo::all();
+		return response()->json($riesgo);
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -54,7 +51,7 @@ class TipoRiesgoController extends Controller
      */
     public function store(Request $request)
     {
-        tipoRiesgo::create($request->all());
+        Riesgo::create($request->all());
 		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
@@ -66,8 +63,7 @@ class TipoRiesgoController extends Controller
      */
     public function show($id)
     {
-
-        return response()->json($this->tipoRiesgo);
+         return response()->json($this->estrategia);
     }
 
     /**
@@ -88,11 +84,15 @@ class TipoRiesgoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+       if (!$this->riesgo){
+			return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un riesgo con ese id.'])],404);
+		}
+		$this->riesgo->fill($request->all());
+		$this->riesgo->save();
 
-       	$this->tipoRiesgo->fill($request->all());
-		$this->tipoRiesgo->save();
-		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
+		return response()->json(["mensaje"=>"Actualizacion exitosa",$this->riesgo]);
     }
 
     /**
@@ -103,6 +103,6 @@ class TipoRiesgoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->estrategia->delete();
     }
 }

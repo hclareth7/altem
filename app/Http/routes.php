@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::resource('estrategia', 'EstrategiaController');
 Route::resource('tipo_riesgo', 'TipoRiesgoController');
+Route::resource('riesgo', 'RiesgoController');
 
 
 

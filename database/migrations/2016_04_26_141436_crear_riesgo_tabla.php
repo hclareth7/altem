@@ -16,9 +16,8 @@ class CrearRiesgoTabla extends Migration
             $table->bigIncrements('id');
 			$table->string('nombre');
 			$table->string('descripcion');
-		   	$table->bigInteger('tipo_riesgo_id')->unsigned();
- 			$table->foreign('tipo_riesgo_id')->references('id')->on('tipo_riegos')->onDelete('cascade');
-            //$table->SoftDeletes();
+		   	$table->bigInteger('tiporiesgo_id')->unsigned();
+ 			$table->foreign('tiporiesgo_id')->references('id')->on('tipo_riesgos')->onDelete('cascade');
 			$table->timestamps();
         });
     }

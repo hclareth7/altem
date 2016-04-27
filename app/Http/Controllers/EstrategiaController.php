@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Route;
-use App\Estrategia;
+use App\Models\Estrategia;
 
 
 
@@ -20,6 +20,7 @@ class EstrategiaController extends Controller
 	public function __construct(){
 		$this->middleware('cors');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+
 	}
 
 	public function find(Route $route)
@@ -29,7 +30,7 @@ class EstrategiaController extends Controller
 
     public function index()
     {
-        $estrategia = Estrategia::all();
+        $estrategia = Estrategia::with('riesgo')->get();
 		return response()->json($estrategia);
     }
 

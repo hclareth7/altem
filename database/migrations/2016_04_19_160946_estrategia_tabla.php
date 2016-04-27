@@ -16,7 +16,6 @@ class EstrategiaTabla extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
-			$table->SoftDeletes();
 			$table->timestamps();
 
 

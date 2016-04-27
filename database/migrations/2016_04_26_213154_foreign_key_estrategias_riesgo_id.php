@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoRiesgosTable extends Migration
+class ForeignKeyEstrategiasRiesgoId extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateTipoRiesgosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_riesgos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-			$table->string('nombre');
-			$table->string('descripcion');
-			$table->timestamps();
-        });
+       Schema::table('estrategias', function ($table) {
+		   	$table->bigInteger('riesgo_id')->unsigned();
+ 			$table->foreign('riesgo_id')->references('id')->on('riesgos')->onDelete('cascade');
+	   });
     }
 
     /**
@@ -27,6 +25,6 @@ class CreateTipoRiesgosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_riesgos');
+        $table->dropForeign(['riesgo_id']);
     }
 }
