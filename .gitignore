@@ -16,3 +16,4 @@ composer.phar
 /public/js/sections/
 /public/js/site/
 /public/fonts/
+/public/bower_components/

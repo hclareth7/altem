@@ -29,7 +29,7 @@ class RiesgoController extends Controller
 
     public function index()
     {
-         $riesgo = Riesgo::all();
+         $riesgo = Riesgo::with('tiporiesgo')->get();
 		return response()->json($riesgo);
     }
 
@@ -63,7 +63,7 @@ class RiesgoController extends Controller
      */
     public function show($id)
     {
-         return response()->json($this->estrategia);
+         return response()->json($this->riesgo);
     }
 
     /**
@@ -89,10 +89,12 @@ class RiesgoController extends Controller
        if (!$this->riesgo){
 			return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un riesgo con ese id.'])],404);
 		}
+        //dd($request->all());
 		$this->riesgo->fill($request->all());
+        dd($request->all());
 		$this->riesgo->save();
 
-		return response()->json(["mensaje"=>"Actualizacion exitosa",$this->riesgo]);
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -103,6 +105,6 @@ class RiesgoController extends Controller
      */
     public function destroy($id)
     {
-        $this->estrategia->delete();
+        $this->riesgo->delete();
     }
 }

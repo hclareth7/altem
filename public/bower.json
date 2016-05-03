@@ -1,0 +1,21 @@
+{
+  "name": "sat",
+  "homepage": "https://github.com/hariza17/sat",
+  "description": "sistema de alertas tempranas",
+  "main": "index.blade.php",
+  "authors": [
+    "Hernando ariza perez"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.11.2"
+  }
+}

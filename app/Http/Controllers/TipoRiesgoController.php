@@ -103,6 +103,6 @@ class TipoRiesgoController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $this->tipoRiesgo->delete();
     }
 }

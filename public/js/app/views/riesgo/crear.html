@@ -3,17 +3,15 @@
 		<div class="col-md-12 modal-form">
 			<div class="panel panel">
 				<div class="panel-heading">
-					<span class="panel-title">Crear</span>
+					<span class="panel-title">{{titulo}}</span>
 					<div class="panel-body">
-						<form class="form-horizontal" method="post" ng-submit="guardarEstrategia()">
+						<form class="form-horizontal" method="post" ng-submit="guardar()">
 							<div class="form-group">
-								<label for="inputStandard" class="col-lg-3 control-label">Riesgo</label>
+								<label for="inputStandard" class="col-lg-3 control-label">Tipo de riesgo</label>
 								<div class="col-lg-8">
-									<select class="form-control" ng-model="estrategia.riesgo_id">
-										<option ng-repeat="riesgo in riesgos" value="{{riesgo.id}}" >
-											{{riesgo.nombre}}
-										</option>
-									</select>
+									<select class="form-control" ng-model="riesgo.tiporiesgo_id">
+                                        <option ng-repeat="tiporiesgo in tiporiesgos" value="{{tiporiesgo.id}}" ng-selected="riesgo.tiporiesgo_id==tiporiesgo.id">{{tiporiesgo.nombre}}</option>
+                                    </select>
 								</div>
 							</div>
 
@@ -22,7 +20,7 @@
 
 								<div class="col-lg-8">
 									<div class="bs-component">
-										<input type="text" id="inputStandard" class="form-control" ng-model="estrategia.nombre">
+										<input type="text" id="inputStandard" class="form-control" ng-model="riesgo.nombre">
 									</div>
 								</div>
 							</div>
@@ -32,13 +30,13 @@
 
 								<div class="col-lg-8">
 									<div class="bs-component">
-										<textarea class="form-control" id="textArea2" rows="3" ng-model="estrategia.descripcion"></textarea>
+										<textarea class="form-control" id="textArea2" rows="3" ng-model="riesgo.descripcion"></textarea>
 										<div id="source-button" class="btn btn-system btn-xs" style="display: none;">&lt; &gt;</div>
 									</div>
 								</div>
 							</div>
 							<div class="panel-footer">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" class="btn btn-primary">{{accion}}</button>
 							</div>
 						</form>
 					</div>

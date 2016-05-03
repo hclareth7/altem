@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href="/vendor/jvectormap/jquery-jvectormap.css">
 	<link rel="stylesheet" href="/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
 	<link rel="stylesheet" href="/css/v1.css">
+    <!--TOAST CSS-->
+	<link rel="stylesheet" href="/css/angular-toastr.css">
 	<!-- Fonts -->
 	<link rel="stylesheet" href="/fonts/weather-icons/weather-icons.css">
 	<link rel="stylesheet" href="/fonts/web-icons/web-icons.min.css">
@@ -66,15 +68,21 @@
 	<!-- Angular libs -->
 	<script src="/js/libs/angular.min.js"></script>
 	<script src="/js/libs/angular-ui-router.min.js"></script>
+	<script src="/js/libs/angular-animate.min.js"></script>
+	<script src="/js/libs/angular-toastr.tpls.min.js"></script>
+	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->
 
 	<script src="/js/app/services/estrategiaService.js"></script>
 	<script src="/js/app/services/riesgoService.js"></script>
+	<script src="/js/app/services/tipoRiesgoService.js"></script>
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>
+	<script src="/js/app/controllers/riesgoController.js"></script>
+	<script src="/js/app/controllers/tipoRiesgoController.js"></script>
 	<!-- Module App -->
 
 	<script src="/js/app/app.js"></script>
