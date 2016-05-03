@@ -26,6 +26,7 @@ class EstrategiaController extends Controller
 	public function find(Route $route)
 	{
 		$this->estrategia=Estrategia::find($route->getParameter('estrategia'));
+
 	}
 
     public function index()
@@ -87,13 +88,10 @@ class EstrategiaController extends Controller
      */
     public function update(Request $request,$id)
     {
-		if (!$this->estrategia){
-			return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra una estrategia con ese id.'])],404);
-		}
+
 		$this->estrategia->fill($request->all());
 		$this->estrategia->save();
-
-		return response()->json(["mensaje"=>"Actualizacion exitosa",$this->estrategia]);
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**

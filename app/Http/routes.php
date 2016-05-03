@@ -13,6 +13,6 @@
 
 Route::get('/','PagesController@index');
 
-Route::resource('api/estrategia', 'EstrategiaController');
-Route::resource('api/tipo_riesgo', 'TipoRiesgoController');
-Route::resource('api/riesgo', 'RiesgoController');
+Route::resource('estrategia', 'EstrategiaController');
+Route::resource('tipo_riesgo', 'TipoRiesgoController');
+Route::resource('riesgo', 'RiesgoController');

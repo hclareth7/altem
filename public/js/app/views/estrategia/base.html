@@ -1,7 +1,9 @@
 <div class="page-header">
 	<ol class="breadcrumb">
 		<li><a ui-sref="main">Inicio</a></li>
-		<li class="active">Estrategias</li>
+		<li><a ui-sref="main.estrategia" ng-click="barra()">Estrategias</a></li>
+		<li ng-hide="titulo == 'NO'" >{{titulo}}</li>
+
 	</ol>
 	<h1 class="page-title">Estrategias</h1>
 	<div class="page-header-actions">

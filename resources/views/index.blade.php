@@ -66,10 +66,10 @@
 
 
 	<!-- Angular libs -->
-	<script src="/js/libs/angular.min.js"></script>
-	<script src="/js/libs/angular-ui-router.min.js"></script>
-	<script src="/js/libs/angular-animate.min.js"></script>
-	<script src="/js/libs/angular-toastr.tpls.min.js"></script>
+	<script src="/bower_components/angular/angular.min.js"></script>
+	<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
