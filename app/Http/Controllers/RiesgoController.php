@@ -86,14 +86,8 @@ class RiesgoController extends Controller
      */
     public function update(Request $request, $id)
     {
-       if (!$this->riesgo){
-			return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un riesgo con ese id.'])],404);
-		}
-
 		$this->riesgo->fill($request->all());
-        dd($request->all());
 		$this->riesgo->save();
-
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 

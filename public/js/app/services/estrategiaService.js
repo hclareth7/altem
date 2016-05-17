@@ -2,7 +2,7 @@ var servicesModule = angular.module('AppServices');
 servicesModule.factory('estrategiaService', ['$http', function ($http) {
 	return {
 		apiUrl: apiUrl,
-		getAllEstrategia: function () {
+		getAllEstrategias: function () {
 			return $http.get(this.apiUrl + 'estrategia/');
 		},
 		getEstrategiaById: function (estrategiaId) {

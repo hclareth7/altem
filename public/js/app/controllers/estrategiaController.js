@@ -4,21 +4,19 @@ controllerModule
 	.controller('estrategiaController', ['$scope', 'estrategiaService',
     '$stateParams', 'toastr', '$state', '$rootScope',
     function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope) {
-			$scope.estrategias = [];
-			$scope.getAllEstrategias = function () {
-				estrategiaService.getAllEstrategia().then(function (response) {
+			$rootScope.estrategias = [];
+			$scope.getAllEstrategiass = function () {
+				estrategiaService.getAllEstrategias().then(function (response) {
 					//console.log(response.data);
-					$scope.estrategias = response.data;
+					$rootScope.estrategias = response.data;
 				});
 
 			};
 
-			$scope.getAllEstrategias();
+			$scope.getAllEstrategiass();
 
 			$rootScope.barra = function () {
 				$rootScope.titulo = "NO";
-
-				console.log($rootScope.urlestado);
 			};
 			$scope.remove = function (id) {
 				estrategiaService.deleteEstrategia(id).then(function (respuesta) {
@@ -42,18 +40,22 @@ controllerModule
 			$scope.riesgos = [];
 			$scope.getAllRiesgos = function () {
 				riesgoService.getAllRiesgo().then(function (response) {
-					console.log(response.data);
+
 					$scope.riesgos = response.data;
 				});
 
 			};
 
 			$scope.getAllRiesgos();
+			//
+			console.log($scope.riesgos);
 			$scope.guardarEstrategia = function () {
-
 				estrategiaService.createEstrategia($scope.estrategia).then(function (response) {
-					toastr.success('Exito', 'Estrategia creada');
-					console.log("scope estrategia", $scope.estrategia);
+					estrategiaService.getAllEstrategias().then(function (response2) {
+						$rootScope.estrategias = response2.data;
+						toastr.success('Exito', 'Estrategia creada');
+					});
+					$scope.estrategia = {};
 				});
 			};
 
@@ -62,7 +64,7 @@ controllerModule
 	.controller('estrategiaEditarController', ['$scope', 'estrategiaService',
     '$stateParams', '$location', 'riesgoService', 'toastr', '$state', '$rootScope',
 	function ($scope, estrategiaService, $stateParams, $location, riesgoService, toastr, $state, $rootScope) {
-			$rootScope.accion = "Actualizar";
+			$scope.accion = "Actualizar";
 			$rootScope.titulo = "Editar";
 
 
@@ -72,6 +74,7 @@ controllerModule
 					$scope.riesgos = response.data;
 				});
 			};
+
 			$scope.getEstrategia = function (estrategiaId) {
 				estrategiaService.getEstrategiaById(estrategiaId).then(function (response) {
 					$scope.estrategia = response.data;
@@ -84,12 +87,16 @@ controllerModule
 
 			$scope.getAllRiesgos();
 			$scope.getEstrategia(parseInt($stateParams.estrategiaId));
-
 			$scope.guardarEstrategia = function () {
-				estrategiaService.updateEstrategia($scope.estrategia.id,$scope.estrategia)
+				estrategiaService.updateEstrategia($scope.estrategia.id, $scope.estrategia)
 					.then(function (response) {
-						toastr.success('Exito', 'Estrategia actualizada');
-						$location.path('/app/estrategia');
+						estrategiaService.getAllEstrategias().then(function (response2) {
+							$rootScope.estrategias = response2.data;
+							toastr.success('Exito', 'Estrategia actualizada');
+							$location.path('/app/estrategia');
+						});
+
+
 					});
 			};
 

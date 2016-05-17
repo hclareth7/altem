@@ -25,7 +25,10 @@ class EstrategiaController extends Controller
 
 	public function find(Route $route)
 	{
+
 		$this->estrategia=Estrategia::find($route->getParameter('estrategia'));
+
+		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
 
 	}
 

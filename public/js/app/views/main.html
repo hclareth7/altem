@@ -8,8 +8,8 @@
 			<i class="icon wb-more-horizontal" aria-hidden="true"></i>
 		</button>
 		<div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-
-			<span class="navbar-brand-text"> SAT</span>
+			<img src="/img/logo.png" class="navbar-brand-logo" />
+			<span class="navbar-brand-text">SAT</span>
 		</div>
 
 	</div>
@@ -60,8 +60,19 @@
 				<ul class="site-menu">
 					<li class="site-menu-category">General</li>
 					<li class="site-menu-item has-sub">
-						<a ui-sref="main.tiporiesgo">
-							<i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+						<a ui-sref="main.estudiante" ng-click="barra()">
+							<i class="site-menu-icon wb-users" aria-hidden="true"></i>
+							<span class="site-menu-title">Estudiantes</span>
+							<div class="site-menu-badge">
+								<!--span class="badge badge-success">2</span-->
+							</div>
+						</a>
+
+					</li>
+
+					<li class="site-menu-item has-sub">
+						<a ui-sref="main.tiporiesgo" ng-click="barra()">
+							<i class="site-menu-icon wb-text-type" aria-hidden="true"></i>
 							<span class="site-menu-title">Tipos de riesgos</span>
 							<div class="site-menu-badge">
 								<!--span class="badge badge-success">2</span-->
@@ -69,9 +80,10 @@
 						</a>
 
 					</li>
+
 					<li class="site-menu-item has-sub">
-						<a ui-sref="main.riesgo">
-							<i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+						<a ui-sref="main.riesgo" ng-click="barra()">
+							<i class="site-menu-icon wb-warning" aria-hidden="true"></i>
 							<span class="site-menu-title">Riesgos</span>
 							<div class="site-menu-badge">
 								<!--span class="badge badge-success">2</span-->
@@ -80,8 +92,8 @@
 
 					</li>
 					<li class="site-menu-item has-sub">
-						<a ui-sref="main.estrategia">
-							<i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+						<a ui-sref="main.estrategia" ng-click="barra()">
+							<i class="site-menu-icon wb-extension" aria-hidden="true"></i>
 							<span class="site-menu-title">Estrategias</span>
 							<div class="site-menu-badge">
 								<!--span class="badge badge-success">2</span-->
@@ -89,6 +101,17 @@
 						</a>
 
 					</li>
+					<li class="site-menu-item has-sub">
+						<a ui-sref="main.remision" ng-click="barra()">
+							<i class="site-menu-icon wb-file" aria-hidden="true"></i>
+							<span class="site-menu-title">Remisiones</span>
+							<div class="site-menu-badge">
+								<!--span class="badge badge-success">2</span-->
+							</div>
+						</a>
+
+					</li>
+
 				</ul>
 
 			</div>
@@ -99,7 +122,7 @@
 
 <!-- Page -->
 <div class="page" ui-view>
-	<div class="page-content padding-30 container-fluid" >
+	<div class="page-content padding-30 container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
 			<div class="col-xlg-7 col-md-12">
 				<!-- Widget Linearea Color -->

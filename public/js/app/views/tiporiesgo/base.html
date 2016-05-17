@@ -1,107 +1,108 @@
 <div class="page-header">
-    <ol class="breadcrumb">
-        <li><a ui-sref="main">Inicio</a></li>
-        <li class="active">Tipo de riesgos</li>
-    </ol>
-    <h1 class="page-title">Tipo de riesgos</h1>
-    <div class="page-header-actions">
-        <a ui-sref="main.estrategia.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
-            <i class="icon wb-plus" aria-hidden="true"></i>
-        </a>
-        <!--
+	<ol class="breadcrumb">
+		<li><a ui-sref="main">Inicio</a></li>
+		<li><a ui-sref="main.tiporiesgo" ng-click="barra()">Tipo de riesgo</a></li>
+		<li ng-hide="titulo == 'NO'">{{titulo}}</li>
+	</ol>
+	<h1 class="page-title">Tipo de riesgos</h1>
+	<div class="page-header-actions">
+		<a ui-sref="main.tiporiesgo.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
+			<i class="icon wb-plus" aria-hidden="true"></i>
+		</a>
+		<!--
 			<button type="button" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Refresh">
 				<i class="icon wb-refresh" aria-hidden="true"></i>
 			</button>
 			<button type="button" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Setting">
 				<i class="icon wb-settings" aria-hidden="true"></i>
 			</button>-->
-    </div>
+	</div>
 </div>
 <div class="page-content" ui-view>
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title"></h3>
-        </div>
-        <div class="panel-body container-fluid">
-            <div class="example">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title"></h3>
+		</div>
+		<div class="panel-body container-fluid">
+			<div class="example">
 
-                <div class="bootstrap-table">
-                    <div class="fixed-table-toolbar">
-                        <div class="bars pull-left">
-                            <div class="btn-group hidden-xs" id="exampleToolbar" role="group">
-                                <a ui-sref="main.tiporiesgo.crear" class="btn btn-outline btn-default">
-                                    <i class="icon wb-plus" aria-hidden="true"></i>
-                                </a>
-                                <button type="button" class="btn btn-outline btn-default">
-                                    <i class="icon wb-heart" aria-hidden="true"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline btn-default">
-                                    <i class="icon wb-trash" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
+				<div class="bootstrap-table">
+					<div class="fixed-table-toolbar">
+						<div class="bars pull-left">
+							<div class="btn-group hidden-xs" id="exampleToolbar" role="group">
+								<a ui-sref="main.tiporiesgo.crear" class="btn btn-outline btn-default">
+									<i class="icon wb-plus" aria-hidden="true"></i>
+								</a>
+								<button type="button" class="btn btn-outline btn-default">
+									<i class="icon wb-heart" aria-hidden="true"></i>
+								</button>
+								<button type="button" class="btn btn-outline btn-default">
+									<i class="icon wb-trash" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
 
-                        <div class="pull-right search">
-                            <input class="form-control input-outline" type="text" placeholder="Buscar">
-                        </div>
-                    </div>
-                    <div class="fixed-table-container" style="padding-bottom: 0px;">
-                        <div class="fixed-table-body">
-                            <div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...</div>
-                            <table id="exampleTableToolbar" data-mobile-responsive="true" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="" data-field="name" tabindex="0">
-                                            <div class="th-inner ">Nombre</div>
-                                            <div class="fht-cell"></div>
-                                        </th>
+						<div class="pull-right search">
+							<input class="form-control input-outline" type="text" placeholder="Buscar">
+						</div>
+					</div>
+					<div class="fixed-table-container" style="padding-bottom: 0px;">
+						<div class="fixed-table-body">
+							<div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...</div>
+							<table id="exampleTableToolbar" data-mobile-responsive="true" class="table table-hover">
+								<thead>
+									<tr>
+										<th style="" data-field="name" tabindex="0">
+											<div class="th-inner ">Nombre</div>
+											<div class="fht-cell"></div>
+										</th>
 
-                                        <th style="" data-field="star" tabindex="0">
-                                            <div class="th-inner ">Descripcion</div>
-                                            <div class="fht-cell"></div>
-                                        </th>
-                                        <th style="" data-field="star" tabindex="0">
-                                            <div class="th-inner ">Acciones</div>
-                                            <div class="fht-cell"></div>
-                                        </th>
+										<th style="" data-field="star" tabindex="0">
+											<div class="th-inner ">Descripcion</div>
+											<div class="fht-cell"></div>
+										</th>
+										<th style="" data-field="star" tabindex="0">
+											<div class="th-inner ">Acciones</div>
+											<div class="fht-cell"></div>
+										</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
+									</tr>
+								</thead>
+								<tbody>
 
-                                    <tr ng-repeat="tiporiesgo in tiporiesgos">
-                                        <td>{{tiporiesgo.nombre}}</td>
+									<tr ng-repeat="tiporiesgo in tiporiesgos">
+										<td>{{tiporiesgo.nombre}}</td>
 
-                                        <td>{{tiporiesgo.descripcion}}</td>
-                                        <td class="col-md-2">
-                                            <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.tiporiesgo.editar({tiporiesgoId:tiporiesgo.id})">
-                                                <i class="icon wb-pencil" aria-hidden="true"></i>
-                                            </a>
-                                            <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(tiporiesgo.id)">
-                                                <i class="icon wb-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr class="no-records-found" style="display:none;">
-                                        <td colspan="5">No hay datos</td>
-                                    </tr>
+										<td>{{tiporiesgo.descripcion}}</td>
+										<td class="col-md-2">
+											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.tiporiesgo.editar({tiporiesgoId:tiporiesgo.id})">
+												<i class="icon wb-pencil" aria-hidden="true"></i>
+											</a>
+											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(tiporiesgo.id)">
+												<i class="icon wb-trash" aria-hidden="true"></i>
+											</a>
+										</td>
+									</tr>
+									<tr class="no-records-found" style="display:none;">
+										<td colspan="5">No hay datos</td>
+									</tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="fixed-table-footer" style="display: none;">
-                            <table>
-                                <tbody>
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="fixed-table-pagination" style="display: none;"></div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
+								</tbody>
+							</table>
+						</div>
+						<div class="fixed-table-footer" style="display: none;">
+							<table>
+								<tbody>
+									<tr></tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="fixed-table-pagination" style="display: none;"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
 
 </div>

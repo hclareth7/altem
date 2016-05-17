@@ -1,5 +1,11 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/Users/Invitado/Documents/Proyectos/sat/public/js/components/bootstrap-sweetalert.min.js"
+        "C:/Users/Invitado/Documents/Proyectos/sat/public/js/components/bootstrap-sweetalert.min.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/bower_components/lodash/vendor/underscore/underscore.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/js/app/controllers/estrategiaController.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/js/components/aspaginator.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/js/app/services/riesgoService.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/js/components/aspaginator.min.js",
+        "D:/HERNANDO/Proyectos/SAT/sat/public/js/components/aspieprogress.min.js"
     ]
 }

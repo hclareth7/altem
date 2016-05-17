@@ -1,0 +1,15 @@
+.logo-img {
+	width: 40px;
+	float: left;
+	position: relative;
+	display: inline-block !important;
+	top: -9px;
+}
+
+.navbar-a-text {
+	margin-left: 6px;
+	text-align: center;
+	font-size: 40px;
+	position: relative;
+	left: 16px;
+}
