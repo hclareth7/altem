@@ -1,149 +1,325 @@
 <div class="page-content container-fluid page-profile">
-	<div class="row">
-		<div class="col-md-3">
-			<!-- Page Widget -->
-			<div class="widget widget-shadow text-center">
-				<div class="widget-header">
-					<div class="widget-header-content">
-						<a class="avatar avatar-lg" href="javascript:void(0)">
-							<!--img src="/img/avatar2.png" alt="..."-->
-							<img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.codigo}}" alt="...">
-							<!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
-						</a>
-						<h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
-						<p class="profile-job">{{estudiante.programa}}</p>
-						<address>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Page Widget -->
+            <div class="widget widget-shadow text-center">
+                <div class="widget-header">
+                    <div class="widget-header-content">
+                        <a class="avatar avatar-lg" href="javascript:void(0)">
+                            <!--img src="/img/avatar2.png" alt="..."-->
+                            <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.codigo}}" alt="...">
+                            <!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
+                        </a>
+                        <h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
+                        <p class="profile-job">{{estudiante.programa}}</p>
+                        <address>
 						  <strong>Informacion de contacto</strong>
 						  <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.direccion}}
 						  <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.correo}}</a>
 						  <br>
 						  <abbr title="Telefono">Telefono: </abbr> {{estudiante.telefono}}
                 		</address>
-						<!--div class="profile-social">
+                        <!--div class="profile-social">
 							<a class="icon bd-twitter" href="javascript:void(0)"></a>
 							<a class="icon bd-facebook" href="javascript:void(0)"></a>
 							<a class="icon bd-dribbble" href="javascript:void(0)"></a>
 							<a class="icon bd-github" href="javascript:void(0)"></a>
 						</div-->
-						<!--button type="button" class="btn btn-primary">Follow</button-->
-					</div>
-				</div>
-				<div class="widget-footer">
-					<div class="row no-space">
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Codigo</strong>
-							<span>{{estudiante.codigo}}</span>
-						</div>
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Edad</strong>
-							<span>{{estudiante.edad}}</span>
-						</div>
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Sexo</strong>
-							<span>{{estudiante.sexo}}M</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End Page Widget -->
-		</div>
-		<div class="col-md-9">
-			<!-- Panel -->
-			<div class="panel">
-				<div class="panel-body nav-tabs-animate">
-					<uib-tabset active="">
-						<uib-tab index="0" heading="Intervenciones">
-							<div class="tab-content">
-								<br>
-								<div class="media">
-									<div class="media-left">
-										<a class="avatar avatar-online" href="javascript:void(0)">
-											<img src="/img/avatar.png" alt=""><i></i></a>
-									</div>
-									<div class="media-body">
-										<div class="row">
-											<div class="col-md-6">
-												<h4 class="media-heading">
+                        <!--button type="button" class="btn btn-primary">Follow</button-->
+                    </div>
+                </div>
+                <div class="widget-footer">
+                    <div class="row no-space">
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Codigo</strong>
+                            <span>{{estudiante.codigo}}</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Edad</strong>
+                            <span>{{estudiante.edad}}</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Sexo</strong>
+                            <span>{{estudiante.sexo}}M</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page Widget -->
+        </div>
+        <div class="col-md-9">
+            <!-- Panel -->
+            <div class="panel">
+                <div class="panel-body nav-tabs-animate">
+                    <uib-tabset active="">
+                        <uib-tab index="0" heading="Intervenciones">
+                            <div class="tab-content">
+                                <br>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a class="avatar avatar-online" href="javascript:void(0)">
+                                            <img src="/img/avatar.png" alt=""><i></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <h4 class="media-heading">
                           								Riesgo: RAC001
 													  <small>Juan Administrador SAT</small>
 													</h4>
 
 
 
-												<p class="name">Fecha de reporte: 2014-08-25 10:25:40</p>
-												<p class="name">Tipo de riesgo: Academico</p>
-												<p class="name">Descripcion: </p>
-												<div class="alert alert-alt alert-danger alert-dismissible" role="alert">
+                                                <p class="name">Fecha de reporte: 2014-08-25 10:25:40</p>
+                                                <p class="name">Tipo de riesgo: Academico</p>
+                                                <div class="alert alert-alt alert-danger alert-dismissible" role="alert">
 
-													<p>
-														El estudiante presenta un promedio inferior a 3.2.
-													</p>
-												</div>
+                                                    <p>
+                                                        <span>Descripcion: </span> El estudiante presenta un promedio inferior a 3.2.
+                                                    </p>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-md-5">
 
+                                            </div>
 
-											</div>
+                                        </div>
 
-											<div class="col-md-6">
+                                    </div>
+                                    <div class="media-right">
+                                        <button type="button" class="btn btn-success"><i class="icon wb-extension" aria-hidden="true"></i>Agregar</button>
+                                    </div>
+                                    <div>
+                                        <div class="right">
+                                            <button type="button" ng-click="isShowEstrategias = !isShowEstrategias" class="btn btn-outline btn-icon btn-default btn-round"><i class="icon wb-list" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
 
-												<div class="pie-progress-svg">
+                                </div>
+                                <hr>
+                                <div uib-collapse="isShowEstrategias">
+                                    <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                        <h4 class="example-title">Estrategias aplicadas</h4>
 
-												</div>
-											</div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <div class="avatar avatar-online">
+                                                            <img src="/img/avatar.png" alt="...">
 
-
-
-										</div>
-
-									</div>
-									<div class="media-right">
-										<button type="button" class="btn btn-outline btn-success btn-sm">Follow</button>
-									</div>
-								</div>
-								<hr>
-
-								<div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
-									<ul class="list-group">
-										<li class="list-group-item">
-											<div class="media">
-												<div class="media-left">
-													<div class="avatar avatar-online">
-														<img src="/img/avatar.png" alt="...">
-
-													</div>
-												</div>
-												<div class="media-body">
-													<h4 class="media-heading">
-                          								Herman Beck
-													  <small>Last Access: 1 hour ago</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                          								Seguimiento por consejería
+													  <small>Juan Consejeto SAT</small>
 													</h4>
-													<p>
-														<i class="icon icon-color wb-map" aria-hidden="true"></i> Street 4425 Golf Course Rd
-													</p>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-7">
+                                                                <p class="name">Fecha de asignacion: 2014-08-25 10:25:40</p>
+                                                                <p class="name">Fecha de finalizacion: N/A</p>
+                                                            </div>
+                                                            <div class="col-md-5">
 
-												</div>
-												<div class="media-right">
-													<button type="button" class="btn btn-outline btn-success btn-sm">Follow</button>
-												</div>
-											</div>
-										</li>
+                                                                <div class="progress progress-xs table-content">
+                                                                    <div class="progress-bar progress-bar-primary progress-bar-indicating" style="width: 90%" role="progressbar">
+                                                                        <span class="sr-only">90%</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span>90%</span>
 
-									</ul>
+                                                            </div>
 
-								</div>
+                                                        </div>
 
-							</div>
+                                                        <div class="alert alert-alt alert-info alert-dismissible" role="alert">
+                                                            <p>
+                                                                <span>Descripcion: </span>A partir de la identificación de las dificultades académicas del estudiante, se establece un plan de acción, con compromisos y metas asignadas, que tribute a la mejora académica.
+                                                            </p>
+                                                        </div>
 
-						</uib-tab>
-						<uib-tab index="1" heading="Academica">Short Labeled Justified content</uib-tab>
-						<uib-tab index="2" heading="Financiera">Long Labeled Justified content</uib-tab>
-					</uib-tabset>
+                                                    </div>
+                                                    <!--div class="media-right">
+                                                        <button type="button" class="btn btn-outline btn-success btn-sm">Follow</button>
+                                                    </div-->
+                                                </div>
+
+                                                <hr>
+                                                <div id="recentActivityWidget">
+                                                    <ul class="timeline timeline-icon">
+                                                        <li class="timeline-reverse">
+                                                            <div class="timeline-content-wrap">
+                                                                <div class="timeline-dot bg-green-600">
+                                                                    <span>1</span>
+                                                                </div>
+                                                                <div class="timeline-content">
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="title">
+                                                                                <span class="authors">AC-E07-01</span>2014-09-05 10:58:49
+                                                                            </div>
+                                                                            <p>Tiempo estimado: 16 semanas</p>
+
+
+                                                                        </div>
+                                                                        <div class="col-md-6">
+
+                                                                            <button type="button" ng-click="isShowEstrategias = !isShowEstrategias" class="btn btn-outline btn-icon btn-default btn-round"><i class="icon wb-list" aria-hidden="true"></i></button>
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-3">
+                                                                            <p>Avance: 100%</p>
+                                                                            <p>Finalizada?: No</p>
+                                                                            <p>Costo total: 0</p>
+                                                                        </div>
+                                                                        <div class="col-md-9">
+                                                                            <div class="alert alert-alt alert-info alert-dismissible" role="alert">
+                                                                                <p>
+                                                                                    <span class="">Descripcion:</span> El estudiante asiste a sus clases durante el semestre, aprobando el curso con nota de 3,5.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="timeline-reverse">
+                                                            <div class="timeline-content-wrap">
+                                                                <div class="timeline-dot bg-green-600">
+                                                                    <span>2</span>
+                                                                </div>
+                                                                <div class="timeline-content">
+                                                                    <div class="title">
+                                                                        <span class="authors">AC-E07-01</span>2014-09-05 10:58:49
+                                                                    </div>
+                                                                    <p>Tiempo estimado: 16 semanas</p>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-3">
+                                                                            <p>Avance: 100%</p>
+                                                                            <p>Finalizada?: No</p>
+                                                                            <p>Costo total: 0</p>
+                                                                        </div>
+                                                                        <div class="col-md-9">
+                                                                            <div class="alert alert-alt alert-info alert-dismissible" role="alert">
+                                                                                <p>
+                                                                                    <span class="">Descripcion:</span> El estudiante asiste a sus clases durante el semestre, aprobando el curso con nota de 3,5.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </uib-tab>
+                        <uib-tab index="1" heading="Academica">Short Labeled Justified content</uib-tab>
+                        <uib-tab index="2" heading="Financiera">Long Labeled Justified content</uib-tab>
+                    </uib-tabset>
 
 
 
-				</div>
-			</div>
-			<!-- End Panel -->
-		</div>
-	</div>
+                </div>
+            </div>
+            <!-- End Panel -->
+        </div>
+    </div>
+</div>
+
+<div uib-collapse="isShowEditar" class="slidePanel slidePanel-right slidePanel-show" style="transform: translate3d(0%, 0px, 0px);">
+    <div class="slidePanel-scrollable scrollable is-enabled scrollable-vertical" style="position: relative;">
+        <div class="scrollable-container" style="height: 375px; width: 717px;">
+            <div class="slidePanel-content scrollable-content" style="width: 700px;">
+                <header class="slidePanel-header bg-purple-600">
+                    <div class="slidePanel-actions" aria-label="actions" role="group">
+                        <button type="button" ng-click="isShowEditar = !isShowEditar" class="btn btn-pure btn-inverse slidePanel-close actions-top icon wb-close" aria-hidden="true"></button>
+                    </div>
+                    <h1>Titudin venenatis ipsum ac feugiat. Vestibulum ullamcorper Neque quam.</h1>
+                </header>
+                <div class="slidePanel-inner">
+                    <section class="slidePanel-inner-section">
+                        <div class="step-info">
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <div class="step">
+                                    <span class="step-numbers blue-600">85%</span>
+                                    <div class="step-desc">
+                                        <span class="step-title">Project</span>
+                                        <p>Progress</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <div class="step">
+                                    <span class="step-numbers red-600">3%</span>
+                                    <div class="step-desc">
+                                        <span class="step-title">Delay</span>
+                                        <p>Rate</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <div class="step">
+                                    <span class="step-numbers orange-600">14</span>
+                                    <div class="step-desc">
+                                        <span class="step-title">Unfinished</span>
+                                        <p>Business</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-6">
+                                <div class="step">
+                                    <span class="step-numbers green-600">8</span>
+                                    <div class="step-desc">
+                                        <span class="step-title">Completed</span>
+                                        <p>Tasks</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <div class="slidePanel-footer">
+                        <button type="button" class="btn btn-icon btn-danger btn-round">
+                            <i class="icon wb-flag" aria-hidden="true"></i>
+                        </button>
+                        <span>Tody completed
+      <span class="red-600">3 tasks</span> . 3 New Tasks , 0 Schedule , 1 Topic , 2 Documents.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false">
+            <div class="scrollable-bar-handle" style="height: 210.436px; transform: translate3d(0px, 0px, 0px);"></div>
+        </div>
+    </div>
+    <div class="slidePanel-handler"></div>
+    <div class="slidePanel-loading">
+        <div class="loader loader-default"></div>
+    </div>
 </div>

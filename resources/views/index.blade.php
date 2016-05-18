@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
 	<link rel="stylesheet" href="/css/v1.css">
 	<link rel="stylesheet" href="/css/profile.min.css">
+	<link rel="stylesheet" href="/css/team.min.css">
 	<link rel="stylesheet" href="/css/override.css">
 	<!--TOAST CSS-->
 	<link rel="stylesheet" href="/css/angular-toastr.css">
