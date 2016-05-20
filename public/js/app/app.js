@@ -9,9 +9,9 @@ var satApp = angular.module("satApp", [
     'ui.router',
 	'AppControllers',
 	'AppServices',
-    'ngAnimate',
     'toastr',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'angular-click-outside'
 ]);
 
 satApp.filter('capitalize', function () {

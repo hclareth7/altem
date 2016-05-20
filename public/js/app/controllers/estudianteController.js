@@ -29,22 +29,53 @@ controllerModule
 
 	}])
 	.controller('estudiantePersonalController', ['$scope', 'estudianteService',
-    '$stateParams', '$location', 'toastr', '$state', '$rootScope',
-	function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope) {
+    '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal',
+	function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal) {
 
 			$scope.getEstudiante = function (estudianteId) {
 				$scope.estudiante = estudianteService.getEstudianteById(estudianteId);
 
 			};
-
 			$scope.getEstudiante(parseInt($stateParams.estudianteId));
 
 
 
+			$scope.isPanel = false;
+			$scope.closeThis = function () {
+				$scope.isPanel = false;
 
-	}])
+			};
 
 
+}]);
+/**
+$scope.open = function (size) {
+
+				var modalInstance = $uibModal.open({
+					animation: $scope.animationsEnabled,
+					windowTemplateUrl: 'windows.html',
+					templateUrl: 'modal.html',
+					controller: 'ModalInstanceCtrl',
+					size: size,
+					resolve: {
+						items: function () {
+							return $scope.items;
+						}
+					}
+				});
+			};
+
+controllerModule.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+	$scope.ok = function () {
+		$uibModalInstance.close();
+	};
+
+	$scope.cancel = function () {
+		$uibModalInstance.dismiss('cancel');
+	};
+}]);
+
+**/
 
 //Servicios
 /**

@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="/css/v1.css">
 	<link rel="stylesheet" href="/css/profile.min.css">
 	<link rel="stylesheet" href="/css/team.min.css">
+	<link rel="stylesheet" href="/css/asRange.min.css">
 	<link rel="stylesheet" href="/css/override.css">
 	<!--TOAST CSS-->
 	<link rel="stylesheet" href="/css/angular-toastr.css">
@@ -76,6 +77,7 @@
 	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
 	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>

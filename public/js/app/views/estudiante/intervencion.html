@@ -1,0 +1,119 @@
+
+<div class="mis-acciones animation-slide-right">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">Close</h3>
+			<div class="panel-actions">
+				<a class="panel-action icon wb-close" data-toggle="panel-close" aria-hidden="true"></a>
+			</div>
+		</div>
+		<div class="panel-body">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+		</div>
+	</div>
+
+</div>
+<script type="text/ng-template" id="windows.html">
+
+	<div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal" uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
+		<div class="modal-dialog {{size ? 'modal-' + size : ''}} modal-sidebar modal-s animation-slide-right">
+			<div class="modal-content" uib-modal-transclude></div>
+		</div>
+	</div>
+
+
+</script>
+
+<script type="text/ng-template" id="modal.html">
+
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		<h4 class="modal-title">Modal Title</h4>
+	</div>
+	<div class="modal-body">
+		<p>One fine body… One fine body…</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary btn-block">Save changes</button>
+		<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+	</div>
+
+
+
+</script>
+
+
+<script type="text/ng-template" id="panel.html">
+
+	<div class="slidePanel slidePanel-right slidePanel-dragging slidePanel-show">
+		<div class="slidePanel-scrollable scrollable is-enabled scrollable-vertical" style="position: relative;">
+			<div class="scrollable-container">
+				<div class="slidePanel-content scrollable-content">
+					<header class="slidePanel-header overlay" style="background-image: url('../../../global/photos/view-8-960x640.jpg');" data-method="scroll" data-min="50">
+						<div class="overlay-top overlay-panel overlay-background">
+							<div class="slidePanel-actions btn-group" aria-label="actions" role="group">
+								<button type="button" class="btn btn-pure btn-inverse icon wb-chevron-left" aria-hidden="true"></button>
+								<button type="button" class="btn btn-pure btn-inverse icon wb-chevron-right" aria-hidden="true"></button>
+								<button type="button" class="btn btn-pure btn-inverse slidePanel-close icon wb-close" aria-hidden="true"></button>
+							</div>
+							<h4>Gardening is life.png</h4>
+						</div>
+					</header>
+					<div class="slidePanel-inner">
+						<section class="slidePanel-inner-section">
+							<div class="media-header">
+								<div class="tags">
+									Tags:
+									<button type="button" class="btn btn-outline btn-default">Blog</button>
+									<button type="button" class="btn btn-outline btn-default">Design</button>
+									<button type="button" class="btn btn-outline btn-default">Cool</button>
+								</div>
+								<div class="share">
+									Share:
+									<div class="btn-group">
+										<button type="button" class="btn btn-icon btn-pure btn-default"><i class="icon bd-twitter" aria-hidden="true"></i></button>
+										<button type="button" class="btn btn-icon btn-pure btn-default"><i class="icon bd-facebook" aria-hidden="true"></i></button>
+										<button type="button" class="btn btn-icon btn-pure btn-default"><i class="icon bd-dribbble" aria-hidden="true"></i></button>
+									</div>
+								</div>
+							</div>
+							<div class="media-content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. </p>
+							</div>
+						</section>
+						<section class="slidePanel-inner-section">
+							<div class="media-header">
+								<div class="pull-right">
+									<div class="time">3 minutes ago</div>
+								</div>
+								<a class="avatar margin-right-10" href="javascript:void(0)">
+									<img src="../../../global/portraits/2.jpg" alt="...">
+								</a>
+								<span class="name">Seevisual</span>
+							</div>
+							<div class="media-content">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. </p>
+							</div>
+						</section>
+						<div class="slidePanel-comment">
+							<textarea class="maxlength-textarea form-control mb-sm margin-bottom-20" rows="4"></textarea>
+							<button class="btn btn-primary" data-dismiss="modal" type="button">Reply</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide" draggable="false">
+				<div class="scrollable-bar-handle" style="height: 351.743px; transform: translate3d(0px, 115.318px, 0px);"></div>
+			</div>
+		</div>
+		<div class="slidePanel-handler"></div>
+		<div class="slidePanel-loading">
+			<div class="loader loader-default"></div>
+		</div>
+	</div>
+
+</script>
+
