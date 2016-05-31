@@ -88,7 +88,14 @@
 
 									</div>
 									<div class="media-right">
-										<button type="button" class="btn btn-success"><i class="icon wb-extension" aria-hidden="true"></i>Agregar</button>
+										<span class="badge badge-danger mi-badge ">{{1}}</span>
+										<button type="button" class="pull-right btn btn-icon btn-primary btn-round btn-lg" ng-click="open()">
+
+											<i class="icon wb-extension" aria-hidden="true">
+
+											</i>
+
+										</button>
 									</div>
 									<div>
 										<div class="right">
@@ -169,7 +176,7 @@
 																		<div class="col-md-6 ">
 																			<ul class="mi-acciones-right pull-right">
 																				<li>
-																					<button type="button" class=" btn btn-outline btn-icon btn-default btn-round" ng-click="isPanel=true" id="btn-show" style="
+																					<button type="button" class=" btn btn-outline btn-icon btn-default btn-round" ng-click="showPanel()" id="btn-show" style="
     padding-right: 0;">
 																						<i class="icon wb-wrench" aria-hidden="true"></i></button>
 																				</li>
@@ -177,11 +184,6 @@
 
 																				</li>
 																			</ul>
-
-
-
-
-
 
 																		</div>
 																	</div>
@@ -206,16 +208,38 @@
 																</div>
 															</div>
 														</li>
+
 														<li class="timeline-reverse">
 															<div class="timeline-content-wrap">
 																<div class="timeline-dot bg-green-600">
 																	<span>2</span>
 																</div>
 																<div class="timeline-content">
-																	<div class="title">
-																		<span class="authors">AC-E07-01</span>2014-09-05 10:58:49
+
+																	<div class="row">
+																		<div class="col-md-6">
+																			<div class="title">
+																				<span class="authors">AC-E07-01</span>2014-09-05 10:58:49
+																			</div>
+																			<p>Tiempo estimado: 16 semanas</p>
+
+
+																		</div>
+																		<div class="col-md-6 ">
+																			<ul class="mi-acciones-right pull-right">
+																				<li>
+																					<button type="button" class=" btn btn-outline btn-icon btn-default btn-round" ng-click="showPanel()" id="btn-show" style="
+    padding-right: 0;">
+																						<i class="icon wb-wrench" aria-hidden="true"></i></button>
+																				</li>
+																				<li>
+
+																				</li>
+																			</ul>
+
+																		</div>
 																	</div>
-																	<p>Tiempo estimado: 16 semanas</p>
+
 																	<div class="row">
 
 																		<div class="col-md-3">
@@ -249,10 +273,10 @@
 								</div>
 
 							</div>
-							<div id="mi-panel" ng-class="{'animation-reverse': isPanel == true}" ng-show="!isPanel" class="mis-acciones animation-slide-right" click-outside="isPanel=false" outside-if-not="btn-show,mi-panel">
+							<div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}" ng-show="isPanel" class="  mis-acciones animation-slide-right" click-outside="closePanel()" outside-if-not="btn-show,mi-panel">
 								<div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
 									<div class="widget-header ">
-										<a id="addNewItemBtn" href="javascript:void(0)" class="add-item-toggle pull-right" ng-click="isPanel=!isPanel">
+										<a id="addNewItemBtn" href="javascript:void(0)" class="add-item-toggle pull-right" ng-click="closePanel()">
 											<i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
 										</a>
 										<div class="overlay-background ">
@@ -261,27 +285,127 @@
 											</div>
 										</div>
 									</div>
-									<div class="widget-content">
+									<div class="widget-content mi-scroll2">
 										<div class="row">
-											<div class="col-md-6">
-												<caption>Avance (%)</caption>
-											</div>
 
-											<div class="col-md-6 pull-right">
-												<div class="mi-progress-box" >
-													<div class="percentage-cur text-center" ng-init="selectedRange=50">
-														<h3 class="green-600">{{ selectedRange }}%</h3>
-													</div>
+											<div class="col-md-6">
+												<div class="mi-progress-box">
+
 													<div class="mi-progress-bar progress-bar-slider">
 														<input class="mi-progress-slider" type="range" min="0" max="100" ng-model="selectedRange">
 														<div class="inner" ng-style="{ width: selectedRange + '%' || '0%' }"></div>
 													</div>
+													<div class="percentage-cur text-center" ng-init="selectedRange=50">
+														<p class="green-600 font-size-20">Avance {{ selectedRange }}%</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+
+												<div class="switch pull-right">
+													<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+													<label for="cmn-toggle-1"></label>
 												</div>
 											</div>
 
 										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-6">
+
+												<div class="">
+													<div class="form-group input-group-icon">
+
+														<input type="number" class="form-control round" placeholder="Costo total">
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-2 pull-right">
+												<a class="btn btn-icon btn-success btn-outline btn-round">
+
+													<i class="icon wb-upload" aria-hidden="true"></i></a>
+											</div>
+
+
+										</div>
+										<hr>
+										<div class="row ">
+
+											<div class="col-md-12">
+												<div class="mi-scroll">
+													<div class="comment media">
+														<div class="media-left">
+															<a class="avatar avatar-xs mi-avatar-comment" href="javascript:void(0)">
+																<img src="/img/avatar.png" alt="..." style="width:40px">
+															</a>
+														</div>
+														<div class="comment-body media-body">
+															<a class="comment-author" href="javascript:void(0)">Juan Administrador SAT</a>
+															<div class="comment-meta">
+																<span class="date">Publicado el 12-05-2016 a las 09:59</span>
+															</div>
+															<div class="comment-content">
+																<p>Dude, this is awesome. Thanks so much, this is awesome. Thanks so much this is awesome. Thanks so much</p>
+															</div>
+															<div class="comment-actions">
+																<a class="btn btn-sm btn-icon btn-flat btn-default">
+																	<i class="icon wb-edit" aria-hidden="true"></i>
+																</a>
+																<a class="btn btn-sm btn-icon btn-flat btn-default" href="javascript:void(0)" role="button">
+																	<i class="icon wb-trash" aria-hidden="true"></i>
+																</a>
+
+															</div>
+
+														</div>
+													</div>
+													<div class="comment media">
+														<div class="media-left">
+															<a class="avatar avatar-xs mi-avatar-comment" href="javascript:void(0)">
+																<img src="/img/avatar.png" alt="..." style="width:40px">
+															</a>
+														</div>
+														<div class="comment-body media-body">
+															<a class="comment-author" href="javascript:void(0)">Juan Administrador SAT</a>
+															<div class="comment-meta">
+																<span class="date">Publicado el 12-05-2016 a las 09:59</span>
+															</div>
+															<div class="comment-content">
+																<p>Dude, this is awesome. Thanks so much, this is awesome. Thanks so much this is awesome. Thanks so much</p>
+															</div>
+															<div class="comment-actions">
+																<a class="btn btn-sm btn-icon btn-flat btn-default">
+																	<i class="icon wb-edit" aria-hidden="true"></i>
+																</a>
+																<a class="btn btn-sm btn-icon btn-flat btn-default" href="javascript:void(0)" role="button">
+																	<i class="icon wb-trash" aria-hidden="true"></i>
+																</a>
+
+															</div>
+
+														</div>
+													</div>
+
+												</div>
+												<div>
+													<form class="comment-reply">
+														<div class="form-group">
+															<textarea class="form-control mi-text-comment" rows="5" placeholder="Comenta aqui..."></textarea>
+														</div>
+														<div class="form-group">
+															<button type="submit" class="btn btn-primary">Comentar</button>
+
+														</div>
+													</form>
+												</div>
+											</div>
+
+
+										</div>
 									</div>
 								</div>
+
 
 							</div>
 						</uib-tab>
@@ -305,3 +429,71 @@
 		</div>
 	</div>
 </div>
+
+
+
+<script type="text/ng-template" id="windows.html">
+
+	<div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal modal-success" uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
+		<div class="modal-dialog {{size ? 'modal-' + size : ''}}  animation-fade">
+			<div class="modal-content" uib-modal-transclude></div>
+		</div>
+	</div>
+
+
+</script>
+
+<script type="text/ng-template" id="modal.html">
+
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true" ng-click="cancel()">×</span>
+		</button>
+		<h4 class="modal-title">Agregar estrategia (RAC001)</h4>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-md-12">
+
+				<am-multiselect class="input-lg" multiple="true" ms-selected="There are {{selectedCar.length}} car(s) selected" ng-model="selectedCar" ms-header="Select Some Cars" options="c.name for c in cars" change="selected()"></am-multiselect>
+
+				<div class="list-group">
+					<a class="list-group-item" href="javascript:void(0)" ng-repeat="item in selectedCar">{{item}}</a>
+
+				</div>
+
+
+
+
+			</div>
+
+			<div class="col-sm-12 ">
+				<button class="btn btn-primary pull-right" data-dismiss="modal" type="button" ng-click="ok()">Guardar</button>
+			</div>
+		</div>
+	</div>
+
+
+</script>
+
+
+
+<script type="text/ng-template" id="multiselect.tmpl.html">
+	<div>
+
+
+		<ul class="list-group">
+			<li>
+				<input class="form-control input-sm" type="text" ng-model="searchText.label" ng-keydown="keydown($event)" autofocus="autofocus" placeholder="Buscar estrategia" />
+			</li>
+			<li ng-repeat="i in items | filter:searchText" class="list-group-item" ng-class="{'selected': $index === selectedIndex,'active': i.checked}" class="list-group-item active">
+				<a href="javascript:void(0)" ng-click="select(i); focus()">
+					<h4 class="list-group-item-heading"> {{i.label}}</h4>
+				</a>
+			</li>
+
+		</ul>
+
+	</div>
+</script>

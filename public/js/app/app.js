@@ -11,7 +11,8 @@ var satApp = angular.module("satApp", [
 	'AppServices',
     'toastr',
 	'ui.bootstrap',
-	'angular-click-outside'
+	'angular-click-outside',
+	'am.multiselect'
 ]);
 
 satApp.filter('capitalize', function () {
@@ -20,7 +21,7 @@ satApp.filter('capitalize', function () {
 	}
 });
 
-satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', function ($stateProvider, $urlRouterProvider, toastrConfig) {
+satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig','$locationProvider', function ($stateProvider, $urlRouterProvider, toastrConfig,$locationProvider) {
 	angular.extend(toastrConfig, {
 		autoDismiss: false,
 		containerId: 'toast-container',
@@ -105,6 +106,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', function 
 			controller: 'estudiantePersonalController'
 		})
 
-
+	$locationProvider.html5Mode(true);
+	//$locationProvider.hashPrefix('!');
 
 }])

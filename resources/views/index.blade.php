@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="/css/v1.css">
 	<link rel="stylesheet" href="/css/profile.min.css">
 	<link rel="stylesheet" href="/css/team.min.css">
-	<link rel="stylesheet" href="/css/asRange.min.css">
+	<link rel="stylesheet" href="/css/select2.min.css">
 	<link rel="stylesheet" href="/css/override.css">
 	<!--TOAST CSS-->
 	<link rel="stylesheet" href="/css/angular-toastr.css">
@@ -48,7 +48,7 @@
     <script src="/respond/respond.min.js"></script>
     <![endif]-->
 
-
+	<base href="/">
 </head>
 
 <body class="dashboard dashboard site-menubar-unfold" ng-app="satApp">
@@ -79,6 +79,7 @@
 	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
 	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
+	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->

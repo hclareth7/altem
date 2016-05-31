@@ -39,24 +39,23 @@ controllerModule
 			$scope.getEstudiante(parseInt($stateParams.estudianteId));
 
 
+			$scope.showPanel = function () {
+				$scope.isPanel = true;
 
-			$scope.isPanel = false;
-			$scope.closeThis = function () {
+			};
+
+			$scope.closePanel = function () {
 				$scope.isPanel = false;
 
 			};
 
-
-}]);
-/**
-$scope.open = function (size) {
+			$scope.open = function () {
 
 				var modalInstance = $uibModal.open({
 					animation: $scope.animationsEnabled,
 					windowTemplateUrl: 'windows.html',
 					templateUrl: 'modal.html',
 					controller: 'ModalInstanceCtrl',
-					size: size,
 					resolve: {
 						items: function () {
 							return $scope.items;
@@ -65,15 +64,45 @@ $scope.open = function (size) {
 				});
 			};
 
-controllerModule.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-	$scope.ok = function () {
-		$uibModalInstance.close();
-	};
 
-	$scope.cancel = function () {
-		$uibModalInstance.dismiss('cancel');
-	};
+
+}])
+	.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+		$scope.ok = function () {
+			$uibModalInstance.close();
+		};
+
+		$scope.cancel = function () {
+			$uibModalInstance.dismiss('cancel');
+		};
+
+		$scope.cars = [
+			{
+				id: 1,
+				name: 'Audi',
+				descripcion: 'sfdjgkljsdlfgjlskfd'
+			},
+			{
+				id: 2,
+				name: 'BMW',
+				descripcion: 'fdgjksfdhkjgsfd'
+
+			},
+			{
+				id: 3,
+				name: 'Honda',
+				descripcion: 'fdgsdfgsjdflkgjslfdk'
+
+			}
+                ];
+		$scope.selectedCar = [];
+
+
 }]);
+/**
+
+
+
 
 **/
 
