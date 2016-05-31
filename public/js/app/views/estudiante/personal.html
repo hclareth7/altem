@@ -7,7 +7,7 @@
 					<div class="widget-header-content">
 						<a class="avatar avatar-lg" href="javascript:void(0)">
 							<!--img src="/img/avatar2.png" alt="..."-->
-							<img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.codigo}}" alt="...">
+							<img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.id}}" alt="...">
 							<!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
 						</a>
 						<h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
@@ -32,15 +32,16 @@
 					<div class="row no-space">
 						<div class="col-xs-4">
 							<strong class="profile-stat-count">Codigo</strong>
-							<span>{{estudiante.codigo}}</span>
+							<span>{{estudiante.id}}</span>
 						</div>
 						<div class="col-xs-4">
 							<strong class="profile-stat-count">Edad</strong>
-							<span>{{estudiante.edad}}</span>
+							<span >{{getEdad(estudiante.fecha_nacimiento)}}</span>
+
 						</div>
 						<div class="col-xs-4">
 							<strong class="profile-stat-count">Sexo</strong>
-							<span>{{estudiante.sexo}}M</span>
+							<span>{{estudiante.sexo}}</span>
 						</div>
 					</div>
 				</div>

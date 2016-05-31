@@ -1,50 +1,66 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-	.controller('estudianteController', ['$scope', 'estudianteService',
-    '$stateParams', 'toastr', '$state', '$rootScope',
-    function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope) {
-			$rootScope.estudiantes = [];
-			$scope.getAllEstudiantes = function () {
+    .controller('estudianteController', ['$scope', 'estudianteService'
 
-				//console.log(response.data);
-				$rootScope.estudiantes = estudianteService.getAllEstudiantes();
+        , '$stateParams', 'toastr', '$state', '$rootScope'
 
+        , function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope) {
+            $rootScope.estudiantes = [];
+            $scope.getAllEstudiantes = function () {
+                estudianteService.getAllEstudiantes().then(function (response) {
+                    $rootScope.estudiantes = response.data;
 
-			};
+                });
 
-			$scope.getAllEstudiantes();
+            };
 
-			$rootScope.barra = function () {
-				$rootScope.titulo = "NO";
-			};
-			$rootScope.barra();
+            $scope.getAllEstudiantes();
 
-	}])
-	.controller('estudianteIntervencionController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
-		function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
-
-
-
+            $rootScope.barra = function () {
+                $rootScope.titulo = "NO";
+            };
+            $rootScope.barra();
 
 	}])
-	.controller('estudiantePersonalController', ['$scope', 'estudianteService',
-    '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal',
-	function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal) {
+    .controller('estudianteIntervencionController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope'
 
-			$scope.getEstudiante = function (estudianteId) {
-				$scope.estudiante = estudianteService.getEstudianteById(estudianteId);
-
-			};
-			$scope.getEstudiante(parseInt($stateParams.estudianteId));
+        , function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
 
 
 
-			$scope.isPanel = false;
-			$scope.closeThis = function () {
-				$scope.isPanel = false;
 
-			};
+	}])
+    .controller('estudiantePersonalController', ['$scope', 'estudianteService'
+
+        , '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal'
+
+        , function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal) {
+
+            $scope.getEstudiante = function (estudianteId) {
+                estudianteService.getEstudianteById(estudianteId).then(function (response) {
+                    $scope.estudiante = response.data;
+                });
+
+
+            };
+            $scope.getEstudiante($stateParams.estudianteId);
+
+            $scope.getEdad = function (fecha_na) {
+                var ANIO_ACTUAL =new Date().getFullYear();
+                var FECHA_NA = new Date(fecha_na).getFullYear();
+                console.log(ANIO_ACTUAL - FECHA_NA);
+                return ANIO_ACTUAL - FECHA_NA;
+            };
+
+           //console.log($scope.getEdad('1991-11-25'));
+
+
+            $scope.isPanel = false;
+            $scope.closeThis = function () {
+                $scope.isPanel = false;
+
+            };
 
 
 }]);
