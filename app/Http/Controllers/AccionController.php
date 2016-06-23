@@ -3,21 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
+use App\Models\Accion;
 
-class PagesController extends Controller
+class AccionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+	public function __construct(){
+		$this->middleware('cors');
+		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+	}
+
+
+	public function find(Route $route)
+	{
+		$this->accion=Accion::find($route->getParameter('accion'));
+	}
+
     public function index()
     {
-       	$apiUrl='http://localhost:8000/api/';
-    	return view('index')->with('apiUrl', $apiUrl);
+         $accion = Accion::all();
+		return response()->json($accion);
+    }
 
+    public function getByEstrategia($id)
+    {
+        $acciones=Accion::where('estrategias_id', $id)
+            ->orderBy('id', 'asc')
+            ->get();
+        return response()->json($acciones);
     }
 
     /**
@@ -38,7 +59,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Accion::create($request->all());
+		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
     /**
@@ -49,9 +71,9 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+         return response()->json($this->accion);
     }
-
+	
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,7 +94,9 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$this->accion->fill($request->all());
+		$this->accion->save();
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -83,6 +107,6 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->accion->delete();
     }
 }

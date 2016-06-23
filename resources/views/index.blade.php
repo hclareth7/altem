@@ -48,7 +48,6 @@
     <script src="/respond/respond.min.js"></script>
     <![endif]-->
 
-	<base href="/">
 </head>
 
 <body class="dashboard dashboard site-menubar-unfold" ng-app="satApp">
@@ -73,13 +72,14 @@
 
 	<!-- Angular libs -->
 	<script src="/bower_components/angular/angular.min.js"></script>
+	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
-	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
 	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
+	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->
@@ -88,12 +88,16 @@
 	<script src="/js/app/services/riesgoService.js"></script>
 	<script src="/js/app/services/tipoRiesgoService.js"></script>
 	<script src="/js/app/services/estudianteService.js"></script>
+	<script src="/js/app/services/accionService.js"></script>
+	<script src="/js/app/services/filtroService.js"></script>
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>
 	<script src="/js/app/controllers/riesgoController.js"></script>
 	<script src="/js/app/controllers/tipoRiesgoController.js"></script>
 	<script src="/js/app/controllers/estudianteController.js"></script>
+	<script src="/js/app/controllers/accionController.js"></script>
+	<script src="/js/app/controllers/filtroController.js"></script>
 
 	<!-- Module App -->
 

@@ -3,22 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
+use App\Models\Intervencion;
 
-class PagesController extends Controller
+
+class IntervencionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+	public function __construct(){
+		$this->middleware('cors');
+		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+	}
+
+	public function find(Route $route){
+
+		$this->intervencion=Intervencion::find($route->getParameter('intervencion'));
+
+	}
+
     public function index()
     {
-       	$apiUrl='http://localhost:8000/api/';
-    	return view('index')->with('apiUrl', $apiUrl);
-
+        $intervencion = Intervencion::all();
+		return response()->json($intervencion);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +54,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Intervencion::create($request->all());
+		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
     /**
@@ -49,7 +66,8 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return response()->json($this->intervencion);
     }
 
     /**
@@ -70,9 +88,11 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+       	$this->intervencion->fill($request->all());
+		$this->intervencion->save();
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -83,6 +103,6 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $this->intervencion->delete();
     }
 }

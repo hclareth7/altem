@@ -3,35 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Models\Riesgo;
+use App\Models\Filtro;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 
-class RiesgoController extends Controller
+class FiltroController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct(){
-        $this->db_sirius = \DB::connection('sirius');
-		$this->middleware('cors');
-		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
-	}
+    public function __construct()
+    {
+        $this->middleware('cors');
+        $this->beforeFilter('@find', ['only' => ['show', 'update', 'destroy']]);
+    }
 
 
-	public function find(Route $route)
-	{
-		$this->riesgo=Riesgo::find($route->getParameter('riesgo'));
-	}
+    public function find(Route $route)
+    {
+        $this->filtro = Filtro::find($route->getParameter('filtro'));
+    }
 
-   
+    
 
     public function index()
     {
-         $riesgo = Riesgo::with('tiporiesgo')->get();
-		return response()->json($riesgo);
+        //$sql="SELECT * FROM sat.filtros group by riesgos_id";
+        $filtro = DB::table('filtros')->groupBy('riesgos_id')->get();
+        return response()->json($filtro);
+    }
+
+    public function getByRiesgo($id)
+    {
+        $filtro = Filtro::where('riesgos_id', $id)->get();
+        return response()->json($filtro);
     }
 
     /**
@@ -47,31 +55,30 @@ class RiesgoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        Riesgo::create($request->all());
-		return response()->json(["mensaje"=>"Creado correctamente"]);
+        Filtro::create($request->all());
+        return response()->json(["mensaje" => "Creado correctamente"]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $riesgo=Riesgo::with('tiporiesgo')->find($id);
-        return response()->json($riesgo);
+        return response()->json($this->filtro);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -82,25 +89,25 @@ class RiesgoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-		$this->riesgo->fill($request->all());
-		$this->riesgo->save();
-		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
+        $this->filtro->fill($request->all());
+        $this->filtro->save();
+        return response()->json(["mensaje" => "Actualizacion exitosa"]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $this->riesgo->delete();
+        $this->filtro->delete();
     }
 }

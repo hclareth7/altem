@@ -2,3 +2,92 @@
 <h1>Hola login</h1>
 <a ui-sref="main" >Entrar</a>
 </div>
+<div>
+    <!-- Steps -->
+    <div class="pearls row">
+        <div class="pearl col-xs-4 done current" aria-expanded="true">
+            <div class="pearl-icon"><i class="icon wb-user" aria-hidden="true"></i></div>
+            <span class="pearl-title">Crear factor de riesgo</span>
+        </div>
+        <div class="pearl col-xs-4 disabled" aria-expanded="false">
+            <div class="pearl-icon"><i class="icon wb-payment" aria-hidden="true"></i></div>
+            <span class="pearl-title">Agregar filtros</span>
+        </div>
+        <div class="pearl col-xs-4 disabled" aria-expanded="false">
+            <div class="pearl-icon"><i class="icon wb-check" aria-hidden="true"></i></div>
+            <span class="pearl-title">Finalizar</span>
+        </div>
+    </div>
+    <!-- End Steps -->
+
+    <!-- Wizard Content -->
+    <form class="wizard-content fv-form fv-form-bootstrap" id="exampleFormContainer"
+          novalidate="novalidate">
+
+        <div class="wizard-pane active" role="tabpanel" aria-expanded="true">
+            <form method="post" ng-submit="guardar()">
+                <div class="form-group">
+                    <select class="form-control" ng-model="riesgo.tiporiesgo_id">
+                        <option ng-repeat="tiporiesgo in tiporiesgos" value="{{tiporiesgo.id}}"
+                                ng-selected="riesgo.tiporiesgo_id==tiporiesgo.id">{{tiporiesgo.nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="riesgo.nombre">
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" ng-model="riesgo.descripcion"></textarea>
+                    <div class="btn btn-system btn-xs" style="display: none;">&lt; &gt;</div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">{{accion}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="wizard-pane" id="exampleBillingOne" role="tabpanel" aria-expanded="false">
+            <form method="post" ng-submit="guardarFiltro()">
+                <div class="form-group">
+                    <select class="form-control" ng-model="filtro.campo">
+                        <option ng-repeat="tiporiesgo in tiporiesgos" value="{{tiporiesgo.id}}"
+                                ng-selected="riesgo.tiporiesgo_id==tiporiesgo.id">{{tiporiesgo.nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" ng-model="filtro.operador">
+                        <option>==</option>
+                        <option>>=</option>
+                        <option><=</option>
+                        <option>!=</option>
+                        <option>%like</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="filtro.valor">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">{{accion}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="wizard-pane" id="exampleGettingOne" role="tabpanel" aria-expanded="false">
+
+        </div>
+    </form>
+    <!-- Wizard Content -->
+    <div class="wizard-buttons">
+        <a class="btn btn-default btn-outline disabled" href="#exampleWizardFormContainer"
+           data-wizard="back"
+           role="button">Atras</a>
+        <a class="btn btn-primary btn-outline pull-right" href="#exampleWizardFormContainer"
+           data-wizard="next"
+           role="button">Siguiente</a>
+        <a class="btn btn-success btn-outline pull-right hide" href="#exampleWizardFormContainer"
+           data-wizard="finish" role="button">Terminar</a>
+    </div>
+</div>

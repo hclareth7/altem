@@ -14,4 +14,10 @@ class Estrategia extends Model {
         return $this->belongsTo('App\Models\Riesgo');
     }
 
+    public function acciones()
+    {
+        return $this->hasMany('App\Models\Accion');
+    }
+
+
 }

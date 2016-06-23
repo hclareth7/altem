@@ -13,7 +13,20 @@
 
 Route::get('/','PagesController@index');
 
-Route::resource('estrategia', 'EstrategiaController');
-Route::resource('tipo_riesgo', 'TipoRiesgoController');
-Route::resource('riesgo', 'RiesgoController');
-Route::resource('estudiante', 'EstudianteController');
+Route::group(['prefix' => 'api'], function () {
+
+    Route::resource('estudiante', 'EstudianteController');
+    Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
+    Route::resource('personal', '');
+    Route::resource('intervencion', 'IntervenciArchivoPersonalControlleronController');
+    Route::resource('accion_aplicada', 'AccionAplicadaController');
+    Route::resource('estrategia', 'EstrategiaController');
+    Route::resource('accion', 'AccionController');
+    Route::get('accion/acciones_estrategia/{id}', 'AccionController@getByEstrategia');
+    Route::resource('tipo_riesgo', 'TipoRiesgoController');
+    Route::resource('riesgo', 'RiesgoController');
+    Route::resource('filtro', 'FiltroController');
+    Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
+    Route::get('estudiante_colums', 'EstudianteController@getColumn');
+
+});

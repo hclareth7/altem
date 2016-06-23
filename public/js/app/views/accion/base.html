@@ -1,13 +1,13 @@
 <div class="page-header">
-
-	<h1 class="page-title">Tipo de riesgos</h1>
 	<ol class="breadcrumb">
 		<li><a ui-sref="main">Inicio</a></li>
-		<li><a ui-sref="main.tiporiesgo" ng-click="barra()">Tipo de riesgo</a></li>
-		<li ng-hide="titulo == 'NO'">{{titulo}}</li>
+		<li><a ui-sref="main.estrategia" ng-click="barra()">Acciones</a></li>
+		<li ng-hide="titulo == 'NO'" >{{titulo}}</li>
+
 	</ol>
+	<h1 class="page-title">Acciones</h1>
 	<div class="page-header-actions">
-		<a ui-sref="main.tiporiesgo.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
+		<a ui-sref="main.estrategia.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
 			<i class="icon wb-plus" aria-hidden="true"></i>
 		</a>
 		<!--
@@ -31,7 +31,7 @@
 					<div class="fixed-table-toolbar">
 						<div class="bars pull-left">
 							<div class="btn-group hidden-xs" id="exampleToolbar" role="group">
-								<a ui-sref="main.tiporiesgo.crear" class="btn btn-outline btn-default">
+								<a ui-sref="main.estrategia.crear" class="btn btn-outline btn-default">
 									<i class="icon wb-plus" aria-hidden="true"></i>
 								</a>
 								<button type="button" class="btn btn-outline btn-default">
@@ -58,31 +58,56 @@
 											<div class="fht-cell"></div>
 										</th>
 
+										<th style="" data-field="license" tabindex="0">
+											<div class="th-inner ">Estrategia</div>
+											<div class="fht-cell"></div>
+										</th>
+
+										<th style="" data-field="star" tabindex="0">
+											<div class="th-inner ">Tiempo estimado</div>
+											<div class="fht-cell"></div>
+										</th>
+
+										<th style="" data-field="star" tabindex="0">
+											<div class="th-inner ">Costo estimado</div>
+											<div class="fht-cell"></div>
+										</th>
+
 										<th style="" data-field="star" tabindex="0">
 											<div class="th-inner ">Descripcion</div>
 											<div class="fht-cell"></div>
 										</th>
+
 										<th style="" data-field="star" tabindex="0">
 											<div class="th-inner ">Acciones</div>
 											<div class="fht-cell"></div>
 										</th>
+										<div class="p"></div>
 
 									</tr>
 								</thead>
 								<tbody>
 
-									<tr ng-repeat="tiporiesgo in tiporiesgos">
-										<td>{{tiporiesgo.nombre}}</td>
+									<tr ng-repeat="accion in acciones">
+										<td>{{accion.nombre}}</td>
 
-										<td>{{tiporiesgo.descripcion}}</td>
+										<td>{{accion.estrategia.nombre}}</td>
+										<td>{{accion.tiempo_estimado}}</td>
+										<td>{{accion.costo_estimado}}</td>
+										<td>{{accion.descripcion}}</td>
 										<td class="col-md-2">
-											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.tiporiesgo.editar({tiporiesgoId:tiporiesgo.id})">
+											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.accion.editar({accionId:accion.id})">
 												<i class="icon wb-pencil" aria-hidden="true"></i>
 											</a>
-											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(tiporiesgo.id)">
+											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(accion.id)">
 												<i class="icon wb-trash" aria-hidden="true"></i>
 											</a>
 										</td>
+									</tr>
+
+									<tr class="text-nowrap">
+
+
 									</tr>
 									<tr class="no-records-found" style="display:none;">
 										<td colspan="5">No hay datos</td>

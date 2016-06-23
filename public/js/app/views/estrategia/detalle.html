@@ -1,0 +1,155 @@
+<div>
+    <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="media">
+                    <div class="media-left">
+                        <div class="s">
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="media-heading font-size-24 pull-left">
+                            {{estrategia.nombre}}
+                            <small class="badge  badge-danger">{{estrategia.riesgo.nombre}}</small>
+
+                        </h1>
+                        <div class="media-right pull-right">
+                            <button type="button" class="btn btn-success" ui-sref="main.estrategia.detalle.crear">
+                                <i class="icon wb-plus" aria-hidden="true"></i> Acciones
+                            </button>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p class="name">Fecha de creacion: {{estrategia.created_at}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="alert alert-alt alert-info alert-dismissible" role="alert">
+                            <p>
+                                <span>Descripcion: </span>{{estrategia.descripcion}}.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr>
+                <div id="recentActivityWidget">
+                    <ul class="timeline timeline-icon">
+                        <li class="timeline-reverse" ng-repeat="accion in acciones">
+                            <div class="timeline-content-wrap">
+                                <div class="timeline-dot bg-green-600">
+                                    <span>1</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="title pull-left">
+                                                <span class="authors">{{accion.nombre}}</span>
+                                            </div>
+                                            <div class="btn-toolbar pull-right" aria-label="Toolbar with button groups"
+                                                 role="toolbar">
+                                                <div class="btn-group" role="group">
+                                                    <button tooltip-placement="top" uib-tooltip="HOLA"
+                                                            tooltip-is-open="false" type="button"
+                                                            class="btn btn-icon btn-default btn-outline"
+                                                            ui-sref="main.estrategia.detalle.editar({accionId:accion.id})"
+                                                            style="padding-right: 0;"><i class="icon wb-pencil"
+                                                                                         aria-hidden="true"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-icon btn-default btn-outline"
+                                                            ng-click="removeAccion(accion.id)"
+                                                            style="padding-right: 0;"><i class="icon wb-trash"
+                                                                                         aria-hidden="true"
+                                                    ></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <p>Tiempo estimado: {{accion.tiempo_estimado}}</p>
+                                            <p>Costo estimado: {{accion.costo_estimado}}</p>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-alt alert-info alert-dismissible" role="alert">
+                                                    <p>
+                                                        <span class="">Descripcion:</span> {{accion.descripcion}}.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="windows.html">
+
+    <div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal modal-success"
+         uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
+        <div class="modal-dialog {{size ? 'modal-' + size : ''}}  animation-fade">
+            <div class="modal-content" uib-modal-transclude></div>
+        </div>
+    </div>
+
+
+</script>
+
+<script type="text/ng-template" id="modal-accion.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ng-click="cancel()">×</span>
+        </button>
+        <h4 class="modal-title">{{textTitulo}} accion ({{estrategia.nombre}})</h4>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="guardarAccion()">
+
+
+            <div class="row">
+                <div class="col-lg-12 form-group">
+                    <input type="text" class="form-control" ng-model="accion.nombre" placeholder="Nombre">
+
+                </div>
+                <div class="col-lg-12 form-group">
+                    <input type="number" class="form-control" ng-model="accion.tiempo_estimado"
+                           placeholder="Tiempo estimado">
+                </div>
+                <div class="col-lg-12 form-group">
+                    <input type="number" class="form-control" ng-model="accion.costo_estimado"
+                           placeholder="Costo estimado">
+                </div>
+                <div class="col-lg-12 form-group">
+                    <textarea class="form-control" rows="5" ng-model="accion.descripcion"
+                              placeholder="Descripcion"></textarea>
+                </div>
+                <div class="col-sm-12 pull-right">
+                    <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</script>

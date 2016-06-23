@@ -25,11 +25,8 @@ class EstrategiaController extends Controller
 
 	public function find(Route $route)
 	{
-
 		$this->estrategia=Estrategia::find($route->getParameter('estrategia'));
-
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
-
 	}
 
     public function index()
@@ -37,6 +34,8 @@ class EstrategiaController extends Controller
         $estrategia = Estrategia::with('riesgo')->get();
 		return response()->json($estrategia);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -68,7 +67,9 @@ class EstrategiaController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->estrategia);
+        $estrategia=Estrategia::with('riesgo')->find($id);
+
+        return response()->json($estrategia);
     }
 
     /**
@@ -91,7 +92,6 @@ class EstrategiaController extends Controller
      */
     public function update(Request $request,$id)
     {
-
 		$this->estrategia->fill($request->all());
 		$this->estrategia->save();
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);

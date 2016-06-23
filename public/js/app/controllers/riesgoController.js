@@ -2,9 +2,16 @@ var controllerModule = angular.module('AppControllers');
 
 controllerModule
 	.controller('riesgoController', ['$scope', 'riesgoService',
-    '$stateParams', 'toastr', '$rootScope',
-    function ($scope, riesgoService, $stateParams, toastr, $rootScope) {
-
+    '$stateParams', 'toastr', '$rootScope','filtroService',
+    function ($scope, riesgoService, $stateParams, toastr, $rootScope,filtroService) {
+			$scope.removeFiltro=function (id) {
+				filtroService.deleteFiltro(id).then(function (respuesta) {
+					_.remove($rootScope.filtros, function (e) {
+						return e.id == id;
+					});
+					toastr.warning('Exito', 'Estrategia eliminada');
+				});
+			};
 			$rootScope.riesgos = [];
 			$scope.getAllRiesgos = function () {
 				riesgoService.getAllRiesgo().then(function (response) {
@@ -13,12 +20,10 @@ controllerModule
 				});
 
 			};
-
 			$scope.getAllRiesgos();
 			$rootScope.barra = function () {
 				$rootScope.titulo = "NO";
 			};
-
 			$scope.remove = function (id) {
 				riesgoService.deleteRiesgo(id).then(function (respuesta) {
 					_.remove($scope.riesgos, function (e) {
@@ -27,7 +32,6 @@ controllerModule
 					toastr.warning('Exito', 'Riesgo eliminado');
 				});
 			};
-
     }])
 	.controller('riesgoEditarController', ['$scope', 'riesgoService',
     '$stateParams', '$location', 'tipoRiesgoService', 'toastr', '$rootScope',
@@ -95,4 +99,27 @@ controllerModule
 
 
 
-	}]);
+	}])
+	.controller('riesgoDetalleController',['$scope', 'riesgoService',
+		'$stateParams', '$state', 'tipoRiesgoService', 'toastr', '$rootScope','filtroService',
+		function ($scope, riesgoService, $stateParams, $state, tipoRiesgoService, toastr, $rootScope,filtroService)  {
+			$rootScope.titulo = "Detalle";
+
+			$scope.getRiesgo= function (riesgoId) {
+				riesgoService.getRiesgoById(riesgoId).then(function (response) {
+					$rootScope.riesgo = response.data;
+				}, function (response) {
+					//console.log(response);
+					//$location.path('/app/estrategia');
+					$state.go('main.riesgo');
+				});
+				filtroService.getFiltroByRiesgoId(riesgoId).then(function (response) {
+					$rootScope.filtros = response.data;
+					//console.log($rootScope.acciones);
+				});
+			};
+
+			$scope.getRiesgo(parseInt($stateParams.riesgoId));
+
+			$rootScope.barra();
+	}])

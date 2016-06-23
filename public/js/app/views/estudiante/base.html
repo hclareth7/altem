@@ -1,11 +1,12 @@
 <div class="page-header">
+
+	<h1 class="page-title">Estudiantes</h1>
 	<ol class="breadcrumb">
 		<li><a ui-sref="main">Inicio</a></li>
 		<li><a ui-sref="main.estudiante" ng-click="barra()">Estudiantes</a></li>
 		<li ng-hide="titulo == 'NO'">{{titulo}}</li>
 
 	</ol>
-	<h1 class="page-title">Estudiantes</h1>
 	<div class="page-header-actions">
 		<a ui-sref="main.estudiante.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
 			<i class="icon wb-plus" aria-hidden="true"></i>
@@ -50,125 +51,92 @@
 					</div>
 					<div class="fixed-table-container" style="padding-bottom: 0px;">
 						<div class="fixed-table-body">
-							<div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...</div>
 							<br>
 							<br>
 							<br>
 
 							<div class="btn-group btn-group-justified">
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
+								<div class="btn-group" role="group" ng-repeat="filtro in filtros">
+									<button type="button" class="btn btn-default"
+											ng-click="getEstudiantesByFiltro(filtro.riesgos_id)">
 										<i class="icon wb-graph-down" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">PGA  3.2 </span>
-									</button>
-								</div>
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<i class="icon wb-sort-asc" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">Filtro 1</span>
-									</button>
-								</div>
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<i class="icon wb-user" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">Filtro 2</span>
-									</button>
-								</div>
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<i class="icon wb-user" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">Filtro 3</span>
-									</button>
-								</div>
-
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<i class="icon wb-user" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">Filtro 4</span>
-									</button>
-								</div>
-
-								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">
-										<i class="icon wb-user" aria-hidden="true"></i>
-										<span class="text-uppercase hidden-xs">Filtro 5</span>
+										<span class="text-uppercase hidden-xs">{{filtro.nombre}}</span>
 									</button>
 								</div>
 							</div>
 							<br>
-							<table class="table table-hover" data-selectable="selectable" data-row-selectable="true">
-								<thead>
-									<tr>
-										<th class="width-50">
-											<span class="checkbox-custom checkbox-primary">
-                            <input class="selectable-all" type="checkbox">
-                            <label></label>
-                          </span>
-										</th>
-										<th>
-											Codigo
-										</th>
-										<th>
-											Nombres
-										</th>
-										<th>
-											Apellidos
-										</th>
-										<th>
-											Programa
-										</th>
+							<div class="table-responsive">
+								<table class="table animation animation-fade">
+									<thead>
+										<tr>
+											<th>
+												<span class="checkbox-custom checkbox-primary">
+								<input class="selectable-all" type="checkbox">
+								<label></label>
+							  </span>
+											</th>
+											<th class="width-50">
+												Codigo
+											</th>
+											<th>
+												Nombres
+											</th>
+											<th>
+												Apellidos
+											</th>
+											<th>
+												Programa
+											</th>
 
-										<th>
-											Direccion
-										</th>
+											<th>
+												Direccion
+											</th>
 
-										<th>
-											Telefono
-										</th>
+											<th>
+												Telefono
+											</th>
 
-										<th>
-											Correo
-										</th>
-										<th>
-											Acciones
-										</th>
+											<th>
+												Correo
+											</th>
+											<th>
+												Acciones
+											</th>
 
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="active" ng-repeat="estudiante in estudiantes">
-										<td>
-											<span class="checkbox-custom checkbox-primary">
-												<input class="selectable-item" type="checkbox" id="row-619" value="619">
-												<label for="row-619"></label>
-										  	</span>
-										</td>
-										<td>{{estudiante.id}}</td>
-										<td>{{estudiante.nombres}}</td>
-										<td>{{estudiante.apellidos}}</td>
-										<td>{{estudiante.programa}}</td>
-										<td>{{estudiante.direccion}}</td>
-										<td>{{estudiante.telefono}}</td>
-										<td>{{estudiante.correo}}</td>
-										<td class="text-nowrap">
-											<a ui-sref="main.personal({estudianteId:estudiante.id})" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Informacion">
-												<i class="icon wb-eye" aria-hidden="true"></i>
-											</a>
-											<button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Delete">
-												<i class="icon wb-add-file" aria-hidden="true"></i>
-											</button>
-										</td>
-								</tbody>
-							</table>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="active" ng-repeat="estudiante in estudiantes">
+											<td>
+												<span class="checkbox-custom checkbox-primary">
+													<input class="selectable-item" type="checkbox" id="row-619" value="619">
+													<label for="row-619"></label>
+												</span>
+											</td>
+											<td>{{estudiante.id}}</td>
+											<td>{{estudiante.nombres}}</td>
+											<td>{{estudiante.apellidos}}</td>
+											<td>{{estudiante.programa}}</td>
+											<td>{{estudiante.direccion}}</td>
+											<td>{{estudiante.telefono}}</td>
+											<td>{{estudiante.correo}}</td>
+											<td class="text-nowrap">
+												<a ui-sref="main.personal({estudianteId:estudiante.id})" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Informacion">
+													<i class="icon wb-eye" aria-hidden="true"></i>
+												</a>
+												<button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Delete">
+													<i class="icon wb-add-file" aria-hidden="true"></i>
+												</button>
+											</td>
+									</tbody>
+								</table>
+							</div>
+							<div class="alert alert-info alert-dismissible" role="alert" ng-show="!estudiantes.length">
+								<i class="icon  wb-info-circle" aria-hidden="true"></i>
+								No hay datos que mostrar
+							</div>
 						</div>
-						<div class="fixed-table-footer" style="display: none;">
-							<table>
-								<tbody>
-									<tr></tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="fixed-table-pagination" style="display: none;"></div>
+
 					</div>
 				</div>
 				<div class="clearfix"></div>

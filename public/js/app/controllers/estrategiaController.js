@@ -2,8 +2,8 @@ var controllerModule = angular.module('AppControllers');
 
 controllerModule
 	.controller('estrategiaController', ['$scope', 'estrategiaService',
-    '$stateParams', 'toastr', '$state', '$rootScope',
-    function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope) {
+    '$stateParams', 'toastr', '$state', '$rootScope','accionService',
+    function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope,accionService) {
 			$rootScope.estrategias = [];
 			$scope.getAllEstrategiass = function () {
 				estrategiaService.getAllEstrategias().then(function (response) {
@@ -27,6 +27,15 @@ controllerModule
 				});
 			};
 
+			$scope.removeAccion = function (id) {
+				accionService.deleteAccion(id).then(function (respuesta) {
+				_.remove($rootScope.acciones, function (e) {
+					return e.id == id;
+				});
+				toastr.warning('Exito', 'Estrategia eliminada');
+			});
+		};
+
 			$rootScope.barra();
 
 
@@ -48,7 +57,7 @@ controllerModule
 
 			$scope.getAllRiesgos();
 			//
-			console.log($scope.riesgos);
+			$rootScope.estrategia={};
 			$scope.guardarEstrategia = function () {
 				estrategiaService.createEstrategia($scope.estrategia).then(function (response) {
 					estrategiaService.getAllEstrategias().then(function (response2) {
@@ -102,23 +111,58 @@ controllerModule
 
 
 	}])
+	//DETALLE
+
+	.controller('estrategiaDetalleController', ['$scope', 'estrategiaService',
+		'$stateParams', 'toastr', '$state', '$rootScope', 'accionService', '$uibModal',
+		function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope, accionService, $uibModal) {
+			//$scope.accion = "Actualizar";
+			$rootScope.titulo = "Detalle";
+
+			$scope.getEstrategia = function (estrategiaId) {
+				estrategiaService.getEstrategiaById(estrategiaId).then(function (response) {
+					$rootScope.estrategia = response.data;
+				}, function (response) {
+					//console.log(response);
+					$location.path('/app/estrategia');
+				});
+				accionService.getAccionByEstrategiaId(estrategiaId).then(function (response) {
+					$rootScope.acciones = response.data;
+					//console.log($rootScope.acciones);
+				});
+			};
+
+			$scope.getEstrategia(parseInt($stateParams.estrategiaId));
+
+			$rootScope.barra();
 
 
+		}])
+	/*.controller('ModalAccionCtrl', ['$scope', '$uibModalInstance', 'estrategia', 'accionService', '$rootScope','toastr',
+		function ($scope, $uibModalInstance, estrategia, accionService, $rootScope,toastr) {
+			$scope.ok = function () {
+				$uibModalInstance.close();
+			};
+			$scope.estrategia = estrategia;
+
+
+			$scope.cancel = function () {
+				$uibModalInstance.dismiss('cancel');
+			};
+
+			$scope.guardarEstrategia = function () {
+				$scope.accion.estrategias_id = $scope.estrategia.id;
+				accionService.createAccion($scope.accion).then(function (response) {
+					accionService.getAccionByEstrategiaId($scope.estrategia.id).then(function (response2) {
+						$rootScope.acciones = response2.data;
+						toastr.success('Exito', 'Accion agregada');
+					});
+					$scope.accion = {};
+				});
+			};
+
+		}]);
+*/
 
 //Servicios
-/**
-controllerModule.service('CargarSelectRiesgos',[ '$scope','riesgoService',function ($scope,riesgoService) {
-	var cargar = function () {
-		$scope.riesgos = [];
-		$scope.getAllRiesgos = function () {
-			riesgoService.getAllRiesgo().then(function (response) {
-				console.log(response.data);
-				$scope.riesgos = response.data;
-			});
 
-		};
-		$scope.getAllRiesgos();
-	};
-
-	return cargar;
-}])**/

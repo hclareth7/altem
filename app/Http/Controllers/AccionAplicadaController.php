@@ -3,21 +3,38 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
+use App\Models\AccionAplicada;
 
-class PagesController extends Controller
+class AccionAplicadaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+	public function __construct(){
+		$this->middleware('cors');
+		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+
+	}
+
+	public function find(Route $route)
+	{
+
+		$this->accionAplicada=AccionAplicada::find($route->getParameter('accion_aplicada'));
+
+		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
+
+	}
+
     public function index()
     {
-       	$apiUrl='http://localhost:8000/api/';
-    	return view('index')->with('apiUrl', $apiUrl);
-
+        $accionAplicada = AccionAplicada::with('riesgo')->get();
+		return response()->json($accionAplicada);
     }
 
     /**
@@ -38,7 +55,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       	AccionAplicada::create($request->all());
+		return response()->json(["mensaje"=>"Creada correctamente"]);
     }
 
     /**
@@ -49,7 +67,7 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($this->accionAplicada);
     }
 
     /**
@@ -70,9 +88,12 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+
+		$this->accionAplicada->fill($request->all());
+		$this->accionAplicada->save();
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -81,8 +102,7 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $this->accionAplicada->delete();
     }
 }

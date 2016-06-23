@@ -3,22 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
+use App\Models\ArchivoPersonal;
 
-class PagesController extends Controller
+class ArchivoPersonalController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+	public function __construct(){
+		$this->middleware('cors');
+		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+	}
+
+	public function find(Route $route){
+
+		$this->archivoPersonal=ArchivoPersonal::find($route->getParameter('archivo_personal'));
+
+	}
+
     public function index()
     {
-       	$apiUrl='http://localhost:8000/api/';
-    	return view('index')->with('apiUrl', $apiUrl);
-
+        $archivoPersonal = TipoRiesgo::all();
+		return response()->json($archivoPersonal);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +53,8 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ArchivoPersonal::create($request->all());
+		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
     /**
@@ -49,7 +65,8 @@ class PagesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return response()->json($this->archivoPersonal);
     }
 
     /**
@@ -70,9 +87,11 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+
+       	$this->archivoPersonal->fill($request->all());
+		$this->archivoPersonal->save();
+		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 
     /**
@@ -83,6 +102,6 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $this->archivoPersonal->delete();
     }
 }

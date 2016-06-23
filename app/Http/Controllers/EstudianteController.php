@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Models\Filtro;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
-use App\Models\Estudiante;
 
 
 class EstudianteController extends Controller
@@ -17,22 +15,32 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct(){
+    public function __construct(Filtro $filtro)
+    {
 		$this->db_sirius = \DB::connection('sirius');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+        $this->filtro = $filtro;
 	}
 
 	public function find(Route $route)
 	{
-
 		$this->estudiante= $this->db_sirius->table('estudiantes')->where('id',$route->getParameter('estudiante'))->first();
-
-
-
-
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
-
 	}
+
+    public function ejecutarFiltro($id)
+    {
+        $filtros = $this->filtro->ejecutar($id);
+        $sql="select * from estudiantes ".$filtros;
+        $estudiantes = $this->db_sirius->select($sql);
+        return response()->json($estudiantes);
+    }
+
+    public function getcolumn()
+    {
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes');
+        return response()->json($columns);
+    }
 
     public function index()
     {

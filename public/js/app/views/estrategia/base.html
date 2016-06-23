@@ -1,11 +1,14 @@
 <div class="page-header">
+
+	<h1 class="page-title">Estrategias</h1>
+
 	<ol class="breadcrumb">
 		<li><a ui-sref="main">Inicio</a></li>
 		<li><a ui-sref="main.estrategia" ng-click="barra()">Estrategias</a></li>
-		<li ng-hide="titulo == 'NO'" >{{titulo}}</li>
+		<li ng-hide="titulo == 'NO'">{{titulo}}</li>
 
 	</ol>
-	<h1 class="page-title">Estrategias</h1>
+
 	<div class="page-header-actions">
 		<a ui-sref="main.estrategia.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
 			<i class="icon wb-plus" aria-hidden="true"></i>
@@ -91,6 +94,11 @@
 											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(estrategia.id)">
 												<i class="icon wb-trash" aria-hidden="true"></i>
 											</a>
+											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+											   ui-sref="main.estrategia.detalle({estrategiaId:estrategia.id})">
+												<i class="icon wb-eye" aria-hidden="true"></i>
+											</a>
+
 										</td>
 									</tr>
 
