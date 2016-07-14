@@ -13,8 +13,10 @@ var satApp = angular.module("satApp", [
 	'ui.bootstrap',
 	'ui.bootstrap.modal',
 	'angular-click-outside',
-	'acute.select'
+	'acute.select',
+	'angular-confirm'
 ]);
+
 satApp.provider('modalState', function ($stateProvider) {
 	var provider = this;
 	this.$get = function () {
@@ -42,7 +44,9 @@ satApp.provider('modalState', function ($stateProvider) {
 	};
 });
 
-satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locationProvider', 'modalStateProvider', function ($stateProvider, $urlRouterProvider, toastrConfig, $locationProvider, modalStateProvider) {
+satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locationProvider', 'modalStateProvider',
+	function ($stateProvider, $urlRouterProvider, toastrConfig, $locationProvider, modalStateProvider) {
+
 	angular.extend(toastrConfig, {
 		autoDismiss: false,
 		containerId: 'toast-container',
@@ -53,8 +57,6 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		preventOpenDuplicates: false,
 		target: 'body'
 	});
-
-
 	$urlRouterProvider.otherwise('/login');
 
 	$stateProvider
@@ -65,7 +67,8 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		.state('login', {
 			url: '/login',
 			templateUrl: '/js/app/views/login.html'
-		}) //Estrategias
+		})
+		//Estrategias
 		.state('main.estrategia', {
 			url: '/estrategia',
 			templateUrl: '/js/app/views/estrategia/base.html',
@@ -124,7 +127,6 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'tipoRiesgoCrearController'
 		})
 		//Accion
-
 		//Estudiante
 		.state('main.estudiante', {
 			url: '/estudiante',
@@ -163,5 +165,11 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		templateUrl: 'modal-filtro.html',
 		controller: 'filtroEditarController'
 	});
+}]);
 
-}])
+satApp.run(['$confirmModalDefaults', function ($confirmModalDefaults) {
+	$confirmModalDefaults.templateUrl = 'alertas.html';
+	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
+	$confirmModalDefaults.defaultLabels.ok = 'Si';
+	$confirmModalDefaults.defaultLabels.cancel = 'No';
+}]);

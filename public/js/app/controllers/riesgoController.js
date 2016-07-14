@@ -1,17 +1,9 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-	.controller('riesgoController', ['$scope', 'riesgoService',
-    '$stateParams', 'toastr', '$rootScope','filtroService',
-    function ($scope, riesgoService, $stateParams, toastr, $rootScope,filtroService) {
-			$scope.removeFiltro=function (id) {
-				filtroService.deleteFiltro(id).then(function (respuesta) {
-					_.remove($rootScope.filtros, function (e) {
-						return e.id == id;
-					});
-					toastr.warning('Exito', 'Estrategia eliminada');
-				});
-			};
+	.controller('riesgoController', ['$scope', 'riesgoService', '$stateParams', 'toastr', '$rootScope', 'filtroService', '$confirm',
+		function ($scope, riesgoService, $stateParams, toastr, $rootScope, filtroService, $confirm) {
+
 			$rootScope.riesgos = [];
 			$scope.getAllRiesgos = function () {
 				riesgoService.getAllRiesgo().then(function (response) {
@@ -24,14 +16,41 @@ controllerModule
 			$rootScope.barra = function () {
 				$rootScope.titulo = "NO";
 			};
+
 			$scope.remove = function (id) {
-				riesgoService.deleteRiesgo(id).then(function (respuesta) {
-					_.remove($scope.riesgos, function (e) {
-						return e.id == id;
+				$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
+					riesgoService.deleteRiesgo(id).then(function (response) {
+						if (response.data != 23000) {
+							_.remove($scope.riesgos, function (e) {
+								return e.id == id;
+							});
+							toastr.warning('Exito', 'Riesgo eliminado');
+						} else {
+							toastr.error('Error', 'Esta intentando eliminar un registro con datos dependientes.');
+						}
 					});
-					toastr.warning('Exito', 'Riesgo eliminado');
+
 				});
 			};
+			$scope.removeFiltro = function (id) {
+				$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
+
+					filtroService.deleteFiltro(id).then(function (response) {
+						if (response.data != 23000) {
+							_.remove($rootScope.filtros, function (e) {
+								return e.id == id;
+							});
+							toastr.warning('Exito', 'Estrategia eliminada');
+						} else {
+							toastr.error('Error', 'Esta intentando eliminar un registro con datos dependientes.');
+						}
+					});
+
+
+				});
+			};
+
+
     }])
 	.controller('riesgoEditarController', ['$scope', 'riesgoService',
     '$stateParams', '$location', 'tipoRiesgoService', 'toastr', '$rootScope',
@@ -94,11 +113,6 @@ controllerModule
 					});
 				});
 			};
-
-
-
-
-
 	}])
 	.controller('riesgoDetalleController',['$scope', 'riesgoService',
 		'$stateParams', '$state', 'tipoRiesgoService', 'toastr', '$rootScope','filtroService',

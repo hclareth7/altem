@@ -2,8 +2,8 @@ var controllerModule = angular.module('AppControllers');
 
 controllerModule
 	.controller('tipoRiesgoController', ['$scope', 'tipoRiesgoService',
-    '$stateParams', 'toastr', '$rootScope',
-    function ($scope, tipoRiesgoService, $stateParams, toastr, $rootScope) {
+		'$stateParams', 'toastr', '$rootScope', '$confirm',
+		function ($scope, tipoRiesgoService, $stateParams, toastr, $rootScope, $confirm) {
 
 			$rootScope.tiporiesgos = [];
 			$scope.getAllTipoRiesgos = function () {
@@ -19,14 +19,16 @@ controllerModule
 			};
 
 			$scope.remove = function (id) {
-				tipoRiesgoService.deleteTipoRiesgo(id).then(function (respuesta) {
-					_.remove($scope.tiporiesgos, function (e) {
-						return e.id == id;
+				$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
+					tipoRiesgoService.deleteTipoRiesgo(id).then(function (respuesta) {
+						_.remove($scope.tiporiesgos, function (e) {
+							return e.id == id;
+						});
+						toastr.warning('Exito', 'Tipo de riesgo eliminado');
+						$scope.getAllTipoRiesgos();
 					});
-					toastr.warning('Exito', 'Tipo de riesgo eliminado');
-					$scope.getAllTipoRiesgos();
 				});
-			}
+			};
 
     }])
 	.controller('tipoRiesgoEditarController', ['$scope', 'tipoRiesgoService',

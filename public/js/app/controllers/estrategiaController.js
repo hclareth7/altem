@@ -2,8 +2,8 @@ var controllerModule = angular.module('AppControllers');
 
 controllerModule
 	.controller('estrategiaController', ['$scope', 'estrategiaService',
-    '$stateParams', 'toastr', '$state', '$rootScope','accionService',
-    function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope,accionService) {
+    '$stateParams', 'toastr', '$state', '$rootScope','accionService','$confirm',
+    function ($scope, estrategiaService, $stateParams, toastr, $state, $rootScope,accionService,$confirm) {
 			$rootScope.estrategias = [];
 			$scope.getAllEstrategiass = function () {
 				estrategiaService.getAllEstrategias().then(function (response) {
@@ -19,21 +19,27 @@ controllerModule
 				$rootScope.titulo = "NO";
 			};
 			$scope.remove = function (id) {
-				estrategiaService.deleteEstrategia(id).then(function (respuesta) {
-					_.remove($scope.estrategias, function (e) {
-						return e.id == id;
+				$confirm({text:'¿Seguro que desea eliminar?'}).then(function () {
+					estrategiaService.deleteEstrategia(id).then(function (respuesta) {
+						_.remove($scope.estrategias, function (e) {
+							return e.id == id;
+						});
+						toastr.warning('Exito', 'Estrategia eliminada');
 					});
-					toastr.warning('Exito', 'Estrategia eliminada');
 				});
+
+
 			};
 
 			$scope.removeAccion = function (id) {
-				accionService.deleteAccion(id).then(function (respuesta) {
-				_.remove($rootScope.acciones, function (e) {
-					return e.id == id;
+				$confirm({text:'¿Seguro que desea eliminar?'}).then(function () {
+					accionService.deleteAccion(id).then(function (respuesta) {
+						_.remove($rootScope.acciones, function (e) {
+							return e.id == id;
+						});
+						toastr.warning('Exito', 'Estrategia eliminada');
+					});
 				});
-				toastr.warning('Exito', 'Estrategia eliminada');
-			});
 		};
 
 			$rootScope.barra();

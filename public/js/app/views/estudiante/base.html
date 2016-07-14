@@ -46,7 +46,7 @@
 						</div>
 
 						<div class="pull-right search">
-							<input class="form-control input-outline" type="text" placeholder="Buscar">
+							<input class="form-control input-outline" type="text" placeholder="Buscar" ng-model="buscar">
 						</div>
 					</div>
 					<div class="fixed-table-container" style="padding-bottom: 0px;">
@@ -106,7 +106,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="active" ng-repeat="estudiante in estudiantes">
+										<tr class="active" ng-repeat="estudiante in estudiantes | filter:buscar">
 											<td>
 												<span class="checkbox-custom checkbox-primary">
 													<input class="selectable-item" type="checkbox" id="row-619" value="619">

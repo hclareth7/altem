@@ -173,3 +173,26 @@
     </div>
 </footer>
 
+<script type="text/ng-template" id="alertas.html">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" >{{data.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="" role="alert">
+
+                   <p class="font-size-20"> {{data.text}}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
+                <button type="button" class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+

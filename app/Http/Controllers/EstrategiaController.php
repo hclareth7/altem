@@ -20,7 +20,6 @@ class EstrategiaController extends Controller
 	public function __construct(){
 		$this->middleware('cors');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
-
 	}
 
 	public function find(Route $route)
@@ -55,6 +54,7 @@ class EstrategiaController extends Controller
      */
     public function store(Request $request)
     {
+
        	Estrategia::create($request->all());
 		return response()->json(["mensaje"=>"Creada correctamente"]);
     }

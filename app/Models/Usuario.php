@@ -3,27 +3,53 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model implements AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class Usuario extends Model implements AuthenticatableContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
-    protected $table = 'usuarios';
+    use Authenticatable;
+
+    //protected $table = 'usuarios';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name','email', 'password'];
+    protected $fillable = ['nombre', 'correo', 'codigo'];
+    private $codigo, $nombre, $correo;
 
-    protected $hidden = ['password', 'remember_token'];
-    //
+
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
+
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
+    }
+
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+
 }

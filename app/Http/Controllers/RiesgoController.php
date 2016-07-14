@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Riesgo;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -101,6 +102,11 @@ class RiesgoController extends Controller
      */
     public function destroy($id)
     {
-        $this->riesgo->delete();
+        try{
+            $this->riesgo->delete();
+        }catch (QueryException $ex){
+            return response()->json($ex->errorInfo[0]);
+        }
+
     }
 }

@@ -115,6 +115,7 @@ return [
          */
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
+		//LDAP
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
@@ -136,6 +137,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+		App\Providers\LdapAuthProvider::class,
 
         /*
          * Application Service Providers...
@@ -148,8 +150,13 @@ return [
 		//barra debug
 		Barryvdh\Debugbar\ServiceProvider::class,
 
+		//JWT Auth Provider
+		Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
 		//CORS
 		Barryvdh\Cors\ServiceProvider::class,
+
+
 
     ],
 
@@ -199,6 +206,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 		'Debugbar' => Barryvdh\Debugbar\Facade::class,
+		'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+		'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
 
     ],
 

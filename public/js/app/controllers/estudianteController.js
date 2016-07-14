@@ -35,7 +35,8 @@ controllerModule
 
 
 	}])
-	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal) {
+	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal','riesgoService',
+		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal,riesgoService) {
 
 		$scope.getEstudiante = function (estudianteId) {
 			estudianteService.getEstudianteById(estudianteId).then(function (response) {
@@ -44,7 +45,7 @@ controllerModule
 
 		};
 		$scope.getEstudiante($stateParams.estudianteId);
-
+		$scope.riesgos=riesgoService.getRiesgosFiltrados();
 
 		$scope.getEdad = function (fecha_na) {
 			var ANIO_ACTUAL = new Date().getFullYear();

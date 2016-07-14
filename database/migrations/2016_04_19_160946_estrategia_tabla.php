@@ -17,8 +17,6 @@ class EstrategiaTabla extends Migration
             $table->string('nombre');
             $table->string('descripcion');
 			$table->timestamps();
-
-
         });
     }
 

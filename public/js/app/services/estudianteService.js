@@ -7,6 +7,7 @@ servicesModule.factory('estudianteService', ['$http', function ($http) {
 			return $http.get(this.apiUrl + 'estudiante/');
 		},
 		getEstudianteById: function (estudianteId) {
+			
 			return $http.get(this.apiUrl + 'estudiante/' + estudianteId);
 		},getColumnas: function () {
 			return $http.get(this.apiUrl + 'estudiante_colums');

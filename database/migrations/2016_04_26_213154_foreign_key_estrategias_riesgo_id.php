@@ -10,9 +10,11 @@ class ForeignKeyEstrategiasRiesgoId extends Migration
      *
      * @return void
      */
+
     public function up()
     {
        Schema::table('estrategias', function ($table) {
+           $this->table=$table;
 		   	$table->bigInteger('riesgo_id')->unsigned();
  			$table->foreign('riesgo_id')->references('id')->on('riesgos')->onDelete('cascade');
 	   });
@@ -25,6 +27,6 @@ class ForeignKeyEstrategiasRiesgoId extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['riesgo_id']);
+        $this->table->dropForeign(['riesgo_id']);
     }
 }

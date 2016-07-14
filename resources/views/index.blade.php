@@ -61,7 +61,7 @@
 	<!-- /#wrapper -->
 
 	<script>
-		apiUrl = "{{$apiUrl}}";
+		 apiUrl = "{{$apiUrl}}";
 	</script>
 
 	<!-- jQuery -->
@@ -80,6 +80,7 @@
 	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
+	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->
