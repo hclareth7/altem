@@ -23,7 +23,7 @@ class LdapServerConnection
 
     public function verificarUsuario($username, $password)
     {
-        if (!$username or !$password) {
+        if (!$username or !$password ) {
             dd('Datos de acceso faltantes.', 401);
             return false;
         }
