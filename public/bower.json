@@ -25,6 +25,8 @@
     "angular-click-outside": "^2.8.3",
     "amitava82-angular-multiselect": "^1.2.0",
     "acute-select": "acute-select-dsh#^0.1.9",
-    "angular-confirm-modal": "^1.2.5"
+    "angular-confirm-modal": "^1.2.5",
+    "ngstorage": "^0.3.10",
+    "angular-jwt": "^0.0.9"
   }
 }

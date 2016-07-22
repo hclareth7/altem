@@ -81,6 +81,7 @@
 	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
+	<script src="/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->
@@ -91,6 +92,7 @@
 	<script src="/js/app/services/estudianteService.js"></script>
 	<script src="/js/app/services/accionService.js"></script>
 	<script src="/js/app/services/filtroService.js"></script>
+	<script src="/js/app/services/loginService.js"></script>
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>
@@ -99,6 +101,7 @@
 	<script src="/js/app/controllers/estudianteController.js"></script>
 	<script src="/js/app/controllers/accionController.js"></script>
 	<script src="/js/app/controllers/filtroController.js"></script>
+	<script src="/js/app/controllers/loginController.js"></script>
 
 	<!-- Module App -->
 

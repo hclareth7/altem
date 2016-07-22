@@ -14,7 +14,8 @@ var satApp = angular.module("satApp", [
 	'ui.bootstrap.modal',
 	'angular-click-outside',
 	'acute.select',
-	'angular-confirm'
+	'angular-confirm',
+	'angular-jwt'
 ]);
 
 satApp.provider('modalState', function ($stateProvider) {
@@ -44,8 +45,8 @@ satApp.provider('modalState', function ($stateProvider) {
 	};
 });
 
-satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locationProvider', 'modalStateProvider',
-	function ($stateProvider, $urlRouterProvider, toastrConfig, $locationProvider, modalStateProvider) {
+satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locationProvider', 'modalStateProvider','$httpProvider',
+	function ($stateProvider, $urlRouterProvider, toastrConfig, $locationProvider, modalStateProvider,$httpProvider) {
 
 	angular.extend(toastrConfig, {
 		autoDismiss: false,
@@ -57,7 +58,24 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		preventOpenDuplicates: false,
 		target: 'body'
 	});
-	$urlRouterProvider.otherwise('/login');
+
+		$httpProvider.interceptors.push(function ($location, $q, jwtHelper) {
+			return {
+				request: function (conf) {
+					var token = window.localStorage.getItem(TOKEN_KEY);
+					if (token && !jwtHelper.isTokenExpired(token)) {
+						conf.headers.Authorization = 'Bearer ' + token;
+					} else {
+						window.localStorage.removeItem(TOKEN_KEY);
+						$location.path("/login");
+					}
+					return conf;
+				}
+			}
+		});
+
+
+		$urlRouterProvider.otherwise('/login');
 
 	$stateProvider
 		.state('main', {
@@ -66,7 +84,17 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		})
 		.state('login', {
 			url: '/login',
-			templateUrl: '/js/app/views/login.html'
+			templateUrl: '/js/app/views/login.html',
+			controller: 'loginController',
+			resolve: {
+				verifyToken: function ($location, jwtHelper) {
+					var token = localStorage.getItem(TOKEN_KEY);
+					if (token && !jwtHelper.isTokenExpired(token)) {
+						$location.path("/main");
+					}
+				}
+			}
+
 		})
 		//Estrategias
 		.state('main.estrategia', {

@@ -68,7 +68,7 @@ class LdapUserProvider implements UserProvider
     public function retrieveByCredentials(array $credentials)
     {
         //dd($credentials);
-        if ($this->conect->verificarUsuario($credentials['email'], $credentials['password'])) {
+        if ($this->conect->verificarUsuario($credentials['codigo'], $credentials['password'])) {
             $user = new Usuario();
             return $user;
         }
@@ -85,7 +85,7 @@ class LdapUserProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if (($this->conect->verificarUsuario($credentials['email'], $credentials['password']))) {
+        if (($this->conect->verificarUsuario($credentials['codigo'], $credentials['password']))) {
             //$user->last_login_time = Carbon::now();
             //$user->save();
 

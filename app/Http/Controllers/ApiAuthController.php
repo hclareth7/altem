@@ -24,7 +24,7 @@ class ApiAuthController extends Controller
         // Apply the jwt.auth middleware to all methods in this controller
         // except for the authenticate method. We don't want to prevent
         // the user from retrieving their token if they don't already have it
-        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+       $this->middleware('jwt.auth', ['except' => ['authenticate']]);
     }
     public function index()
     {
@@ -38,7 +38,7 @@ class ApiAuthController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('codigo', 'password');
 
         try {
             // verify the credentials and create a token for the user
@@ -61,7 +61,7 @@ class ApiAuthController extends Controller
     public function getAuthenticatedUser()
     {
         try {
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (! $user = JWTAuth::parseToken()->toUser()) {
                 return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
@@ -69,7 +69,7 @@ class ApiAuthController extends Controller
         } catch (TokenInvalidException $e) {
             return response()->json(['token_invalid'], $e->getStatusCode());
         } catch (JWTException $e) {
-            return response()->json(['token_absent'], $e->getStatusCode());
+            return response()->json(['token_absent'.$e->getMessage()], $e->getStatusCode());
         }
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));

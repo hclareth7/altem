@@ -15,7 +15,7 @@ Route::get('/','PagesController@index');
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
-    Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
+    Route::get('logins', 'ApiAuthController@getAuthenticatedUser');
 
     Route::resource('estudiante', 'EstudianteController');
     Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
