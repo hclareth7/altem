@@ -18,4 +18,5 @@ servicesModule.factory('loginService', ['$http', function ($http) {
         }
 
     };
+    
 }]);

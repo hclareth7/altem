@@ -19,6 +19,7 @@ class LdapUserProvider implements UserProvider
     public function __construct()
     {
         $this->conect = new LdapServerConnection();
+
     }
 
     /**
@@ -29,7 +30,7 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveById($identifier)
     {
-
+       dd($identifier);
         return null;
     }
 
@@ -42,7 +43,7 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveByToken($identifier, $token)
     {
-        // TODO: Implement retrieveByToken() method.
+        dd('retrieveByToken') ;
         return null;
     }
 
@@ -55,8 +56,9 @@ class LdapUserProvider implements UserProvider
      */
     public function updateRememberToken(Authenticatable $user, $token)
     {
-        // TODO: Implement updateRememberToken() method.
-        return null;
+
+
+        return $user;
     }
 
     /**
@@ -67,9 +69,10 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        //dd($credentials);
+
         if ($this->conect->verificarUsuario($credentials['codigo'], $credentials['password'])) {
-            $user = new Usuario();
+            $user = $this->conect->getUsuario();
+
             return $user;
         }
 
@@ -85,10 +88,12 @@ class LdapUserProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if (($this->conect->verificarUsuario($credentials['codigo'], $credentials['password']))) {
-            //$user->last_login_time = Carbon::now();
-            //$user->save();
+        dd($user);
+        if($user->username == $credentials['codigo'] && $user->getAuthPassword() == md5($credentials['password'].\Config::get('constants.SALT'))){
 
+            dd($user);
+
+           // dd($user);
             return true;
         }
         return false;

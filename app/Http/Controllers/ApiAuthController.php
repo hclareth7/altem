@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
-use JWTAuth;
 
 class ApiAuthController extends Controller
 {
@@ -21,15 +19,16 @@ class ApiAuthController extends Controller
 
     public function __construct()
     {
-        // Apply the jwt.auth middleware to all methods in this controller
-        // except for the authenticate method. We don't want to prevent
-        // the user from retrieving their token if they don't already have it
-       $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+        // Parsing the Token and throw exemptions if error
+       
+
+
     }
     public function index()
     {
-        // Retrieve all the users in the database and return them
-
+        $user = JWTAuth::parseToken()->authenticate();
+        $userId = $user->id;
+        return response()->json($user);
     }
     /**
      * Return a JWT
@@ -62,7 +61,7 @@ class ApiAuthController extends Controller
     {
         try {
             if (! $user = JWTAuth::parseToken()->toUser()) {
-                return response()->json(['user_not_found'], 404);
+                return response()->json(['user_not_foudddnd'], 404);
             }
         } catch (TokenExpiredException $e) {
             return response()->json(['token_expired'], $e->getStatusCode());

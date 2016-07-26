@@ -64,6 +64,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 				request: function (conf) {
 					var token = window.localStorage.getItem(TOKEN_KEY);
 					if (token && !jwtHelper.isTokenExpired(token)) {
+						console.log('aqui');
 						conf.headers.Authorization = 'Bearer ' + token;
 					} else {
 						window.localStorage.removeItem(TOKEN_KEY);
@@ -80,21 +81,15 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 	$stateProvider
 		.state('main', {
 			url: '/app',
-			templateUrl: '/js/app/views/main.html'
+			templateUrl: '/js/app/views/main.html',
+			controller: 'mainController'
 		})
 		.state('login', {
 			url: '/login',
+			cache: false,
 			templateUrl: '/js/app/views/login.html',
 			controller: 'loginController',
-			resolve: {
-				verifyToken: function ($location, jwtHelper) {
-					var token = localStorage.getItem(TOKEN_KEY);
-					if (token && !jwtHelper.isTokenExpired(token)) {
-						$location.path("/main");
-					}
-				}
-			}
-
+			authenticate: false
 		})
 		//Estrategias
 		.state('main.estrategia', {
@@ -195,9 +190,14 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 	});
 }]);
 
-satApp.run(['$confirmModalDefaults', function ($confirmModalDefaults) {
+satApp.run(['$confirmModalDefaults','$rootScope', function ($confirmModalDefaults,$rootScope) {
 	$confirmModalDefaults.templateUrl = 'alertas.html';
 	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
 	$confirmModalDefaults.defaultLabels.ok = 'Si';
 	$confirmModalDefaults.defaultLabels.cancel = 'No';
+
+	$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams,$location){
+
+
+	});
 }]);

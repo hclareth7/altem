@@ -102,6 +102,7 @@
 	<script src="/js/app/controllers/accionController.js"></script>
 	<script src="/js/app/controllers/filtroController.js"></script>
 	<script src="/js/app/controllers/loginController.js"></script>
+	<script src="/js/app/controllers/mainController.js"></script>
 
 	<!-- Module App -->
 

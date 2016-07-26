@@ -15,7 +15,11 @@ Route::get('/','PagesController@index');
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
-    Route::get('logins', 'ApiAuthController@getAuthenticatedUser');
+    // Adding JWT Auth Middleware to prevent invalid access
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::resource('login', 'AuthenticateController', ['only' => ['index']]);
+
+
 
     Route::resource('estudiante', 'EstudianteController');
     Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
@@ -30,5 +34,5 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('filtro', 'FiltroController');
     Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
     Route::get('estudiante_colums', 'EstudianteController@getColumn');
-
+    });
 });

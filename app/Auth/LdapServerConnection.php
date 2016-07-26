@@ -19,6 +19,7 @@ class LdapServerConnection
     {
         $this->rdn = env('LDAP_RDN');
         $this->hostname = env('LDAP_HOSTNAME');
+
     }
 
     public function verificarUsuario($username, $password)
@@ -46,7 +47,7 @@ class LdapServerConnection
         } else {
 
 
-            $result = ldap_search($conn, $this->rdn, 'uid=t00032041', array('uid', 'cn', 'mail'));
+            $result = ldap_search($conn, $this->rdn, 'uid=' . $username, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
 
             for ($i=0; $i<$datos["count"]; $i++) {
@@ -60,10 +61,47 @@ class LdapServerConnection
             $this->usuario->setCodigo($codigo);
             $this->usuario->setCorreo($correo);
 
-            //dd($this->usuario);
+            // dd($this->usuario);
             return true;
         }
         return false;
     }
+
+    public function verificarUsuarioById($codigoUtbId)
+    {
+
+        if (!extension_loaded('ldap')) {
+            dd('PHP LDAP extension not loaded.', 418);
+            return false;
+        }
+        $conn = ldap_connect("$this->hostname");
+        if (!$conn) {
+            dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
+            return false;
+        }
+
+        $result = ldap_search($conn, $this->rdn, 'uid=' . $codigoUtbId, array('uid', 'cn', 'mail'));
+        $datos = ldap_get_entries($conn, $result);
+
+        for ($i = 0; $i < $datos["count"]; $i++) {
+            $nombre = $datos[$i]["cn"][0];
+            $codigo = $datos[$i]["uid"][0];
+            $correo = $datos[$i]["mail"][0];
+        }
+
+        $this->usuario = new Usuario();
+        $this->usuario->setNombre($nombre);
+        $this->usuario->setCodigo($codigo);
+        $this->usuario->setCorreo($correo);
+
+
+        return $this->usuario;
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
 
 }
