@@ -87,10 +87,16 @@
 
                                         <td>{{riesgo.descripcion}}</td>
                                         <td class="col-md-2">
-                                            <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.riesgo.editar({riesgoId:riesgo.id})">
+                                            <a type="button"
+                                               permission
+                                               permission-only="['ADMIN']"
+                                               class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.riesgo.editar({riesgoId:riesgo.id})">
                                                 <i class="icon wb-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(riesgo.id)">
+                                            <a type="button"
+                                               permission
+                                               permission-only="['ADMIN']"
+                                               class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(riesgo.id)">
                                                 <i class="icon wb-trash" aria-hidden="true"></i>
                                             </a>
                                             <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.riesgo.detalle({riesgoId:riesgo.id})">

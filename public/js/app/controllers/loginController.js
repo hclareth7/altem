@@ -13,7 +13,6 @@ controllerModule
                     if(!localStorage.getItem(TOKEN_KEY)){
                         localStorage.setItem(TOKEN_KEY,token);
                         $state.go('main');
-                        console.log(response.data);
                     }
 
                 },function (response) {

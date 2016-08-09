@@ -58,4 +58,17 @@ return [
     */
 
 
+    'model' => App\Models\Usuario::class,
+
+    'table' => 'usuarios',
+
+    'providers'=>[
+        'users'=>[
+            'table'=>'usuarios',
+            'model'=> App\Models\Usuario::class
+        ]
+
+    ],
+
+
 ];

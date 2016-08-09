@@ -88,10 +88,18 @@
 
 										<td>{{estrategia.descripcion}}</td>
 										<td class="col-md-2">
-											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.estrategia.editar({estrategiaId:estrategia.id})">
+											<a type="button"
+											   permission
+											   permission-only="['ADMIN']"
+											   class="btn btn-sm btn-icon btn-flat btn-default"
+											   ui-sref="main.estrategia.editar({estrategiaId:estrategia.id})">
 												<i class="icon wb-pencil" aria-hidden="true"></i>
 											</a>
-											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(estrategia.id)" >
+											<a type="button"
+											   permission
+											   permission-only="['ADMIN']"
+											   class="btn btn-sm btn-icon btn-flat btn-default"
+											   ng-click="remove(estrategia.id)">
 												<i class="icon wb-trash" aria-hidden="true"></i>
 											</a>
 											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default"

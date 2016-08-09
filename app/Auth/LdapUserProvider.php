@@ -11,6 +11,7 @@ namespace App\Auth;
 
 use App\Models\Usuario;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 
 
@@ -30,8 +31,10 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveById($identifier)
     {
-       dd($identifier);
-        return null;
+        if ($usuario= $this->conect->verificarUsuarioById($identifier)) {
+
+            return $usuario;
+        }
     }
 
     /**
@@ -88,12 +91,8 @@ class LdapUserProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        dd($user);
-        if($user->username == $credentials['codigo'] && $user->getAuthPassword() == md5($credentials['password'].\Config::get('constants.SALT'))){
+        if ($user->getAuthIdentifier()==$credentials['codigo']&& $user->getAuthPassword()==$credentials['password']){
 
-            dd($user);
-
-           // dd($user);
             return true;
         }
         return false;

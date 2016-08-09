@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class Usuario extends Model implements AuthenticatableContract
 {
-    use Authenticatable;
+    use Authenticatable, EntrustUserTrait;
 
-    //protected $table = 'usuarios';
+    protected $table = 'usuarios';
 
     /**
      * The attributes that are mass assignable.
@@ -18,41 +19,13 @@ class Usuario extends Model implements AuthenticatableContract
      * @var array
      */
     protected $fillable = ['nombre', 'correo', 'codigo'];
-    private $codigo, $nombre, $correo;
+
     protected $primaryKey= "codigo";
 
 
 
 
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-    }
 
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
-
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    public function setCorreo($correo)
-    {
-        $this->correo = $correo;
-    }
-
-    public function getCorreo()
-    {
-        return $this->correo;
-    }
 
 
 }

@@ -31,7 +31,7 @@ controllerModule
 
     .controller('accionEditarController', ['$scope', '$uibModalInstance', 'accionService', '$rootScope', 'toastr', '$stateParams','$state',
         function ($scope, $uibModalInstance, accionService, $rootScope, toastr, $stateParams,$state) {
-            console.log("dskjfgsd");
+           
             $scope.ok = function () {
                 $uibModalInstance.close();
             };

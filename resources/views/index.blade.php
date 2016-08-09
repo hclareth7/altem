@@ -9,7 +9,7 @@
 	<meta name="description" content="Sistema de Alertas Tempranas (SAT)">
 	<meta name="author" content="Universidad Tecnologica de Bolivar">
 
-	<title>SAT-Sistema de Alertas Tempranas</title>
+		<title>SAT-Sistema de Alertas Tempranas</title>
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -68,8 +68,6 @@
 
 	<!-- Core  -->
 
-
-
 	<!-- Angular libs -->
 	<script src="/bower_components/angular/angular.min.js"></script>
 	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -77,11 +75,13 @@
 	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
-	<script src="/bower_components/lodash/dist/lodash.min.js"></script>
+	<script src="/bower_components/lodash/lodash.min.js"></script>
 	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
 	<script src="/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+	<script src="/bower_components/angular-permission/dist/angular-permission.min.js"></script>
+	<script src="/bower_components/angular-permission/dist/angular-permission-ui.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->

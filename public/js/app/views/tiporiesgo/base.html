@@ -62,7 +62,10 @@
 											<div class="th-inner ">Descripcion</div>
 											<div class="fht-cell"></div>
 										</th>
-										<th style="" data-field="star" tabindex="0">
+										<th style=""
+											permission
+											permission-only="['ADMIN']"
+											data-field="star" tabindex="0">
 											<div class="th-inner ">Acciones</div>
 											<div class="fht-cell"></div>
 										</th>
@@ -75,7 +78,10 @@
 										<td>{{tiporiesgo.nombre}}</td>
 
 										<td>{{tiporiesgo.descripcion}}</td>
-										<td class="col-md-2">
+										<td
+												permission
+												permission-only="['ADMIN']"
+												class="col-md-2">
 											<a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.tiporiesgo.editar({tiporiesgoId:tiporiesgo.id})">
 												<i class="icon wb-pencil" aria-hidden="true"></i>
 											</a>

@@ -228,4 +228,30 @@ input.cmn-toggle-round:checked + label:after {
 	background-image: url(../img/fondo.png);
 }
 
+.sidebar-header {
+	padding: 18px 20px;
+	box-sizing: border-box;
+	background: rgb(33, 41, 46);
+	border-bottom: 2px solid #2d3940;
+}
+
+.sidebar-header img {
+	width: 60px;
+	border-radius: 19%;
+	border: 3px solid rgba(70, 190, 138, 0.13);
+	box-sizing: initial;
+
+}
+
+.sidebar-header .media-links {
+	text-transform: capitalize;
+
+}
+
+.sidebar-header .media-author {
+	text-transform: capitalize;
+	font-size: 14px;
+	color: #a3afb7 !important;
+}
+
 

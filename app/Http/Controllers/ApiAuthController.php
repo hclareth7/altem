@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class ApiAuthController extends Controller
 {
@@ -20,14 +22,33 @@ class ApiAuthController extends Controller
     public function __construct()
     {
         // Parsing the Token and throw exemptions if error
-       
+
 
 
     }
     public function index()
     {
-        $user = JWTAuth::parseToken()->authenticate();
-        $userId = $user->id;
+        // = JWTAuth::parseToken()->authenticate();
+
+        //return response()->json($user);
+        $user = Auth::user();
+
+        $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
+            $user = Auth::user();
+            return $item->codigo == $user->id;
+        })->first();
+        // $permission = Permission::with('roles')->find($roles->roles->first()->id);
+        $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
+        // $permission = Permission::with('roles')->get();
+
+        $datos= $permission->map(function ($value){
+            return $value->name;
+        });
+        $roleData=$roles->roles->map(function ($value){
+            return $value->name;
+        });
+        $user->rol = $roleData[0];
+        $user->permissions = $datos;
         return response()->json($user);
     }
     /**
@@ -56,21 +77,46 @@ class ApiAuthController extends Controller
         return response()->json(compact('token'));
     }
 
-
-    public function getAuthenticatedUser()
+    public function createRole(Request $request)
     {
-        try {
-            if (! $user = JWTAuth::parseToken()->toUser()) {
-                return response()->json(['user_not_foudddnd'], 404);
-            }
-        } catch (TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (TokenInvalidException $e) {
-            return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (JWTException $e) {
-            return response()->json(['token_absent'.$e->getMessage()], $e->getStatusCode());
-        }
-        // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        $role = new Role();
+        $role->name = $request->input('name');
+        $role->save();
+
+        return response()->json("created");
     }
+
+    public function createPermission(Request $request)
+    {
+        $viewUsers = new Permission();
+        $viewUsers->name = $request->input('name');
+        $viewUsers->save();
+
+        return response()->json("created");
+    }
+
+    public function assignRole(Request $request)
+    {
+        $user = Usuario::where('codigo', '=', $request->input('codigo'))->first();
+        //dd($user);
+        $role = Role::where('name', '=', $request->input('role'))->first();
+        //$user->attachRole($request->input('role'));
+        $user->roles()->attach($role->id);
+
+        //$role->user()->attach($user->id);
+
+        return response()->json("created");
+    }
+
+    public function attachPermission(Request $request)
+    {
+        $role = Role::where('name', '=', $request->input('role'))->first();
+        $permisos = Permission::where('name', '=', $request->input('name'))->first();
+        //dd($permisos);
+
+        $role->attachPermission($permisos);
+
+        return response()->json("created");
+    }
+
 }

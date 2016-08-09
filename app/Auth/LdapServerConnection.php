@@ -37,15 +37,11 @@ class LdapServerConnection
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
         }
-
-        ldap_set_option($conn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($conn, LDAP_OPT_REFERRALS, 0);
         if (!$con = ldap_bind($conn, "uid=" . $username . ',' . $this->rdn, $password)) {
 
             dd('Could not bind to AD: ' . ldap_error($conn), 401);
             return false;
         } else {
-
 
             $result = ldap_search($conn, $this->rdn, 'uid=' . $username, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
@@ -57,11 +53,12 @@ class LdapServerConnection
             }
 
             $this->usuario = new Usuario();
-            $this->usuario->setNombre($nombre);
-            $this->usuario->setCodigo($codigo);
-            $this->usuario->setCorreo($correo);
+           
+            $this->usuario->codigo = $codigo;
+            $this->usuario->password = $password;
+            $this->usuario->id = $codigo;
 
-            // dd($this->usuario);
+
             return true;
         }
         return false;
@@ -69,7 +66,6 @@ class LdapServerConnection
 
     public function verificarUsuarioById($codigoUtbId)
     {
-
         if (!extension_loaded('ldap')) {
             dd('PHP LDAP extension not loaded.', 418);
             return false;
@@ -79,21 +75,30 @@ class LdapServerConnection
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
         }
+        if (!$con = ldap_bind($conn, "uid=t00020904"  . ',' . $this->rdn,'777777')) {
 
-        $result = ldap_search($conn, $this->rdn, 'uid=' . $codigoUtbId, array('uid', 'cn', 'mail'));
-        $datos = ldap_get_entries($conn, $result);
+            dd('Could not bind to AD: ' . ldap_error($conn), 401);
+            return false;
+        } else {
+            $result = ldap_search($conn, $this->rdn, 'uid=' . $codigoUtbId, array('uid', 'cn', 'mail'));
+            $datos = ldap_get_entries($conn, $result);
 
-        for ($i = 0; $i < $datos["count"]; $i++) {
-            $nombre = $datos[$i]["cn"][0];
-            $codigo = $datos[$i]["uid"][0];
-            $correo = $datos[$i]["mail"][0];
+            for ($i = 0; $i < $datos["count"]; $i++) {
+                $nombre = $datos[$i]["cn"][0];
+                $codigo = $datos[$i]["uid"][0];
+                $correo = $datos[$i]["mail"][0];
+            }
+
+            $this->usuario = new Usuario();
+
+            $this->usuario->nombre = $nombre;
+            $this->usuario->codigo = $codigo;
+            $this->usuario->correo = $correo;
+            $this->usuario->id = $codigo;
+
         }
 
-        $this->usuario = new Usuario();
-        $this->usuario->setNombre($nombre);
-        $this->usuario->setCodigo($codigo);
-        $this->usuario->setCorreo($correo);
-
+        // dd($this->usuario);
 
         return $this->usuario;
     }

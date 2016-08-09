@@ -14,7 +14,10 @@
                             <small class="badge  badge-danger">{{estrategia.riesgo.nombre}}</small>
 
                         </h1>
-                        <div class="media-right pull-right">
+                        <div
+                                permission
+                                permission-only="['ADMIN']"
+                                class="media-right pull-right">
                             <button type="button" class="btn btn-success" ui-sref="main.estrategia.detalle.crear">
                                 <i class="icon wb-plus" aria-hidden="true"></i> Acciones
                             </button>
@@ -54,7 +57,10 @@
                                             </div>
                                             <div class="btn-toolbar pull-right" aria-label="Toolbar with button groups"
                                                  role="toolbar">
-                                                <div class="btn-group" role="group">
+                                                <div class="btn-group"
+                                                     permission
+                                                     permission-only="['ADMIN']"
+                                                     role="group" >
                                                     <button tooltip-placement="top" uib-tooltip="HOLA"
                                                             tooltip-is-open="false" type="button"
                                                             class="btn btn-icon btn-default btn-outline"
@@ -139,9 +145,15 @@
                     <input type="number" class="form-control" ng-model="accion.costo_estimado"
                            placeholder="Costo estimado">
                 </div>
+
                 <div class="col-lg-12 form-group">
                     <textarea class="form-control" rows="5" ng-model="accion.descripcion"
                               placeholder="Descripcion"></textarea>
+                </div>
+
+                <div class="col-lg-12 form-group">
+                    <textarea class="form-control" rows="5" ng-model="accion.descripcion"
+                              placeholder="Mensaje"></textarea>
                 </div>
                 <div class="col-sm-12 pull-right">
                     <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">Guardar

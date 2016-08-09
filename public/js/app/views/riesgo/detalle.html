@@ -21,7 +21,10 @@
                     </div>
                 </div>
             </div>
-            <div class="media-right">
+            <div
+                    permission
+                    permission-only="['ADMIN']"
+                    class="media-right">
                 <button type="button" class="btn btn-success" ui-sref="main.riesgo.detalle.crear">
                     <i class="icon wb-plus" aria-hidden="true"></i> Filtros
                 </button>
@@ -43,7 +46,11 @@
                                 <td>Campo</td>
                                 <td>Operador</td>
                                 <td>Valor</td>
-                                <td>Herramientas</td>
+                                <td
+                                        permission
+                                        permission-only="['ADMIN']"
+                                >Herramientas
+                                </td>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,7 +59,10 @@
                                 <td>{{filtro.campo}}</td>
                                 <td>{{filtro.operador}}</td>
                                 <td>{{filtro.valor}}</td>
-                                <td>
+                                <td
+                                        permission
+                                        permission-only="['ADMIN']"
+                                >
                                     <button type="button" class="btn btn-sm btn-icon btn-pure btn-default" ui-sref="main.riesgo.detalle.editar({filtroId:filtro.id})" >
                                         <i class="icon wb-pencil" aria-hidden="true"></i>
                                     </button>

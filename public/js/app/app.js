@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 var satApp = angular.module("satApp", [
     'ui.router',
 	'AppControllers',
@@ -15,7 +14,11 @@ var satApp = angular.module("satApp", [
 	'angular-click-outside',
 	'acute.select',
 	'angular-confirm',
-	'angular-jwt'
+	'angular-jwt',
+	'permission',
+	'permission.ui'
+
+
 ]);
 
 satApp.provider('modalState', function ($stateProvider) {
@@ -24,6 +27,7 @@ satApp.provider('modalState', function ($stateProvider) {
 		return provider;
 	};
 	this.state = function (stateName, options) {
+		//console.log(options);
 		var modalInstance;
 		$stateProvider.state(stateName, {
 			url: options.url,
@@ -40,7 +44,8 @@ satApp.provider('modalState', function ($stateProvider) {
 				if (modalInstance) {
 					modalInstance.close();
 				}
-			}
+			},
+			data:options.data
 		});
 	};
 });
@@ -59,24 +64,26 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		target: 'body'
 	});
 
-		$httpProvider.interceptors.push(function ($location, $q, jwtHelper) {
+		$httpProvider.interceptors.push(function (toastr, $location, $q, jwtHelper) {
 			return {
 				request: function (conf) {
 					var token = window.localStorage.getItem(TOKEN_KEY);
 					if (token && !jwtHelper.isTokenExpired(token)) {
-						console.log('aqui');
+
 						conf.headers.Authorization = 'Bearer ' + token;
 					} else {
+
 						window.localStorage.removeItem(TOKEN_KEY);
 						$location.path("/login");
+
 					}
 					return conf;
 				}
 			}
 		});
 
-
 		$urlRouterProvider.otherwise('/login');
+
 
 	$stateProvider
 		.state('main', {
@@ -100,12 +107,22 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		.state('main.estrategia.editar', {
 			url: '/editar/:estrategiaId',
 			templateUrl: '/js/app/views/estrategia/crear.html',
-			controller: 'estrategiaEditarController'
+			controller: 'estrategiaEditarController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		.state('main.estrategia.crear', {
 			url: '/crear',
 			templateUrl: '/js/app/views/estrategia/crear.html',
-			controller: 'estrategiaCrearController'
+			controller: 'estrategiaCrearController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		.state('main.estrategia.detalle', {
 			url: '/detalle/:estrategiaId',
@@ -117,16 +134,27 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			url: '/riesgo',
 			templateUrl: '/js/app/views/riesgo/base.html',
 			controller: 'riesgoController'
+
 		})
 		.state('main.riesgo.editar', {
 			url: '/editar/:riesgoId',
 			templateUrl: '/js/app/views/riesgo/crear.html',
-			controller: 'riesgoEditarController'
+			controller: 'riesgoEditarController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		.state('main.riesgo.crear', {
 			url: '/crear',
 			templateUrl: '/js/app/views/riesgo/crear.html',
-			controller: 'riesgoCrearController'
+			controller: 'riesgoCrearController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		.state('main.riesgo.detalle',{
 			url: '/detalle/:riesgoId',
@@ -137,17 +165,28 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		.state('main.tiporiesgo', {
 			url: '/tipo-riesgo',
 			templateUrl: '/js/app/views/tiporiesgo/base.html',
-			controller: 'tipoRiesgoController'
+			controller: 'tipoRiesgoController',
+
 		})
 		.state('main.tiporiesgo.editar', {
 			url: '/editar/:tiporiesgoId',
 			templateUrl: '/js/app/views/tiporiesgo/crear.html',
-			controller: 'tipoRiesgoEditarController'
+			controller: 'tipoRiesgoEditarController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		.state('main.tiporiesgo.crear', {
 			url: '/crear',
 			templateUrl: '/js/app/views/tiporiesgo/crear.html',
-			controller: 'tipoRiesgoCrearController'
+			controller: 'tipoRiesgoCrearController',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		})
 		//Accion
 		//Estudiante
@@ -170,34 +209,60 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 	modalStateProvider.state('main.estrategia.detalle.crear', {
 			url: '/accion/crear',
 			templateUrl: 'modal-accion.html',
-			controller: 'accionCrearController'
+		controller: 'accionCrearController',
+		data: {
+			permissions: {
+				only: ['ADMIN']
+			}
+		}
 		});
 	modalStateProvider	.state('main.estrategia.detalle.editar', {
 			url: '/accion/editar/:accionId',
 			templateUrl: 'modal-accion.html',
-			controller: 'accionEditarController'
+		controller: 'accionEditarController',
+		data: {
+			permissions: {
+				only: ['ADMIN']
+			}
+		}
 		});
 // Modal Filtro
 	modalStateProvider.state('main.riesgo.detalle.crear', {
 		url: '/filtro/crear',
 		templateUrl: 'modal-filtro.html',
-		controller: 'filtroCrearController'
+		controller: 'filtroCrearController',
+		data: {
+			permissions: {
+				only: ['ADMIN']
+			}
+		}
 	});
 	modalStateProvider	.state('main.riesgo.detalle.editar', {
 		url: '/filtro/editar/:filtroId',
 		templateUrl: 'modal-filtro.html',
-		controller: 'filtroEditarController'
+		controller: 'filtroEditarController',
+		data: {
+			permissions: {
+				only: ['ADMIN']
+			}
+		}
 	});
 }]);
 
-satApp.run(['$confirmModalDefaults','$rootScope', function ($confirmModalDefaults,$rootScope) {
-	$confirmModalDefaults.templateUrl = 'alertas.html';
-	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
-	$confirmModalDefaults.defaultLabels.ok = 'Si';
-	$confirmModalDefaults.defaultLabels.cancel = 'No';
+satApp.run(['$confirmModalDefaults', 'PermissionStore', '$rootScope', 'jwtHelper', function ($confirmModalDefaults, PermissionStore, $rootScope, jwtHelper) {
+	var token = localStorage.getItem(TOKEN_KEY);
+	if (token && !jwtHelper.isTokenExpired(token)) {
+
+	}
+
 
 	$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams,$location){
 
 
 	});
+
+	$confirmModalDefaults.templateUrl = 'alertas.html';
+	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
+	$confirmModalDefaults.defaultLabels.ok = 'Si';
+	$confirmModalDefaults.defaultLabels.cancel = 'No';
 }]);

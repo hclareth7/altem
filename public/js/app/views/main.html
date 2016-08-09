@@ -9,7 +9,7 @@
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
             <img src="/img/logo.png" class="navbar-brand-logo" />
-            <span class="navbar-brand-text">SAT</span>
+            <span class="navbar-brand-text">SIUTB</span>
         </div>
 
     </div>
@@ -24,26 +24,142 @@
             <!-- End Navbar Toolbar -->
             <!-- Navbar Toolbar Right -->
             <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-
                 <li class="dropdown">
-                    <a class="navbar-avatar dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
-                        <span class="avatar avatar-online">
-                <img src="/img/avatar.png" alt="...">
-                <i></i>
-              </span>
+
+                </li>
+
+                <li class="dropdown" uib-dropdown keyboard-nav>
+                    <a data-toggle="dropdown" href="javascript:void(0)" uib-dropdown-toggle title="Notifications"
+                       aria-expanded="false" data-animation="scale-up" role="button">
+                        <i class="icon wb-bell" aria-hidden="true"></i>
+                        <span class="badge badge-danger up">5</span>
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation">
-                            <a href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Perfil</a>
+                    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media" uib-dropdown-menu role="menu">
+                        <li class="dropdown-menu-header" role="presentation">
+                            <h5>NOTIFICATIONS</h5>
+                            <span class="label label-round label-danger">New 5</span>
                         </li>
 
-                        <li class="divider" role="presentation"></li>
-                        <li role="presentation">
-                            <a href="javascript:void(0)" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+                        <li class="list-group scrollable is-enabled scrollable-vertical" role="presentation">
+                            <div data-role="container" class="scrollable-container">
+                                <div data-role="content" class="scrollable-content">
+                                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                        <div class="media">
+                                            <div class="media-left padding-right-10">
+                                                <i class="icon wb-order bg-red-600 white icon-circle"
+                                                   aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">A new order has been placed</h6>
+                                                <time class="media-meta" datetime="2016-06-12T20:50:48+08:00">5 hours
+                                                    ago
+                                                </time>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                        <div class="media">
+                                            <div class="media-left padding-right-10">
+                                                <i class="icon wb-user bg-green-600 white icon-circle"
+                                                   aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Completed the task</h6>
+                                                <time class="media-meta" datetime="2016-06-11T18:29:20+08:00">2 days
+                                                    ago
+                                                </time>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                        <div class="media">
+                                            <div class="media-left padding-right-10">
+                                                <i class="icon wb-settings bg-red-600 white icon-circle"
+                                                   aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Settings updated</h6>
+                                                <time class="media-meta" datetime="2016-06-11T14:05:00+08:00">2 days
+                                                    ago
+                                                </time>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                        <div class="media">
+                                            <div class="media-left padding-right-10">
+                                                <i class="icon wb-calendar bg-blue-600 white icon-circle"
+                                                   aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Event started</h6>
+                                                <time class="media-meta" datetime="2016-06-10T13:50:18+08:00">3 days
+                                                    ago
+                                                </time>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="list-group-item" href="javascript:void(0)" role="menuitem">
+                                        <div class="media">
+                                            <div class="media-left padding-right-10">
+                                                <i class="icon wb-chat bg-orange-600 white icon-circle"
+                                                   aria-hidden="true"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">Message received</h6>
+                                                <time class="media-meta" datetime="2016-06-10T12:34:48+08:00">3 days
+                                                    ago
+                                                </time>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="scrollable-bar scrollable-bar-vertical scrollable-bar-hide is-disabled"
+                                 draggable="false">
+                                <div class="scrollable-bar-handle" style="height: 205.043px;"></div>
+                            </div>
+                        </li>
+                        <li class="dropdown-menu-footer" role="presentation">
+                            <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
+                                <i class="icon wb-settings" aria-hidden="true"></i>
+                            </a>
+                            <a href="javascript:void(0)" role="menuitem">
+                                All notifications
+                            </a>
                         </li>
                     </ul>
                 </li>
+                <li class="dropdown" uib-dropdown keyboard-nav>
+                    <a class="navbar-avatar dropdown-toggle" uib-dropdown-toggle
+                       aria-expanded="false" data-animation="scale-up" role="button">
+                        <span class="avatar avatar-online">
+                <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}" alt="...">
+                <i></i>
+              </span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
+                        <li role="presentation">
+                            <a href="javascript:void(0)" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Perfil</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="javascript:void(0)" role="menuitem"><i class="icon wb-settings"
+                                                                            aria-hidden="true"></i> Configuración</a>
+                        </li>
+                        <li class="divider" role="presentation"></li>
+                        <li role="presentation">
+                            <a href="javascript:void(0)" ng-click="cerrarSesion()" role="menuitem"><i class="icon wb-power"
+                                                                            aria-hidden="true"></i> Salir</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="javascript:void(0)" title="Ayuda?"
+                       data-animation="scale-up" role="button">
+                        <i class="icon wb-help-circle" aria-hidden="true"></i>
+                    </a>
 
+                </li>
             </ul>
             <!-- End Navbar Toolbar Right -->
         </div>
@@ -57,6 +173,28 @@
     <div class="site-menubar-body">
         <div>
             <div>
+                <header class="sidebar-header">
+
+                    <!-- -------------- Sidebar - Author -------------- -->
+                    <div class="sidebar-widget author-widget">
+                        <div class="media">
+                            <a class="media-left" >
+                                <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}" >
+                            </a>
+
+                            <div class="media-body">
+                                <div class="media-links">
+                                    <a class="sidebar-menu-toggle">{{usuario.codigo}}</a>
+                                </div>
+                                <div class="media-author">{{usuario.nombre| lowercase}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- -------------- Sidebar - Author Menu  -------------- -->
+
+
+                </header>
                 <ul class="site-menu">
                     <li class="site-menu-category">General</li>
                     <li class="site-menu-item has-sub">

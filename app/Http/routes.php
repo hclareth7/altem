@@ -11,28 +11,51 @@
 |
 */
 
-Route::get('/','PagesController@index');
+
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
+
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
-        Route::resource('login', 'AuthenticateController', ['only' => ['index']]);
 
 
+        Route::group(['middleware' => ['ability:ADMIN,create-users']], function () {
 
-    Route::resource('estudiante', 'EstudianteController');
-    Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
-    Route::resource('personal', '');
-    Route::resource('intervencion', 'IntervenciArchivoPersonalControlleronController');
-    Route::resource('accion_aplicada', 'AccionAplicadaController');
-    Route::resource('estrategia', 'EstrategiaController');
-    Route::resource('accion', 'AccionController');
-    Route::get('accion/acciones_estrategia/{id}', 'AccionController@getByEstrategia');
-    Route::resource('tipo_riesgo', 'TipoRiesgoController');
-    Route::resource('riesgo', 'RiesgoController');
-    Route::resource('filtro', 'FiltroController');
-    Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
-    Route::get('estudiante_colums', 'EstudianteController@getColumn');
+            Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
+            Route::resource('estudiante', 'EstudianteController');
+            Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
+            Route::resource('personal', '');
+            Route::resource('intervencion', 'IntervenciArchivoPersonalControlleronController');
+            Route::resource('accion_aplicada', 'AccionAplicadaController');
+            Route::get('estudiante_colums', 'EstudianteController@getColumn');
+
+            Route::resource('tipo_riesgo', 'TipoRiesgoController');
+            Route::resource('estrategia', 'EstrategiaController');
+            Route::resource('accion', 'AccionController');
+            Route::get('accion/acciones_estrategia/{id}', 'AccionController@getByEstrategia');
+            Route::resource('tipo_riesgo', 'TipoRiesgoController');
+            Route::resource('riesgo', 'RiesgoController');
+            Route::resource('filtro', 'FiltroController');
+            Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
+
+            Route::post('role', 'ApiAuthController@createRole');
+// Route to create a new permission
+            Route::post('permission', 'ApiAuthController@createPermission');
+// Route to assign role to user
+            Route::post('assign_role', 'ApiAuthController@assignRole');
+// Route to attache permission to a role
+            Route::post('attach_permission', 'ApiAuthController@attachPermission');
+        });
+
     });
+
+
+
+
+
+
 });
+
+
+Route::get('/', 'PagesController@index');
