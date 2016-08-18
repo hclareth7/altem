@@ -24,7 +24,7 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::group(['middleware' => ['role:ADMIN|CONSE|PSICO']], function () {
 
-            Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
+            Route::resource('logins', 'ApiAuthController', ['only' => ['index']]);
             Route::resource('estudiante', 'EstudianteController');
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
             Route::resource('personal', '');

@@ -57,6 +57,7 @@ class ApiAuthController extends Controller
      */
     public function authenticate(Request $request)
     {
+        //dd($request);
         $credentials = $request->only('codigo', 'password');
 
         try {
