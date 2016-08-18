@@ -29,7 +29,6 @@ class ApiAuthController extends Controller
     public function index()
     {
         // = JWTAuth::parseToken()->authenticate();
-
         //return response()->json($user);
         $user = Auth::user();
 

@@ -12,7 +12,7 @@ controllerModule
 			filtroService.getAllFiltros().then(function (response) {
 				$scope.filtros = response.data;
 			});
-			$scope.getEstudiantesByFiltro = function (id) {
+			$scope.getFiltrosByEstudiantes = function (id) {
 				estudianteService.getEstudiantesByFiltro(id).then(function (response) {
 					$rootScope.estudiantes = response.data;
 				});
@@ -45,12 +45,15 @@ controllerModule
 
 		};
 		$scope.getEstudiante($stateParams.estudianteId);
-		$scope.riesgos=riesgoService.getRiesgosFiltrados();
+			estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
+				$scope.riesgos=response.data;
+			});
+
 
 		$scope.getEdad = function (fecha_na) {
 			var ANIO_ACTUAL = new Date().getFullYear();
 			var FECHA_NA = new Date(fecha_na).getFullYear();
-			console.log(ANIO_ACTUAL - FECHA_NA);
+
 			return ANIO_ACTUAL - FECHA_NA;
 		};
 

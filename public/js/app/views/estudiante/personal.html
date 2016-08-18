@@ -101,12 +101,14 @@
 									</div>
 									<div>
 										<div class="right">
-											<button type="button" ng-click="isShowEstrategias= !isShowEstrategia" class="btn btn-outline btn-icon btn-default btn-round">
+											<button type="button"
+													ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
+													class="btn btn-outline btn-icon btn-default btn-round">
 												<i class="icon wb-list" aria-hidden="true"></i></button>
 										</div>
 									</div>
 									<hr>
-									<div uib-collapse="isShowEstrategias"  >
+									<div uib-collapse="!riesgo.isShowEstrategias">
 										<div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
 											<h4 class="example-title">Estrategias aplicadas</h4>
 
@@ -281,39 +283,33 @@
 											<i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
 										</a>
 										<div class="overlay-background ">
-											<div class="text-center">
-												<h3 class="white">Seguimiento de la acción</h3>
+											<div class="row">
+
+												<div class="col-md-2 pull-rleft">
+													<div class="switch pull-right">
+														<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round"
+															   type="checkbox">
+														<label for="cmn-toggle-1"></label>
+													</div>
+												</div>
+												<div class="col-md-8">
+													<h3 class="white">Accion</h3>
+												</div>
+
+
 											</div>
 										</div>
 									</div>
 									<div class="widget-content mi-scroll2">
+
 										<div class="row">
+											<div class="col-md-2 pull-left">
+												<a class="btn btn-icon btn-success btn-outline btn-round">
 
-											<div class="col-md-6">
-												<div class="mi-progress-box">
-
-													<div class="mi-progress-bar progress-bar-slider">
-														<input class="mi-progress-slider" type="range" min="0" max="100" ng-model="selectedRange">
-														<div class="inner" ng-style="{ width: selectedRange + '%' || '0%' }"></div>
-													</div>
-													<div class="percentage-cur text-center" ng-init="selectedRange=50">
-														<p class="green-600 font-size-20">Avance {{ selectedRange }}%</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-
-												<div class="switch pull-right">
-													<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-													<label for="cmn-toggle-1"></label>
-												</div>
+													<i class="icon wb-upload" aria-hidden="true"></i></a>
 											</div>
 
-										</div>
-										<hr>
-										<div class="row">
-											<div class="col-md-6">
-
+											<div class="col-md-8">
 												<div class="">
 													<div class="form-group input-group-icon">
 
@@ -322,11 +318,6 @@
 												</div>
 											</div>
 
-											<div class="col-md-2 pull-right">
-												<a class="btn btn-icon btn-success btn-outline btn-round">
-
-													<i class="icon wb-upload" aria-hidden="true"></i></a>
-											</div>
 
 
 										</div>
@@ -410,12 +401,6 @@
 
 							</div>
 						</uib-tab>
-
-
-
-
-
-
 
 						<uib-tab index="1" heading="Academica">
 							<div class="tab-content animation-fade">

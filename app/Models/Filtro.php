@@ -22,13 +22,12 @@ class Filtro extends Model
     {
         $sql = "";
         $filtros = $this->where('riesgos_id', $id)->get();
-
         foreach ($filtros as $key => $value) {
 
             if ($key == 0) {
-                $sql = "where " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "'";
+                $sql = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             } else {
-                $sql .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "'";
+                $sql .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             }
 
 
@@ -36,5 +35,19 @@ class Filtro extends Model
 
         return $sql;
 
+    }
+
+    public function getQuery()
+    {
+        $sql = "";
+        $filtros = $this->all();
+        foreach ($filtros as $key => $value) {
+            if ($key == 0) {
+                $sql = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            } else {
+                $sql .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            }
+        }
+        return $sql;
     }
 }

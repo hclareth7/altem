@@ -32,7 +32,7 @@ class LdapServerConnection
             dd('PHP LDAP extension not loaded.', 418);
             return false;
         }
-        $conn = ldap_connect("$this->hostname");
+        $conn = ldap_connect($this->hostname);
         if (!$conn) {
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;

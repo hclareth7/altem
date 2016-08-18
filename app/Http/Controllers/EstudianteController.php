@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Filtro;
+use App\Models\Riesgo;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 class EstudianteController extends Controller
@@ -20,7 +22,70 @@ class EstudianteController extends Controller
 		$this->db_sirius = \DB::connection('sirius');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
         $this->filtro = $filtro;
-	}
+        $this->sql = "";
+
+    }
+
+    public function getRiesgosByEstudiante($id)
+    {
+        $riesgos = [];
+        $rro = "";
+        $filtros = $this->filtro->groupBy('riesgos_id')->get();
+        foreach ($filtros as $key => $value) {
+            $sql = "SELECT * FROM estudiantes WHERE id='" . $id . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            $estudiantes = $this->db_sirius->select($sql);
+
+            if (!empty($estudiantes)) {
+                $riesgo = new Riesgo();
+                $buenRiesgo = $riesgo->find($value->riesgos_id);
+                $riesgos[$key] = $buenRiesgo;
+            }
+        }
+
+        return response()->json($riesgos);
+    }
+
+    public function setRestric()
+    {
+        $restric = "";
+        $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
+            $user = Auth::user();
+            return $item->codigo == $user->id;
+        })->first();
+        $restricRole = $roles->roles->map(function ($value) {
+            return $value->name;
+        });
+        if ($restricRole[0] == "ADMIN") {
+            $this->sql = "Select * from estudiantes where programa != '' ";
+            return $this->sql;
+        } else if ($restricRole[0] == "CONSE") {
+            $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
+            $datos = $permission->map(function ($value) {
+                return $value->name;
+            });
+
+            if (count($datos) > 0) {
+                foreach ($datos as $key => $value) {
+                    ///if($value=="pilo")
+
+                    if ($key == 0) {
+
+                        $restric .= "where programa = '" . strtoupper(str_replace("_", " ", $value)) . "'";
+
+                    } else {
+                        $restric .= " or programa = '" . strtoupper(str_replace("_", " ", $value)) . "'";
+                    }
+
+                }
+                $this->sql = "Select * from estudiantes " . $restric;
+                return $this->sql;
+            }
+
+        } else {
+            return "";
+        }
+
+    }
 
 	public function find(Route $route)
 	{
@@ -31,7 +96,8 @@ class EstudianteController extends Controller
     public function ejecutarFiltro($id)
     {
         $filtros = $this->filtro->ejecutar($id);
-        $sql="select * from estudiantes ".$filtros;
+        $sql = $this->setRestric() . " " . $filtros;
+
         $estudiantes = $this->db_sirius->select($sql);
         return response()->json($estudiantes);
     }
@@ -39,13 +105,15 @@ class EstudianteController extends Controller
     public function getcolumn()
     {
         $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes');
+
         return response()->json($columns);
     }
 
     public function index()
     {
-        $estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
-      return response()->json($estudiante);
+        //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
+        $estudiantes = $this->db_sirius->select($this->setRestric());
+        return response()->json($estudiantes);
     }
 
     /**

@@ -34,6 +34,8 @@ class RiesgoController extends Controller
          $riesgo = Riesgo::with('tiporiesgo')->get();
 		return response()->json($riesgo);
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.

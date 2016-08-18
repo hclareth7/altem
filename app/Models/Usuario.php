@@ -18,6 +18,7 @@ class Usuario extends Model implements AuthenticatableContract
      *
      * @var array
      */
+    
     protected $fillable = ['nombre', 'correo', 'codigo'];
 
     protected $primaryKey= "codigo";
