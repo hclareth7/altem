@@ -16,8 +16,9 @@ var satApp = angular.module("satApp", [
 	'angular-confirm',
 	'angular-jwt',
 	'permission',
-	'permission.ui'
-
+	'permission.ui',
+	'ngSanitize',
+	'ngCsv'
 
 ]);
 

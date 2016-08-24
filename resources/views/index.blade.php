@@ -82,6 +82,8 @@
 	<script src="/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 	<script src="/bower_components/angular-permission/dist/angular-permission.min.js"></script>
 	<script src="/bower_components/angular-permission/dist/angular-permission-ui.min.js"></script>
+	<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->

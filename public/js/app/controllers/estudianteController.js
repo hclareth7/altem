@@ -3,11 +3,22 @@ var controllerModule = angular.module('AppControllers');
 controllerModule
 	.controller('estudianteController', ['$scope', 'estudianteService', '$stateParams', 'toastr', '$state', '$rootScope', 'filtroService',
 		function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope, filtroService) {
+
+			
+
 			$rootScope.estudiantes = [];
 			$scope.getAllEstudiantes = function () {
 				estudianteService.getAllEstudiantes().then(function (response) {
 					$rootScope.estudiantes = response.data;
+					
 				});
+			};
+			$scope.getColumsEstudiantes = function(obj){
+				var keys = [];
+				for(var key in obj){
+					keys.push(key);
+				}
+				return keys;
 			};
 			filtroService.getAllFiltros().then(function (response) {
 				$scope.filtros = response.data;
@@ -18,6 +29,8 @@ controllerModule
 				});
 			};
 
+
+
 			$scope.getAllEstudiantes();
 
 			$rootScope.barra = function () {
@@ -26,9 +39,8 @@ controllerModule
 			$rootScope.barra();
 
 	}])
-	.controller('estudianteIntervencionController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope'
-
-		,
+	.controller('estudianteIntervencionController',
+		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
 
 
@@ -38,7 +50,8 @@ controllerModule
 	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal','riesgoService',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal,riesgoService) {
 
-		$scope.getEstudiante = function (estudianteId) {
+
+			$scope.getEstudiante = function (estudianteId) {
 			estudianteService.getEstudianteById(estudianteId).then(function (response) {
 				$scope.estudiante = response.data;
 			});
@@ -141,3 +154,6 @@ controllerModule.service('CargarSelectRiesgos',[ '$scope','riesgoService',functi
 
 	return cargar;
 }])**/
+
+
+

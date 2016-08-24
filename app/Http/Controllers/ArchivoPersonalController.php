@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filtro;
+use App\Models\Riesgo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,9 +18,11 @@ class ArchivoPersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct(){
+	public function __construct(Filtro $filtro){
+        $this->db_sirius = \DB::connection('sirius');
 		$this->middleware('cors');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+        $this->filtro = $filtro;
 	}
 
 	public function find(Route $route){
@@ -33,6 +37,43 @@ class ArchivoPersonalController extends Controller
 		return response()->json($archivoPersonal);
     }
 
+
+    public function getRiesgosPersonalByEstudiantes($codigo){
+        $riegosPersonal=ArchivoPersonal::with('riesgo')->where('estudiante',$codigo)->groupBy('id')->get();
+        $riesgos = [];
+
+        $filtros = $this->filtro->groupBy('riesgos_id')->get();
+
+        foreach ($filtros as $key => $value) {
+            $sql = "SELECT * FROM estudiantes WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            $estudiantes = $this->db_sirius->select($sql);
+
+            if (!empty($estudiantes)) {
+                $riesgo = new Riesgo();
+                $buenRiesgo = $riesgo->find($value->riesgos_id);
+                $riesgos[$key] = $buenRiesgo;
+            }
+        }
+
+        foreach ($riegosPersonal as $key => $value) {
+
+            $riegosPersonal[$key]->descripcion=$value->riesgo->descripcion;
+            $riegosPersonal[$key]->nombre=$value->riesgo->nombre;
+            $riegosPersonal[$key]->tipo_riesgo= $riegosPersonal[$key]->riesgo->with('tiporiesgo')->where('id', $value->riesgo->id)->get()->map(function ($value){
+                return $value->nombre;
+            });
+
+        }
+
+        foreach ($riesgos as $key1 => $value1) {
+                    if(!$riegosPersonal->contains('riesgos_id',$value1->id)){
+                        $riegosPersonal->add($riesgos[$key1]);
+                    }
+            }
+
+
+        return response()->json($riegosPersonal);
+    }
 
 
     /**

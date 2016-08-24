@@ -255,3 +255,154 @@ input.cmn-toggle-round:checked + label:after {
 }
 
 
+
+
+.radio-wrapper {
+	width: 100px;
+	height: 30px;
+	/* display: inline-block; */
+	vertical-align: middle;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 30px;
+	position: relative;
+	z-index: 76;
+	left: 69px;
+}
+.radio-wrapper p {
+	position: absolute;
+	z-index: 10;
+	color: red !important;
+	background:red !important;
+	font-size: 1.7em;
+	margin: 0;
+	margin-top: 13px;
+	cursor:pointer;
+}
+
+
+.radio-wrapper input[type="radio"] {
+	display: none;
+}
+
+.radio-wrapper i {
+	z-index: 99;
+	font-size: 18px;
+	cursor:pointer;
+}
+.neutral-icon i {
+	font-size: 10px;
+}
+.neutral + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	left: 33%;
+	transition: transform 1s;
+	cursor:pointer;
+}
+
+.neutral:checked + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: rgb(238, 238, 238);
+
+}
+
+.yes + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	text-align: center;
+	cursor:pointer;
+}
+
+.yes:checked + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #ade20c;
+	-moz-animation-duration: 0.4s;
+	-moz-animation-name: slidein;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-name: slidein;
+	animation-duration: 0.4s;
+	animation-name: slidein;
+	-webkit-transform: translateZ(0);
+}
+
+.no + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	cursor:pointer;
+}
+
+.no:checked + label {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: red;
+	-moz-animation-duration: 0.4s;
+	-moz-animation-name: slideno;
+	-webkit-animation-duration: 0.4s;
+	-webkit-animation-name: slideno;
+	animation-duration: 0.4s;
+	animation-name: slideno;
+	-webkit-transform: translateZ(0);
+	background: rgb(230, 108, 103);
+
+}
+
+
+@keyframes slidein {
+	from {
+		transform: translate(50px, 0);
+	}
+	to {
+		transform: translate(0px, 0px);
+	}
+}
+
+
+@keyframes slideno {
+	from {
+		transform: translate(-50px,0);
+	}
+	to {
+		transform: translate( 0px, 0px);
+	}
+}
+
+@keyframes returnLeft {
+	from {
+		transform: translate(-50px,0);
+	}
+	to {
+		transform: translate(0px,0);
+	}
+}
+
+@keyframes returnRight {
+	from {
+		transform: translate(50px,0);
+	}
+	to {
+		transform: translate(0px,0);
+	}
+}
+
+
+

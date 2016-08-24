@@ -13,6 +13,7 @@ class EntrustSetupTables extends Migration
     {
         // Create table for storing roles
         Schema::create('roles', function (Blueprint $table) {
+            $table->charset('utf8');
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -23,6 +24,7 @@ class EntrustSetupTables extends Migration
 
         // Create table for storing users
         Schema::create('usuarios', function (Blueprint $table) {
+            $table->charset('utf8');
             $table->string('codigo',45)->unique();
             $table->string('estado')->nullable();
             $table->timestamps();
@@ -31,6 +33,7 @@ class EntrustSetupTables extends Migration
 
         // Create table for associating roles to users (Many-to-Many)
         Schema::create('role_usuario', function (Blueprint $table) {
+            $table->charset('utf8');
             $table->string('usuario_id',45)->unique();
             $table->integer('role_id')->unsigned();
 
@@ -44,6 +47,7 @@ class EntrustSetupTables extends Migration
 
         // Create table for storing permissions
         Schema::create('permissions', function (Blueprint $table) {
+            $table->charset('utf8');
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -53,6 +57,7 @@ class EntrustSetupTables extends Migration
 
         // Create table for associating permissions to roles (Many-to-Many)
         Schema::create('permission_role', function (Blueprint $table) {
+            $table->charset('utf8');
             $table->integer('permission_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
@@ -60,7 +65,6 @@ class EntrustSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
-
             $table->primary(['permission_id', 'role_id']);
         });
     }

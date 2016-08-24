@@ -9,19 +9,16 @@ class ArchivoPersonal extends Model
     protected $table = 'archivo_personal';
 	
 	public $timestamps=false;
-	
-	protected $fillable=['estudiante','interveciones_id','riesgos_id'];
 
-	
+    protected $fillable = ['estudiante', 'fecha_reporte', 'riesgos_id', 'usuarios_codigo'];
+
 	public function riesgo()
     {
-        return $this->belongsTo('App\Models\Riesgo');
+        return $this->belongsTo('App\Models\Riesgo','id');
     }
-	
-	public function intervencion()
+
+    public function usuario()
     {
-        return $this->belongsTo('App\Models\Intervencion');
+        return $this->belongsTo('App\Models\Usuarios','codigo');
     }
-
-
 }

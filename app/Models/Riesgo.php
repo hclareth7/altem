@@ -14,9 +14,13 @@ class Riesgo extends Model
         return $this->belongsTo('App\Models\TipoRiesgo');
     }
 
-
 	public function estrategias()
     {
         return $this->hasMany('App\Models\Estrategia');
+    }
+
+    public function archivos_Personales()
+    {
+        return $this->hasMany('App\Models\ArchivoPersonal');
     }
 }

@@ -16,7 +16,7 @@
 Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
     Route::get('riesgos_estudinate/{id}', 'EstudianteController@getRiesgosByEstudiante');
-
+    Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
 
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
@@ -27,8 +27,8 @@ Route::group(['prefix' => 'api'], function () {
             Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
             Route::resource('estudiante', 'EstudianteController');
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
-            Route::resource('personal', '');
-            Route::resource('intervencion', 'IntervenciArchivoPersonalControlleronController');
+
+            Route::resource('intervencion', 'ArchivoPersonalController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
             Route::get('estudiante_colums', 'EstudianteController@getColumn');
 

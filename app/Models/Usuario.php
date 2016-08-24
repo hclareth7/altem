@@ -23,6 +23,8 @@ class Usuario extends Model implements AuthenticatableContract
 
     protected $primaryKey= "codigo";
 
+    
+    
 
 
 

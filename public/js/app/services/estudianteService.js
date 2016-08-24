@@ -15,7 +15,7 @@ servicesModule.factory('estudianteService', ['$http', function ($http) {
 			return $http.get(this.apiUrl + 'estudiante_filtro/'+riesgoId);
 		},
 		getRiesgosByEstudiante: function (estudianteId) {
-			return $http.get(this.apiUrl + 'riesgos_estudinate/'+estudianteId);
+			return $http.get(this.apiUrl + 'personal/'+estudianteId);
 		}
 
 

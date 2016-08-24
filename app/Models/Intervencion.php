@@ -19,7 +19,7 @@ class Intervencion extends Model
         return $this->hasOne('App\Models\Estrategia');
     }
 	
-	public function archivo_personal()
+	public function archivos_personales()
     {
         return $this->hasMany('App\Models\ArchivoPersonal');
     }

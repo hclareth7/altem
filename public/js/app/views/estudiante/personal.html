@@ -1,437 +1,502 @@
 <div class="page-content container-fluid page-profile">
-	<div class="row">
-		<div class="col-md-3">
-			<!-- Page Widget -->
-			<div class="widget widget-shadow text-center">
-				<div class="widget-header">
-					<div class="widget-header-content">
-						<a class="avatar avatar-lg" href="javascript:void(0)">
-							<!--img src="/img/avatar2.png" alt="..."-->
-							<img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.id}}" alt="...">
-							<!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
-						</a>
-						<h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
-						<p class="profile-job">{{estudiante.programa}}</p>
-						<address>
-						  <strong>Informacion de contacto</strong>
-						  <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.direccion}}
-						  <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.correo}}</a>
-						  <br>
-						  <abbr title="Telefono">Telefono: </abbr> {{estudiante.telefono}}
-                		</address>
-						<!--div class="profile-social">
-							<a class="icon bd-twitter" href="javascript:void(0)"></a>
-							<a class="icon bd-facebook" href="javascript:void(0)"></a>
-							<a class="icon bd-dribbble" href="javascript:void(0)"></a>
-							<a class="icon bd-github" href="javascript:void(0)"></a>
-						</div-->
-						<!--button type="button" class="btn btn-primary">Follow</button-->
-					</div>
-				</div>
-				<div class="widget-footer">
-					<div class="row no-space">
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Codigo</strong>
-							<span>{{estudiante.id}}</span>
-						</div>
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Edad</strong>
-							<span >{{getEdad(estudiante.fecha_nacimiento)}}</span>
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Page Widget -->
+            <div class="widget widget-shadow text-center">
+                <div class="widget-header">
+                    <div class="widget-header-content">
+                        <a class="avatar avatar-lg" href="javascript:void(0)">
+                            <!--img src="/img/avatar2.png" alt="..."-->
+                            <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.id}}"
+                                 alt="...">
+                            <!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
+                        </a>
+                        <h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
+                        <p class="profile-job">{{estudiante.programa}}</p>
+                        <address>
+                            <strong>Informacion de contacto</strong>
+                            <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.direccion}}
+                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.correo}}</a>
+                            <br>
+                            <abbr title="Telefono">Telefono: </abbr> {{estudiante.telefono}}
+                        </address>
+                        <!--div class="profile-social">
+                            <a class="icon bd-twitter" href="javascript:void(0)"></a>
+                            <a class="icon bd-facebook" href="javascript:void(0)"></a>
+                            <a class="icon bd-dribbble" href="javascript:void(0)"></a>
+                            <a class="icon bd-github" href="javascript:void(0)"></a>
+                        </div-->
+                        <!--button type="button" class="btn btn-primary">Follow</button-->
+                    </div>
+                </div>
+                <div class="widget-footer">
+                    <div class="row no-space">
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Codigo</strong>
+                            <span>{{estudiante.id}}</span>
+                        </div>
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Edad</strong>
+                            <span>{{getEdad(estudiante.fecha_nacimiento)}}</span>
 
-						</div>
-						<div class="col-xs-4">
-							<strong class="profile-stat-count">Sexo</strong>
-							<span>{{estudiante.sexo}}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End Page Widget -->
-		</div>
-		<div class="col-md-9">
-			<!-- Panel -->
-			<div class="panel">
-				<div class="panel-body nav-tabs-animate">
-					<uib-tabset active="">
-						<uib-tab index="0" heading="Intervenciones">
-							<div class="tab-content animation-fade">
-								<br>
-								<div class="media" ng-repeat="riesgo in riesgos">
-									<div class="media-left">
+                        </div>
+                        <div class="col-xs-4">
+                            <strong class="profile-stat-count">Sexo</strong>
+                            <span>{{estudiante.sexo}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page Widget -->
+        </div>
+        <div class="col-md-9">
+            <!-- Panel -->
+            <div class="panel">
+                <div class="panel-body nav-tabs-animate">
+                    <uib-tabset active="">
+                        <uib-tab index="0" heading="Intervenciones">
+                            <div class="tab-content animation-fade">
+                                <br>
+                                <div class="media" ng-repeat="riesgo in riesgos">
+                                    <div class="media-left">
 
-										<img src="/img/avatar.png" alt="" ng-show="riesgoAdd{{riesgo.id}}"><i></i></a>
-									</div>
-									<div class="media-body">
-										<div class="row">
-											<div class="col-md-7">
-												<h4 class="media-heading">
-													Riesgo: {{riesgo.nombre}}
-													<small ng-show="riesgoAdd{{riesgo.id}}">Juan Administrador SAT
-													</small>
-													</h4>
+                                        <img ng-show="riesgo.usuarios_codigo" src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{riesgo.usuarios_codigo}}" alt="" class="avatar"><i></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <h4 class="media-heading">
+                                                    Riesgo: {{riesgo.nombre}}
+                                                    <small   ng-show="riesgo.usuarios_codigo">Agregado por: {{riesgo.usuarios_codigo}}
+                                                    </small>
+                                                </h4>
 
 
-												<p class="name" ng-show="riesgoAdd{{riesgo.id}}">Fecha de reporte:
-													2014-08-25 10:25:40</p>
-												<p class="name">Tipo de riesgo: {{riesgo.tipo_riesgo}}</p>
-												<div class="alert alert-alt alert-danger alert-dismissible" role="alert">
+                                                <p class="name" ng-show="riesgo.fecha_reporte">Fecha de reporte:
+                                                    {{riesgo.fecha_reporte}}</p>
+                                                <p class="name">Tipo de riesgo: {{riesgo.tipo_riesgo[0]}}</p>
+                                                <div class="alert alert-alt alert-danger alert-dismissible"
+                                                     role="alert">
 
-													<p>
-														<span>Descripcion: </span> {{riesgo.descripcion}}
-													</p>
-												</div>
-											</div>
+                                                    <p>
+                                                        <span>Descripcion: </span> {{riesgo.descripcion}}
+                                                    </p>
+                                                </div>
+                                            </div>
 
-											<div class="col-md-5">
+                                            <div class="col-md-5">
 
-											</div>
+                                            </div>
 
-										</div>
+                                        </div>
 
-									</div>
-									<div class="media-right">
-										<span class="badge badge-danger mi-badge ">{{1}}</span>
-										<button type="button" class="pull-right btn btn-icon btn-primary btn-round btn-lg" ng-click="open()">
+                                    </div>
+                                    <div class="media-right">
+                                        <span class="badge badge-danger mi-badge ">{{1}}</span>
+                                        <button type="button"
+                                                class="pull-right btn btn-icon btn-primary btn-round btn-lg"
+                                                ng-click="open()">
 
-											<i class="icon wb-extension" aria-hidden="true">
+                                            <i class="icon wb-extension" aria-hidden="true">
 
-											</i>
+                                            </i>
 
-										</button>
-									</div>
-									<div>
-										<div class="right">
-											<button type="button"
-													ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
-													class="btn btn-outline btn-icon btn-default btn-round">
-												<i class="icon wb-list" aria-hidden="true"></i></button>
-										</div>
-									</div>
-									<hr>
-									<div uib-collapse="!riesgo.isShowEstrategias">
-										<div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
-											<h4 class="example-title">Estrategias aplicadas</h4>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <div class="right">
+                                            <button type="button"
+                                                    ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
+                                                    class="btn btn-outline btn-icon btn-default btn-round">
+                                                <i class="icon wb-list" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div uib-collapse="!riesgo.isShowEstrategias">
+                                        <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+                                            <h4 class="example-title">Estrategias aplicadas</h4>
 
-											<ul class="list-group">
-												<li class="list-group-item">
-													<div class="media" ng-repeat="estrategia in riesgo.estrategias_aplicada">
-														<div class="media-left">
-															<div class="avatar avatar-online">
-																<img src="/img/avatar.png" alt="...">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <div class="media"
+                                                         ng-repeat="estrategia in riesgo.estrategias_aplicada">
+                                                        <div class="media-left">
+                                                            <div class="avatar avatar-online">
+                                                                <img src="/img/avatar.png" alt="...">
 
-															</div>
-														</div>
-														<div class="media-body">
-															<h4 class="media-heading">
-																{{estrategia.nombre}}
-																<small>{{estrategia.autor}}</small>
-															</h4>
-															<br>
-															<div class="row">
-																<div class="col-md-7">
-																	<p class="name">Fecha de asignacion: {{estrategia.fecha_inicio}}</p>
-																	<p class="name">Fecha de finalizacion:{{estrategia.fecha_fin}}</p>
-																</div>
-																<div class="col-md-5">
+                                                            </div>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">
+                                                                {{estrategia.nombre}}
+                                                                <small>{{estrategia.autor}}</small>
+                                                            </h4>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <p class="name">Fecha de asignacion:
+                                                                        {{estrategia.fecha_inicio}}</p>
+                                                                    <p class="name">Fecha de
+                                                                        finalizacion:{{estrategia.fecha_fin}}</p>
+                                                                </div>
+                                                                <div class="col-md-5">
 
-																	<div class="progress progress-xs table-content">
-																		<div class="progress-bar progress-bar-primary progress-bar-indicating" style="width: 90%" role="progressbar">
-																			<span class="sr-only">90%</span>
-																		</div>
-																	</div>
-																	<span>90%</span>
+                                                                    <div class="progress progress-xs table-content">
+                                                                        <div class="progress-bar progress-bar-primary progress-bar-indicating"
+                                                                             style="width: 90%" role="progressbar">
+                                                                            <span class="sr-only">90%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span>90%</span>
 
-																</div>
+                                                                </div>
 
-															</div>
+                                                            </div>
 
-															<div class="alert alert-alt alert-info alert-dismissible" role="alert">
-																<p>
-																	<span>Descripcion: </span>{{estrategia.descripcion}}
-																</p>
-															</div>
+                                                            <div class="alert alert-alt alert-info alert-dismissible"
+                                                                 role="alert">
+                                                                <p>
+                                                                    <span>Descripcion: </span>{{estrategia.descripcion}}
+                                                                </p>
+                                                            </div>
 
-														</div>
-														<!--div class="media-right">
+                                                        </div>
+                                                        <!--div class="media-right">
                                                             <button type="button" class="btn btn-outline btn-success btn-sm">Follow</button>
                                                         </div-->
-													</div>
+                                                    </div>
 
-													<hr>
-													<div id="recentActivityWidget">
-														<ul class="timeline timeline-icon">
-															<li class="timeline-reverse">
-																<div class="timeline-content-wrap">
-																	<div class="timeline-dot bg-green-600">
-																		<span>1</span>
-																	</div>
-																	<div class="timeline-content">
+                                                    <hr>
+                                                    <div id="recentActivityWidget">
+                                                        <ul class="timeline timeline-icon">
+                                                            <li class="timeline-reverse">
+                                                                <div class="timeline-content-wrap">
+                                                                    <div class="timeline-dot bg-green-600">
+                                                                        <span>1</span>
+                                                                    </div>
+                                                                    <div class="timeline-content">
 
-																		<div class="row">
-																			<div class="col-md-6">
-																				<div class="title">
-																					<span class="authors">AC-E07-01</span>2014-09-05 10:58:49
-																				</div>
-																				<p>Tiempo estimado: 16 semanas</p>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="title">
+                                                                                    <span class="authors">AC-E07-01</span>2014-09-05
+                                                                                    10:58:49
+                                                                                </div>
+                                                                                <p>Tiempo estimado: 16 semanas</p>
 
 
-																			</div>
-																			<div class="col-md-6 ">
-																				<ul class="mi-acciones-right pull-right">
-																					<li>
-																						<button type="button" class=" btn btn-outline btn-icon btn-default btn-round" ng-click="showPanel()" id="btn-show" style="
+                                                                            </div>
+                                                                            <div class="col-md-6 ">
+                                                                                <ul class="mi-acciones-right pull-right">
+                                                                                    <li>
+                                                                                        <button type="button"
+                                                                                                class=" btn btn-outline btn-icon btn-default btn-round"
+                                                                                                ng-click="showPanel()"
+                                                                                                id="btn-show" style="
     padding-right: 0;">
-																							<i class="icon wb-wrench" aria-hidden="true"></i></button>
-																					</li>
-																					<li>
+                                                                                            <i class="icon wb-wrench"
+                                                                                               aria-hidden="true"></i>
+                                                                                        </button>
+                                                                                    </li>
+                                                                                    <li>
 
-																					</li>
-																				</ul>
+                                                                                    </li>
+                                                                                </ul>
 
-																			</div>
-																		</div>
+                                                                            </div>
+                                                                        </div>
 
-																		<div class="row">
+                                                                        <div class="row">
 
-																			<div class="col-md-3">
-																				<p>Avance: 100%</p>
-																				<p>Finalizada?: No</p>
-																				<p>Costo total: 0</p>
-																			</div>
-																			<div class="col-md-9">
-																				<div class="alert alert-alt alert-info alert-dismissible" role="alert">
-																					<p>
-																						<span class="">Descripcion:</span> El estudiante asiste a sus clases durante el semestre, aprobando el curso con nota de 3,5.
-																					</p>
-																				</div>
-																			</div>
-																		</div>
-
-
-																	</div>
-																</div>
-															</li>
-
-															<li class="timeline-reverse">
-																<div class="timeline-content-wrap">
-																	<div class="timeline-dot bg-green-600">
-																		<span>2</span>
-																	</div>
-																	<div class="timeline-content">
-
-																		<div class="row">
-																			<div class="col-md-6">
-																				<div class="title">
-																					<span class="authors">AC-E07-01</span>2014-09-05 10:58:49
-																				</div>
-																				<p>Tiempo estimado: 16 semanas</p>
+                                                                            <div class="col-md-3">
+                                                                                <p>Avance: 100%</p>
+                                                                                <p>Finalizada?: No</p>
+                                                                                <p>Costo total: 0</p>
+                                                                            </div>
+                                                                            <div class="col-md-9">
+                                                                                <div class="alert alert-alt alert-info alert-dismissible"
+                                                                                     role="alert">
+                                                                                    <p>
+                                                                                        <span class="">Descripcion:</span>
+                                                                                        El estudiante asiste a sus
+                                                                                        clases durante el semestre,
+                                                                                        aprobando el curso con nota de
+                                                                                        3,5.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
 
-																			</div>
-																			<div class="col-md-6 ">
-																				<ul class="mi-acciones-right pull-right">
-																					<li>
-																						<button type="button" class=" btn btn-outline btn-icon btn-default btn-round" ng-click="showPanel()" id="btn-show" style="
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+
+                                                            <li class="timeline-reverse">
+                                                                <div class="timeline-content-wrap">
+                                                                    <div class="timeline-dot bg-green-600">
+                                                                        <span>2</span>
+                                                                    </div>
+                                                                    <div class="timeline-content">
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="title">
+                                                                                    <span class="authors">AC-E07-01</span>2014-09-05
+                                                                                    10:58:49
+                                                                                </div>
+                                                                                <p>Tiempo estimado: 16 semanas</p>
+
+
+                                                                            </div>
+                                                                            <div class="col-md-6 ">
+                                                                                <ul class="mi-acciones-right pull-right">
+                                                                                    <li>
+                                                                                        <button type="button"
+                                                                                                class=" btn btn-outline btn-icon btn-default btn-round"
+                                                                                                ng-click="showPanel()"
+                                                                                                id="btn-show" style="
     padding-right: 0;">
-																							<i class="icon wb-wrench" aria-hidden="true"></i></button>
-																					</li>
-																					<li>
+                                                                                            <i class="icon wb-wrench"
+                                                                                               aria-hidden="true"></i>
+                                                                                        </button>
+                                                                                    </li>
+                                                                                    <li>
 
-																					</li>
-																				</ul>
+                                                                                    </li>
+                                                                                </ul>
 
-																			</div>
-																		</div>
+                                                                            </div>
+                                                                        </div>
 
-																		<div class="row">
+                                                                        <div class="row">
 
-																			<div class="col-md-3">
-																				<p>Avance: 100%</p>
-																				<p>Finalizada?: No</p>
-																				<p>Costo total: 0</p>
-																			</div>
-																			<div class="col-md-9">
-																				<div class="alert alert-alt alert-info alert-dismissible" role="alert">
-																					<p>
-																						<span class="">Descripcion:</span> El estudiante asiste a sus clases durante el semestre, aprobando el curso con nota de 3,5.
-																					</p>
-																				</div>
-																			</div>
-																		</div>
-
-
-																	</div>
-																</div>
-															</li>
-
-														</ul>
-													</div>
-
-												</li>
-
-											</ul>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-							<div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}" ng-show="isPanel" class="  mis-acciones animation-slide-right" click-outside="closePanel()" outside-if-not="btn-show,mi-panel">
-								<div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
-									<div class="widget-header ">
-										<a id="addNewItemBtn" href="javascript:void(0)" class="add-item-toggle pull-right" ng-click="closePanel()">
-											<i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
-										</a>
-										<div class="overlay-background ">
-											<div class="row">
-
-												<div class="col-md-2 pull-rleft">
-													<div class="switch pull-right">
-														<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round"
-															   type="checkbox">
-														<label for="cmn-toggle-1"></label>
-													</div>
-												</div>
-												<div class="col-md-8">
-													<h3 class="white">Accion</h3>
-												</div>
+                                                                            <div class="col-md-3">
+                                                                                <p>Avance: 100%</p>
+                                                                                <p>Finalizada?: No</p>
+                                                                                <p>Costo total: 0</p>
+                                                                            </div>
+                                                                            <div class="col-md-9">
+                                                                                <div class="alert alert-alt alert-info alert-dismissible"
+                                                                                     role="alert">
+                                                                                    <p>
+                                                                                        <span class="">Descripcion:</span>
+                                                                                        El estudiante asiste a sus
+                                                                                        clases durante el semestre,
+                                                                                        aprobando el curso con nota de
+                                                                                        3,5.
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
 
-											</div>
-										</div>
-									</div>
-									<div class="widget-content mi-scroll2">
+                                                                    </div>
+                                                                </div>
+                                                            </li>
 
-										<div class="row">
-											<div class="col-md-2 pull-left">
-												<a class="btn btn-icon btn-success btn-outline btn-round">
+                                                        </ul>
+                                                    </div>
 
-													<i class="icon wb-upload" aria-hidden="true"></i></a>
-											</div>
+                                                </li>
 
-											<div class="col-md-8">
-												<div class="">
-													<div class="form-group input-group-icon">
+                                            </ul>
 
-														<input type="number" class="form-control round" placeholder="Costo total">
-													</div>
-												</div>
-											</div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}" ng-show="isPanel"
+                                 class="  mis-acciones animation-slide-right" click-outside="closePanel()"
+                                 outside-if-not="btn-show,mi-panel">
+                                <div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
+                                    <div class="widget-header ">
+                                        <a id="addNewItemBtn" href="javascript:void(0)"
+                                           class="add-item-toggle pull-right" ng-click="closePanel()">
+                                            <i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
+                                        </a>
+                                        <div class="overlay-background ">
+                                            <div class="row">
 
-
-										</div>
-										<hr>
-										<div class="row ">
-
-											<div class="col-md-12">
-												<div class="mi-scroll">
-													<div class="comment media">
-														<div class="media-left">
-															<a class="avatar avatar-xs mi-avatar-comment" href="javascript:void(0)">
-																<img src="/img/avatar.png" alt="..." style="width:40px">
-															</a>
-														</div>
-														<div class="comment-body media-body">
-															<a class="comment-author" href="javascript:void(0)">Juan Administrador SAT</a>
-															<div class="comment-meta">
-																<span class="date">Publicado el 12-05-2016 a las 09:59</span>
-															</div>
-															<div class="comment-content">
-																<p>Dude, this is awesome. Thanks so much, this is awesome. Thanks so much this is awesome. Thanks so much</p>
-															</div>
-															<div class="comment-actions">
-																<a class="btn btn-sm btn-icon btn-flat btn-default">
-																	<i class="icon wb-edit" aria-hidden="true"></i>
-																</a>
-																<a class="btn btn-sm btn-icon btn-flat btn-default" href="javascript:void(0)" role="button">
-																	<i class="icon wb-trash" aria-hidden="true"></i>
-																</a>
-
-															</div>
-
-														</div>
-													</div>
-													<div class="comment media">
-														<div class="media-left">
-															<a class="avatar avatar-xs mi-avatar-comment" href="javascript:void(0)">
-																<img src="/img/avatar.png" alt="..." style="width:40px">
-															</a>
-														</div>
-														<div class="comment-body media-body">
-															<a class="comment-author" href="javascript:void(0)">Juan Administrador SAT</a>
-															<div class="comment-meta">
-																<span class="date">Publicado el 12-05-2016 a las 09:59</span>
-															</div>
-															<div class="comment-content">
-																<p>Dude, this is awesome. Thanks so much, this is awesome. Thanks so much this is awesome. Thanks so much</p>
-															</div>
-															<div class="comment-actions">
-																<a class="btn btn-sm btn-icon btn-flat btn-default">
-																	<i class="icon wb-edit" aria-hidden="true"></i>
-																</a>
-																<a class="btn btn-sm btn-icon btn-flat btn-default" href="javascript:void(0)" role="button">
-																	<i class="icon wb-trash" aria-hidden="true"></i>
-																</a>
-
-															</div>
-
-														</div>
-													</div>
-
-												</div>
-												<div>
-													<form class="comment-reply">
-														<div class="form-group">
-															<textarea class="form-control mi-text-comment" rows="5" placeholder="Comenta aqui..."></textarea>
-														</div>
-														<div class="form-group">
-															<button type="submit" class="btn btn-primary">Comentar</button>
-
-														</div>
-													</form>
-												</div>
-											</div>
+                                                <div class="col-md-2 pull-rleft">
+                                                    <div class="switch pull-right">
 
 
-										</div>
-									</div>
-								</div>
+                                                        <div class="radio-wrapper">
+                                                            <p class="correct"><i class="ion-checkmark-round"></i>
+                                                            </p>
+                                                            <p class="neutral-icon"><i class="ion-record"></i>
+                                                            </p>
+                                                            <p class="wrong"><i class="ion-close-round"></i></p>
+                                                            <input type="radio" name="event" class="yes"
+                                                                   id="radio-yes"/>
+
+                                                            <label for="radio-yes"></label>
+
+                                                            <input type="radio" name="event" class="neutral" checked
+                                                                   id="radio-neutral"/>
+                                                            <label for="radio-neutral"></label>
 
 
-							</div>
-						</uib-tab>
-
-						<uib-tab index="1" heading="Academica">
-							<div class="tab-content animation-fade">
-								Informacion Academica
-							</div>
-						</uib-tab>
-						<uib-tab index="2" heading="Financiera">
-							<div class="tab-content animation-fade">
-								Informacion Financiera
-							</div>
-						</uib-tab>
-					</uib-tabset>
+                                                            <input type="radio" name="event" class="no" id="radio-no"/>
+                                                            <label for="radio-no"></label>
+                                                        </div>
 
 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h3 class="white">Accion</h3>
+                                                </div>
 
-				</div>
-			</div>
-			<!-- End Panel -->
-		</div>
-	</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content mi-scroll2">
+
+                                        <div class="row">
+                                            <div class="col-md-2 pull-left">
+                                                <a class="btn btn-icon btn-success btn-outline btn-round">
+
+                                                    <i class="icon wb-upload" aria-hidden="true"></i></a>
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="">
+                                                    <div class="form-group input-group-icon">
+
+                                                        <input type="number" class="form-control round"
+                                                               placeholder="Costo total">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <hr>
+                                        <div class="row ">
+
+                                            <div class="col-md-12">
+                                                <div class="mi-scroll">
+                                                    <div class="comment media">
+                                                        <div class="media-left">
+                                                            <a class="avatar avatar-xs mi-avatar-comment"
+                                                               href="javascript:void(0)">
+                                                                <img src="/img/avatar.png" alt="..." style="width:40px">
+                                                            </a>
+                                                        </div>
+                                                        <div class="comment-body media-body">
+                                                            <a class="comment-author" href="javascript:void(0)">Juan
+                                                                Administrador SAT</a>
+                                                            <div class="comment-meta">
+                                                                <span class="date">Publicado el 12-05-2016 a las 09:59</span>
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                <p>Dude, this is awesome. Thanks so much, this is
+                                                                    awesome. Thanks so much this is awesome. Thanks so
+                                                                    much</p>
+                                                            </div>
+                                                            <div class="comment-actions">
+                                                                <a class="btn btn-sm btn-icon btn-flat btn-default">
+                                                                    <i class="icon wb-edit" aria-hidden="true"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-icon btn-flat btn-default"
+                                                                   href="javascript:void(0)" role="button">
+                                                                    <i class="icon wb-trash" aria-hidden="true"></i>
+                                                                </a>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment media">
+                                                        <div class="media-left">
+                                                            <a class="avatar avatar-xs mi-avatar-comment"
+                                                               href="javascript:void(0)">
+                                                                <img src="/img/avatar.png" alt="..." style="width:40px">
+                                                            </a>
+                                                        </div>
+                                                        <div class="comment-body media-body">
+                                                            <a class="comment-author" href="javascript:void(0)">Juan
+                                                                Administrador SAT</a>
+                                                            <div class="comment-meta">
+                                                                <span class="date">Publicado el 12-05-2016 a las 09:59</span>
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                <p>Dude, this is awesome. Thanks so much, this is
+                                                                    awesome. Thanks so much this is awesome. Thanks so
+                                                                    much</p>
+                                                            </div>
+                                                            <div class="comment-actions">
+                                                                <a class="btn btn-sm btn-icon btn-flat btn-default">
+                                                                    <i class="icon wb-edit" aria-hidden="true"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-icon btn-flat btn-default"
+                                                                   href="javascript:void(0)" role="button">
+                                                                    <i class="icon wb-trash" aria-hidden="true"></i>
+                                                                </a>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div>
+                                                    <form class="comment-reply">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control mi-text-comment" rows="5"
+                                                                      placeholder="Comenta aqui..."></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary">Comentar
+                                                            </button>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </uib-tab>
+
+                        <uib-tab index="1" heading="Academica">
+                            <div class="tab-content animation-fade">
+                                Informacion Academica
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="2" heading="Financiera">
+                            <div class="tab-content animation-fade">
+                                Informacion Financiera
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+
+
+                </div>
+            </div>
+            <!-- End Panel -->
+        </div>
+    </div>
 </div>
-
 
 
 <script type="text/ng-template" id="windows.html">
 
-	<div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal modal-success" uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
-		<div class="modal-dialog {{size ? 'modal-' + size : ''}}  animation-fade">
-			<div class="modal-content" uib-modal-transclude></div>
-		</div>
-	</div>
+    <div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal modal-success"
+         uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
+        <div class="modal-dialog {{size ? 'modal-' + size : ''}}  animation-fade">
+            <div class="modal-content" uib-modal-transclude></div>
+        </div>
+    </div>
 
 
 </script>
@@ -439,54 +504,57 @@
 <script type="text/ng-template" id="modal.html">
 
 
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true" ng-click="cancel()">×</span>
-		</button>
-		<h4 class="modal-title">Agregar estrategia (RAC001)</h4>
-	</div>
-	<div class="modal-body">
-		<div class="row">
-			<div class="col-md-12">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ng-click="cancel()">×</span>
+        </button>
+        <h4 class="modal-title">Agregar estrategia (RAC001)</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
 
-				<am-multiselect class="input-lg" multiple="true" ms-selected="There are {{selectedCar.length}} car(s) selected" ng-model="selectedCar" ms-header="Select Some Cars" options="c.name for c in cars" change="selected()"></am-multiselect>
+                <am-multiselect class="input-lg" multiple="true"
+                                ms-selected="There are {{selectedCar.length}} car(s) selected" ng-model="selectedCar"
+                                ms-header="Select Some Cars" options="c.name for c in cars"
+                                change="selected()"></am-multiselect>
 
-				<div class="list-group">
-					<a class="list-group-item" href="javascript:void(0)" ng-repeat="item in selectedCar">{{item}}</a>
+                <div class="list-group">
+                    <a class="list-group-item" href="javascript:void(0)" ng-repeat="item in selectedCar">{{item}}</a>
 
-				</div>
-
-
+                </div>
 
 
-			</div>
+            </div>
 
-			<div class="col-sm-12 ">
-				<button class="btn btn-primary pull-right" data-dismiss="modal" type="button" ng-click="ok()">Guardar</button>
-			</div>
-		</div>
-	</div>
+            <div class="col-sm-12 ">
+                <button class="btn btn-primary pull-right" data-dismiss="modal" type="button" ng-click="ok()">Guardar
+                </button>
+            </div>
+        </div>
+    </div>
 
 
 </script>
 
 
-
 <script type="text/ng-template" id="multiselect.tmpl.html">
-	<div>
+    <div>
 
 
-		<ul class="list-group">
-			<li>
-				<input class="form-control input-sm" type="text" ng-model="searchText.label" ng-keydown="keydown($event)" autofocus="autofocus" placeholder="Buscar estrategia" />
-			</li>
-			<li ng-repeat="i in items | filter:searchText" class="list-group-item" ng-class="{'selected': $index === selectedIndex,'active': i.checked}" class="list-group-item active">
-				<a href="javascript:void(0)" ng-click="select(i); focus()">
-					<h4 class="list-group-item-heading"> {{i.label}}</h4>
-				</a>
-			</li>
+        <ul class="list-group">
+            <li>
+                <input class="form-control input-sm" type="text" ng-model="searchText.label"
+                       ng-keydown="keydown($event)" autofocus="autofocus" placeholder="Buscar estrategia"/>
+            </li>
+            <li ng-repeat="i in items | filter:searchText" class="list-group-item"
+                ng-class="{'selected': $index === selectedIndex,'active': i.checked}" class="list-group-item active">
+                <a href="javascript:void(0)" ng-click="select(i); focus()">
+                    <h4 class="list-group-item-heading"> {{i.label}}</h4>
+                </a>
+            </li>
 
-		</ul>
+        </ul>
 
-	</div>
+    </div>
 </script>

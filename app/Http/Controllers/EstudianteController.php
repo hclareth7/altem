@@ -28,21 +28,7 @@ class EstudianteController extends Controller
 
     public function getRiesgosByEstudiante($id)
     {
-        $riesgos = [];
-        $rro = "";
-        $filtros = $this->filtro->groupBy('riesgos_id')->get();
-        foreach ($filtros as $key => $value) {
-            $sql = "SELECT * FROM estudiantes WHERE id='" . $id . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
-            $estudiantes = $this->db_sirius->select($sql);
-
-            if (!empty($estudiantes)) {
-                $riesgo = new Riesgo();
-                $buenRiesgo = $riesgo->find($value->riesgos_id);
-                $riesgos[$key] = $buenRiesgo;
-            }
-        }
-
-        return response()->json($riesgos);
+        
     }
 
     public function setRestric()
