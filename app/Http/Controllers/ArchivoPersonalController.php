@@ -56,7 +56,6 @@ class ArchivoPersonalController extends Controller
         }
 
         foreach ($riegosPersonal as $key => $value) {
-
             $riegosPersonal[$key]->descripcion=$value->riesgo->descripcion;
             $riegosPersonal[$key]->nombre=$value->riesgo->nombre;
             $riegosPersonal[$key]->tipo_riesgo= $riegosPersonal[$key]->riesgo->with('tiporiesgo')->where('id', $value->riesgo->id)->get()->map(function ($value){

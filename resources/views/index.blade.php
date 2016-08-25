@@ -9,7 +9,7 @@
 	<meta name="description" content="Sistema de Alertas Tempranas (SAT)">
 	<meta name="author" content="Universidad Tecnologica de Bolivar">
 
-		<title>SAT-Sistema de Alertas Tempranas</title>
+		<title>ALTEM</title>
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
