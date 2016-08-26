@@ -75,7 +75,7 @@
 	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
 	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
-	<script src="/bower_components/lodash/lodash.min.js"></script>
+	<script src="/bower_components/lodash/lodash.js"></script>
 	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>

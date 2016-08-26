@@ -206,6 +206,12 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			templateUrl: '/js/app/views/estudiante/personal.html',
 			controller: 'estudiantePersonalController'
 		});
+
+		modalStateProvider.state('main.personal.archivo', {
+			url: '/archivo/crear',
+			templateUrl: 'modal-archivo.html',
+			controller: 'archivoCrearController'
+		});
 //Modal Accion
 	modalStateProvider.state('main.estrategia.detalle.crear', {
 			url: '/accion/crear',
@@ -250,17 +256,9 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 	});
 }]);
 
-satApp.run(['$confirmModalDefaults', 'PermissionStore', '$rootScope', 'jwtHelper', function ($confirmModalDefaults, PermissionStore, $rootScope, jwtHelper) {
-	var token = localStorage.getItem(TOKEN_KEY);
-	if (token && !jwtHelper.isTokenExpired(token)) {
+satApp.run(['$confirmModalDefaults', 'PermissionStore', '$rootScope', 'jwtHelper',
+	function ($confirmModalDefaults, PermissionStore, $rootScope, jwtHelper) {
 
-	}
-
-
-	$rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams,$location){
-
-
-	});
 
 	$confirmModalDefaults.templateUrl = 'alertas.html';
 	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';

@@ -55,6 +55,9 @@
                 <div class="panel-body nav-tabs-animate">
                     <uib-tabset active="">
                         <uib-tab index="0" heading="Intervenciones">
+
+                            <button type="button" class="btn btn-icon btn-primary btn-lg btn-round btn-add-riesgo pull-right">
+                                <i class="icon wb-warning" aria-hidden="true"></i></button>
                             <div class="tab-content animation-fade">
                                 <br>
                                 <div class="media" ng-repeat="riesgo in riesgos">
@@ -70,8 +73,6 @@
                                                     <small   ng-show="riesgo.usuarios_codigo">Agregado por: {{riesgo.usuarios_codigo}}
                                                     </small>
                                                 </h4>
-
-
                                                 <p class="name" ng-show="riesgo.fecha_reporte">Fecha de reporte:
                                                     {{riesgo.fecha_reporte}}</p>
                                                 <p class="name">Tipo de riesgo: {{riesgo.tipo_riesgo[0]}}</p>
@@ -91,24 +92,29 @@
                                         </div>
 
                                     </div>
-                                    <div class="media-right">
-                                        <span class="badge badge-danger mi-badge ">{{1}}</span>
-                                        <button type="button"
-                                                class="pull-right btn btn-icon btn-primary btn-round btn-lg"
-                                                ng-click="open()">
 
-                                            <i class="icon wb-extension" aria-hidden="true">
-
-                                            </i>
-
-                                        </button>
-                                    </div>
                                     <div>
                                         <div class="right">
+
                                             <button type="button"
                                                     ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
                                                     class="btn btn-outline btn-icon btn-default btn-round">
-                                                <i class="icon wb-list" aria-hidden="true"></i></button>
+                                                    <i class="icon wb-chevron-up" aria-hidden="true"
+                                                    ng-class="{'wb-chevron-up': riesgo.isShowEstrategias == false , 'wb-chevron-down': riesgo.isShowEstrategias == true }"
+                                                    ></i>
+
+
+                                            </button>
+
+                                            <button type="button"
+                                                    ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
+                                                    class="btn btn-outline btn-icon btn-default btn-round">
+                                                <i class="icon wb-check" aria-hidden="true"></i></button>
+
+                                            <button type="button"
+                                                    ng-click="show()"
+                                                    class="btn btn-outline btn-icon btn-default btn-round">
+                                                <i class="icon wb-extension" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                     <hr>
