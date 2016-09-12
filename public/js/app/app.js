@@ -18,7 +18,8 @@ var satApp = angular.module("satApp", [
 	'permission',
 	'permission.ui',
 	'ngSanitize',
-	'ngCsv'
+	'ngCsv',
+	'chart.js'
 
 ]);
 
@@ -205,6 +206,12 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			url: '/estudiante/personal/:estudianteId',
 			templateUrl: '/js/app/views/estudiante/personal.html',
 			controller: 'estudiantePersonalController'
+		})
+
+		.state('main.reporte', {
+			url: '/reporte',
+			templateUrl: '/js/app/views/reporte/base.html',
+			controller: 'reporteController'
 		});
 
 		modalStateProvider.state('main.personal.archivo', {
@@ -258,8 +265,6 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 
 satApp.run(['$confirmModalDefaults', 'PermissionStore', '$rootScope', 'jwtHelper',
 	function ($confirmModalDefaults, PermissionStore, $rootScope, jwtHelper) {
-
-
 	$confirmModalDefaults.templateUrl = 'alertas.html';
 	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
 	$confirmModalDefaults.defaultLabels.ok = 'Si';

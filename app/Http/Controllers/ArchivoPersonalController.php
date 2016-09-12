@@ -26,9 +26,7 @@ class ArchivoPersonalController extends Controller
 	}
 
 	public function find(Route $route){
-
 		$this->archivoPersonal=ArchivoPersonal::find($route->getParameter('archivo_personal'));
-
 	}
 
     public function index()
@@ -39,9 +37,11 @@ class ArchivoPersonalController extends Controller
 
 
     public function getRiesgosPersonalByEstudiantes($codigo){
-        $riegosPersonal=ArchivoPersonal::with('riesgo')->where('estudiante',$codigo)->groupBy('id')->get();
-        $riesgos = [];
 
+        $riegosPersonal=ArchivoPersonal::with(['riesgo', 'intervencion' ])
+            ->where('estudiantes_altem_codigo',$codigo)
+            ->get();
+        $riesgos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
         foreach ($filtros as $key => $value) {
@@ -54,17 +54,19 @@ class ArchivoPersonalController extends Controller
                 $riesgos[$key] = $buenRiesgo;
             }
         }
-
         foreach ($riegosPersonal as $key => $value) {
             $riegosPersonal[$key]->descripcion=$value->riesgo->descripcion;
             $riegosPersonal[$key]->nombre=$value->riesgo->nombre;
-            $riegosPersonal[$key]->tipo_riesgo= $riegosPersonal[$key]->riesgo->with('tiporiesgo')->where('id', $value->riesgo->id)->get()->map(function ($value){
-
+            $riegosPersonal[$key]->tipo_riesgo= $riegosPersonal[$key]
+                ->riesgo
+                ->with('tiporiesgo')
+                ->where('id', $value->riesgo->id)
+                ->get()
+                ->map(function ($value){
                 return $value->tiporiesgo->nombre;
             });
 
         }
-
         foreach ($riesgos as $key1 => $value1) {
                     if(!$riegosPersonal->contains('riesgos_id',$value1->id)){
                         $riegosPersonal->add($riesgos[$key1]);
@@ -74,9 +76,7 @@ class ArchivoPersonalController extends Controller
 
         return response()->json($riegosPersonal);
     }
-
-
-    /**
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

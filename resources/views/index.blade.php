@@ -84,6 +84,8 @@
 	<script src="/bower_components/angular-permission/dist/angular-permission-ui.min.js"></script>
 	<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 	<script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
+	<script src="/bower_components/chart.js/dist/Chart.min.js"></script>
+	<script src="/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 	<!-- Module registration -->
 	<script src="/js/app/moduleRegistration.js"></script>
 	<!-- Module Services -->
@@ -95,6 +97,7 @@
 	<script src="/js/app/services/accionService.js"></script>
 	<script src="/js/app/services/filtroService.js"></script>
 	<script src="/js/app/services/loginService.js"></script>
+	<script src="/js/app/services/reporteService.js"></script>
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>
@@ -105,10 +108,18 @@
 	<script src="/js/app/controllers/filtroController.js"></script>
 	<script src="/js/app/controllers/loginController.js"></script>
 	<script src="/js/app/controllers/mainController.js"></script>
+	<script src="/js/app/controllers/reporteController.js"></script>
 
 	<!-- Module App -->
 
 	<script src="/js/app/app.js"></script>
+
+	<!-- Modal Black Box  -->
+	<script type="text/ng-template" id="uib/template/modal/backdrop.html">
+		<div class="modal-backdrop fade in">
+		</div>
+	</script>
+
 
 </body>
 

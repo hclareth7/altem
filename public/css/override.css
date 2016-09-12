@@ -410,5 +410,8 @@ input.cmn-toggle-round:checked + label:after {
 	right: 200px;
 	z-index: 10;
 }
+.modal{
+	z-index: 100000 !important;
+}
 
 

@@ -91,7 +91,6 @@ class EstudianteController extends Controller
     public function getcolumn()
     {
         $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes');
-
         return response()->json($columns);
     }
 

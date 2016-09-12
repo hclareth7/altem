@@ -7,7 +7,6 @@ class Riesgo extends Model
 	protected $table="riesgos";
 	protected $fillable=['nombre','descripcion','tiporiesgo_id'];
 
-
 	//el nombre de la llave foranea es tiporiesgo_id
 	public function tiporiesgo()
     {
