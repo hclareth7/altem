@@ -12,7 +12,7 @@ class ArchivoPersonal extends Model
 	
 	public $timestamps=false;
 
-    protected $fillable = ['estudiantes_altem_codigo', 'fecha_reporte', 'riesgos_id', 'usuarios_codigo','intervenciones_id'];
+    protected $fillable = ['estudiantes_altem_codigo', 'fecha_reporte', 'riesgos_id', 'usuarios_codigo'];
 
     public function usuario()
     {
@@ -23,9 +23,9 @@ class ArchivoPersonal extends Model
         return $this->belongsTo('App\Models\Riesgo','riesgos_id','id');
     }
 
-    public function intervencion()
+    public function intervenciones()
     {
-        return $this->belongsTo('App\Models\Intervencion', 'intervenciones_id','id');
+        return $this->hasMany('App\Models\Intervencion', 'id');
     }
 
     public function estudiante_altem()

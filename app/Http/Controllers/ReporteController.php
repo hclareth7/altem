@@ -19,7 +19,7 @@ class ReporteController extends Controller
 
     }
 
-    public function estudiantes_programa_riesgo(Request $request)
+    public function archivo_personal(Request $request)
     {
 
         $anio = $request->input('anio');
@@ -37,6 +37,10 @@ class ReporteController extends Controller
         }
 
         return response()->json($result);
+    }
+
+    public function tipoRiesgos_programas(){
+
     }
 
     public function getAnios(){

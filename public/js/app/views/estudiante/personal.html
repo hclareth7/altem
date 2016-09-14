@@ -56,7 +56,7 @@
                     <uib-tabset active="">
                         <uib-tab index="0" heading="Intervenciones">
 
-                            <button type="button" class="btn btn-icon btn-primary btn-lg btn-round btn-add-riesgo pull-right">
+                            <button type="button" class="btn btn-icon btn-primary btn-round btn-lg btn-floating btn-add-riesgo pull-right">
                                 <i class="icon wb-warning" aria-hidden="true"></i></button>
                             <div class="tab-content animation-fade">
                                 <br>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="media-body">
                                         <div class="row">
-                                            <div class="col-md-7">
+                                            <div class="col-md-12">
                                                 <h4 class="media-heading">
                                                     Riesgo: {{riesgo.nombre}}
                                                     <small   ng-show="riesgo.usuarios_codigo">Agregado por: {{riesgo.usuarios_codigo}}
@@ -75,17 +75,18 @@
                                                 </h4>
                                                 <p class="name" ng-show="riesgo.fecha_reporte">Fecha de reporte:
                                                     {{riesgo.fecha_reporte}}</p>
-                                                <p class="name">Tipo de riesgo: {{riesgo.tipo_riesgo[0]}}</p>
-                                                <div class="alert alert-alt alert-danger alert-dismissible"
+                                                <p class="name">Tipo de riesgo: {{riesgo.tiporiesgo.nombre}}</p>
+                                                <div class="alert alert-alt alert-danger alert-dismissible padding-bottom-30"
                                                      role="alert">
                                                     <p>
                                                         <span>Descripcion: </span> {{riesgo.descripcion}}
+                                                        <button  type="button" class="btn btn-icon btn-danger btn-round  pull-right  btn-outline"
+                                                        ng-show="!riesgo.usuarios_codigo"
+                                                        >
+                                                            <i class="icon wb-check" aria-hidden="true"></i>
+                                                        </button>
                                                     </p>
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-5">
-
                                             </div>
 
                                         </div>
@@ -98,10 +99,9 @@
                                             <button type="button"
                                                     ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
                                                     class="btn btn-outline btn-icon btn-default btn-round">
-                                                    <i class="icon wb-chevron-up" aria-hidden="true"
-                                                    ng-class="{'wb-chevron-up': riesgo.isShowEstrategias == false , 'wb-chevron-down': riesgo.isShowEstrategias == true }"
+                                                <i class="icon wb-chevron-down" aria-hidden="true"
+                                                   ng-class="{'wb-chevron-down': riesgo.isShowEstrategias == false || !riesgo.isShowEstrategias , 'wb-chevron-up': riesgo.isShowEstrategias == true }"
                                                     ></i>
-
 
                                             </button>
 
@@ -120,11 +120,9 @@
                                     <div uib-collapse="!riesgo.isShowEstrategias">
                                         <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
-
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <div class="media"
-                                                        >
+                                                    <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
                                                                 <img src="/img/avatar.png" alt="...">
@@ -133,8 +131,8 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="media-heading">
-                                                                {{estrategia.nombre}}
-                                                                <small>{{estrategia.autor}}</small>
+                                                                {{estrategia.nombre}}fdsgsfdg
+                                                                <small>{{estrategia.autor}}sdgdfgs</small>
                                                             </h4>
                                                             <br>
                                                             <div class="row">
@@ -520,7 +518,7 @@
             <div class="col-md-12">
 
                 <am-multiselect class="input-lg" multiple="true"
-                                ms-selected="There are {{selectedCar.length}} car(s) selected" ng-model="selectedCar"
+                                ms-sele ed="There are {{selectedCar.length}} car(s) selected" ng-model="selectedCar"
                                 ms-header="Select Some Cars" options="c.name for c in cars"
                                 change="selected()"></am-multiselect>
 

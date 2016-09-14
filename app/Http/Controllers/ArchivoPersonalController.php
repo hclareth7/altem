@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Filtro;
+use App\Models\Intervencion;
 use App\Models\Riesgo;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,15 @@ class ArchivoPersonalController extends Controller
 
     public function getRiesgosPersonalByEstudiantes($codigo){
 
-        $riegosPersonal=ArchivoPersonal::with(['riesgo', 'intervencion' ])
+        $riegosPersonal=ArchivoPersonal::with(['riesgo', 'intervenciones'])
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();
+
+    /*    $intervencion=ArchivoPersonal::with(['riesgo', 'intervencion.acciones_aplicadas.accion'])
+            ->where('estudiantes_altem_codigo',$codigo)
+            ->get();*/
+
+        //return response()->json($intervencion);
         $riesgos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
@@ -50,21 +57,25 @@ class ArchivoPersonalController extends Controller
 
             if (!empty($estudiantes)) {
                 $riesgo = new Riesgo();
-                $buenRiesgo = $riesgo->find($value->riesgos_id);
+                $buenRiesgo = $riesgo
+                    ->with('tiporiesgo')
+                    ->find($value->riesgos_id);
                 $riesgos[$key] = $buenRiesgo;
             }
         }
+
+
         foreach ($riegosPersonal as $key => $value) {
             $riegosPersonal[$key]->descripcion=$value->riesgo->descripcion;
             $riegosPersonal[$key]->nombre=$value->riesgo->nombre;
-            $riegosPersonal[$key]->tipo_riesgo= $riegosPersonal[$key]
+            $riegosPersonal[$key]->tiporiesgo= $riegosPersonal[$key]
                 ->riesgo
                 ->with('tiporiesgo')
                 ->where('id', $value->riesgo->id)
                 ->get()
                 ->map(function ($value){
-                return $value->tiporiesgo->nombre;
-            });
+                return $value->tiporiesgo;
+            })->get(0);
 
         }
         foreach ($riesgos as $key1 => $value1) {

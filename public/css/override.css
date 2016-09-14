@@ -413,5 +413,10 @@ input.cmn-toggle-round:checked + label:after {
 .modal{
 	z-index: 100000 !important;
 }
+.vcenter {
+	position: relative;
+	top: 50%;
+	transform: translateY(50%);
 
+}
 

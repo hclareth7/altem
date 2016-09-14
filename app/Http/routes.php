@@ -17,7 +17,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
     Route::get('riesgos_estudinate/{id}', 'EstudianteController@getRiesgosByEstudiante');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
-    Route::post('reporte/estudiante_riesgo_programa', 'ReporteController@estudiantes_programa_riesgo');
+    Route::post('reporte/estudiante_riesgo_programa', 'ReporteController@archivo_personal');
     Route::get('reporte/config/anio', 'ReporteController@getAnios');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
 

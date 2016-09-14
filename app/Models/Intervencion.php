@@ -21,7 +21,13 @@ class Intervencion extends Model
 
     public function archivos_Personales()
     {
-        return $this->hasMany('App\Models\ArchivoPersonal','id');
+        return $this->belongsTo('App\Models\ArchivoPersonal', 'archivo_personal_id', 'id');
+
+    }
+
+    public function acciones_aplicadas()
+    {
+        return $this->hasMany('App\Models\AccionAplicada', 'id');
     }
 
 }

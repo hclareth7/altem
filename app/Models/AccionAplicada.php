@@ -10,7 +10,7 @@ class AccionAplicada extends Model
 	
 	public $timestamps=false;
 	
-	protected $fillable=['observacion','fecha_aplicacion','intervencion_id','acciones_id'];
+	protected $fillable=['observacion','fecha_aplicacion','intervenciones_id','acciones_id','estado'];
 
 	
 	public function accion()

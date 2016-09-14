@@ -50,7 +50,7 @@ controllerModule
 	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal','riesgoService',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal,riesgoService) {
 
-
+			
 			$scope.getEstudiante = function (estudianteId) {
 			estudianteService.getEstudianteById(estudianteId).then(function (response) {
 				$scope.estudiante = response.data;
