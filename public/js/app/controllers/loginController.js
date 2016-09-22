@@ -27,6 +27,9 @@ controllerModule
         $scope.getUser = function () {
             loginService.getaAuthUser().then(function (response) {
                 $rootScope.usuario = response.data;
+                window.localStorage.setItem(UTB_AUSER,JSON.stringify($rootScope.usuario));
+                
+               
                 var permissions = $rootScope.usuario.permissions;
 
                 PermissionStore.defineManyPermissions(permissions, function (permissionName) {

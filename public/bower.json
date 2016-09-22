@@ -1,7 +1,7 @@
 {
-  "name": "sat",
-  "homepage": "https://github.com/hariza17/sat",
-  "description": "sistema de alertas tempranas",
+  "name": "ALTEM",
+  "homepage": "https://github.com/hariza17/altem",
+  "description": "Sistema de Alertas Tempranas",
   "main": "index.blade.php",
   "authors": [
     "Hernando ariza perez"

@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-3">
+        <section>
+            <h3 class="page-aside-title">{{titulografica}}</h3>
+            <div class="list-group calendar-list">
+                <a class="list-group-item calendar-event ui-draggable ui-draggable-handle" ui-sref="main.reporte.grafica.tiporiesgo">
+                    <i class="wb-medium-point red-600 margin-right-10" aria-hidden="true"></i>Tipos de riesgo
+                </a>
+                <a class="list-group-item calendar-event ui-draggable ui-draggable-handle" ui-sref="main.reporte.grafica.riesgo">
+                    <i class="wb-medium-point green-600 margin-right-10" aria-hidden="true"></i>Factores de riesgo
+                </a>
+                <a class="list-group-item calendar-event ui-draggable ui-draggable-handle" ui-sref="main.reporte.grafica.estrategia">
+                    <i class="wb-medium-point orange-600 margin-right-10" aria-hidden="true"></i>Estrategias
+                </a>
+                <a class="list-group-item calendar-event ui-draggable ui-draggable-handle" ui-sref="main.reporte.grafica.evaluaciones">
+                    <i class="wb-medium-point cyan-600 margin-right-10" aria-hidden="true"></i>
+                    Resultado de evaluciones
+                </a>
+                <a class="list-group-item calendar-event ui-draggable ui-draggable-handle" ui-sref="main.reporte.grafica.otros">
+                    <i class="wb-medium-point purple-600 margin-right-10" aria-hidden="true"></i>
+                    Otros graficos
+                </a>
+
+            </div>
+        </section>
+
+    </div>
+
+    <div class="col-md-9" ui-view>
+
+    </div>
+
+</div>

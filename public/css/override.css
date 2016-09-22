@@ -420,3 +420,22 @@ input.cmn-toggle-round:checked + label:after {
 
 }
 
+.ul-mi-riesgo > li {
+	list-style: none;
+}
+
+.btn-show-estrategias {
+	position: relative;
+	top: 3px;
+}
+.btn-add-estrategia{
+	position: relative;
+	top: -41px;
+	right: 100px;
+	z-index: 10;
+}
+
+.mi-zindex{
+	position: relative;
+	z-index: 11;
+}

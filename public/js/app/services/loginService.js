@@ -20,18 +20,12 @@ servicesModule.factory('loginService', ['$http','PermissionStore','RoleStore', f
             return $http.get(this.apiUrl + 'login');
 
         },
-        registerPermisos:function () {
-            var permissions = ['create-users'];
-            PermissionStore.defineManyPermissions(permissions, function (permissionName) {
-                return _.contains(permissions, permissionName);
-            });
+        setUser : function(aUser){
+            user = aUser;
+        },
+        isLoggedIn : function(){
 
-            RoleStore.defineManyRoles({
-                'AUTHORIZED': function () {
-                    return Session.checkSession();
-                },
-                'admin': ['create-users']
-            });
+            return(user)? user : false;
         }
 
     };

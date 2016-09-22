@@ -19,7 +19,7 @@ class Intervencion extends Model
         return $this->belongsTo('App\Models\Estrategia', 'id');
     }
 
-    public function archivos_Personales()
+    public function archivos_Personal()
     {
         return $this->belongsTo('App\Models\ArchivoPersonal', 'archivo_personal_id', 'id');
 

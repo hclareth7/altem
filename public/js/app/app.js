@@ -214,11 +214,57 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'reporteController'
 		});
 
-		modalStateProvider.state('main.personal.archivo', {
-			url: '/archivo/crear',
-			templateUrl: 'modal-archivo.html',
-			controller: 'archivoCrearController'
+
+		modalStateProvider.state('main.personal.riesgo', {
+			url: '/riesgo/crear',
+			templateUrl: 'riesgo-crear.html',
+			controller: 'riesgoCrearController',
+			size: 'lg',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
 		});
+
+
+		$stateProvider.state('main.reporte.grafica', {
+			url: '/grafica',
+			abstract: true,
+			templateUrl: '/js/app/views/reporte/grafica/base.html',
+
+		});
+
+		$stateProvider.state('main.reporte.grafica.tiporiesgo', {
+			url: '/tipo-riesgo',
+			templateUrl: '/js/app/views/reporte/grafica/tiporiesgo.html',
+			controller: 'reporteGraficaTiporiesgo'
+
+		}).state('main.reporte.grafica.riesgo', {
+			url: '/riesgo',
+			templateUrl: '/js/app/views/reporte/grafica/riesgo.html',
+			controller: 'reporteGraficaRiesgo'
+
+		})
+			.state('main.reporte.grafica.estrategia', {
+				url: '/estrategia',
+				templateUrl: '/js/app/views/reporte/grafica/estrategia.html',
+				controller: 'reporteGraficaEstrategia'
+
+			})
+			.state('main.reporte.grafica.evaluaciones', {
+				url: '/evaluaciones',
+				templateUrl: '/js/app/views/reporte/grafica/evaluaciones.html',
+				controller: 'reporteGraficaEvaluaciones'
+
+			})
+			.state('main.reporte.grafica.otros', {
+				url: '/otros',
+				templateUrl: '/js/app/views/reporte/grafica/otros.html',
+				controller: 'reporteGraficaOtros'
+			});
+
+
 //Modal Accion
 	modalStateProvider.state('main.estrategia.detalle.crear', {
 			url: '/accion/crear',
@@ -263,8 +309,22 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 	});
 }]);
 
-satApp.run(['$confirmModalDefaults', 'PermissionStore', '$rootScope', 'jwtHelper',
-	function ($confirmModalDefaults, PermissionStore, $rootScope, jwtHelper) {
+satApp.run(['$confirmModalDefaults', 'PermissionStore', 'RoleStore', '$rootScope', 'jwtHelper', 'loginService',
+	function ($confirmModalDefaults, PermissionStore, RoleStore, $rootScope, jwtHelper, loginService) {
+		var token = window.localStorage.getItem(TOKEN_KEY);
+		if (token && !jwtHelper.isTokenExpired(token)) {
+
+			loginService.getaAuthUser().then(function (response) {
+				$rootScope.usuario = response.data;
+				var permissions = $rootScope.usuario.permissions;
+				console.log($rootScope.usuario);
+				PermissionStore.defineManyPermissions(permissions, function (permissionName) {
+					return _.include(permissions, permissionName);
+				});
+				var rol = $rootScope.usuario.rol;
+				RoleStore.defineRole(rol, permissions);
+			});
+		}
 	$confirmModalDefaults.templateUrl = 'alertas.html';
 	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
 	$confirmModalDefaults.defaultLabels.ok = 'Si';

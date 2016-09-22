@@ -3,7 +3,7 @@
     <h1 class="page-title">Reportes</h1>
     <ol class="breadcrumb">
         <li><a ui-sref="main">Inicio</a></li>
-        <li><a ui-sref="main.riesgo" ng-click="barra()">Resportes</a></li>
+        <li><a ui-sref="main.reporte" ng-click="barra()">Resportes</a></li>
         <li ng-hide="titulo == 'NO'">{{titulo}}</li>
 
     </ol>
@@ -22,25 +22,26 @@
 			</button>-->
     </div>
 </div>
-<div class="page-content" ui-view>
+<div class="page-content">
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title"></h3>
         </div>
         <div class="panel-body container-fluid">
-            <div class="example">
+            <div class="example ui-view">
 
                 <div class="bootstrap-table">
                     <div class="fixed-table-toolbar">
                         <div class="bars pull-left">
                             <div class="btn-group hidden-xs" id="exampleToolbar" role="group">
-                                <a ng-click="open()" class="btn btn-outline btn-default">
+                                <a class="btn btn-outline btn-default" ng-click="open()">
                                     <i class="icon wb-settings" aria-hidden="true"></i>
                                 </a>
                                 <button type="button" class="btn btn-outline btn-default">
                                     <i class="icon wb-download" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline btn-default" ng-click="openGraphic()">
+                                <button type="button" class="btn btn-outline btn-default"
+                                        ui-sref="main.reporte.grafica.riesgo">
                                     <i class="icon wb-pie-chart" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -51,9 +52,7 @@
                         <br>
                         <br>
                     </div>
-
-
-                    <div class="fixed-table-container" style="padding-bottom: 0px;">
+                    <div class="fixed-table-container animate animate-flip"   style="padding-bottom: 0px;">
                         <div class="fixed-table-body">
                             <div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...
                             </div>
@@ -192,40 +191,7 @@
         <h3 class="modal-title">Graficos</h3>
     </div>
     <div class="modal-body">
-        <div class="row">
-            <div class="col-md-3">
-                <section>
-                    <h5 class="page-aside-title">Menú</h5>
-                    <div class="list-group calendar-list">
-                        <a class="list-group-item calendar-event ui-draggable ui-draggable-handle">
-                            <i class="wb-medium-point red-600 margin-right-10" aria-hidden="true"></i>Meeting
-                        </a>
-                        <a class="list-group-item calendar-event ui-draggable ui-draggable-handle">
-                            <i class="wb-medium-point green-600 margin-right-10" aria-hidden="true"></i>Birthday
-                            Party
-                        </a>
-                        <a class="list-group-item calendar-event ui-draggable ui-draggable-handle">
-                            <i class="wb-medium-point orange-600 margin-right-10" aria-hidden="true"></i>Call
-                            Jimba
-                        </a>
-                        <a class="list-group-item calendar-event ui-draggable ui-draggable-handle">
-                            <i class="wb-medium-point cyan-600 margin-right-10" aria-hidden="true"></i>Dinner
-                            with Team
-                        </a>
-                        <a id="addNewEventBtn" class="list-group-item" > <i
-                                class="icon wb-plus" aria-hidden="true"></i> Add New Event </a>
-                    </div>
-                </section>
 
-            </div>
-
-            <div class="col-md-9">
-                <canvas id="bar" class="chart chart-bar"
-                        chart-data="data" chart-labels="labels" chart-colors="colors"> chart-series="series"
-                </canvas>
-            </div>
-
-        </div>
     </div>
     <!--<div class="modal-footer">-->
     <!--<button class="btn btn-primary pull-left" type="button" ng-click="ok()">Cargar</button>-->

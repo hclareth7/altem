@@ -25,7 +25,7 @@ class ArchivoPersonal extends Model
 
     public function intervenciones()
     {
-        return $this->hasMany('App\Models\Intervencion', 'id');
+        return $this->hasMany('App\Models\Intervencion','archivo_personal_id', 'id');
     }
 
     public function estudiante_altem()

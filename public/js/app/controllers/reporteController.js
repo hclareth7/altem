@@ -8,8 +8,7 @@ controllerModule
 
         function ($scope, toastr, jwtHelper, $rootScope, reporteService, $state, $uibModal) {
             //var user =jwtHelper.decodeToken(localStorage.getItem(TOKEN_KEY));
-
-            // console.log(user);
+            console.log("Reporte");
 
 
             $scope.open = function () {
@@ -27,7 +26,7 @@ controllerModule
                     ariaDescribedBy: 'modal-body',
                     templateUrl: 'graficaReporte.html',
                     size:'lg',
-                   windowClass:'modal-just-me',
+                    windowClass: '',
                     controller: 'graficaReporteCtrl'
                 });
             };
@@ -78,13 +77,33 @@ controllerModule
             };
 
         }])
-    .controller('graficaReporteCtrl', ['$uibModalInstance', '$scope', 'reporteService', '$rootScope'
-        , function ($uibModalInstance, $scope, reporteService, $rootScope) {
+    .controller('graficaReporteCtrl', [ '$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
 
+            console.log("Grafica");
+
+
+        }]).controller('reporteGraficaTiporiesgo', ['$scope', 'reporteService', '$rootScope'
+    , function ($scope, reporteService, $rootScope) {
+        console.log("Tipo de riesgo");
+        $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        $scope.series = ['Series A', 'Series B'];
+        $scope.colors = ['#62a8ea', '#36ab7a'];
+
+        $scope.data = [
+            [65, 59, 80, 81, 56, 55, 40],
+            [28, 48, 40, 19, 86, 27, 90]
+        ];
+
+
+
+    }])
+    .controller('reporteGraficaEstrategia', ['$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
 
             $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
             $scope.series = ['Series A', 'Series B'];
-            $scope.colors=['#62a8ea','#36ab7a'];
+            $scope.colors = ['#62a8ea', '#36ab7a'];
 
             $scope.data = [
                 [65, 59, 80, 81, 56, 55, 40],
@@ -92,13 +111,69 @@ controllerModule
             ];
 
 
-            $scope.ok = function () {
-                $rootScope.getReporte();
-                $uibModalInstance.dismiss('cancel');
-            };
 
-            $scope.cancel = function () {
-                $uibModalInstance.dismiss('cancel');
-            };
+        }])
+    .controller('reporteGraficaRiesgo', ['$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
 
-        }]);
+            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            $scope.series = ['Series A', 'Series B'];
+            $scope.colors = ['#62a8ea', '#36ab7a'];
+
+            $scope.data = [
+                [65, 59, 80, 81, 56, 55, 40],
+                [28, 48, 40, 19, 86, 27, 90]
+            ];
+
+
+
+        }])
+    .controller('reporteGraficaEvaluaciones', ['$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
+
+            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            $scope.series = ['Series A', 'Series B'];
+            $scope.colors = ['#62a8ea', '#36ab7a'];
+
+            $scope.data = [
+                [65, 59, 80, 81, 56, 55, 40],
+                [28, 48, 40, 19, 86, 27, 90]
+            ];
+
+
+
+        }])
+    .controller('reporteGraficaEvaluaciones', ['$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
+
+            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            $scope.series = ['Series A', 'Series B'];
+            $scope.colors = ['#62a8ea', '#36ab7a'];
+
+            $scope.data = [
+                [65, 59, 80, 81, 56, 55, 40],
+                [28, 48, 40, 19, 86, 27, 90]
+            ];
+
+
+
+        }])
+    .controller('reporteGraficaOtros', ['$scope', 'reporteService', '$rootScope'
+        , function ($scope, reporteService, $rootScope) {
+
+            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            $scope.series = ['Series A', 'Series B'];
+            $scope.colors = ['#62a8ea', '#36ab7a'];
+
+            $scope.data = [
+                [65, 59, 80, 81, 56, 55, 100],
+                [28, 48, 40, 19, 86, 27, 90]
+            ];
+
+
+
+        }])
+
+
+
+

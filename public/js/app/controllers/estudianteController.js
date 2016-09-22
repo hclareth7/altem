@@ -98,6 +98,15 @@ controllerModule
 
 	}])
 
+	.controller('riesgoCrearController',
+		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
+			function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
+
+				console.log("holalalal");
+
+
+			}])
+
 	.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 		$scope.ok = function () {
 			$uibModalInstance.close();
@@ -129,7 +138,7 @@ controllerModule
 		$scope.selectedCar = [];
 
 
-}]);
+	}]);
 /**
 
 

@@ -51,16 +51,18 @@
         </div>
         <div class="col-md-9">
             <!-- Panel -->
-            <div class="panel">
+            <div class="panel ">
                 <div class="panel-body nav-tabs-animate">
                     <uib-tabset active="">
                         <uib-tab index="0" heading="Intervenciones">
 
-                            <button type="button" class="btn btn-icon btn-primary btn-round btn-lg btn-floating btn-add-riesgo pull-right">
-                                <i class="icon wb-warning" aria-hidden="true"></i></button>
+                            <button type="button" ui-sref="main.personal.riesgo"
+                                    class="btn btn-icon btn-danger btn-round btn-lg btn-floating btn-add-riesgo pull-right">
+                                <i class="icon wb-warning" aria-hidden="true"></i>
+                            </button>
                             <div class="tab-content animation-fade">
                                 <br>
-                                <div class="media" ng-repeat="riesgo in riesgos">
+                                <div class="media is-loading" ng-repeat="riesgo in riesgos">
                                     <div class="media-left">
 
                                         <img ng-show="riesgo.usuarios_codigo" src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{riesgo.usuarios_codigo}}" alt="" class="avatar"><i></i></a>
@@ -76,17 +78,25 @@
                                                 <p class="name" ng-show="riesgo.fecha_reporte">Fecha de reporte:
                                                     {{riesgo.fecha_reporte}}</p>
                                                 <p class="name">Tipo de riesgo: {{riesgo.tiporiesgo.nombre}}</p>
-                                                <div class="alert alert-alt alert-danger alert-dismissible padding-bottom-30"
+
+                                                <div class="alert alert-alt alert-danger alert-dismissible "
                                                      role="alert">
-                                                    <p>
-                                                        <span>Descripcion: </span> {{riesgo.descripcion}}
-                                                        <button  type="button" class="btn btn-icon btn-danger btn-round  pull-right  btn-outline"
-                                                        ng-show="!riesgo.usuarios_codigo"
-                                                        >
-                                                            <i class="icon wb-check" aria-hidden="true"></i>
-                                                        </button>
-                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-11">
+                                                            <span>Descripcion: </span>{{riesgo.descripcion}}
+
+                                                        </div>
+                                                        <div class=" col-md-1">
+                                                            <button type="button"
+                                                                    ng-show="!riesgo.usuarios_codigo"
+                                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                             </div>
 
                                         </div>
@@ -94,45 +104,39 @@
                                     </div>
 
                                     <div>
-                                        <div class="right">
+                                        <div class="pull-left btn-show-estrategias">
 
                                             <button type="button"
                                                     ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
-                                                    class="btn btn-outline btn-icon btn-default btn-round">
+                                                    class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
                                                    ng-class="{'wb-chevron-down': riesgo.isShowEstrategias == false || !riesgo.isShowEstrategias , 'wb-chevron-up': riesgo.isShowEstrategias == true }"
                                                     ></i>
 
                                             </button>
-
-                                            <button type="button"
-                                                    ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
-                                                    class="btn btn-outline btn-icon btn-default btn-round">
-                                                <i class="icon wb-check" aria-hidden="true"></i></button>
-
-                                            <button type="button"
-                                                    ng-click="show()"
-                                                    class="btn btn-outline btn-icon btn-default btn-round">
-                                                <i class="icon wb-extension" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                     <hr>
-                                    <div uib-collapse="!riesgo.isShowEstrategias">
-                                        <div class="tab-pane animation-fade active" id="all_contacts" role="tabpanel">
+
+                                    <div uib-collapse="!riesgo.isShowEstrategias" >
+                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts" role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
+                                            <button type="button" ui-sref="main.personal.riesgo"
+                                                    class="btn btn-primary  btn-icon btn-lg btn-add-estrategia pull-right btn-round">
+                                                <i class="icon wb-extension" aria-hidden="true"></i>
+                                            </button>
                                             <ul class="list-group">
                                                 <li class="list-group-item">
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
                                                                 <img src="/img/avatar.png" alt="...">
-
                                                             </div>
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="media-heading">
-                                                                {{estrategia.nombre}}fdsgsfdg
-                                                                <small>{{estrategia.autor}}sdgdfgs</small>
+                                                                {{estrategia.nombre}}Estrategia 1
+                                                                <small>{{estrategia.autor}}t00020904</small>
                                                             </h4>
                                                             <br>
                                                             <div class="row">
@@ -141,17 +145,6 @@
                                                                         {{estrategia.fecha_inicio}}</p>
                                                                     <p class="name">Fecha de
                                                                         finalizacion:{{estrategia.fecha_fin}}</p>
-                                                                </div>
-                                                                <div class="col-md-5">
-
-                                                                    <div class="progress progress-xs table-content">
-                                                                        <div class="progress-bar progress-bar-primary progress-bar-indicating"
-                                                                             style="width: 90%" role="progressbar">
-                                                                            <span class="sr-only">90%</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span>90%</span>
-
                                                                 </div>
 
                                                             </div>
@@ -375,8 +368,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                         <hr>
                                         <div class="row ">
@@ -541,23 +532,95 @@
 </script>
 
 
-<script type="text/ng-template" id="multiselect.tmpl.html">
-    <div>
-
-
-        <ul class="list-group">
+<script type="text/ng-template" id="riesgo-crear.html">
+    <div class="modal-header">
+        <button type="button" class="close">
+            <span aria-hidden="true" ng-click="cancel()">×</span>
+        </button>
+        <h3 class="modal-title" id="modal-title">Agregar factor de riesgo</h3>
+        <br>
+        <form role="search">
+            <div class="form-group">
+                <div class="input-search">
+                    <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                    <input type="text" class="form-control" name="site-search"
+                           placeholder="Buscar factores de riesgo...">
+                    <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
+                            data-toggle="collapse" aria-label="Close" aria-expanded="true"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <ul class="ul-mi-riesgo">
             <li>
-                <input class="form-control input-sm" type="text" ng-model="searchText.label"
-                       ng-keydown="keydown($event)" autofocus="autofocus" placeholder="Buscar estrategia"/>
-            </li>
-            <li ng-repeat="i in items | filter:searchText" class="list-group-item"
-                ng-class="{'selected': $index === selectedIndex,'active': i.checked}" class="list-group-item active">
-                <a href="javascript:void(0)" ng-click="select(i); focus()">
-                    <h4 class="list-group-item-heading"> {{i.label}}</h4>
-                </a>
-            </li>
+                <div class="media">
+                    <div class="media-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-alt alert-danger alert-dismissible " role="alert">
+                                    <h4 class="media-heading ng-binding">
+                                        RAC003
+                                        <small class="ng-binding">
+                                            {{'tipo de riesgo'}}
+                                        </small>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <span>Descripcion: </span> El estudiante no asiste a dos o más clases sin
+                                            justificación.
 
+                                        </div>
+                                        <div class=" col-md-1">
+                                            <button type="button"
+                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="media">
+                    <div class="media-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-alt alert-danger alert-dismissible " role="alert">
+                                    <h4 class="media-heading ng-binding">
+                                        RAC003
+                                        <small class="ng-binding">
+                                            {{'tipo de riesgo'}}
+                                        </small>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <span>Descripcion: </span> El estudiante no asiste a dos o más clases sin
+                                            justificación.
+
+                                        </div>
+                                        <div class=" col-md-1">
+                                            <button type="button"
+                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
         </ul>
 
     </div>
+
 </script>
