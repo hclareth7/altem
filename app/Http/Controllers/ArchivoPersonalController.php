@@ -47,7 +47,7 @@ class ArchivoPersonalController extends Controller
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();*/
 
-        return response()->json($riegosPersonal);
+
         $riesgos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 

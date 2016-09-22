@@ -102,7 +102,7 @@ controllerModule
 		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
 			function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
 
-				console.log("holalalal");
+
 
 
 			}])
