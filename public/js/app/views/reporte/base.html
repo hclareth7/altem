@@ -111,17 +111,16 @@
 
                                     <td><label class="badge badge-danger">{{reporte.riesgo.nombre}}:</label>{{reporte.riesgo.descripcion}}
                                     </td>
-                                    <td ng-show="reporte.intervencion.estado==0">
+                                    <td ng-show="reporte.estado==0">
                                         <label class="badge badge-warning"> {{'En progreso'}}</label>
 
 
                                     </td>
-                                    <td ng-show="reporte.intervencion.estado==1">
+                                    <td ng-show="reporte.estado==1">
                                         <label class="badge badge-success"> {{'Terminado'}}</label></td>
-                                    <td ng-show="reporte.intervencion.estado==-1">
+                                    <td ng-show="reporte.estado==-1">
                                         <label class="badge badge-danger">
                                             {{'Interrumpido'}}</label></td>
-
                                     <td>{{condiciones.periodo}}P-{{reporte.fecha_reporte | date:'yyyy'}}</td>
 
                                 </tr>

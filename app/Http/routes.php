@@ -42,6 +42,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::resource('tipo_riesgo', 'TipoRiesgoController');
             Route::resource('riesgo', 'RiesgoController');
             Route::resource('filtro', 'FiltroController');
+            Route::resource('archivo_personal', 'ArchivoPersonalController');
             Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
 
             Route::post('role', 'ApiAuthController@createRole');

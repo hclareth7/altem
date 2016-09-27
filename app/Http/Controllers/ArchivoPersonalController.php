@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\Models\ArchivoPersonal;
+use App\Models\EstudianteAltem;
 use App\Models\Filtro;
-use App\Models\Intervencion;
 use App\Models\Riesgo;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Routing\Route;
-use App\Models\ArchivoPersonal;
 
 class ArchivoPersonalController extends Controller
 {
@@ -39,7 +37,7 @@ class ArchivoPersonalController extends Controller
 
     public function getRiesgosPersonalByEstudiantes($codigo){
 
-        $riegosPersonal=ArchivoPersonal::with(['riesgo', 'intervenciones'])
+        $riegosPersonal = ArchivoPersonal::with(['riesgo', 'intervenciones.estrategias'])
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();
 
@@ -47,7 +45,22 @@ class ArchivoPersonalController extends Controller
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();*/
 
+        if ($riegosPersonal->count() > 0) {
+            $estrategias_aplicadas[] = 0;
+            foreach ($riegosPersonal[0]->intervenciones as $key => $value) {
+                $estrategias_aplicadas[$key] = $value->estrategias->with('acciones')
+                    ->where('id', $value->estrategias->id)
+                    ->get();
 
+                $estrategias_aplicadas[$key]->usuario = $value->usuarios_codigo;
+
+            }
+            $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
+            //dd($riegosPersonal);
+            //dd($riegosPersonal[0]->intervenciones);
+
+        }
+        
         $riesgos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
@@ -105,7 +118,23 @@ class ArchivoPersonalController extends Controller
      */
     public function store(Request $request)
     {
-        ArchivoPersonal::create($request->all());
+
+        $codigo = $request->input('estudiantes_altem_codigo');
+        $programa = $request->input('programa_estudiante');
+        $res = EstudianteAltem::where('codigo', $codigo)->get();
+
+        if ($res->count() <= 0) {
+            $estudiante = new EstudianteAltem;
+            $estudiante->codigo = $codigo;
+            $estudiante->programa = $programa;
+            $estudiante->save();
+            ArchivoPersonal::create($request->all());
+        } else {
+            ArchivoPersonal::create($request->all());
+        }
+
+
+
 		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 

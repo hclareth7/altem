@@ -57,7 +57,7 @@
                         <uib-tab index="0" heading="Intervenciones">
 
                             <button type="button" ui-sref="main.personal.riesgo"
-                                    class="btn btn-icon btn-danger btn-round btn-lg btn-floating btn-add-riesgo pull-right">
+                                    class="btn btn-icon btn-danger btn-round btn-lg  btn-add-riesgo pull-right">
                                 <i class="icon wb-warning" aria-hidden="true"></i>
                             </button>
                             <div class="tab-content animation-fade">
@@ -89,8 +89,10 @@
                                                         <div class=" col-md-1">
                                                             <button type="button"
                                                                     ng-show="!riesgo.usuarios_codigo"
+                                                                    ng-click="agregarRiesgo(riesgo.id,usuario.codigo,estudiante.id,estudiante.programa)"
                                                                     class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-check" aria-hidden="true"></i>
+
                                                             </button>
                                                         </div>
                                                     </div>
@@ -125,8 +127,9 @@
                                                     class="btn btn-primary  btn-icon btn-lg btn-add-estrategia pull-right btn-round">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
                                             </button>
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
+                                            <ul class="list-group" >
+
+                                                <li  ng-repeat="estrategia in riesgo.estrategias_aplicadas" class="list-group-item">
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
@@ -135,8 +138,8 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="media-heading">
-                                                                {{estrategia.nombre}}Estrategia 1
-                                                                <small>{{estrategia.autor}}t00020904</small>
+                                                                {{estrategia.nombre}}
+                                                                <small>{{estrategia[0].usuario}}</small>
                                                             </h4>
                                                             <br>
                                                             <div class="row">
@@ -251,7 +254,7 @@
                                                                                         <button type="button"
                                                                                                 class=" btn btn-outline btn-icon btn-default btn-round"
                                                                                                 ng-click="showPanel()"
-                                                                                                id="btn-show" style="
+                                                                                                id="" style="
     padding-right: 0;">
                                                                                             <i class="icon wb-wrench"
                                                                                                aria-hidden="true"></i>
@@ -553,26 +556,26 @@
     </div>
     <div class="modal-body" id="modal-body">
         <ul class="ul-mi-riesgo">
-            <li>
+            <li ng-repeat="riesgo in riesgos">
                 <div class="media">
                     <div class="media-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert alert-alt alert-danger alert-dismissible " role="alert">
                                     <h4 class="media-heading ng-binding">
-                                        RAC003
+                                        {{riesgo.nombre}}
                                         <small class="ng-binding">
-                                            {{'tipo de riesgo'}}
+                                            {{riesgo.tiporiesgo.nombre}}
                                         </small>
                                     </h4>
                                     <div class="row">
                                         <div class="col-md-11">
-                                            <span>Descripcion: </span> El estudiante no asiste a dos o más clases sin
-                                            justificación.
+                                            <span>Descripcion: </span> {{riesgo.descripcion}}
 
                                         </div>
                                         <div class=" col-md-1">
                                             <button type="button"
+                                                    ng-click="agregarRiesgo(riesgo.id)"
                                                     class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                 <i class="icon wb-check" aria-hidden="true"></i>
                                             </button>
@@ -586,39 +589,7 @@
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="media">
-                    <div class="media-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="alert alert-alt alert-danger alert-dismissible " role="alert">
-                                    <h4 class="media-heading ng-binding">
-                                        RAC003
-                                        <small class="ng-binding">
-                                            {{'tipo de riesgo'}}
-                                        </small>
-                                    </h4>
-                                    <div class="row">
-                                        <div class="col-md-11">
-                                            <span>Descripcion: </span> El estudiante no asiste a dos o más clases sin
-                                            justificación.
 
-                                        </div>
-                                        <div class=" col-md-1">
-                                            <button type="button"
-                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
-                                                <i class="icon wb-check" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </li>
         </ul>
 
     </div>

@@ -12,7 +12,7 @@ class ArchivoPersonal extends Model
 	
 	public $timestamps=false;
 
-    protected $fillable = ['estudiantes_altem_codigo', 'fecha_reporte', 'riesgos_id', 'usuarios_codigo'];
+    protected $fillable = ['estudiantes_altem_codigo', 'fecha_reporte', 'riesgos_id', 'usuarios_codigo','estado'];
 
     public function usuario()
     {

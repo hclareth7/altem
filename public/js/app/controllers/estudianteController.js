@@ -47,20 +47,24 @@ controllerModule
 
 
 	}])
-	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal','riesgoService',
-		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal,riesgoService) {
+	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService',
+		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService) {
 
 			
 			$scope.getEstudiante = function (estudianteId) {
 			estudianteService.getEstudianteById(estudianteId).then(function (response) {
-				$scope.estudiante = response.data;
+				$rootScope.estudiante = response.data;
 			});
 
 		};
+
 		$scope.getEstudiante($stateParams.estudianteId);
-			estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
-				$scope.riesgos=response.data;
-			});
+			$rootScope.getRiesgosByEstudiantes = function () {
+				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
+					$scope.riesgos = response.data;
+				});
+			};
+			$rootScope.getRiesgosByEstudiantes();
 
 
 		$scope.getEdad = function (fecha_na) {
@@ -96,14 +100,58 @@ controllerModule
 			});
 		};
 
+			$scope.agregarRiesgo = function (id_riesgo, codigo_usuario, id_estudiante, programa_estudiante) {
+
+				$scope.archivo = {
+					fecha_reporte: new Date(),
+					riesgos_id: id_riesgo,
+					estudiantes_altem_codigo: id_estudiante.toLowerCase(),
+					programa_estudiante: programa_estudiante,
+					usuarios_codigo: codigo_usuario,
+					estado: 0
+				};
+				archivoPersonalService.createArchivo($scope.archivo).then(function (response) {
+					$rootScope.getRiesgosByEstudiantes();
+					toastr.warning('Exito', 'Riesgo agregado');
+				}, function (error) {
+					console.log(error);
+				});
+
+
+			};
+
 	}])
 
 	.controller('riesgoCrearController',
-		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
-			function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
+		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope','riesgoService',
+			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope,riesgoService) {
 
+				$scope.getAllRiesgos = function () {
+					riesgoService.getAllRiesgo().then(function (response) {
 
+						$scope.riesgos = response.data;
+					});
 
+				};
+				$scope.getAllRiesgos();
+				$scope.agregarRiesgo = function (id_riesgo) {
+					$scope.archivo = {
+						fecha_reporte: new Date(),
+						riesgos_id: id_riesgo,
+						estudiantes_altem_codigo: $rootScope.estudiante.id.toLowerCase(),
+						programa_estudiante: $rootScope.estudiante.programa,
+						usuarios_codigo: $rootScope.usuario.codigo,
+						estado: 0
+					};
+
+					archivoPersonalService.createArchivo($scope.archivo).then(function (response) {
+						$rootScope.getRiesgosByEstudiantes();
+						toastr.warning('Exito', 'Riesgo agregado');
+					}, function (error) {
+						console.log(error);
+					});
+					console.log($scope.archivo);
+				};
 
 			}])
 

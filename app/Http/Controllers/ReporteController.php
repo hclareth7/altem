@@ -26,7 +26,7 @@ class ReporteController extends Controller
         $periodo = $request->input('periodo');
         if ($periodo == 1) {
 
-            $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervencion.estrategias')
+            $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
                 ->whereYear('fecha_reporte', '=', $anio)
                 ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')->get();
         } else {

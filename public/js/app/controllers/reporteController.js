@@ -86,13 +86,12 @@ controllerModule
         }]).controller('reporteGraficaTiporiesgo', ['$scope', 'reporteService', '$rootScope'
     , function ($scope, reporteService, $rootScope) {
         console.log("Tipo de riesgo");
-        $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        $scope.series = ['Series A', 'Series B'];
-        $scope.colors = ['#62a8ea', '#36ab7a'];
+        $scope.labels = ['Academico', 'Económico', 'Económico', 'Institucional'];
+
+        $scope.colors = ['#f96868','#3aa99e','#f2a654','#f96868'];
 
         $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
+            [0, 59, 40, 10]
         ];
 
 
@@ -101,28 +100,24 @@ controllerModule
     .controller('reporteGraficaEstrategia', ['$scope', 'reporteService', '$rootScope'
         , function ($scope, reporteService, $rootScope) {
 
-            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            $scope.series = ['Series A', 'Series B'];
-            $scope.colors = ['#62a8ea', '#36ab7a'];
+            $scope.labels = ['Asesoría Psicológica', 'Monitorías Académicas', 'Ligas de Cálculo I', 'Ligas de Algoritmo', 'Curso de 20 semanas en Cálculo', 'Talleres ', 'Curso de Asistencia Académica'];
+            $scope.series = ['Series A'];
+            $scope.colors = ['#f2a654'];
 
             $scope.data = [
-                [65, 59, 80, 81, 56, 55, 40],
-                [28, 48, 40, 19, 86, 27, 90]
+                [65, 59, 80, 81, 56, 55, 40]
             ];
-
-
 
         }])
     .controller('reporteGraficaRiesgo', ['$scope', 'reporteService', '$rootScope'
         , function ($scope, reporteService, $rootScope) {
 
-            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            $scope.series = ['Series A', 'Series B'];
-            $scope.colors = ['#62a8ea', '#36ab7a'];
+            $scope.labels = ['RAC001', 'RAC002', 'RAC003', 'RAC004', 'RAC005', 'RAC006', 'RAC007', 'RAC008', 'RAC009', 'RAC0010', 'RAC0011', 'RAC0012', 'RAC0013', 'REC001'];
+            $scope.series = ['Series A'];
+            $scope.colors = [ '#46be8a'];
 
             $scope.data = [
-                [65, 59, 80, 81, 56, 55, 40],
-                [28, 48, 40, 19, 86, 27, 90]
+                [65, 59, 80, 81, 56, 55, 40,56, 56, 52,56, 55,0,13,53]
             ];
 
 
