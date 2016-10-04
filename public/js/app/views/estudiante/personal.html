@@ -127,9 +127,14 @@
                                                     class="btn btn-primary  btn-icon btn-lg btn-add-estrategia pull-right btn-round">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
                                             </button>
+                                            <br>
+                                            <div class="alert alert-info alert-dismissible" role="alert" ng-if="riesgo.estrategias_aplicadas[0]==0">
+                                                <i class="icon  wb-info-circle" aria-hidden="true"></i>
+                                                No hay estrategias agregadas
+                                            </div>
                                             <ul class="list-group" >
 
-                                                <li  ng-repeat="estrategia in riesgo.estrategias_aplicadas" class="list-group-item">
+                                                <li  ng-if="riesgo.estrategias_aplicadas[0]!=0"ng-repeat="estrategia in riesgo.estrategias_aplicadas" class="list-group-item">
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
@@ -168,7 +173,7 @@
                                                     <hr>
                                                     <div id="recentActivityWidget">
                                                         <ul class="timeline timeline-icon">
-                                                            <li class="timeline-reverse">
+                                                            <li class="timeline-reverse" ng-repeat="accion in riesgo.estrategias_aplicadas.acciones">
                                                                 <div class="timeline-content-wrap">
                                                                     <div class="timeline-dot bg-green-600">
                                                                         <span>1</span>
@@ -192,69 +197,6 @@
                                                                                                 class=" btn btn-outline btn-icon btn-default btn-round"
                                                                                                 ng-click="showPanel()"
                                                                                                 id="btn-show" style="
-    padding-right: 0;">
-                                                                                            <i class="icon wb-wrench"
-                                                                                               aria-hidden="true"></i>
-                                                                                        </button>
-                                                                                    </li>
-                                                                                    <li>
-
-                                                                                    </li>
-                                                                                </ul>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="row">
-
-                                                                            <div class="col-md-3">
-                                                                                <p>Avance: 100%</p>
-                                                                                <p>Finalizada?: No</p>
-                                                                                <p>Costo total: 0</p>
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <div class="alert alert-alt alert-info alert-dismissible"
-                                                                                     role="alert">
-                                                                                    <p>
-                                                                                        <span class="">Descripcion:</span>
-                                                                                        El estudiante asiste a sus
-                                                                                        clases durante el semestre,
-                                                                                        aprobando el curso con nota de
-                                                                                        3,5.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-
-                                                            <li class="timeline-reverse">
-                                                                <div class="timeline-content-wrap">
-                                                                    <div class="timeline-dot bg-green-600">
-                                                                        <span>2</span>
-                                                                    </div>
-                                                                    <div class="timeline-content">
-
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="title">
-                                                                                    <span class="authors">AC-E07-01</span>2014-09-05
-                                                                                    10:58:49
-                                                                                </div>
-                                                                                <p>Tiempo estimado: 16 semanas</p>
-
-
-                                                                            </div>
-                                                                            <div class="col-md-6 ">
-                                                                                <ul class="mi-acciones-right pull-right">
-                                                                                    <li>
-                                                                                        <button type="button"
-                                                                                                class=" btn btn-outline btn-icon btn-default btn-round"
-                                                                                                ng-click="showPanel()"
-                                                                                                id="" style="
     padding-right: 0;">
                                                                                             <i class="icon wb-wrench"
                                                                                                aria-hidden="true"></i>
@@ -547,7 +489,7 @@
                 <div class="input-search">
                     <i class="input-search-icon wb-search" aria-hidden="true"></i>
                     <input type="text" class="form-control" name="site-search"
-                           placeholder="Buscar factores de riesgo...">
+                           placeholder="Buscar factores de riesgo..." ng-model="buscar_riesgo">
                     <button type="button" class="input-search-close icon wb-close" data-target="#site-navbar-search"
                             data-toggle="collapse" aria-label="Close" aria-expanded="true"></button>
                 </div>
@@ -556,7 +498,7 @@
     </div>
     <div class="modal-body" id="modal-body">
         <ul class="ul-mi-riesgo">
-            <li ng-repeat="riesgo in riesgos">
+            <li ng-repeat="riesgo in riesgos | filter:buscar_riesgo">
                 <div class="media">
                     <div class="media-body">
                         <div class="row">

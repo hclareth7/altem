@@ -46,15 +46,17 @@ class ArchivoPersonalController extends Controller
             ->get();*/
 
         if ($riegosPersonal->count() > 0) {
-            $estrategias_aplicadas[] = 0;
+            $estrategias_aplicadas[]= 0;
             foreach ($riegosPersonal[0]->intervenciones as $key => $value) {
-                $estrategias_aplicadas[$key] = $value->estrategias->with('acciones')
+                $estrategias_aplicadas[$key]=$value->estrategias->with('acciones')
                     ->where('id', $value->estrategias->id)
-                    ->get();
+                    ->get()[0];
 
                 $estrategias_aplicadas[$key]->usuario = $value->usuarios_codigo;
 
             }
+
+
             $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
             //dd($riegosPersonal);
             //dd($riegosPersonal[0]->intervenciones);
