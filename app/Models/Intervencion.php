@@ -12,7 +12,7 @@ class Intervencion extends Model
 
 	public $timestamps=false;
 
-	protected $fillable=['estado','estrategias_id','fecha_inicio'];
+	protected $fillable=['estado','estrategias_id','fecha_inicio','archivo_personal_id'];
 
 	public function estrategias()
     {
@@ -22,6 +22,12 @@ class Intervencion extends Model
     public function archivos_Personal()
     {
         return $this->belongsTo('App\Models\ArchivoPersonal', 'archivo_personal_id', 'id');
+
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo('App\Models\Usuario', 'usuarios_codigo', 'id');
 
     }
 

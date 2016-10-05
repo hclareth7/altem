@@ -72,6 +72,15 @@ class EstrategiaController extends Controller
         return response()->json($estrategia);
     }
 
+    public function estrategiaByRiesgoId($id)
+    {
+
+        $estrategia=Estrategia::with('riesgo')->where('riesgo_id',$id)->get();
+       // dd($estrategia);
+
+        return response()->json($estrategia);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -37,6 +37,7 @@ Route::group(['prefix' => 'api'], function () {
 
             Route::resource('tipo_riesgo', 'TipoRiesgoController');
             Route::resource('estrategia', 'EstrategiaController');
+            Route::get('estrategia_by_riesgo/{id}', 'EstrategiaController@estrategiaByRiesgoId');
             Route::resource('accion', 'AccionController');
             Route::get('accion/acciones_estrategia/{id}', 'AccionController@getByEstrategia');
             Route::resource('tipo_riesgo', 'TipoRiesgoController');

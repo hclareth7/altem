@@ -406,7 +406,7 @@ input.cmn-toggle-round:checked + label:after {
 
 .btn-add-riesgo {
 	position: relative;
-	top: -10px;
+	top: 10px;
 	right: 200px;
 	z-index: 10;
 }

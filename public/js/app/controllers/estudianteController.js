@@ -62,6 +62,7 @@ controllerModule
 			$rootScope.getRiesgosByEstudiantes = function () {
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
 					$scope.riesgos = response.data;
+					$rootScope.idArchivo=response.data.id;
 				});
 			};
 			$rootScope.getRiesgosByEstudiantes();
@@ -112,7 +113,7 @@ controllerModule
 				};
 				archivoPersonalService.createArchivo($scope.archivo).then(function (response) {
 					$rootScope.getRiesgosByEstudiantes();
-					toastr.warning('Exito', 'Riesgo agregado');
+					toastr.success('Exito', 'Riesgo agregado');
 				}, function (error) {
 					console.log(error);
 				});
@@ -152,6 +153,29 @@ controllerModule
 					});
 					console.log($scope.archivo);
 				};
+
+			}])
+	.controller('estrategiaCrearController',
+		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'estrategiaService','intervencionesService',
+			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, estrategiaService,intervencionesService) {
+				$scope.estrategias=[];
+				$scope.cargarEstrategias=function (Riesgoid) {
+
+					estrategiaService.getEstrategiaByRiesgoId(Riesgoid).then(function (response) {
+						$scope.estrategias=response.data;
+						console.log($scope.estrategias);
+					},function (error) {
+						console.log(error);
+					})
+				};
+				$scope.cargarEstrategias(parseInt($stateParams.riesgoId));
+				
+				$scope.agregarEstrategia=function () {
+					toastr.success('Exito', 'Estrategia agregada');
+				};
+
+
+
 
 			}])
 

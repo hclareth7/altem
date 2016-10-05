@@ -227,6 +227,18 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			}
 		});
 
+		modalStateProvider.state('main.personal.estrategia', {
+			url: '/estrategia/crear/:riesgoId',
+			templateUrl: 'estrategia-agregar.html',
+			controller: 'estrategiaCrearController',
+			size: 'lg',
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
+		});
+
 
 		$stateProvider.state('main.reporte.grafica', {
 			url: '/grafica',
