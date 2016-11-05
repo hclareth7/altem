@@ -20,6 +20,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('reporte/estudiante_riesgo_programa', 'ReporteController@archivo_personal');
     Route::get('reporte/config/anio', 'ReporteController@getAnios');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
+    Route::get('riesgos_archivo/{codigo}', 'ArchivoPersonalController@riesgoAgregado');
 
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {

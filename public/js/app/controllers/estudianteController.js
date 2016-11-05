@@ -42,10 +42,6 @@ controllerModule
 	.controller('estudianteIntervencionController',
 		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
-
-
-
-
 	}])
 	.controller('estudiantePersonalController', ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService) {

@@ -34,6 +34,25 @@ class ArchivoPersonalController extends Controller
 		return response()->json($archivoPersonal);
     }
 
+    public function riesgoAgregado($codigo)
+    {
+        $data = ArchivoPersonal::with('riesgo.tiporiesgo')
+            ->where('estudiantes_altem_codigo', $codigo)
+            ->get();
+        $riesgos = Riesgo::with(['tiporiesgo'])
+            ->get();
+
+
+        $newColection=[];
+        foreach ($data as $key => $item) {
+            $newColection = $riesgos->reject(function($element) use($item){
+                return $element->id == $item->riesgos_id;
+            });
+
+        }
+
+        return response()->json($newColection);
+    }
 
     public function getRiesgosPersonalByEstudiantes($codigo){
 

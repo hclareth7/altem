@@ -407,7 +407,7 @@ input.cmn-toggle-round:checked + label:after {
 .btn-add-riesgo {
 	position: relative;
 	top: 10px;
-	right: 200px;
+	right: 20px;
 	z-index: 10;
 }
 .modal{
@@ -431,7 +431,6 @@ input.cmn-toggle-round:checked + label:after {
 .btn-add-estrategia{
 	position: relative;
 	top: -41px;
-	right: 100px;
 	z-index: 10;
 }
 

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Routing\Route;
 use App\Models\Intervencion;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 
 class IntervencionController extends Controller
@@ -33,8 +31,6 @@ class IntervencionController extends Controller
         $intervencion = Intervencion::all();
 		return response()->json($intervencion);
     }
-
-
 
     /**
      * Show the form for creating a new resource.

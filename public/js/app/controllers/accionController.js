@@ -11,11 +11,9 @@ controllerModule
             $scope.ok = function () {
                 $uibModalInstance.close();
             };
-
             $scope.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
             };
-
             $scope.guardarAccion = function () {
                 $scope.accion.estrategias_id = $rootScope.estrategia.id;
                 accionService.createAccion($scope.accion).then(function (response) {

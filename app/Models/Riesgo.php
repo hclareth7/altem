@@ -20,6 +20,6 @@ class Riesgo extends Model
 
     public function archivos_Personales()
     {
-        return $this->hasMany('App\Models\ArchivoPersonal');
+        return $this->hasMany('App\Models\ArchivoPersonal','id');
     }
 }

@@ -156,6 +156,9 @@ return [
 
 		//CORS
 		Barryvdh\Cors\ServiceProvider::class,
+
+		//ORACLE PROVIDER
+		Jfelder\OracleDB\OracleDBServiceProvider::class,
     ],
 
     /*
