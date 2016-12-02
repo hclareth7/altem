@@ -90,7 +90,7 @@ class EstudianteController extends Controller
 
     public function getcolumn()
     {
-        $columns = $this->db_sirius->select('SHOW COLUMNS FROM DATOS_ESTUDIANTES_ALTEM')->skills();
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM DATOS_ESTUDIANTES_ALTEM',array(1));
         return response()->json($columns);
     }
 
