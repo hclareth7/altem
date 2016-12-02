@@ -158,7 +158,9 @@ return [
 		Barryvdh\Cors\ServiceProvider::class,
 
 		//ORACLE PROVIDER
-		Jfelder\OracleDB\OracleDBServiceProvider::class,
+		//Jfelder\OracleDB\OracleDBServiceProvider::class,
+
+		Yajra\Oci8\Oci8ServiceProvider::class,
     ],
 
     /*
