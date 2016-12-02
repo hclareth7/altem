@@ -42,7 +42,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM where programa <> ''s";
+            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM where programa <> 's' ";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
