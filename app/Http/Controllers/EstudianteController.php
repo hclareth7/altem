@@ -19,7 +19,7 @@ class EstudianteController extends Controller
      */
     public function __construct(Filtro $filtro)
     {
-		$this->db_sirius = \DB::connection('oracle');
+		$this->db_sirius = \DB::connection('sirius');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
         $this->filtro = $filtro;
         $this->sql = "";
@@ -97,8 +97,9 @@ class EstudianteController extends Controller
     public function index()
     {
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
-        $estudiantes = $this->db_sirius->select($this->setRestric());
-        return response()->json($estudiantes,array(1));
+        //$estudiantes = $this->db_sirius->select($this->setRestric());
+        $results = DB::connection('sirius')->select($this->setRestric(), array(1));
+        return response()->json($results);
     }
 
     /**
