@@ -126,7 +126,7 @@
 		</div>
 	</script>
 
-	<?php echo phpinfo() ?>
+
 </body>
 
 </html>
