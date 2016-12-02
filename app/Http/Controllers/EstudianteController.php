@@ -19,7 +19,7 @@ class EstudianteController extends Controller
      */
     public function __construct(Filtro $filtro)
     {
-		$this->db_sirius = \DB::connection('sirius');
+		$this->db_sirius = \DB::connection('oracle');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
         $this->filtro = $filtro;
         $this->sql = "";
@@ -42,7 +42,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from estudiantes where programa != '' ";
+            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM where programa != '' ";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
@@ -63,7 +63,7 @@ class EstudianteController extends Controller
                     }
 
                 }
-                $this->sql = "Select * from estudiantes " . $restric;
+                $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM " . $restric;
                 return $this->sql;
             }
 
@@ -75,7 +75,7 @@ class EstudianteController extends Controller
 
 	public function find(Route $route)
 	{
-		$this->estudiante= $this->db_sirius->table('estudiantes')->where('id',$route->getParameter('estudiante'))->first();
+		$this->estudiante= $this->db_sirius->table('DATOS_ESTUDIANTES_ALTEM')->where('id',$route->getParameter('estudiante'))->first();
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
 	}
 
@@ -90,7 +90,7 @@ class EstudianteController extends Controller
 
     public function getcolumn()
     {
-        $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes');
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM DATOS_ESTUDIANTES_ALTEM');
         return response()->json($columns);
     }
 

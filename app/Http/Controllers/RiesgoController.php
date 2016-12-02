@@ -16,8 +16,8 @@ class RiesgoController extends Controller
      * @return \Illuminate\Http\Response
      */
 	public function __construct(){
-        $this->db_sirius = \DB::connection('sirius');
-		$this->middleware('cors');
+
+
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
 	}
 

@@ -80,9 +80,13 @@
 	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
 	<script src="/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+
 	<script src="/bower_components/angular-permission/dist/angular-permission.min.js"></script>
 	<script src="/bower_components/angular-permission/dist/angular-permission-ui.min.js"></script>
+
+
 	<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
 	<script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
 	<script src="/bower_components/chart.js/dist/Chart.min.js"></script>
 	<script src="/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
@@ -122,7 +126,7 @@
 		</div>
 	</script>
 
-
+	<?php echo phpinfo() ?>
 </body>
 
 </html>

@@ -1,0 +1,5 @@
+# Oracle Instant Client
+LD_LIBRARY_PATH="/usr/local/lib/instantclient_12_1"
+TNS_ADMIN="/usr/local/lib/instantclient_12_1"
+ORACLE_BASE="/usr/local/lib/instantclient_12_1"
+ORACLE_HOME=$ORACLE_BASE
