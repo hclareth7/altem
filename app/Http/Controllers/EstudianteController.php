@@ -98,7 +98,7 @@ class EstudianteController extends Controller
     {
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         //$estudiantes = $this->db_sirius->select($this->setRestric());
-        $results = DB::connection('sirius')->select($this->setRestric(), array(1));
+        $results = \DB::connection('sirius')->select($this->setRestric(), array(1));
         return response()->json($results);
     }
 
