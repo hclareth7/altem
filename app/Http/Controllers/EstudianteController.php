@@ -42,7 +42,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM ;";
+            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM ";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
@@ -98,7 +98,7 @@ class EstudianteController extends Controller
     {
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         //$estudiantes = $this->db_sirius->select($this->setRestric());
-        $results = \DB::connection('sirius')->select($this->setRestric(), array(":S"=>"s",1));
+        $results = \DB::connection('sirius')->select($this->setRestric(), array(1));
         return response()->json($results);
     }
 
