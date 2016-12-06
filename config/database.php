@@ -58,7 +58,7 @@ return [
         ],
 
         'sirius' => [
-            'driver'    => 'oci8',
+            'driver'    => 'oci',
             'tns'       =>  '(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.8.10)(PORT = 1521))(CONNECT_DATA =(SID = PROD)))',
             'host'      =>  '172.16.8.10',
             'port'      =>  '1521',
