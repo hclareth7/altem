@@ -1,5 +1,5 @@
 {
-  "name": "ALTEM",
+  "name": "altem",
   "homepage": "https://github.com/hariza17/altem",
   "description": "Sistema de Alertas Tempranas",
   "main": "index.blade.php",
