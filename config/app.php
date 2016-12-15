@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -115,8 +115,7 @@ return [
          */
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
-		//LDAP
-        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+	    Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
@@ -160,7 +159,7 @@ return [
 		//ORACLE PROVIDER
 		//Jfelder\OracleDB\OracleDBServiceProvider::class,
 
-		Yajra\Oci8\Oci8ServiceProvider::class,
+	
     ],
 
     /*

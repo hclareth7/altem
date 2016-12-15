@@ -23,7 +23,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('riesgos_archivo/{codigo}', 'ArchivoPersonalController@riesgoAgregado');
 
     
-    Route::resource('estudiante', 'EstudianteController');
+
 
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::resource('intervencion', 'ArchivoPersonalController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
             Route::get('estudiante_colums', 'EstudianteController@getColumn');
-
+            Route::resource('estudiante', 'EstudianteController');
             Route::resource('tipo_riesgo', 'TipoRiesgoController');
             Route::resource('estrategia', 'EstrategiaController');
             Route::get('estrategia_by_riesgo/{id}', 'EstrategiaController@estrategiaByRiesgoId');

@@ -19,10 +19,11 @@ class EstudianteController extends Controller
      */
     public function __construct(Filtro $filtro)
     {
-		$this->db_sirius = \DB::connection('sirius');
+		$this->db_sirius = \DB::connection('mysql2');
 		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
         $this->filtro = $filtro;
         $this->sql = "";
+        $roles = Auth::user();
 
     }
 
@@ -34,6 +35,7 @@ class EstudianteController extends Controller
     public function setRestric()
     {
         $restric = "";
+        //dd($roles = Auth::user());
         $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;
@@ -42,7 +44,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM ";
+            $this->sql = "Select * from estudiantes where id !=' '";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
@@ -63,7 +65,7 @@ class EstudianteController extends Controller
                     }
 
                 }
-                $this->sql = "Select * from DATOS_ESTUDIANTES_ALTEM " . $restric;
+                $this->sql = "Select * from estudiantes " . $restric;
                 return $this->sql;
             }
 
@@ -72,10 +74,10 @@ class EstudianteController extends Controller
         }
 
     }
-
+ 
 	public function find(Route $route)
 	{
-		$this->estudiante= $this->db_sirius->table('DATOS_ESTUDIANTES_ALTEM')->where('id',$route->getParameter('estudiante'))->first();
+		$this->estudiante= $this->db_sirius->table('estudiantes')->where('id',$route->getParameter('estudiante'))->first();
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
 	}
 
@@ -90,16 +92,16 @@ class EstudianteController extends Controller
 
     public function getcolumn()
     {
-        $columns = $this->db_sirius->select('SHOW COLUMNS FROM DATOS_ESTUDIANTES_ALTEM',array(1));
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM estudiantes',array(1));
         return response()->json($columns);
     }
 
     public function index()
     {
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
-        //$estudiantes = $this->db_sirius->select($this->setRestric());
-        $results = \DB::connection('sirius')->select($this->setRestric(),array(1));
-        return response()->json($results);
+        $estudiantes = $this->db_sirius->select($this->setRestric());
+       // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
+        return response()->json($estudiantes);
     }
 
     /**

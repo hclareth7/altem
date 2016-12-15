@@ -31,7 +31,7 @@ class ApiAuthController extends Controller
         // = JWTAuth::parseToken()->authenticate();
         //return response()->json($user);
         $user = Auth::user();
-
+       
         $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;

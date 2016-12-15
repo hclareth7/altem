@@ -57,19 +57,32 @@ return [
             'strict'    => false,
         ],
 
-        'sirius' => [
-            'driver'    => 'pdo-via-oci8',
-            'tns'       =>  '(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.8.10)(PORT = 1521))(CONNECT_DATA =(SID = PROD)))',
-            'host'      =>  '172.16.8.10',
-            'port'      =>  '1521',
-            'database'  =>  'PROD',
-            'username'  =>'altem',
-            'password'  =>  'Altem_2016',
-            'charset'   => 'WE8ISO8859P1',
+        'mysql2' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('SIRIUS_DB_DATABASE', 'forge'),
+            'username'  => env('SIRIUS_DB_USERNAME', 'forge'),
+            'password'  => env('SIRIUS_DB_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-            'quoting'   => false,
+            'strict'    => false,
         ],
-        
+
+
+//        'sirius' => [
+//            'driver'    => 'oci8',
+//            'tns'       =>  '(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = 172.16.8.10)(PORT = 1521))(CONNECT_DATA =(SID = PROD)))',
+//            'host'      =>  '172.16.8.10',
+//            'port'      =>  '1521',
+//            'database'  =>  'PROD',
+//            'username'  =>'altem',
+//            'password'  =>  'Altem_2016',
+//            'charset'   => 'WE8ISO8859P1',
+//            'prefix'    => '',
+//            'quoting'   => false,
+//        ],
+
     ],
 
     /*

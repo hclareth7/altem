@@ -95,11 +95,7 @@
                                         </th>
 
                                         <th>
-                                            Direccion
-                                        </th>
-
-                                        <th>
-                                            Telefono
+                                            Correo
                                         </th>
 
                                         <th>
@@ -117,15 +113,14 @@
 													<label for="row-619"></label>
 												</span>
                                         </td>
-                                        <td>{{estudiante.id}}</td>
-                                        <td>{{estudiante.nombres}}</td>
-                                        <td>{{estudiante.apellidos}}</td>
-                                        <td>{{estudiante.programa}}</td>
-                                        <td>{{estudiante.direccion}}</td>
-                                        <td>{{estudiante.telefono}}</td>
+                                        <td>{{estudiante.ID}}</td>
+                                        <td>{{estudiante.NOMBRES}}</td>
+                                        <td>{{estudiante.APELLIDOS}}</td>
+                                        <td>{{estudiante.PROGRAMA}}</td>
+                                        <td>{{estudiante.EMAIL}}</td>
 
                                         <td class="text-nowrap">
-                                            <a ui-sref="main.personal({estudianteId:estudiante.id})"
+                                            <a ui-sref="main.personal({estudianteId:estudiante.ID})"
                                                class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip"
                                                data-original-title="Informacion">
                                                 <i class="icon wb-eye" aria-hidden="true"></i>
