@@ -30,7 +30,6 @@ controllerModule
 			};
 
 
-
 			$scope.getAllEstudiantes();
 
 			$rootScope.barra = function () {
@@ -97,6 +96,16 @@ controllerModule
 			});
 		};
 
+			$scope.value = 'En Progreso';
+
+			$scope.comentarios = [];
+			$scope.agregarConmentatio = function (comen) {
+				comen.fecha = new Date();
+				comen.autor = $rootScope.usuario.nombre;
+				comen.contenido = comen.text;
+				$scope.comentarios.push(comen);
+			};
+			
 			$scope.agregarRiesgo = function (id_riesgo, codigo_usuario, id_estudiante, programa_estudiante) {
 
 				$scope.archivo = {
@@ -116,7 +125,7 @@ controllerModule
 
 
 			};
-
+			//$rootScope.now = new Date();
 	}])
 
 	.controller('riesgoCrearController',
@@ -135,8 +144,8 @@ controllerModule
 					$scope.archivo = {
 						fecha_reporte: new Date(),
 						riesgos_id: id_riesgo,
-						estudiantes_altem_codigo: $rootScope.estudiante.id.toLowerCase(),
-						programa_estudiante: $rootScope.estudiante.programa,
+						estudiantes_altem_codigo: $rootScope.estudiante.ID.toLowerCase(),
+						programa_estudiante: $rootScope.estudiante.PROGRAMA,
 						usuarios_codigo: $rootScope.usuario.codigo,
 						estado: 0
 					};
@@ -167,7 +176,13 @@ controllerModule
 				$scope.cargarEstrategias(parseInt($stateParams.riesgoId));
 				
 				$scope.agregarEstrategia=function () {
-					toastr.success('Exito', 'Estrategia agregada');
+
+					$scope.intervencion = {};
+					intervencionesService.createIntervencion($scope.intervencion).then(function (response) {
+
+					}, function (error) {
+
+					})
 				};
 
 

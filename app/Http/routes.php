@@ -34,7 +34,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
 
-            Route::resource('intervencion', 'ArchivoPersonalController');
+            Route::resource('intervencion', 'IntervencionController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
             Route::get('estudiante_colums', 'EstudianteController@getColumn');
             Route::resource('estudiante', 'EstudianteController');

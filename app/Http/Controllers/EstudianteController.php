@@ -44,7 +44,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from estudiantes where id !=' '";
+            $this->sql = "Select * from estudiantes_view where id !=' '";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
@@ -65,7 +65,7 @@ class EstudianteController extends Controller
                     }
 
                 }
-                $this->sql = "Select * from estudiantes " . $restric;
+                $this->sql = "Select * from estudiantes_view " . $restric;
                 return $this->sql;
             }
 
@@ -77,7 +77,7 @@ class EstudianteController extends Controller
  
 	public function find(Route $route)
 	{
-		$this->estudiante= $this->db_sirius->table('estudiantes')->where('id',$route->getParameter('estudiante'))->first();
+		$this->estudiante= $this->db_sirius->table('estudiantes_view')->where('id',$route->getParameter('estudiante'))->first();
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
 	}
 
@@ -92,7 +92,7 @@ class EstudianteController extends Controller
 
     public function getcolumn()
     {
-        $columns = $this->db_sirius->select('SHOW COLUMNS FROM estudiantes',array(1));
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM estudiantes_view');
         return response()->json($columns);
     }
 

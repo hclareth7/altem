@@ -86,7 +86,7 @@ class ArchivoPersonalController extends Controller
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
         foreach ($filtros as $key => $value) {
-            $sql = "SELECT * FROM estudiantes WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            $sql = "SELECT * FROM estudiantes_view WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             $estudiantes = $this->db_sirius->select($sql);
 
             if (!empty($estudiantes)) {

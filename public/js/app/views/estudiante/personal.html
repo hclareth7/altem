@@ -7,18 +7,18 @@
                     <div class="widget-header-content">
                         <a class="avatar avatar-lg" href="javascript:void(0)">
                             <!--img src="/img/avatar2.png" alt="..."-->
-                            <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.id}}"
+                            <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.ID}}"
                                  alt="...">
                             <!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
                         </a>
-                        <h4 class="profile-user">{{estudiante.nombres+ ' '+estudiante.apellidos}}</h4>
-                        <p class="profile-job">{{estudiante.programa}}</p>
+                        <h4 class="profile-user">{{estudiante.NOMBRES+ ' '+estudiante.APELLIDOS}}</h4>
+                        <p class="profile-job">{{estudiante.PROGRAMA}}</p>
                         <address>
                             <strong>Informacion de contacto</strong>
-                            <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.direccion}}
-                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.correo}}</a>
+                            <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.DIRECCION1}}
+                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.CORREO}}</a>
                             <br>
-                            <abbr title="Telefono">Telefono: </abbr> {{estudiante.telefono}}
+                            <abbr title="Telefono">Telefono: </abbr> {{estudiante.TELEFONO2}}
                         </address>
                         <!--div class="profile-social">
                             <a class="icon bd-twitter" href="javascript:void(0)"></a>
@@ -33,16 +33,16 @@
                     <div class="row no-space">
                         <div class="col-xs-4">
                             <strong class="profile-stat-count">Codigo</strong>
-                            <span>{{estudiante.id}}</span>
+                            <span>{{estudiante.ID}}</span>
                         </div>
                         <div class="col-xs-4">
                             <strong class="profile-stat-count">Edad</strong>
-                            <span>{{getEdad(estudiante.fecha_nacimiento)}}</span>
+                            <span>{{getEdad(estudiante.FECHA_NACIMENTO)}}</span>
 
                         </div>
                         <div class="col-xs-4">
                             <strong class="profile-stat-count">Sexo</strong>
-                            <span>{{estudiante.sexo}}</span>
+                            <span>{{estudiante.SEXO}}</span>
                         </div>
                     </div>
                 </div>
@@ -63,6 +63,10 @@
                             </button>
                             <div class="tab-content animation-fade col-md-12">
                                 <br>
+                               <!-- <div class="alert alert-info alert-dismissible" role="alert" ng-if="!riesgo">
+                                    <i class="icon  wb-info-circle" aria-hidden="true"></i>
+                                    No hay riesgos agregados
+                                </div>-->
                                 <div class="media is-loading" ng-repeat="riesgo in riesgos">
                                     <div class="media-left">
 
@@ -90,7 +94,7 @@
                                                         <div class=" col-md-1">
                                                             <button type="button"
                                                                     ng-show="!riesgo.usuarios_codigo"
-                                                                    ng-click="agregarRiesgo(riesgo.id,usuario.codigo,estudiante.id,estudiante.programa)"
+                                                                    ng-click="agregarRiesgo(riesgo.id,usuario.codigo,estudiante.ID,estudiante.PROGRAMA)"
                                                                     class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-check" aria-hidden="true"></i>
 
@@ -130,10 +134,7 @@
                                                 Agregar estragias
                                             </button>
                                             <br>
-                                            <div class="alert alert-info alert-dismissible" role="alert" ng-if="riesgo.estrategias_aplicadas[0]==0">
-                                                <i class="icon  wb-info-circle" aria-hidden="true"></i>
-                                                No hay estrategias agregadas
-                                            </div>
+
                                             <ul class="list-group" >
 
                                                 <li  ng-if="riesgo.estrategias_aplicadas[0]!=0"ng-repeat="estrategia in riesgo.estrategias_aplicadas" class="list-group-item">
@@ -335,17 +336,15 @@
                                                             <p class="neutral-icon"><i class="ion-record"></i>
                                                             </p>
                                                             <p class="wrong"><i class="ion-close-round"></i></p>
-                                                            <input type="radio" name="event" class="yes"
+                                                            <input type="radio" ng-model="value" value="Finalizado"  class="yes"
                                                                    id="radio-yes"/>
 
                                                             <label for="radio-yes"></label>
 
-                                                            <input type="radio" name="event" class="neutral" checked
-                                                                   id="radio-neutral"/>
+                                                            <input type="radio" ng-model="value" value="En Progreso" class="neutral" checked   id="radio-neutral"/>
                                                             <label for="radio-neutral"></label>
 
-
-                                                            <input type="radio" name="event" class="no" id="radio-no"/>
+                                                            <input type="radio" ng-model="value"  value="Interrumpido"  class="no" id="radio-no"/>
                                                             <label for="radio-no"></label>
                                                         </div>
 
@@ -353,7 +352,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <h3 class="white">Accion</h3>
+                                                    <h3 class="white">{{value}}</h3>
                                                 </div>
 
 
@@ -384,23 +383,20 @@
 
                                             <div class="col-md-12">
                                                 <div class="mi-scroll">
-                                                    <div class="comment media">
+                                                    <div class="comment media" ng-repeat="comentario in comentarios">
                                                         <div class="media-left">
                                                             <a class="avatar avatar-xs mi-avatar-comment"
                                                                href="javascript:void(0)">
-                                                                <img src="/img/avatar.png" alt="..." style="width:40px">
+                                                                <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}" alt="..." style="width:40px">
                                                             </a>
                                                         </div>
                                                         <div class="comment-body media-body">
-                                                            <a class="comment-author" href="javascript:void(0)">Juan
-                                                                Administrador SAT</a>
+                                                            <a class="comment-author" href="javascript:void(0)">{{comentario.autor}}</a>
                                                             <div class="comment-meta">
-                                                                <span class="date">Publicado el 12-05-2016 a las 09:59</span>
+                                                                <span class="date">Publicado el  {{comentario.fecha | date:'yyyy-MM-dd: H:mm'}}</span>
                                                             </div>
                                                             <div class="comment-content">
-                                                                <p>Dude, this is awesome. Thanks so much, this is
-                                                                    awesome. Thanks so much this is awesome. Thanks so
-                                                                    much</p>
+                                                                <p>{{comentario.contenido}}</p>
                                                             </div>
                                                             <div class="comment-actions">
                                                                 <a class="btn btn-sm btn-icon btn-flat btn-default">
@@ -414,48 +410,18 @@
                                                             </div>
 
                                                         </div>
-                                                    </div>
-                                                    <div class="comment media">
-                                                        <div class="media-left">
-                                                            <a class="avatar avatar-xs mi-avatar-comment"
-                                                               href="javascript:void(0)">
-                                                                <img src="/img/avatar.png" alt="..." style="width:40px">
-                                                            </a>
-                                                        </div>
-                                                        <div class="comment-body media-body">
-                                                            <a class="comment-author" href="javascript:void(0)">Juan
-                                                                Administrador SAT</a>
-                                                            <div class="comment-meta">
-                                                                <span class="date">Publicado el 12-05-2016 a las 09:59</span>
-                                                            </div>
-                                                            <div class="comment-content">
-                                                                <p>Dude, this is awesome. Thanks so much, this is
-                                                                    awesome. Thanks so much this is awesome. Thanks so
-                                                                    much</p>
-                                                            </div>
-                                                            <div class="comment-actions">
-                                                                <a class="btn btn-sm btn-icon btn-flat btn-default">
-                                                                    <i class="icon wb-edit" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-icon btn-flat btn-default"
-                                                                   href="javascript:void(0)" role="button">
-                                                                    <i class="icon wb-trash" aria-hidden="true"></i>
-                                                                </a>
+                                                    </div >
 
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
 
                                                 </div>
                                                 <div>
                                                     <form class="comment-reply">
                                                         <div class="form-group">
                                                             <textarea class="form-control mi-text-comment" rows="5"
-                                                                      placeholder="Comenta aqui..."></textarea>
+                                                                      placeholder="Comenta aqui..." ng-model="comentario.text"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary">Comentar
+                                                            <button type="submit" class="btn btn-primary" ng-click="agregarConmentatio(comentario)">Comentar
                                                             </button>
 
                                                         </div>
@@ -596,6 +562,9 @@
                     </div>
                 </div>
             </li>
+
+
+
 
         </ul>
 
