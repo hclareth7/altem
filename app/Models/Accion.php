@@ -14,10 +14,16 @@ class Accion extends Model
 
 	public function estrategia()
     {
-        return $this->belongsTo('App\Models\Estrategia');
+        return $this->belongsTo('App\Models\Estrategia','estrategias_id','id');
+    }
+
+
+    public function acciones_aplicadas()
+    {
+        return $this->hasMany('App\Models\AccionAplicada','acciones_id','id');
     }
 	
-	
+    
 	
 	
 }

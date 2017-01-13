@@ -59,7 +59,7 @@
                             <button type="button" ui-sref="main.personal.riesgo"
                                     class="btn btn-icon btn-danger    btn-add-riesgo pull-right">
                                 <i class="icon wb-warning" aria-hidden="true"></i>
-                                Agregar riesgos
+                                Riesgos
                             </button>
                             <div class="tab-content animation-fade col-md-12">
                                 <br>
@@ -125,19 +125,21 @@
                                     </div>
                                     <hr>
 
-                                    <div uib-collapse="!riesgo.isShowEstrategias" >
+                                    <div uib-collapse="riesgo.isShowEstrategias" >
                                         <div class="tab-pane animation-fade active margin-top-35" id="all_contacts" role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
                                             <button type="button" ui-sref="main.personal.estrategia({riesgoId:riesgo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
-                                                Agregar estragias
+                                                Estragias
                                             </button>
                                             <br>
 
                                             <ul class="list-group" >
 
-                                                <li  ng-if="riesgo.estrategias_aplicadas[0]!=0"ng-repeat="estrategia in riesgo.estrategias_aplicadas" class="list-group-item">
+                                                <li ng-if="riesgo.estrategias_aplicadas[0]!=0"
+                                                    ng-repeat="estrategia in riesgo.intervenciones"
+                                                    class="list-group-item">
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
@@ -146,8 +148,8 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="media-heading">
-                                                                {{estrategia.nombre}}
-                                                                <small>{{estrategia[0].usuario}}</small>
+                                                                {{estrategia.estrategias.nombre}}
+                                                                <small>{{estrategia.usuarios_codigo}}</small>
                                                             </h4>
                                                             <br>
                                                             <div class="row">
@@ -163,7 +165,7 @@
                                                             <div class="alert alert-alt alert-info alert-dismissible"
                                                                  role="alert">
                                                                 <p>
-                                                                    <span>Descripcion: </span>{{estrategia.descripcion}}
+                                                                    <span>Descripcion: </span>{{estrategia.estrategias.descripcion}}
                                                                 </p>
                                                             </div>
 
@@ -176,20 +178,22 @@
                                                     <hr>
                                                     <div id="recentActivityWidget">
                                                         <ul class="timeline timeline-icon">
-                                                            <li class="timeline-reverse">
+                                                            <li class="timeline-reverse"
+                                                                ng-repeat="accion in estrategia.estrategias.acciones ">
                                                                 <div class="timeline-content-wrap">
-                                                                    <div class="timeline-dot bg-green-600">
-                                                                        <span>1</span>
+                                                                    <div class="timeline-dot "
+                                                                         ng-class="{'bg-blue-500': accion.estado==undefined, 'bg-blue-800':accion.estado==0,'bg-green-600':accion.estado==1,'bg-red-600':accion.estado==2}">
+                                                                        <span>{{ estrategia.estrategias.acciones.indexOf(accion)}}</span>
                                                                     </div>
                                                                     <div class="timeline-content">
 
                                                                         <div class="row">
                                                                             <div class="col-md-6">
                                                                                 <div class="title">
-                                                                                    <span class="authors">AC-E07-01</span>2014-09-05
-                                                                                    10:58:49
+                                                                                    <span class="authors">{{accion.nombre}}</span>
                                                                                 </div>
-                                                                                <p>Tiempo estimado: 16 semanas</p>
+                                                                                <p>Tiempo estimado:
+                                                                                    {{accion.tiempo_estimado}}</p>
 
 
                                                                             </div>
@@ -197,11 +201,21 @@
                                                                                 <ul class="mi-acciones-right pull-right">
                                                                                     <li>
                                                                                         <button type="button"
+                                                                                                ng-if="accion.estado!=undefined"
                                                                                                 class=" btn btn-outline btn-icon btn-default btn-round"
-                                                                                                ng-click="showPanel()"
-                                                                                                id="btn-show" style="
-    padding-right: 0;">
+                                                                                                ui-sref="main.personal.accion({intervencionId:estrategia.id,accionId:accion.id})"
+                                                                                                style="padding-right: 0;">
                                                                                             <i class="icon wb-wrench"
+                                                                                               aria-hidden="true"></i>
+                                                                                        </button>
+
+                                                                                        <button type="button"
+                                                                                                ng-if="accion.estado==undefined"
+                                                                                                class=" btn btn-outline btn-icon btn-default btn-round"
+                                                                                                ng-click="agregarAccion(estrategia.id,accion.id)"
+                                                                                                style="padding-right: 0;">
+
+                                                                                            <i class="icon wb-play"
                                                                                                aria-hidden="true"></i>
                                                                                         </button>
                                                                                     </li>
@@ -216,7 +230,6 @@
                                                                         <div class="row">
 
                                                                             <div class="col-md-3">
-                                                                                <p>Avance: 100%</p>
                                                                                 <p>Finalizada?: No</p>
                                                                                 <p>Costo total: 0</p>
                                                                             </div>
@@ -225,10 +238,7 @@
                                                                                      role="alert">
                                                                                     <p>
                                                                                         <span class="">Descripcion:</span>
-                                                                                        El estudiante asiste a sus
-                                                                                        clases durante el semestre,
-                                                                                        aprobando el curso con nota de
-                                                                                        3,5.
+                                                                                        {{accion.descripcion}}
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
@@ -239,68 +249,7 @@
                                                                 </div>
                                                             </li>
 
-                                                            <li class="timeline-reverse">
-                                                                <div class="timeline-content-wrap">
-                                                                    <div class="timeline-dot bg-green-600">
-                                                                        <span>2</span>
-                                                                    </div>
-                                                                    <div class="timeline-content">
 
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="title">
-                                                                                    <span class="authors">AC-E07-02</span>2014-09-05
-                                                                                    10:58:49
-                                                                                </div>
-                                                                                <p>Tiempo estimado: 16 semanas</p>
-
-
-                                                                            </div>
-                                                                            <div class="col-md-6 ">
-                                                                                <ul class="mi-acciones-right pull-right">
-                                                                                    <li>
-                                                                                        <button type="button"
-                                                                                                class=" btn btn-outline btn-icon btn-default btn-round"
-                                                                                                ng-click="showPanel()"
-                                                                                                id="btn-show" style="
-    padding-right: 0;">
-                                                                                            <i class="icon wb-wrench"
-                                                                                               aria-hidden="true"></i>
-                                                                                        </button>
-                                                                                    </li>
-                                                                                    <li>
-
-                                                                                    </li>
-                                                                                </ul>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="row">
-
-                                                                            <div class="col-md-3">
-                                                                                <p>Avance: 100%</p>
-                                                                                <p>Finalizada?: No</p>
-                                                                                <p>Costo total: 0</p>
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <div class="alert alert-alt alert-info alert-dismissible"
-                                                                                     role="alert">
-                                                                                    <p>
-                                                                                        <span class="">Descripcion:</span>
-                                                                                        El estudiante asiste a sus
-                                                                                        clases durante el semestre,
-                                                                                        aprobando el curso con nota de
-                                                                                        3,5.
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
 
                                                         </ul>
                                                     </div>
@@ -314,139 +263,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}" ng-show="isPanel"
-                                 class="  mis-acciones animation-slide-right" click-outside="closePanel()"
-                                 outside-if-not="btn-show,mi-panel">
-                                <div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
-                                    <div class="widget-header ">
-                                        <a id="addNewItemBtn" href="javascript:void(0)"
-                                           class="add-item-toggle pull-right" ng-click="closePanel()">
-                                            <i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
-                                        </a>
-                                        <div class="overlay-background ">
-                                            <div class="row">
-
-                                                <div class="col-md-2 pull-rleft">
-                                                    <div class="switch pull-right">
 
 
-                                                        <div class="radio-wrapper">
-                                                            <p class="correct"><i class="ion-checkmark-round"></i>
-                                                            </p>
-                                                            <p class="neutral-icon"><i class="ion-record"></i>
-                                                            </p>
-                                                            <p class="wrong"><i class="ion-close-round"></i></p>
-                                                            <input type="radio" ng-model="value" value="Finalizado"  class="yes"
-                                                                   id="radio-yes"/>
-
-                                                            <label for="radio-yes"></label>
-
-                                                            <input type="radio" ng-model="value" value="En Progreso" class="neutral" checked   id="radio-neutral"/>
-                                                            <label for="radio-neutral"></label>
-
-                                                            <input type="radio" ng-model="value"  value="Interrumpido"  class="no" id="radio-no"/>
-                                                            <label for="radio-no"></label>
-                                                        </div>
 
 
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <h3 class="white">{{value}}</h3>
-                                                </div>
 
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="widget-content mi-scroll2">
-
-                                        <div class="row">
-                                            <div class="col-md-2 pull-left">
-                                                <a class="btn btn-icon btn-success btn-outline btn-round">
-
-                                                    <i class="icon wb-upload" aria-hidden="true"></i></a>
-                                            </div>
-
-                                            <div class="col-md-8">
-                                                <div class="">
-                                                    <div class="form-group input-group-icon">
-
-                                                        <input type="number" class="form-control round"
-                                                               placeholder="Costo total">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row ">
-
-                                            <div class="col-md-12">
-                                                <div class="mi-scroll">
-                                                    <div class="comment media" ng-repeat="comentario in comentarios">
-                                                        <div class="media-left">
-                                                            <a class="avatar avatar-xs mi-avatar-comment"
-                                                               href="javascript:void(0)">
-                                                                <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}" alt="..." style="width:40px">
-                                                            </a>
-                                                        </div>
-                                                        <div class="comment-body media-body">
-                                                            <a class="comment-author" href="javascript:void(0)">{{comentario.autor}}</a>
-                                                            <div class="comment-meta">
-                                                                <span class="date">Publicado el  {{comentario.fecha | date:'yyyy-MM-dd: H:mm'}}</span>
-                                                            </div>
-                                                            <div class="comment-content">
-                                                                <p>{{comentario.contenido}}</p>
-                                                            </div>
-                                                            <div class="comment-actions">
-                                                                <a class="btn btn-sm btn-icon btn-flat btn-default">
-                                                                    <i class="icon wb-edit" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-icon btn-flat btn-default"
-                                                                   href="javascript:void(0)" role="button">
-                                                                    <i class="icon wb-trash" aria-hidden="true"></i>
-                                                                </a>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </div >
-
-
-                                                </div>
-                                                <div>
-                                                    <form class="comment-reply">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control mi-text-comment" rows="5"
-                                                                      placeholder="Comenta aqui..." ng-model="comentario.text"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary" ng-click="agregarConmentatio(comentario)">Comentar
-                                                            </button>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
                         </uib-tab>
 
-                        <uib-tab index="1" heading="Academica">
+                      <!--  <uib-tab index="1" heading="Academica">
                             <div class="tab-content animation-fade">
                                 Informacion Academica
                             </div>
-                        </uib-tab>
-                        <uib-tab index="2" heading="Financiera">
-                            <div class="tab-content animation-fade">
-                                Informacion Financiera
-                            </div>
+                        </uib-tab>-->
+
                         </uib-tab>
                     </uib-tabset>
 
@@ -465,6 +294,18 @@
          uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
         <div class="modal-dialog {{size ? 'modal-' + size : ''}}  animation-fade">
             <div class="modal-content" uib-modal-transclude></div>
+        </div>
+    </div>
+
+
+</script>
+
+<script type="text/ng-template" id="windows2.html">
+
+    <div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal modal-success"
+         uib-modal-animation-class="fade" modal-in-class="in" ng-style="{'z-index': 1750 + index*10, display: 'block'}">
+        <div class="">
+            <div class="" uib-modal-transclude></div>
         </div>
     </div>
 
@@ -534,7 +375,9 @@
                     <div class="media-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="alert alert-alt alert-danger alert-dismissible " role="alert">
+                                <div class="alert alert-alt  alert-dismissible "
+                                     ng-class="{'alert-success': !riesgo.estado, 'alert-danger':riesgo.estado==1}"
+                                     role="alert">
                                     <h4 class="media-heading ng-binding">
                                         {{riesgo.nombre}}
                                         <small class="ng-binding">
@@ -548,9 +391,15 @@
                                         </div>
                                         <div class=" col-md-1">
                                             <button type="button"
-                                                    ng-click="agregarRiesgo(riesgo.id)"
-                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                    ng-click="agregarRiesgo(riesgo.id)" ng-if="!riesgo.estado"
+                                                    class="btn btn-icon btn-success btn-round  pull-right btn-outline">
                                                 <i class="icon wb-check" aria-hidden="true"></i>
+                                            </button>
+
+                                            <button type="button" ng-if="riesgo.estado"
+                                                    ng-click="eliminarArchivo(riesgo.id)"
+                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                <i class="icon wb-close" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -598,7 +447,9 @@
                     <div class="media-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="alert alert-alt alert-primary alert-dismissible " role="alert">
+                                <div class="alert alert-alt  alert-dismissible "
+                                     ng-class="{'alert-success': !estrategia.estado, 'alert-danger':estrategia.estado==1}"
+                                     role="alert">
                                     <h4 class="media-heading ng-binding">
                                         {{estrategia.nombre}}
                                         <!--small class="ng-binding">
@@ -611,11 +462,18 @@
 
                                         </div>
                                         <div class=" col-md-1">
-                                            <button type="button"
-                                                    ng-click="agregarEstrategia()"
+                                            <button type="button" ng-if="!estrategia.estado"
+                                                    ng-click="agregarEstrategia(estrategia.id)"
                                                     class="btn btn-icon btn-primary btn-round  pull-right btn-outline">
                                                 <i class="icon wb-check" aria-hidden="true"></i>
                                             </button>
+
+                                            <button type="button" ng-if="estrategia.estado"
+                                                    ng-click="eliminarIntervencion(estrategia.id)"
+                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                <i class="icon wb-close" aria-hidden="true"></i>
+                                            </button>
+
                                         </div>
                                     </div>
 
@@ -628,6 +486,137 @@
             </li>
 
         </ul>
+
+    </div>
+
+</script>
+
+
+<script type="text/ng-template" id="config-accion.html">
+    <div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}"
+         class="  mis-acciones animation-slide-right" click-outside="closePanel()"
+         outside-if-not="btn-show,mi-panel">
+        <div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
+            <div class="widget-header ">
+                <a id="addNewItemBtn" href="javascript:void(0)"
+                   class="add-item-toggle pull-right" ng-click="closePanel()">
+                    <i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
+                </a>
+                <div class="overlay-background ">
+                    <div class="row" style="margin-top: 30px;">
+
+                        <div class="col-md-2 pull-rleft">
+                            <div class="switch pull-right">
+
+
+                                <div class="radio-wrapper">
+                                    <p class="correct"><i class="ion-checkmark-round"></i>
+                                    </p>
+                                    <p class="neutral-icon"><i class="ion-record"></i>
+                                    </p>
+                                    <p class="wrong"><i class="ion-close-round"></i></p>
+                                    <input type="radio" ng-model="value" value="Finalizado" class="yes"
+                                           id="radio-yes"/>
+
+                                    <label for="radio-yes"></label>
+
+                                    <input type="radio" ng-model="value" value="En Progreso" class="neutral" checked
+                                           id="radio-neutral"/>
+                                    <label for="radio-neutral"></label>
+
+                                    <input type="radio" ng-model="value" value="Interrumpido" class="no" id="radio-no"/>
+                                    <label for="radio-no"></label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="white">{{value}}</h3>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content mi-scroll2">
+
+                <div class="row">
+                    <div class="col-md-2 pull-left">
+                        <a class="btn btn-icon btn-success btn-outline btn-round">
+
+                            <i class="icon wb-upload" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="">
+                            <div class="form-group input-group-icon">
+
+                                <input type="number" class="form-control round"
+                                       placeholder="Costo total">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row ">
+
+                    <div class="col-md-12">
+                        <div class="mi-scroll">
+                            <div class="comment media" ng-repeat="comentario in comentarios">
+                                <div class="media-left">
+                                    <a class="avatar avatar-xs mi-avatar-comment"
+                                       href="javascript:void(0)">
+                                        <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}"
+                                             alt="..." style="width:40px">
+                                    </a>
+                                </div>
+                                <div class="comment-body media-body">
+                                    <a class="comment-author" href="javascript:void(0)">{{comentario.autor}}</a>
+                                    <div class="comment-meta">
+                                        <span class="date">Publicado el  {{comentario.fecha | date:'yyyy-MM-dd: H:mm'}}</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>{{comentario.contenido}}</p>
+                                    </div>
+                                    <div class="comment-actions">
+                                        <a class="btn btn-sm btn-icon btn-flat btn-default">
+                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-icon btn-flat btn-default"
+                                           href="javascript:void(0)" role="button">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <form class="comment-reply">
+                                <div class="form-group">
+                                                            <textarea class="form-control mi-text-comment" rows="5"
+                                                                      placeholder="Comenta aqui..."
+                                                                      ng-model="comentario.text"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary"
+                                            ng-click="agregarConmentatio(comentario)">Comentar
+                                    </button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

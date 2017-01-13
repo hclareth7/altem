@@ -21,8 +21,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('reporte/config/anio', 'ReporteController@getAnios');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
     Route::get('riesgos_archivo/{codigo}', 'ArchivoPersonalController@riesgoAgregado');
+    Route::post('eliminar_intervencion', 'IntervencionController@deleteIntervencion');
+    Route::post('eliminar_archivo', 'ArchivoPersonalController@deleteArchivo');
+    Route::post('riesgo_by_archivo', 'RiesgoController@riesgo_by_archivo');
 
-    
+
 
 
     // Adding JWT Auth Middleware to prevent invalid access
@@ -36,11 +39,13 @@ Route::group(['prefix' => 'api'], function () {
 
             Route::resource('intervencion', 'IntervencionController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
+            Route::post('get_accion_aplicada', 'AccionAplicadaController@getAccionAplicada');
+
             Route::get('estudiante_colums', 'EstudianteController@getColumn');
             Route::resource('estudiante', 'EstudianteController');
             Route::resource('tipo_riesgo', 'TipoRiesgoController');
             Route::resource('estrategia', 'EstrategiaController');
-            Route::get('estrategia_by_riesgo/{id}', 'EstrategiaController@estrategiaByRiesgoId');
+            Route::post('estrategia_by_riesgo', 'EstrategiaController@estrategiaByRiesgoId');
             Route::resource('accion', 'AccionController');
             Route::get('accion/acciones_estrategia/{id}', 'AccionController@getByEstrategia');
             Route::resource('tipo_riesgo', 'TipoRiesgoController');

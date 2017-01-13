@@ -87,6 +87,9 @@ servicesModule.factory('riesgoService', ['$http', function ($http) {
 		},
 		deleteRiesgo: function (riesgoId) {
 			return $http.delete(this.apiUrl + 'riesgo/' + riesgoId);
+		},
+		riesgoByArchivo:function (data) {
+			return $http.post(this.apiUrl + 'riesgo_by_archivo/',data);
 		}
 	};
     }]);

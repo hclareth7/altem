@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Routing\Route;
 use App\Models\Estrategia;
-
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 
 class EstrategiaController extends Controller
@@ -68,17 +66,28 @@ class EstrategiaController extends Controller
     public function show($id)
     {
         $estrategia=Estrategia::with('riesgo')->find($id);
-
+        // dd($estrategia);
         return response()->json($estrategia);
     }
 
-    public function estrategiaByRiesgoId($id)
+    public function estrategiaByRiesgoId(Request $request)
     {
+        $id = $request->input('id');
+        $idPersonal = $request->input('idpersonal');
 
-        $estrategia=Estrategia::with('riesgo')->where('riesgo_id',$id)->get();
-       // dd($estrategia);
+        $readyEstrategia = Estrategia::with('riesgo')->whereHas('intervenciones', function ($q) use ($id, $idPersonal) {
+            $q->where('archivo_personal_id', '=', $idPersonal);
+        })->where('riesgo_id', $id)->get();
 
-        return response()->json($estrategia);
+        $estrategias = Estrategia::with('riesgo')->where('riesgo_id', $id)->get();
+        foreach ($estrategias as $key => $value) {
+            foreach ($readyEstrategia as $key2 => $value2) {
+                if ($value->id === $value2->id) {
+                    $value->estado = 1;
+                }
+            }
+        }
+        return response()->json($estrategias);
     }
 
     /**

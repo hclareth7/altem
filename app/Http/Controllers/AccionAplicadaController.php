@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Routing\Route;
 use App\Models\AccionAplicada;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class AccionAplicadaController extends Controller
 {
@@ -67,7 +65,24 @@ class AccionAplicadaController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->accionAplicada);
+
+
+        return response()->json($id);
+    }
+
+
+    public function getAccionAplicada(Request $request)
+    {
+
+
+        $id=$request->input('intervencionId');
+        $intervencionId=$request->input('accionId');
+        $accionAplicada = AccionAplicada::with('accion')
+            ->whereHas('accion', function ($q) use ($id) {
+                $q->where('id', '=', $id);
+            })->where('intervenciones_id', $intervencionId)->get();
+
+        return response()->json($accionAplicada);
     }
 
     /**

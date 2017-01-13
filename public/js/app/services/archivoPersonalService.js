@@ -18,8 +18,8 @@ servicesModule.factory('archivoPersonalService', ['$http', function ($http) {
 
 
         },
-        deleteEstrategia: function (estrategiaId) {
-            return $http.delete(this.apiUrl + 'estrategia/' + estrategiaId);
+        deleteArchivo: function (data) {
+            return $http.post(this.apiUrl + 'eliminar_archivo',data);
         }
 
     };

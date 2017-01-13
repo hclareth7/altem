@@ -12,11 +12,11 @@ class Intervencion extends Model
 
 	public $timestamps=false;
 
-	protected $fillable=['estado','estrategias_id','fecha_inicio','archivo_personal_id'];
+    protected $fillable = ['estado', 'estrategias_id', 'fecha_inicio', 'archivo_personal_id', 'usuarios_codigo'];
 
 	public function estrategias()
     {
-        return $this->belongsTo('App\Models\Estrategia', 'id');
+        return $this->belongsTo('App\Models\Estrategia', 'estrategias_id', 'id');
     }
 
     public function archivos_Personal()
@@ -33,7 +33,7 @@ class Intervencion extends Model
 
     public function acciones_aplicadas()
     {
-        return $this->hasMany('App\Models\AccionAplicada', 'id');
+        return $this->hasMany('App\Models\AccionAplicada', 'intervenciones_id', 'id');
     }
 
 }

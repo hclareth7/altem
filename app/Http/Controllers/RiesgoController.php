@@ -71,6 +71,26 @@ class RiesgoController extends Controller
         return response()->json($riesgo);
     }
 
+    public function riesgo_by_archivo(Request $request)
+    {
+        $codigo_estudiante = $request->input('codigo_estudiante');
+
+
+        $readyRiesgos = Riesgo::with('tiporiesgo')->whereHas('archivos_Personales', function ($q) use ($codigo_estudiante) {
+            $q->where('estudiantes_altem_codigo', '=', $codigo_estudiante);
+        })->get();
+
+        $riesgos = Riesgo::with('tiporiesgo')->get();
+        foreach ($riesgos as $key => $value) {
+            foreach ($readyRiesgos as $key2 => $value2) {
+                if ($value->id === $value2->id) {
+                    $value->estado = 1;
+                }
+            }
+        }
+        return response()->json($riesgos);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -239,6 +239,20 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			}
 		});
 
+		modalStateProvider.state('main.personal.accion', {
+			url: '/accion/config/:intervencionId/:accionId',
+			templateUrl: 'config-accion.html',
+			controller: 'accionConfigController',
+			windowTemplateUrl:'windows2.html',
+			size:'sm',
+
+			data: {
+				permissions: {
+					only: ['ADMIN']
+				}
+			}
+		});
+
 
 		$stateProvider.state('main.reporte.grafica', {
 			url: '/grafica',
@@ -319,6 +333,10 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			}
 		}
 	});
+
+
+
+
 }]);
 
 satApp.run(['$confirmModalDefaults', 'PermissionStore', 'RoleStore', '$rootScope', 'jwtHelper', 'loginService',

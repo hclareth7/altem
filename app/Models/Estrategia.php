@@ -12,13 +12,18 @@ class Estrategia extends Model {
 	//el nombre de la llave foranea es riesgo_id
 	public function riesgo()
     {
-        return $this->belongsTo('App\Models\Riesgo','id');
+        return $this->belongsTo('App\Models\Riesgo','riesgo_id','id');
     }
 
     public function acciones()
     {
-        return $this->hasMany('App\Models\Accion','id');
+        return $this->hasMany('App\Models\Accion','estrategias_id','id');
     }
 
+
+    public function intervenciones()
+    {
+        return $this->hasMany('App\Models\Intervencion','estrategias_id', 'id');
+    }
 
 }

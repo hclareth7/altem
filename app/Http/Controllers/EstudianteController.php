@@ -78,7 +78,9 @@ class EstudianteController extends Controller
 	public function find(Route $route)
 	{
 		$this->estudiante= $this->db_sirius->table('estudiantes_view')->where('id',$route->getParameter('estudiante'))->first();
-		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
+		$users = DB::table('users')->skip(10)->take(5)->get();
+
+        //Obtener elementos desde hasta (skip:desde,take:hasta)
 	}
 
     public function ejecutarFiltro($id)
@@ -98,6 +100,7 @@ class EstudianteController extends Controller
 
     public function index()
     {
+
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         $estudiantes = $this->db_sirius->select($this->setRestric());
        // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));

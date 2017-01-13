@@ -97,8 +97,20 @@ class IntervencionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function deleteIntervencion(Request $request){
+        $idEstrategia=$request->input('idestrategia');
+        $idArchivo=$request->input('idarchivo');
+        $intervencion=Intervencion::where('estrategias_id',$idEstrategia)
+            ->where('archivo_personal_id',$idArchivo)->first();
+        //dd($intervencion);
+        $intervencion->delete();
+
+        return response()->json(["mensaje"=>"Eliminacion exitosa"]);
+    }
+
     public function destroy($id)
     {
+
          $this->intervencion->delete();
     }
 }

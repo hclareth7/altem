@@ -8,8 +8,8 @@ servicesModule.factory('estrategiaService', ['$http', function ($http) {
 		getEstrategiaById: function (estrategiaId) {
 			return $http.get(this.apiUrl + 'estrategia/' + estrategiaId);
 
-		},getEstrategiaByRiesgoId: function (riesgoId) {
-			return $http.get(this.apiUrl + 'estrategia_by_riesgo/' + riesgoId);
+		},getEstrategiaByRiesgoId: function (data) {
+			return $http.post(this.apiUrl + 'estrategia_by_riesgo/',data);
 		},
 		createEstrategia: function (estrategia) {
 			return $http.post(this.apiUrl + 'estrategia/', estrategia);

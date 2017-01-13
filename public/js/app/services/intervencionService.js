@@ -11,12 +11,9 @@ servicesModule.factory('intervencionesService', ['$http', function ($http) {
         createIntervencion: function (intervencion) {
             return $http.post(this.apiUrl + 'intervencion/', intervencion);
         },
-        updateEstrategia: function (id, estrategia) {
-            console.log(estrategia);
-            return $http.put(this.apiUrl + 'estrategia/' + id, estrategia);
-        },
-        deleteEstrategia: function (estrategiaId) {
-            return $http.delete(this.apiUrl + 'estrategia/' + estrategiaId);
+       
+        deleteIntervencion: function (data) {
+            return $http.post(this.apiUrl + 'eliminar_intervencion' , data);
         }
 
     };

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\AccionAplicada;
 use App\Models\ArchivoPersonal;
 use App\Models\EstudianteAltem;
 use App\Models\Filtro;
@@ -56,7 +57,7 @@ class ArchivoPersonalController extends Controller
 
     public function getRiesgosPersonalByEstudiantes($codigo){
 
-        $riegosPersonal = ArchivoPersonal::with(['riesgo', 'intervenciones.estrategias'])
+        $riegosPersonal = ArchivoPersonal::with(['riesgo', 'intervenciones.estrategias.acciones'])
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();
 
@@ -77,6 +78,8 @@ class ArchivoPersonalController extends Controller
 
 
             $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
+
+
             //dd($riegosPersonal);
             //dd($riegosPersonal[0]->intervenciones);
 
@@ -117,6 +120,34 @@ class ArchivoPersonalController extends Controller
                         $riegosPersonal->add($riesgos[$key1]);
                     }
             }
+
+
+        $accionesAplicadas = AccionAplicada::with('accion')
+            ->get();
+        foreach ($riegosPersonal as $key1 => $value1) {
+
+            foreach ($value1->intervenciones as $key2 => $value2) {
+                foreach ($accionesAplicadas as $key3 => $value3) {
+                    if ($value2->id === $value3->intervenciones_id) {
+                        //  dd($value2->estrategias);
+                        foreach ($value2->estrategias->acciones as $key4 => $value4) {
+
+                                    if($value4->id===$value3->accion->id){
+                                        $value2->estrategias->acciones[$key4]->estado=$value3->estado;
+                                    }
+
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+        }
+
 
 
         return response()->json($riegosPersonal);
@@ -202,6 +233,27 @@ class ArchivoPersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function deleteArchivo(Request $request)
+    {
+        try {
+
+            $idRiesgo = $request->input('idriesgo');
+            $idEstudiante = $request->input('codigo_estudiante');
+            $archivo = ArchivoPersonal::where('estudiantes_altem_codigo', $idEstudiante)
+                ->where('riesgos_id', $idRiesgo)->first();
+            //dd($intervencion);
+            $archivo->delete();
+
+            return response()->json(["mensaje" => "Eliminacion exitosa"]);
+
+        } catch (\PDOException $ex) {
+
+            abort(500, 'dsfgasdf');
+
+        }
+    }
+
     public function destroy($id)
     {
          $this->archivoPersonal->delete();

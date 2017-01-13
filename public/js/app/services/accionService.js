@@ -25,6 +25,13 @@ servicesModule.factory('accionService', ['$http', function ($http) {
         },
         deleteAccion: function (accionId) {
             return $http.delete(this.apiUrl + 'accion/' + accionId);
+        },
+        aplicarAccion: function (accion) {
+            return $http.post(this.apiUrl + 'accion_aplicada/', accion);
+        },
+        getAccionAplicada: function (data) {
+            return $http.post(this.apiUrl + 'get_accion_aplicada/', data);
+
         }
 
     };
