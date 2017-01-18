@@ -75,8 +75,7 @@ class LdapServerConnection
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
         }
-        if (!$con = ldap_bind($conn, "uid=t00020904"  . ',' . $this->rdn,'77777a')) {
-
+        if (!$con = ldap_bind($conn, "uid=readonly"  . ',' . $this->rdn,'read_only_utbvirtual')) {
             dd('Could not bind to AD: ' . ldap_error($conn), 401);
             return false;
         } else {
