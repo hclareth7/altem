@@ -17,6 +17,7 @@ controllerModule
 				$rootScope.titulo = "NO";
 			};
 
+
 			$scope.remove = function (id) {
 				$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
 					riesgoService.deleteRiesgo(id).then(function (response) {

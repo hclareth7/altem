@@ -218,7 +218,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		modalStateProvider.state('main.personal.riesgo', {
 			url: '/riesgo/crear',
 			templateUrl: 'riesgo-crear.html',
-			controller: 'riesgoCrearController',
+			controller: 'archivoPersonalCrearController',
 			size: 'lg',
 			data: {
 				permissions: {

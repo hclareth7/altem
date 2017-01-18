@@ -147,7 +147,7 @@ controllerModule
 				};
 	}])
 
-	.controller('riesgoCrearController',
+	.controller('archivoPersonalCrearController',
 		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'riesgoService', '$uibModalInstance', '$confirm', 'accionService',
 			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, riesgoService, $uibModalInstance, $confirm, accionService) {
 				$rootScope.getAllRiesgos = function () {
