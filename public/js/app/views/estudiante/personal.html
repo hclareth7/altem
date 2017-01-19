@@ -16,7 +16,7 @@
                         <address>
                             <strong>Informacion de contacto</strong>
                             <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.DIRECCION1}}
-                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:#"> {{estudiante.CORREO}}</a>
+                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:{{estudiante.EMAIL}}"> {{estudiante.EMAIL}}</a>
                             <br>
                             <abbr title="Telefono">Telefono: </abbr> {{estudiante.TELEFONO2}}
                         </address>
@@ -63,38 +63,42 @@
                             </button>
                             <div class="tab-content animation-fade col-md-12">
                                 <br>
-                               <!-- <div class="alert alert-info alert-dismissible" role="alert" ng-if="!riesgo">
-                                    <i class="icon  wb-info-circle" aria-hidden="true"></i>
-                                    No hay riesgos agregados
-                                </div>-->
-                                <div class="media is-loading" ng-repeat="riesgo in riesgos">
+
+                                <div class="media is-loading" ng-repeat="archivo in archivoPersonal">
+                                    <div class="alert alert-info alert-dismissible" role="alert" ng-if="!archivo">
+                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
+                                        No hay riesgos agregados
+                                    </div>
                                     <div class="media-left">
 
-                                        <img ng-show="riesgo.usuarios_codigo" src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{riesgo.usuarios_codigo}}" alt="" class="avatar"><i></i></a>
+                                        <img ng-if="archivo.usuarios_codigo"
+                                             src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{archivo.usuarios_codigo}}"
+                                             alt="" class="avatar"><i></i></a>
                                     </div>
                                     <div class="media-body">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h4 class="media-heading">
-                                                    Riesgo: {{riesgo.nombre}}
-                                                    <small   ng-show="riesgo.usuarios_codigo">Agregado por: {{riesgo.usuarios_codigo}}
+                                                    Riesgo: {{archivo.riesgo.nombre}}
+                                                    <small ng-if="archivo.usuarios_codigo">Agregado por:
+                                                        {{archivo.usuarios_codigo}}
                                                     </small>
                                                 </h4>
-                                                <p class="name" ng-show="riesgo.fecha_reporte">Fecha de reporte:
-                                                    {{riesgo.fecha_reporte}}</p>
-                                                <p class="name">Tipo de riesgo: {{riesgo.tiporiesgo.nombre}}</p>
+                                                <p class="name" ng-if="archivo.fecha_reporte">Fecha de reporte:
+                                                    {{archivo.fecha_reporte}}</p>
+                                                <p class="name">Tipo de riesgo: {{archivo.riesgo.tiporiesgo.nombre}}</p>
 
                                                 <div class="alert alert-alt alert-danger alert-dismissible "
                                                      role="alert">
                                                     <div class="row">
                                                         <div class="col-md-11">
-                                                            <span>Descripcion: </span>{{riesgo.descripcion}}
+                                                            <span>Descripcion: </span>{{archivo.riesgo.descripcion}}
 
                                                         </div>
                                                         <div class=" col-md-1">
                                                             <button type="button"
-                                                                    ng-show="!riesgo.usuarios_codigo"
-                                                                    ng-click="agregarRiesgo(riesgo.id,usuario.codigo,estudiante.ID,estudiante.PROGRAMA)"
+                                                                    ng-show="!archivo.usuarios_codigo"
+                                                                    ng-click="agregarRiesgo(archivo.riesgo.id,usuario.codigo,estudiante.ID,estudiante.PROGRAMA)"
                                                                     class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-check" aria-hidden="true"></i>
 
@@ -114,10 +118,10 @@
                                         <div class="pull-left btn-show-estrategias">
 
                                             <button type="button"
-                                                    ng-click="riesgo.isShowEstrategias = !riesgo.isShowEstrategias"
+                                                    ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
                                                     class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
-                                                   ng-class="{'wb-chevron-down': riesgo.isShowEstrategias == false || !riesgo.isShowEstrategias , 'wb-chevron-up': riesgo.isShowEstrategias == true }"
+                                                   ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
                                                     ></i>
 
                                             </button>
@@ -125,10 +129,11 @@
                                     </div>
                                     <hr>
 
-                                    <div uib-collapse="riesgo.isShowEstrategias" >
+                                    <div uib-collapse="archivo.isShowEstrategias">
                                         <div class="tab-pane animation-fade active margin-top-35" id="all_contacts" role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
-                                            <button type="button" ui-sref="main.personal.estrategia({riesgoId:riesgo.riesgo.id})"
+                                            <button type="button"
+                                                    ui-sref="main.personal.estrategia({riesgoId:archivo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
                                                 Estragias
@@ -136,10 +141,15 @@
                                             <br>
 
                                             <ul class="list-group" >
-
-                                                <li ng-if="riesgo.estrategias_aplicadas[0]!=0"
-                                                    ng-repeat="estrategia in riesgo.intervenciones"
+                                                <div class="alert alert-info alert-dismissible" role="alert"
+                                                     ng-if="archivo.intervenciones.length < 1">
+                                                    <i class="icon  wb-info-circle" aria-hidden="true"></i>
+                                                    No hay estrategias aplicadas
+                                                </div>
+                                                <li ng-if="archivo.intervenciones.length"
+                                                    ng-repeat="estrategia in archivo.intervenciones"
                                                     class="list-group-item">
+
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
@@ -261,7 +271,9 @@
                                         </div>
 
                                     </div>
+                                    <hr>
                                 </div>
+
                             </div>
 
 
@@ -520,7 +532,7 @@
 
                                     <label for="radio-yes"></label>
 
-                                    <input type="radio" ng-model="value" value="En Progreso" class="neutral" checked
+                                    <input type="radio" ng-model="value" value="En progreso" class="neutral" checked
                                            id="radio-neutral"/>
                                     <label for="radio-neutral"></label>
 

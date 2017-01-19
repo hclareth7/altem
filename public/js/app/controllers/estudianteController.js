@@ -65,10 +65,10 @@ controllerModule
 
 
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
-					$scope.riesgos = response.data;
+					$scope.archivoPersonal = response.data;
 					$rootScope.idArchivo = response.data[0].id;
 					$rootScope.codigoEstudiante = response.data[0].estudiantes_altem_codigo;
-					console.log($rootScope.idArchivo);
+					console.log(response.data);
 				});
 			};
 			$rootScope.getRiesgosByEstudiantes();
@@ -155,7 +155,7 @@ controllerModule
 						codigo_estudiante: $rootScope.codigoEstudiante
 					};
 					riesgoService.riesgoByArchivo(data).then(function (response) {
-
+						console.log(response.data);
 						$scope.riesgos = response.data;
 					});
 

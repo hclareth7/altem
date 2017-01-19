@@ -57,69 +57,52 @@ class ArchivoPersonalController extends Controller
 
     public function getRiesgosPersonalByEstudiantes($codigo){
 
-        $riegosPersonal = ArchivoPersonal::with(['riesgo', 'intervenciones.estrategias.acciones'])
+        $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones'])
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();
 
-    /*    $intervencion=ArchivoPersonal::with(['riesgo', 'intervencion.acciones_aplicadas.accion'])
-            ->where('estudiantes_altem_codigo',$codigo)
-            ->get();*/
+        /*   if ($riegosPersonal->count() > 0) {
+               $estrategias_aplicadas[]= 0;
+               foreach ($riegosPersonal[0]->intervenciones as $key => $value) {
+                   $estrategias_aplicadas[$key]=$value->estrategias->with('acciones')
+                       ->where('id', $value->estrategias->id)
+                       ->get()[0];
+                   $estrategias_aplicadas[$key]->usuario = $value->usuarios_codigo;
+               }
+               $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
+           }*/
 
-        if ($riegosPersonal->count() > 0) {
-            $estrategias_aplicadas[]= 0;
-            foreach ($riegosPersonal[0]->intervenciones as $key => $value) {
-                $estrategias_aplicadas[$key]=$value->estrategias->with('acciones')
-                    ->where('id', $value->estrategias->id)
-                    ->get()[0];
-
-                $estrategias_aplicadas[$key]->usuario = $value->usuarios_codigo;
-
-            }
-
-
-            $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
-
-
-            //dd($riegosPersonal);
-            //dd($riegosPersonal[0]->intervenciones);
-
-        }
-        
-        $riesgos = [];
+        $list_archivos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
+
+        //return response()->json($riegosPersonal);
         foreach ($filtros as $key => $value) {
             $sql = "SELECT * FROM estudiantes_view WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             $estudiantes = $this->db_sirius->select($sql);
 
             if (!empty($estudiantes)) {
-                $riesgo = new Riesgo();
-                $buenRiesgo = $riesgo
-                    ->with('tiporiesgo')
+                $new_archivo = new ArchivoPersonal();
+                $new_archivo->id = 0;
+                $new_archivo->estado = -1;
+                $buenRiesgo = Riesgo::with('tiporiesgo')
                     ->find($value->riesgos_id);
-                $riesgos[$key] = $buenRiesgo;
+                $new_archivo->riesgo = $buenRiesgo;
+
+                if (!$riegosPersonal->contains(function ($key, $value) use ($new_archivo) {
+                    return $value->riesgos_id == $new_archivo->riesgo->id;
+                })
+                ) {
+                    $riegosPersonal->push($new_archivo);
+                }
+
+
             }
         }
 
 
-        foreach ($riegosPersonal as $key => $value) {
-            $riegosPersonal[$key]->descripcion=$value->riesgo->descripcion;
-            $riegosPersonal[$key]->nombre=$value->riesgo->nombre;
-            $riegosPersonal[$key]->tiporiesgo= $riegosPersonal[$key]
-                ->riesgo
-                ->with('tiporiesgo')
-                ->where('id', $value->riesgo->id)
-                ->get()
-                ->map(function ($value){
-                return $value->tiporiesgo;
-            })->get(0);
 
-        }
-        foreach ($riesgos as $key1 => $value1) {
-                    if(!$riegosPersonal->contains('riesgos_id',$value1->id)){
-                        $riegosPersonal->add($riesgos[$key1]);
-                    }
-            }
+
 
 
         $accionesAplicadas = AccionAplicada::with('accion')
