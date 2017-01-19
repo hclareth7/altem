@@ -208,7 +208,7 @@ controllerModule
 
 
 			}])
-	.controller('estrategiaCrearController',
+	.controller('intervencionCrearController',
 		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'estrategiaService', 'intervencionesService', '$confirm', '$uibModalInstance',
 			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, estrategiaService, intervencionesService, $confirm, $uibModalInstance) {
 
