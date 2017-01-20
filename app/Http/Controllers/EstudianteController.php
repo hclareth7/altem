@@ -102,7 +102,7 @@ class EstudianteController extends Controller
     {
 
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
-        $estudiantes = $this->db_sirius->select($this->setRestric());
+        $estudiantes = $this->db_sirius->select($this->setRestric()." limit 0,10");
        // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
         return response()->json($estudiantes);
     }
