@@ -82,6 +82,21 @@ class EstudianteController extends Controller
         //Obtener elementos desde hasta (skip:desde,take:hasta)
 	}
 
+    public function buscar(Request $request){
+        $de = $request->input('de');
+        $a = $request->input('a');
+        $string=$request->input('string');
+        $sql="SELECT * FROM estudiantes_view where NOMBRES like '%".$string."%' or ID like  '%".$string."%'  or APELLIDOS like  '%".$string."%' or PROGRAMA like  '%".$string."%'  " ;
+        $estudiantes = $this->db_sirius->select($sql);
+        $sql2="SELECT count(*) as total FROM sirius.estudiantes_view where NOMBRES like '%".$string."%' or ID like  '%".$string."%'  or APELLIDOS like  '%".$string."%' or PROGRAMA like  '%".$string."%' ";
+        $total=$this->db_sirius->select($sql2);
+        if(count($estudiantes)>0){
+            $estudiantes[0]->total=$total;
+        }
+
+        return response()->json($estudiantes);
+    }
+
     public function ejecutarFiltro($id)
     {
         $filtros = $this->filtro->ejecutar($id);
@@ -99,7 +114,6 @@ class EstudianteController extends Controller
 
     public function index()
     {
-
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         $estudiantes = $this->db_sirius->select($this->setRestric()." limit 0,10");
        // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
@@ -110,8 +124,11 @@ class EstudianteController extends Controller
     {
         $de = $request->input('de');
         $a = $request->input('a');
+        $sql="SELECT count(*) as total FROM sirius.estudiantes_view";
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         $estudiantes = $this->db_sirius->select($this->setRestric() . " limit  " . $de . "," . $a);
+        $total=$this->db_sirius->select($sql);
+        $estudiantes[0]->total=$total;
         // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
         return response()->json($estudiantes);
     }

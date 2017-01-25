@@ -11,6 +11,10 @@ servicesModule.factory('estudianteService', ['$http', function ($http) {
 			//return $http.get(this.apiUrl + 'estudiante/');
 			return $http.post(this.apiUrl + 'estudiantes_all',data);
 		},
+		getEstudiantesSearch: function (data) {
+			//return $http.get(this.apiUrl + 'estudiante/');
+			return $http.post(this.apiUrl + 'estudiantes_buscar/',data);
+		},
 		getEstudianteById: function (estudianteId) {
 			
 			return $http.get(this.apiUrl + 'estudiante/' + estudianteId);

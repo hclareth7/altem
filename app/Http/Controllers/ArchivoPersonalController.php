@@ -31,7 +31,7 @@ class ArchivoPersonalController extends Controller
 
     public function index()
     {
-        $archivoPersonal = TipoRiesgo::all();
+        $archivoPersonal = ArchivoPersonal::all();
 		return response()->json($archivoPersonal);
     }
 
@@ -90,7 +90,8 @@ class ArchivoPersonalController extends Controller
         foreach ($riegosPersonal as $key1 => $value1) {
             foreach ($value1->intervenciones as $key2 => $value2) {
                 foreach ($accionesAplicadas as $key3 => $value3) {
-                    if ($value2->id === $value3->intervenciones_id) {
+                    if ($riegosPersonal[$key1]->intervenciones->id === $value3->intervenciones_id  ) {
+
                         foreach ($value2->estrategias->acciones as $key4 => $value4) {
                             if ($value4->id === $value3->accion->id) {
                                 $value2->estrategias->acciones[$key4]->estado = $value3->estado;

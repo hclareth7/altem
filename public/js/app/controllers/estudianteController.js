@@ -8,7 +8,7 @@ controllerModule
 
 			$rootScope.estudiantes = [];
 
-			$scope.totalItems = 1648;
+
 			$scope.maxSize = 7;
 			$scope.limit = 10;
 			$scope.n_datos_p_pagina = $scope.limit;
@@ -21,7 +21,11 @@ controllerModule
 
 				estudianteService.getAllEstudiantes(data).then(function (response) {
 					$rootScope.estudiantes = response.data;
-
+					if ($rootScope.estudiantes.length>0) {
+						$scope.totalItems = $rootScope.estudiantes[0].total[0].total;
+					} else {
+						$scope.totalItems = 0;
+					}
 				});
 			};
 			$scope.getColumsEstudiantes = function(obj){
@@ -45,10 +49,33 @@ controllerModule
 			};
 			$rootScope.barra();
 
-
 			$scope.pageChanged = function (currentPage) {
-				console.log(currentPage);
 				$scope.getAllEstudiantes(currentPage);
+			};
+			$scope.buscarEstudiante = function (string) {
+				if (string == "") {
+					$scope.getAllEstudiantes(1);
+					$scope.desabilitar_pag = false;
+				} else {
+					var data = {
+						de: ($scope.currentPage - 1) * $scope.limit,
+						a: $scope.limit,
+						string: string
+					}
+					estudianteService.getEstudiantesSearch(data).then(function (response) {
+						$rootScope.estudiantes = response.data;
+
+						if ($rootScope.estudiantes.length>0) {
+							$scope.totalItems = $rootScope.estudiantes[0].total[0].total;
+						} else {
+							$scope.totalItems = 0;
+						}
+						$scope.desabilitar_pag = true;
+						console.log($scope.totalItems);
+					}, function (error) {
+						console.log(error);
+					});
+				}
 			};
 
 
@@ -67,6 +94,7 @@ controllerModule
 
 			
 			$scope.getEstudiante = function (estudianteId) {
+				$rootScope.estudiante={};
 			estudianteService.getEstudianteById(estudianteId).then(function (response) {
 				$rootScope.estudiante = response.data;
 			});
@@ -75,14 +103,15 @@ controllerModule
 
 		$scope.getEstudiante($stateParams.estudianteId);
 			$rootScope.getRiesgosByEstudiantes = function () {
-
+				$scope.archivoPersonal=[];
 
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
+
 					$scope.archivoPersonal = response.data;
-					console.log(response.data);
+					//console.log(response.data);
 					//$rootScope.idArchivo = response.data[0].id;
-					$rootScope.codigoEstudiante = response.data[0].estudiantes_altem_codigo;
-					console.log(response.data);
+					$rootScope.codigoEstudiante = parseInt($stateParams.estudianteId);
+					//console.log($stateParams.estudianteId);
 				});
 			};
 			$rootScope.getRiesgosByEstudiantes();
@@ -165,10 +194,11 @@ controllerModule
 			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, riesgoService, $uibModalInstance, $confirm, accionService) {
 				$rootScope.getAllRiesgos = function () {
 					var data = {
-						codigo_estudiante: $rootScope.codigoEstudiante
+						codigo_estudiante: $stateParams.estudianteId
 					};
+
 					riesgoService.riesgoByArchivo(data).then(function (response) {
-						console.log(response.data);
+						//console.log(response.data);
 						$scope.riesgos = response.data;
 					});
 
@@ -191,14 +221,14 @@ controllerModule
 					}, function (error) {
 						console.log(error);
 					});
-					console.log($scope.archivo);
+					//console.log($scope.archivo);
 				};
 
 
 				$scope.eliminarArchivo = function (idRiesgo) {
 					var data = {
 						idriesgo: idRiesgo,
-						codigo_estudiante: $rootScope.codigoEstudiante
+						codigo_estudiante: $stateParams.estudianteId
 					};
 					$uibModalInstance.dismiss();
 					$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
@@ -295,7 +325,7 @@ controllerModule
 					};
 					accionService.getAccionAplicada(data).then(function (response) {
 						$scope.configuracion = response.data;
-						console.log($scope.configuracion);
+						//console.log($scope.configuracion);
 					}, function (error) {
 						console.log(error);
 					});
@@ -320,7 +350,7 @@ controllerModule
 
 				$scope.cambiarEstado = function (accionAplicada) {
 
-					console.log(accionAplicada);
+				//	console.log(accionAplicada);
 					accionService.updateAccionAplicada(accionAplicada.id, accionAplicada).then(function (response) {
 						$rootScope.getRiesgosByEstudiantes();
 						toastr.success('Exito', 'Accion Actualizada');

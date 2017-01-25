@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="pull-right search">
-                            <input class="form-control input-outline" type="text" placeholder="Buscar"
-                                   ng-model="buscar">
+                            <input class="form-control input-outline" type="text" placeholder="Buscar (CODIGO)"
+                                   ng-model="buscar" ng-change="buscarEstudiante(buscar)">
                         </div>
                     </div>
                     <div class="fixed-table-container" style="padding-bottom: 0px;">
@@ -138,6 +138,8 @@
                                 force-ellipses="true"
                                 rotate="true"
                                 max-size="maxSize"
+                                ng-disabled="desabilitar_pag"
+                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
                                 items-per-page="n_datos_p_pagina"
                             ></ul>
 

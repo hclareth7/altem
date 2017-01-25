@@ -7,7 +7,7 @@
                     <div class="widget-header-content">
                         <a class="avatar avatar-lg" href="javascript:void(0)">
                             <!--img src="/img/avatar2.png" alt="..."-->
-                            <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.ID}}"
+                            <img ng-src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{estudiante.ID}}"
                                  alt="...">
                             <!--img src="http://savio.utbvirtual.edu.co/user/external_user_pic.php/{{estudiante.codigo}}/f1" alt="..."-->
                         </a>
@@ -64,15 +64,17 @@
                             <div class="tab-content animation-fade col-md-12">
                                 <br>
 
+                                <div class="alert alert-info alert-dismissible" role="alert" ng-if="archivoPersonal.length == 0">
+                                    <i class="icon  wb-info-circle" aria-hidden="true"></i>
+                                    No hay riesgos agregados para este estudiante
+                                </div>
                                 <div class="media is-loading" ng-repeat="archivo in archivoPersonal">
-                                    <div class="alert alert-info alert-dismissible" role="alert" ng-if="!archivo">
-                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
-                                        No hay riesgos agregados
-                                    </div>
+
+
                                     <div class="media-left">
 
                                         <img ng-if="archivo.usuarios_codigo"
-                                             src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{archivo.usuarios_codigo}}"
+                                             ng-src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{archivo.usuarios_codigo}}"
                                              alt="" class="avatar"><i></i></a>
                                     </div>
                                     <div class="media-body">
@@ -591,7 +593,7 @@
                                 <div class="media-left">
                                     <a class="avatar avatar-xs mi-avatar-comment"
                                        href="javascript:void(0)">
-                                        <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{obsercacion.usuarios_codigo}}"
+                                        <img ng-src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{obsercacion.usuarios_codigo}}"
                                              alt="..." style="width:40px">
                                     </a>
                                 </div>
