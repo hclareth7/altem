@@ -133,7 +133,7 @@
                                         <div class="tab-pane animation-fade active margin-top-35" id="all_contacts" role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
                                             <button type="button"
-                                                    ui-sref="main.personal.estrategia({riesgoId:archivo.riesgo.id})"
+                                                    ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
                                                 Estragias
@@ -510,9 +510,11 @@
          outside-if-not="btn-show,mi-panel">
         <div id="personalCompletedWidget" class="widget widget-shadow padding-bottom-20">
             <div class="widget-header ">
-                <a id="addNewItemBtn" href="javascript:void(0)"
-                   class="add-item-toggle pull-right" ng-click="closePanel()">
-                    <i class="icon wb-close" aria-hidden="true" style="color:#fff;"></i>
+                <a href="javascript:void(0)"
+                   ng-click="eliminarAccionAplicada(configuracion.id)"
+                   class="add-item-toggle pull-right margin-right-40  bg-green-700 padding-top-20 padding-5 badge-radius"
+                   ng-click="closePanel()">
+                    <i class="icon wb-trash font-size-26" aria-hidden="true" style="color:#fff;"></i>
                 </a>
                 <div class="overlay-background ">
                     <div class="row" style="margin-top: 30px;">
@@ -527,16 +529,21 @@
                                     <p class="neutral-icon"><i class="ion-record"></i>
                                     </p>
                                     <p class="wrong"><i class="ion-close-round"></i></p>
-                                    <input type="radio" ng-model="value" value="Finalizado" class="yes"
+                                    <input type="radio" ng-model="configuracion.estado" value="1" class="yes"
+                                           ng-change="cambiarEstado(configuracion)"
                                            id="radio-yes"/>
 
                                     <label for="radio-yes"></label>
 
-                                    <input type="radio" ng-model="value" value="En progreso" class="neutral" checked
+                                    <input type="radio" ng-model="configuracion.estado" value="0" class="neutral"
+                                           ng-change="cambiarEstado(configuracion)"
+                                           checked
                                            id="radio-neutral"/>
                                     <label for="radio-neutral"></label>
 
-                                    <input type="radio" ng-model="value" value="Interrumpido" class="no" id="radio-no"/>
+                                    <input type="radio" ng-model="configuracion.estado" value="2" class="no"
+                                           ng-change="cambiarEstado(configuracion)"
+                                           id="radio-no"/>
                                     <label for="radio-no"></label>
                                 </div>
 
@@ -544,7 +551,9 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <h3 class="white">{{value}}</h3>
+                            <h3 class="white" ng-if="configuracion.estado==0">En progreso</h3>
+                            <h3 class="white" ng-if="configuracion.estado==1">Terminado</h3>
+                            <h3 class="white" ng-if="configuracion.estado==2">Interrumpido</h3>
                         </div>
 
 
@@ -556,7 +565,6 @@
                 <div class="row">
                     <div class="col-md-2 pull-left">
                         <a class="btn btn-icon btn-success btn-outline btn-round">
-
                             <i class="icon wb-upload" aria-hidden="true"></i></a>
                     </div>
 
@@ -574,22 +582,27 @@
                 <div class="row ">
 
                     <div class="col-md-12">
+                        <h4 class="media-heading ng-binding">
+                            Observaciones
+                        </h4>
+                        <br>
                         <div class="mi-scroll">
-                            <div class="comment media" ng-repeat="comentario in comentarios">
+                            <div class="comment media" ng-repeat="obsercacion in configuracion.observaciones">
                                 <div class="media-left">
                                     <a class="avatar avatar-xs mi-avatar-comment"
                                        href="javascript:void(0)">
-                                        <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{usuario.codigo}}"
+                                        <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{obsercacion.usuarios_codigo}}"
                                              alt="..." style="width:40px">
                                     </a>
                                 </div>
                                 <div class="comment-body media-body">
-                                    <a class="comment-author" href="javascript:void(0)">{{comentario.autor}}</a>
+                                    <a class="comment-author"
+                                       href="javascript:void(0)">{{obsercacion.usuarios_codigo}}</a>
                                     <div class="comment-meta">
-                                        <span class="date">Publicado el  {{comentario.fecha | date:'yyyy-MM-dd: H:mm'}}</span>
+                                        <span class="date">Publicado el  {{obsercacion.fecha | date:'yyyy-MM-dd: H:mm'}}</span>
                                     </div>
                                     <div class="comment-content">
-                                        <p>{{comentario.contenido}}</p>
+                                        <p>{{obsercacion.contenido}}</p>
                                     </div>
                                     <div class="comment-actions">
                                         <a class="btn btn-sm btn-icon btn-flat btn-default">
@@ -610,13 +623,13 @@
                         <div>
                             <form class="comment-reply">
                                 <div class="form-group">
-                                                            <textarea class="form-control mi-text-comment" rows="5"
-                                                                      placeholder="Comenta aqui..."
-                                                                      ng-model="comentario.text"></textarea>
+                                    <textarea class="form-control mi-text-comment" rows="5"
+                                              placeholder="Agregar observaciones"
+                                              ng-model="observacion.contenido"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary"
-                                            ng-click="agregarConmentatio(comentario)">Comentar
+                                            ng-click="agregarObservacion(observacion.contenido,configuracion.id)">Agregar
                                     </button>
 
                                 </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Filtro;
-use App\Models\Riesgo;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +43,7 @@ class EstudianteController extends Controller
             return $value->name;
         });
         if ($restricRole[0] == "ADMIN") {
-            $this->sql = "Select * from estudiantes_view where id !=' '";
+            $this->sql = "Select *  from estudiantes_view where id !=' '";
             return $this->sql;
         } else if ($restricRole[0] == "CONSE") {
             $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
@@ -104,6 +103,16 @@ class EstudianteController extends Controller
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         $estudiantes = $this->db_sirius->select($this->setRestric()." limit 0,10");
        // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
+        return response()->json($estudiantes);
+    }
+
+    public function getEstudiantesByUser(Request $request)
+    {
+        $de = $request->input('de');
+        $a = $request->input('a');
+        //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
+        $estudiantes = $this->db_sirius->select($this->setRestric() . " limit  " . $de . "," . $a);
+        // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
         return response()->json($estudiantes);
     }
 

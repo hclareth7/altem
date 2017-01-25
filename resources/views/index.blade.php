@@ -104,6 +104,7 @@
 	<script src="/js/app/services/reporteService.js"></script>
 	<script src="/js/app/services/archivoPersonalService.js"></script>
 	<script src="/js/app/services/intervencionService.js"></script>
+	<script src="/js/app/services/observacionService.js"></script>
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>

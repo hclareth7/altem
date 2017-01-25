@@ -28,7 +28,7 @@ class EstrategiaController extends Controller
 
     public function index()
     {
-        $estrategia = Estrategia::with('riesgo')->get();
+        $estrategia = Estrategia::with('riesgos')->get();
 		return response()->json($estrategia);
     }
 
@@ -65,7 +65,7 @@ class EstrategiaController extends Controller
      */
     public function show($id)
     {
-        $estrategia=Estrategia::with('riesgo')->find($id);
+        $estrategia=Estrategia::find($id);
         // dd($estrategia);
         return response()->json($estrategia);
     }
@@ -75,11 +75,16 @@ class EstrategiaController extends Controller
         $id = $request->input('id');
         $idPersonal = $request->input('idpersonal');
 
-        $readyEstrategia = Estrategia::with('riesgo')->whereHas('intervenciones', function ($q) use ($id, $idPersonal) {
+        $readyEstrategia = Estrategia::with('riesgos')->whereHas('intervenciones', function ($q) use ($id, $idPersonal) {
             $q->where('archivo_personal_id', '=', $idPersonal);
-        })->where('riesgo_id', $id)->get();
+        })->whereHas('riesgos', function ($q) use ($id, $idPersonal) {
+            $q->where('riesgos_id', '=', $id);
+        })->get();
 
-        $estrategias = Estrategia::with('riesgo')->where('riesgo_id', $id)->get();
+        //dd($readyEstrategia);
+        $estrategias = Estrategia::with('riesgos')->whereHas('riesgos', function ($q) use ($id, $idPersonal) {
+            $q->where('riesgos_id', '=', $id);
+        })->get();
         foreach ($estrategias as $key => $value) {
             foreach ($readyEstrategia as $key2 => $value2) {
                 if ($value->id === $value2->id) {

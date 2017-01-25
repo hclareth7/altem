@@ -28,16 +28,18 @@ Route::group(['prefix' => 'api'], function () {
 
 
 
+
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
 
 
         Route::group(['middleware' => ['role:ADMIN|CONSE|PSICO']], function () {
-
+            Route::post('estudiantes_all', 'EstudianteController@getEstudiantesByUser');
             Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
 
             Route::resource('intervencion', 'IntervencionController');
+            Route::resource('observacion', 'observacionController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
             Route::post('get_accion_aplicada', 'AccionAplicadaController@getAccionAplicada');
 

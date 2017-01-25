@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Estrategia;
 use App\Models\Riesgo;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class RiesgoController extends Controller
 
     public function index()
     {
-         $riesgo = Riesgo::with('tiporiesgo')->get();
+         $riesgo = Riesgo::with('tiporiesgo','estrategias')->get();
 		return response()->json($riesgo);
     }
     
@@ -55,7 +56,28 @@ class RiesgoController extends Controller
      */
     public function store(Request $request)
     {
-        Riesgo::create($request->all());
+        $nombre = $request->input('nombre');
+        $tipo_riesgos_id = $request->input('tipo_riesgos_id');
+        $descripcion = $request->input('descripcion');
+
+        $estrategias = $request->input('estrategias');
+
+        $riesgo = new Riesgo();
+        $riesgo->nombre = $nombre;
+        $riesgo->tipo_riesgos_id = $tipo_riesgos_id;
+        $riesgo->descripcion = $descripcion;
+        $riesgo->save();
+        //$riesgo->estrategias()->attach($estrategias);
+        //dd($estrategias);
+        foreach ($estrategias as $key => $value) {
+            $estrategia = new Estrategia();
+            //dd($value);
+            $estrategia->id = $value['id'];
+           // dd($estrategia->id);
+            $riesgo->estrategias()->attach($estrategia);
+
+        }
+
 		return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
@@ -67,7 +89,7 @@ class RiesgoController extends Controller
      */
     public function show($id)
     {
-        $riesgo=Riesgo::with('tiporiesgo')->find($id);
+        $riesgo=Riesgo::with('tiporiesgo','estrategias')->find($id);
         return response()->json($riesgo);
     }
 
@@ -91,6 +113,7 @@ class RiesgoController extends Controller
         return response()->json($riesgos);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -111,8 +134,31 @@ class RiesgoController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$this->riesgo->fill($request->all());
+
+
+        $nombre = $request->input('nombre');
+        $tipo_riesgos_id = $request->input('tipo_riesgos_id');
+        $descripcion = $request->input('descripcion');
+
+        $estrategias = $request->input('estrategias');
+
+
+        $this->riesgo->nombre = $nombre;
+        $this->riesgo->tipo_riesgos_id = $tipo_riesgos_id;
+        $this->riesgo->descripcion = $descripcion;
+
+
 		$this->riesgo->save();
+        $estrategi=[];
+        foreach ($estrategias as $key => $value) {
+            $estrategia = new Estrategia();
+            //dd($value);
+            $estrategi[$key] = $value['id'];
+            // dd($estrategia->id);
+
+
+        }
+        $this->riesgo->estrategias()->sync($estrategi);
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
 

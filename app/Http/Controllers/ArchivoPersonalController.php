@@ -60,18 +60,6 @@ class ArchivoPersonalController extends Controller
         $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones'])
             ->where('estudiantes_altem_codigo',$codigo)
             ->get();
-
-        /*   if ($riegosPersonal->count() > 0) {
-               $estrategias_aplicadas[]= 0;
-               foreach ($riegosPersonal[0]->intervenciones as $key => $value) {
-                   $estrategias_aplicadas[$key]=$value->estrategias->with('acciones')
-                       ->where('id', $value->estrategias->id)
-                       ->get()[0];
-                   $estrategias_aplicadas[$key]->usuario = $value->usuarios_codigo;
-               }
-               $riegosPersonal[0]->estrategias_aplicadas = $estrategias_aplicadas;
-           }*/
-
         $list_archivos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
@@ -88,47 +76,29 @@ class ArchivoPersonalController extends Controller
                 $buenRiesgo = Riesgo::with('tiporiesgo')
                     ->find($value->riesgos_id);
                 $new_archivo->riesgo = $buenRiesgo;
-
                 if (!$riegosPersonal->contains(function ($key, $value) use ($new_archivo) {
                     return $value->riesgos_id == $new_archivo->riesgo->id;
                 })
                 ) {
                     $riegosPersonal->push($new_archivo);
                 }
-
-
             }
         }
-
-
-
-
-
 
         $accionesAplicadas = AccionAplicada::with('accion')
             ->get();
         foreach ($riegosPersonal as $key1 => $value1) {
-
             foreach ($value1->intervenciones as $key2 => $value2) {
                 foreach ($accionesAplicadas as $key3 => $value3) {
                     if ($value2->id === $value3->intervenciones_id) {
-                        //  dd($value2->estrategias);
                         foreach ($value2->estrategias->acciones as $key4 => $value4) {
-
-                                    if($value4->id===$value3->accion->id){
-                                        $value2->estrategias->acciones[$key4]->estado=$value3->estado;
-                                    }
-
+                            if ($value4->id === $value3->accion->id) {
+                                $value2->estrategias->acciones[$key4]->estado = $value3->estado;
+                            }
                         }
-
-
                     }
-
                 }
-
             }
-
-
         }
 
 

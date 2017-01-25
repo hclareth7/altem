@@ -7,10 +7,21 @@ controllerModule
 			
 
 			$rootScope.estudiantes = [];
-			$scope.getAllEstudiantes = function () {
-				estudianteService.getAllEstudiantes().then(function (response) {
+
+			$scope.totalItems = 1648;
+			$scope.maxSize = 7;
+			$scope.limit = 10;
+			$scope.n_datos_p_pagina = $scope.limit;
+			$scope.currentPage=1;
+			$scope.getAllEstudiantes = function (currentPage) {
+				var data={
+					de:(currentPage-1)*$scope.limit,
+					a:$scope.limit
+				};
+
+				estudianteService.getAllEstudiantes(data).then(function (response) {
 					$rootScope.estudiantes = response.data;
-					
+
 				});
 			};
 			$scope.getColumsEstudiantes = function(obj){
@@ -28,16 +39,20 @@ controllerModule
 					$rootScope.estudiantes = response.data;
 				});
 			};
-
-
-			$scope.getAllEstudiantes();
-
+			$scope.getAllEstudiantes(1);
 			$rootScope.barra = function () {
 				$rootScope.titulo = "NO";
 			};
 			$rootScope.barra();
 
-	}])
+
+			$scope.pageChanged = function (currentPage) {
+				console.log(currentPage);
+				$scope.getAllEstudiantes(currentPage);
+			};
+
+
+		}])
 
 
 	.controller('estudianteIntervencionController',
@@ -46,8 +61,6 @@ controllerModule
 
 
 		}])
-
-
 	.controller('estudiantePersonalController',
 		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService', 'accionService',
 			function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService, accionService) {
@@ -66,7 +79,8 @@ controllerModule
 
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
 					$scope.archivoPersonal = response.data;
-					$rootScope.idArchivo = response.data[0].id;
+					console.log(response.data);
+					//$rootScope.idArchivo = response.data[0].id;
 					$rootScope.codigoEstudiante = response.data[0].estudiantes_altem_codigo;
 					console.log(response.data);
 				});
@@ -146,7 +160,6 @@ controllerModule
 					});
 				};
 	}])
-
 	.controller('archivoPersonalCrearController',
 		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'riesgoService', '$uibModalInstance', '$confirm', 'accionService',
 			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, riesgoService, $uibModalInstance, $confirm, accionService) {
@@ -225,7 +238,7 @@ controllerModule
 					})
 				};
 				var idRiesgo = parseInt($stateParams.riesgoId);
-				var idPersonal = $rootScope.idArchivo;
+				var idPersonal = parseInt($stateParams.archivoId);
 				var data1 = {
 					id: idRiesgo,
 					idpersonal: idPersonal
@@ -239,7 +252,7 @@ controllerModule
 						fecha_inicio: new Date(),
 						estado: 0,
 						estrategias_id: idEstrategia,
-						archivo_personal_id: $rootScope.idArchivo,
+						archivo_personal_id: parseInt($stateParams.archivoId),
 						usuarios_codigo: $rootScope.usuario.codigo
 					};
 					intervencionesService.createIntervencion($scope.intervencion).then(function (response) {
@@ -255,7 +268,7 @@ controllerModule
 				$scope.eliminarIntervencion = function (idEstrategia) {
 					var data = {
 						idestrategia: idEstrategia,
-						idarchivo: $rootScope.idArchivo
+						idarchivo: parseInt($stateParams.archivoId)
 					};
 					$uibModalInstance.dismiss();
 					$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
@@ -272,92 +285,65 @@ controllerModule
 					});
 				};
 			}])
-
 	.controller('accionConfigController',
-		['$scope', 'accionService', '$stateParams', '$location', 'toastr', '$rootScope',
-			function ($scope, accionService, $stateParams, $location, toastr, $rootScope) {
+		['$scope', 'accionService', '$stateParams', '$location', 'toastr', '$rootScope', '$confirm', '$uibModalInstance', 'observacionService',
+			function ($scope, accionService, $stateParams, $location, toastr, $rootScope, $confirm, $uibModalInstance, observacionService) {
 				$scope.getAccionById = function () {
 					var data = {
 						intervencionId:$stateParams.intervencionId,
 						accionId:$stateParams.accionId
 					};
 					accionService.getAccionAplicada(data).then(function (response) {
-						$scope.configaccion=response.data;
+						$scope.configuracion = response.data;
+						console.log($scope.configuracion);
+					}, function (error) {
+						console.log(error);
+					});
+				};
+				$scope.getAccionById();
+
+				$scope.eliminarAccionAplicada = function (accionAplicadaId) {
+					$uibModalInstance.dismiss();
+					$confirm({text: '¿Seguro que desea eliminar la accion?'}).then(function () {
+						accionService.deleteAccionAplicada(accionAplicadaId).then(function (response) {
+							$rootScope.getRiesgosByEstudiantes();
+							//window.history.back();
+							//toastr.warning('Exito', 'Estrategia Eliminada');
+							toastr.warning('Exito', 'Accion Eliminada');
+						}, function (error) {
+							console.log(error);
+						});
+					}, function (no) {
+						window.history.back();
+					});
+				};
+
+				$scope.cambiarEstado = function (accionAplicada) {
+
+					console.log(accionAplicada);
+					accionService.updateAccionAplicada(accionAplicada.id, accionAplicada).then(function (response) {
+						$rootScope.getRiesgosByEstudiantes();
+						toastr.success('Exito', 'Accion Actualizada');
+					}, function (error) {
+						console.log(error);
+					});
+				};
+				$scope.agregarObservacion = function (contenido, accionAplicadaId) {
+					var observacion = {};
+					observacion.acciones_aplicadas_id = accionAplicadaId;
+					observacion.fecha = new Date();
+					observacion.usuarios_codigo = $rootScope.usuario.codigo;
+					observacion.contenido = contenido;
+					observacionService.createObservacion(observacion).then(function (response) {
+						$scope.configuracion.observaciones.push(observacion);
+						toastr.success('Exito', 'Observacion Agregada');
 					}, function (error) {
 						console.log(error);
 					});
 				};
 
+			}]);
 
-				$scope.value = 'En Progreso';
-
-				$scope.comentarios = [];
-				$scope.agregarConmentatio = function (comen) {
-					comen.fecha = new Date();
-					comen.autor = $rootScope.usuario.nombre;
-					comen.contenido = comen.text;
-					$scope.comentarios.push(comen);
-				};
-
-			}])
-
-
-	.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
-		$scope.ok = function () {
-			$uibModalInstance.close();
-		};
-
-		$scope.cancel = function () {
-			$uibModalInstance.dismiss('cancel');
-		};
-
-		$scope.cars = [
-			{
-				id: 1,
-				name: 'Estrategia 1',
-				descripcion: 'sfdjgkljsdlfgjlskfd'
-			},
-			{
-				id: 2,
-				name: 'Estrategia 2',
-				descripcion: 'fdgjksfdhkjgsfd'
-
-			},
-			{
-				id: 3,
-				name: 'Estrategia 3',
-				descripcion: 'fdgsdfgsjdflkgjslfdk'
-
-			}
-                ];
-		$scope.selectedCar = [];
-
-
-	}]);
-/**
-
-
-
-
-**/
-
-//Servicios
-/**
-controllerModule.service('CargarSelectRiesgos',[ '$scope','riesgoService',function ($scope,riesgoService) {
-	var cargar = function () {
-		$scope.riesgos = [];
-		$scope.getAllRiesgos = function () {
-			riesgoService.getAllRiesgo().then(function (response) {
-				console.log(response.data);
-				$scope.riesgos = response.data;
-			});
-
-		};
-		$scope.getAllRiesgos();
-	};
-
-	return cargar;
-}])**/
 
 
 

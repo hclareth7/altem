@@ -22,9 +22,8 @@ class AccionAplicadaController extends Controller
 
 	public function find(Route $route)
 	{
-
 		$this->accionAplicada=AccionAplicada::find($route->getParameter('accion_aplicada'));
-
+        //dd($this->accionAplicada);
 		//$users = DB::table('users')->skip(10)->take(5)->get();Obtener elementos desde hasta (skip:desde,take:hasta)
 
 	}
@@ -73,14 +72,11 @@ class AccionAplicadaController extends Controller
 
     public function getAccionAplicada(Request $request)
     {
-
-
-        $id=$request->input('intervencionId');
-        $intervencionId=$request->input('accionId');
-        $accionAplicada = AccionAplicada::with('accion')
-            ->whereHas('accion', function ($q) use ($id) {
-                $q->where('id', '=', $id);
-            })->where('intervenciones_id', $intervencionId)->get();
+        $accionId=$request->input('accionId');
+        $intervencionId=$request->input('intervencionId');
+        $accionAplicada = AccionAplicada::with('accion','observaciones')
+           ->where('intervenciones_id', $intervencionId)
+           ->where('acciones_id', $accionId)->firstOrFail();
 
         return response()->json($accionAplicada);
     }

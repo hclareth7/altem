@@ -133,20 +133,14 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="pull-right pagination">
-                                <ul class="pagination pagination-outline">
-                                    <li class="page-pre"><a href="javascript:void(0)">‹</a></li>
-                                    <li class="page-number active"><a href="javascript:void(0)">1</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">2</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">3</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">4</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">5</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">6</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">7</a></li>
-                                    <li class="page-number"><a href="javascript:void(0)">8</a></li>
-                                    <li class="page-next"><a href="javascript:void(0)">›</a></li>
-                                </ul>
-                            </div>
+                            <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged(currentPage)"
+                                boundary-links="true"
+                                force-ellipses="true"
+                                rotate="true"
+                                max-size="maxSize"
+                                items-per-page="n_datos_p_pagina"
+                            ></ul>
+
                             <div class="alert alert-info alert-dismissible" role="alert" ng-if="estudiantes.length < 1">
                                 <i class="icon  wb-info-circle" aria-hidden="true"></i>
                                 No hay datos que mostrar

@@ -22,4 +22,9 @@ class AccionAplicada extends Model
     {
         return $this->belongsTo('App\Models\Intervencion', 'intervenciones_id', 'id');
     }
+
+    public function observaciones()
+    {
+        return $this->hasMany('App\Models\Observacion', 'acciones_aplicadas_id', 'id');
+    }
 }

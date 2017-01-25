@@ -5,17 +5,18 @@ use Illuminate\Database\Eloquent\Model;
 class Riesgo extends Model
 {
 	protected $table="riesgos";
-	protected $fillable=['nombre','descripcion','tiporiesgo_id'];
-
+    protected $primaryKey = 'id';
+	protected $fillable=['nombre','descripcion','tipo_riesgos_id','estrategias_id'];
+    public $timestamps = false;
 	//el nombre de la llave foranea es tiporiesgo_id
 	public function tiporiesgo()
     {
-        return $this->belongsTo('App\Models\TipoRiesgo', 'tiporiesgo_id', 'id');
+        return $this->belongsTo('App\Models\TipoRiesgo', 'tipo_riesgos_id', 'id');
     }
 
 	public function estrategias()
     {
-        return $this->hasMany('App\Models\Estrategia','riesgo_id', 'id');
+        return $this->belongsToMany('App\Models\Estrategia','estrategias_has_riesgos', 'riesgos_id','estrategias_id');
     }
 
     public function archivos_Personales()

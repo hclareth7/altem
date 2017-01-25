@@ -7,12 +7,14 @@ class Estrategia extends Model {
 	protected $table = 'estrategias';
     protected $primaryKey = 'id';
 
-	protected $fillable=['nombre','descripcion','riesgo_id'];
+    public $timestamps = false;
+
+	protected $fillable=['nombre','descripcion','riesgos_id'];
 
 	//el nombre de la llave foranea es riesgo_id
-	public function riesgo()
+	public function riesgos()
     {
-        return $this->belongsTo('App\Models\Riesgo','riesgo_id','id');
+        return $this->belongsToMany('App\Models\Riesgo','estrategias_has_riesgos','estrategias_id','riesgos_id');
     }
 
     public function acciones()

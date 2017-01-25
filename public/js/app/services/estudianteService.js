@@ -2,9 +2,14 @@ var servicesModule = angular.module('AppServices');
 servicesModule.factory('estudianteService', ['$http', function ($http) {
 	return {
 		apiUrl: apiUrl,
-		getAllEstudiantes: function () {
+		getAllEstudiantes2: function () {
 			//return $http.get(this.apiUrl + 'estudiante/');
 			return $http.get(this.apiUrl + 'estudiante/');
+		},
+
+		getAllEstudiantes: function (data) {
+			//return $http.get(this.apiUrl + 'estudiante/');
+			return $http.post(this.apiUrl + 'estudiantes_all',data);
 		},
 		getEstudianteById: function (estudianteId) {
 			
