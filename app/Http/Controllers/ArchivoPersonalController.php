@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Models\AccionAplicada;
 use App\Models\ArchivoPersonal;
 use App\Models\EstudianteAltem;
 use App\Models\Filtro;
@@ -18,21 +17,23 @@ class ArchivoPersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function __construct(Filtro $filtro){
+    public function __construct(Filtro $filtro)
+    {
         $this->db_sirius = \DB::connection('mysql2');
-		$this->middleware('cors');
-		$this->beforeFilter('@find',['only'=>['show','update','destroy']]);
+        $this->middleware('cors');
+        $this->beforeFilter('@find', ['only' => ['show', 'update', 'destroy']]);
         $this->filtro = $filtro;
-	}
+    }
 
-	public function find(Route $route){
-		$this->archivoPersonal=ArchivoPersonal::find($route->getParameter('archivo_personal'));
-	}
+    public function find(Route $route)
+    {
+        $this->archivoPersonal = ArchivoPersonal::find($route->getParameter('archivo_personal'));
+    }
 
     public function index()
     {
         $archivoPersonal = ArchivoPersonal::all();
-		return response()->json($archivoPersonal);
+        return response()->json($archivoPersonal);
     }
 
     public function riesgoAgregado($codigo)
@@ -44,9 +45,9 @@ class ArchivoPersonalController extends Controller
             ->get();
 
 
-        $newColection=[];
+        $newColection = [];
         foreach ($data as $key => $item) {
-            $newColection = $riesgos->reject(function($element) use($item){
+            $newColection = $riesgos->reject(function ($element) use ($item) {
                 return $element->id == $item->riesgos_id;
             });
 
@@ -55,10 +56,11 @@ class ArchivoPersonalController extends Controller
         return response()->json($newColection);
     }
 
-    public function getRiesgosPersonalByEstudiantes($codigo){
+    public function getRiesgosPersonalByEstudiantes($codigo)
+    {
 
-        $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones'])
-            ->where('estudiantes_altem_codigo',$codigo)
+        $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones', 'intervenciones.acciones_aplicadas.accion'])
+            ->where('estudiantes_altem_codigo', $codigo)
             ->get();
         $list_archivos = [];
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
@@ -84,29 +86,57 @@ class ArchivoPersonalController extends Controller
                 }
             }
         }
+        $test = "";
+        $temp = null;
+        //return response()->json($riegosPersonal);
+        foreach ($riegosPersonal as $key => $value) {
+            foreach ($value->intervenciones as $key1 => $value1) {
 
-        $accionesAplicadas = AccionAplicada::with('accion')
-            ->get();
-        foreach ($riegosPersonal as $key1 => $value1) {
-            foreach ($value1->intervenciones as $key2 => $value2) {
-                foreach ($accionesAplicadas as $key3 => $value3) {
-                    if ($riegosPersonal[$key1]->intervenciones->id === $value3->intervenciones_id  ) {
+                foreach ($value1->acciones_aplicadas as $key3 => $value3) {
 
-                        foreach ($value2->estrategias->acciones as $key4 => $value4) {
-                            if ($value4->id === $value3->accion->id) {
-                                $value2->estrategias->acciones[$key4]->estado = $value3->estado;
+                    if ($value1->estrategias_id == $value1->estrategias->id and $value1->id == $value3->intervenciones_id) {
+
+                        foreach ($value1->estrategias->acciones as $key2 => $value2) {
+                            if ($value2->id == $value3->acciones_id) {
+                                $test .= $key . " ," . $key1 . ", " . $key2 . "---";
+                                $value2->setAttribute('estado', $value3->estado);
+                                //$riegosPersonal[0]->intervenciones[0]->estrategias->acciones[0]->estado= $value3->estado;
                             }
+
                         }
+
                     }
                 }
             }
+
         }
 
+        return response()->json($riegosPersonal);
+
+
+        /* $accionesAplicadas = AccionAplicada::with('accion')
+             ->get();
+         foreach ($riegosPersonal as $key1 => $value1) {
+             foreach ($value1->intervenciones as $key2 => $value2) {
+                 foreach ($accionesAplicadas as $key3 => $value3) {
+                     if ($riegosPersonal[$key1]->intervenciones->id === $value3->intervenciones_id  ) {
+
+                         foreach ($value2->estrategias->acciones as $key4 => $value4) {
+                             if ($value4->id === $value3->accion->id) {
+                                 $value2->estrategias->acciones[$key4]->estado = $value3->estado;
+                             }
+                         }
+                     }
+                 }
+             }
+         }
+    */
 
 
         return response()->json($riegosPersonal);
     }
-   /**
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -119,7 +149,7 @@ class ArchivoPersonalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -140,14 +170,13 @@ class ArchivoPersonalController extends Controller
         }
 
 
-
-		return response()->json(["mensaje"=>"Creado correctamente"]);
+        return response()->json(["mensaje" => "Creado correctamente"]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -159,7 +188,7 @@ class ArchivoPersonalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -170,21 +199,22 @@ class ArchivoPersonalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
-       	$this->archivoPersonal->fill($request->all());
-		$this->archivoPersonal->save();
-		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
+        $this->archivoPersonal->fill($request->all());
+        $this->archivoPersonal->save();
+        return response()->json(["mensaje" => "Actualizacion exitosa"]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -210,6 +240,6 @@ class ArchivoPersonalController extends Controller
 
     public function destroy($id)
     {
-         $this->archivoPersonal->delete();
+        $this->archivoPersonal->delete();
     }
 }
