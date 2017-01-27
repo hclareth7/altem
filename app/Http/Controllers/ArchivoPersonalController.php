@@ -59,7 +59,7 @@ class ArchivoPersonalController extends Controller
     public function getRiesgosPersonalByEstudiantes($codigo)
     {
 
-        $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones', 'intervenciones.acciones_aplicadas.accion'])
+        $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones', 'intervenciones.acciones_aplicadas'])
             ->where('estudiantes_altem_codigo', $codigo)
             ->get();
         $list_archivos = [];
@@ -89,12 +89,12 @@ class ArchivoPersonalController extends Controller
         $test = "";
         $temp = null;
         //return response()->json($riegosPersonal);
-        foreach ($riegosPersonal as $key => $value) {
+        /*foreach ($riegosPersonal as $key => $value) {
             foreach ($value->intervenciones as $key1 => $value1) {
 
                 foreach ($value1->acciones_aplicadas as $key3 => $value3) {
 
-                    if ($value1->estrategias_id == $value1->estrategias->id and $value1->id == $value3->intervenciones_id) {
+                        if ($value1->estrategias_id == $value1->estrategias->id and $value1->id == $value3->intervenciones_id) {
 
                         foreach ($value1->estrategias->acciones as $key2 => $value2) {
                             if ($value2->id == $value3->acciones_id) {
@@ -109,7 +109,7 @@ class ArchivoPersonalController extends Controller
                 }
             }
 
-        }
+        }*/
 
         return response()->json($riegosPersonal);
 

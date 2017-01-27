@@ -3,12 +3,7 @@ var controllerModule = angular.module('AppControllers');
 controllerModule
 	.controller('estudianteController', ['$scope', 'estudianteService', '$stateParams', 'toastr', '$state', '$rootScope', 'filtroService',
 		function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope, filtroService) {
-
-			
-
 			$rootScope.estudiantes = [];
-
-
 			$scope.maxSize = 7;
 			$scope.limit = 10;
 			$scope.n_datos_p_pagina = $scope.limit;
@@ -18,7 +13,6 @@ controllerModule
 					de:(currentPage-1)*$scope.limit,
 					a:$scope.limit
 				};
-
 				estudianteService.getAllEstudiantes(data).then(function (response) {
 					$rootScope.estudiantes = response.data;
 					if ($rootScope.estudiantes.length>0) {
@@ -106,8 +100,23 @@ controllerModule
 				$scope.archivoPersonal=[];
 
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
+					var archivo = response.data;
+					archivo.forEach(function (item, index) {
+						item.intervenciones.forEach(function (item1, index1) {
+							item1.acciones_aplicadas.forEach(function (item2, index2) {
+								if (item1.estrategias_id === item1.estrategias.id && item1.id === item2.intervenciones_id) {
+									item1.estrategias.acciones.forEach(function (item3, index3) {
+										if (item3.id === item2.acciones_id) {
+											item3.estado = item2.estado;
+										}
 
-					$scope.archivoPersonal = response.data;
+									});
+								}
+
+							});
+						});
+					});
+					$scope.archivoPersonal =archivo;
 					//console.log(response.data);
 					//$rootScope.idArchivo = response.data[0].id;
 					$rootScope.codigoEstudiante = parseInt($stateParams.estudianteId);
