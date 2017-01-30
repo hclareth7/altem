@@ -385,6 +385,25 @@ controllerModule
 					});
 				};
 
+
+
+
+				$scope.eliminarObservacion = function (id) {
+					$uibModalInstance.dismiss();
+					$confirm({text: '¿Seguro que desea eliminar?'}).then(function () {
+						observacionService.deleteObservacion(id).then(function (response) {
+							$rootScope.getRiesgosByEstudiantes();
+							//$rootScope.getAllRiesgos();
+							window.history.back();
+							toastr.warning('Exito', 'Observacion  Eliminada');
+						}, function (error) {
+							console.log(error.data.status);
+							
+						});
+
+					});
+				};
+
 			}]);
 
 

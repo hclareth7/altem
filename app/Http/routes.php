@@ -39,7 +39,7 @@ Route::group(['prefix' => 'api'], function () {
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
 
             Route::resource('intervencion', 'IntervencionController');
-            Route::resource('observacion', 'observacionController');
+            Route::resource('observacion', 'ObservacionController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
             Route::post('get_accion_aplicada', 'AccionAplicadaController@getAccionAplicada');
 
