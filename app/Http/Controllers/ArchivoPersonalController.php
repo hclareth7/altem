@@ -88,6 +88,14 @@ class ArchivoPersonalController extends Controller
             }
         }
 
+        foreach ($riegosPersonal as $key1 => $value1) {
+            foreach ($value1->intervenciones as $key2 => $value2) {
+                foreach ($value2->estrategias->acciones as $key3 => $value3) {
+                    $value3->estado = "no";
+                }
+            }
+        }
+
 
         return response()->json($riegosPersonal);
     }

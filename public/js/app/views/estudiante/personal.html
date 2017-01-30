@@ -213,16 +213,18 @@
                                                                                 <ul class="mi-acciones-right pull-right">
                                                                                     <li>
                                                                                         <button type="button"
-                                                                                                ng-if="accion.estado!=undefined"
+                                                                                                ng-if="accion.estado!='no'"
                                                                                                 class=" btn btn-outline btn-icon btn-default btn-round"
                                                                                                 ui-sref="main.personal.accion({intervencionId:estrategia.id,accionId:accion.id})"
+
                                                                                                 style="padding-right: 0;">
                                                                                             <i class="icon wb-wrench"
                                                                                                aria-hidden="true"></i>
                                                                                         </button>
 
                                                                                         <button type="button"
-                                                                                                ng-if="accion.estado==undefined"
+                                                                                                ng-if="accion.estado=='no'"
+                                                                                                ng-disabled="estrategia.estrategias.acciones[estrategia.estrategias.acciones.indexOf(accion)-1].estado==0 || estrategia.estrategias.acciones[estrategia.estrategias.acciones.indexOf(accion)-1].estado=='no'"
                                                                                                 class=" btn btn-outline btn-icon btn-default btn-round"
                                                                                                 ng-click="agregarAccion(estrategia.id,accion.id)"
                                                                                                 style="padding-right: 0;">
@@ -230,6 +232,8 @@
                                                                                             <i class="icon wb-play"
                                                                                                aria-hidden="true"></i>
                                                                                         </button>
+
+
                                                                                     </li>
                                                                                     <li>
 
