@@ -1,8 +1,8 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-	.controller('estudianteController', ['$scope', 'estudianteService', '$stateParams', 'toastr', '$state', '$rootScope', 'filtroService',
-		function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope, filtroService) {
+	.controller('estudianteController', ['$scope', 'estudianteService', '$stateParams', 'toastr', '$state', '$rootScope', 'filtroService', '$uibModal',
+		function ($scope, estudianteService, $stateParams, toastr, $state, $rootScope, filtroService, $uibModal) {
 			$rootScope.estudiantes = [];
 			$scope.maxSize = 7;
 			$scope.limit = 10;
@@ -29,10 +29,10 @@ controllerModule
 				}
 				return keys;
 			};
-			filtroService.getAllFiltros().then(function (response) {
-				$scope.filtros = response.data;
-			});
+
+
 			$scope.getFiltrosByEstudiantes = function (id) {
+
 				estudianteService.getEstudiantesByFiltro(id).then(function (response) {
 					$rootScope.estudiantes = response.data;
 				});
@@ -72,10 +72,15 @@ controllerModule
 				}
 			};
 
+			filtroService.getAllFiltros().then(function (response) {
+				$scope.filtros = response.data;
+			});
 
 		}])
 
+	.controller('cargarFiltroController', ['$scope', '$uibModalInstance', 'filtroService', function ($scope, $uibModalInstance, filtroService) {
 
+	}])
 	.controller('estudianteIntervencionController',
 		['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$rootScope',
 		function ($scope, estudianteService, $stateParams, $location, toastr, $rootScope) {
@@ -97,34 +102,36 @@ controllerModule
 
 		$scope.getEstudiante($stateParams.estudianteId);
 			$rootScope.getRiesgosByEstudiantes = function () {
-				$scope.archivoPersonal=[];
+				//$scope.archivoPersonal=[];
 
 				estudianteService.getRiesgosByEstudiante($stateParams.estudianteId).then(function (response) {
 					var archivo = response.data;
 					archivo.forEach(function (item, index) {
-						item.intervenciones.forEach(function (item1, index1) {
-							item1.acciones_aplicadas.forEach(function (item2, index2) {
-								if (item1.estrategias_id === item1.estrategias.id && item1.id === item2.intervenciones_id) {
-									item1.estrategias.acciones.forEach(function (item3, index3) {
-										if (item3.id === item2.acciones_id) {
-											item3.estado = item2.estado;
-										}
+						if (item.intervenciones) {
+							item.intervenciones.forEach(function (item1, index1) {
+								item1.acciones_aplicadas.forEach(function (item2, index2) {
+									if (item1.estrategias_id === item1.estrategias.id && item1.id === item2.intervenciones_id) {
+										item1.estrategias.acciones.forEach(function (item3, index3) {
+											if (item3.id === item2.acciones_id) {
+												item3.estado = item2.estado;
+											}
 
-									});
-								}
+										});
+									}
 
+								});
 							});
-						});
+						}
 					});
+
 					$scope.archivoPersonal =archivo;
-					//console.log(response.data);
+					console.log($scope.archivoPersonal);
 					//$rootScope.idArchivo = response.data[0].id;
 					$rootScope.codigoEstudiante = parseInt($stateParams.estudianteId);
 					//console.log($stateParams.estudianteId);
 				});
 			};
 			$rootScope.getRiesgosByEstudiantes();
-
 
 		$scope.getEdad = function (fecha_na) {
 			var ANIO_ACTUAL = new Date().getFullYear();
@@ -264,11 +271,8 @@ controllerModule
 		['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'estrategiaService', 'intervencionesService', '$confirm', '$uibModalInstance',
 			function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, estrategiaService, intervencionesService, $confirm, $uibModalInstance) {
 
-
-
 				$scope.estrategias=[];
 				$rootScope.cargarEstrategias = function (data) {
-
 					estrategiaService.getEstrategiaByRiesgoId(data).then(function (response) {
 						$scope.estrategias=response.data;
 

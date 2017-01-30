@@ -14,12 +14,16 @@
 }(this, function() {
 
 /*!
- * GMaps.js v0.4.21
+ * GMaps.js v0.4.19
  * http://hpneo.github.com/gmaps/
  *
  * Copyright 2015, Gustavo Leon
  * Released under the MIT License.
  */
+
+if (!(typeof window.google === 'object' && window.google.maps)) {
+  throw 'Google Maps API is required. Please register the following JavaScript library http://maps.google.com/maps/api/js?sensor=true.'
+}
 
 var extend_object = function(obj, new_obj) {
   var name;
@@ -116,6 +120,7 @@ var arrayToLatLng = function(coords, useGeoJSON) {
   return coords;
 };
 
+
 var getElementsByClassName = function (class_name, context) {
 
     var element,
@@ -159,14 +164,6 @@ var findAbsolutePosition = function(obj)  {
 
 var GMaps = (function(global) {
   "use strict";
-
-  if (!(typeof window.google === 'object' && window.google.maps)) {
-    if (typeof window.console === 'object' && window.console.error) {
-      console.error('Google Maps API is required. Please register the following JavaScript library https://maps.googleapis.com/maps/api/js.');
-    }
-
-    return function() {};
-  }
 
   var doc = document;
 
@@ -529,7 +526,7 @@ GMaps.prototype.createControl = function(options) {
   var control = document.createElement('div');
 
   control.style.cursor = 'pointer';
-
+  
   if (options.disableDefaultStyles !== true) {
     control.style.fontFamily = 'Roboto, Arial, sans-serif';
     control.style.fontSize = '11px';
@@ -543,7 +540,7 @@ GMaps.prototype.createControl = function(options) {
   if (options.id) {
     control.id = options.id;
   }
-
+  
   if (options.title) {
     control.title = options.title;
   }
@@ -580,7 +577,7 @@ GMaps.prototype.createControl = function(options) {
 
 GMaps.prototype.addControl = function(options) {
   var control = this.createControl(options);
-
+  
   this.controls.push(control);
   this.map.controls[control.position].push(control);
 
@@ -674,7 +671,7 @@ GMaps.prototype.createMarker = function(options) {
           if(!me.pixel){
             me.pixel = map.getProjection().fromLatLngToPoint(me.latLng)
           }
-
+          
           options[name].apply(this, [me]);
         });
       }
@@ -794,7 +791,7 @@ GMaps.prototype.removeMarkers = function (collection) {
 
       GMaps.fire('marker_removed', marker, this);
     }
-
+    
     this.markers = new_markers;
   }
   else {
@@ -848,7 +845,7 @@ GMaps.prototype.drawOverlay = function(options) {
     if (!options.layer) {
       options.layer = 'overlayLayer';
     }
-
+    
     var panes = this.getPanes(),
         overlayLayer = panes[options.layer],
         stop_overlay_events = ['contextmenu', 'DOMMouseScroll', 'dblclick', 'mousedown'];
@@ -1461,7 +1458,7 @@ GMaps.prototype.drawRoute = function(options) {
         }
 
         self.drawPolyline(polyline_options);
-
+        
         if (options.callback) {
           options.callback(e[e.length - 1]);
         }
@@ -1517,7 +1514,7 @@ GMaps.prototype.travelRoute = function(options) {
 
 GMaps.prototype.drawSteppedRoute = function(options) {
   var self = this;
-
+  
   if (options.origin && options.destination) {
     this.getRoutes({
       origin: options.origin,
@@ -1680,7 +1677,7 @@ GMaps.prototype.toImage = function(options) {
 
   if (this.markers.length > 0) {
     static_map_options['markers'] = [];
-
+    
     for (var i = 0; i < this.markers.length; i++) {
       static_map_options['markers'].push({
         lat: this.markers[i].getPosition().lat(),
@@ -1691,7 +1688,7 @@ GMaps.prototype.toImage = function(options) {
 
   if (this.polylines.length > 0) {
     var polyline = this.polylines[0];
-
+    
     static_map_options['polyline'] = {};
     static_map_options['polyline']['path'] = google.maps.geometry.encoding.encodePath(polyline.getPath());
     static_map_options['polyline']['strokeColor'] = polyline.strokeColor
@@ -1715,7 +1712,7 @@ GMaps.staticMapURL = function(options){
   static_root += '?';
 
   var markers = options.markers;
-
+  
   delete options.markers;
 
   if (!markers && options.marker) {
@@ -2013,7 +2010,7 @@ GMaps.custom_events = ['marker_added', 'marker_removed', 'polyline_added', 'poly
 
 GMaps.on = function(event_name, object, handler) {
   if (GMaps.custom_events.indexOf(event_name) == -1) {
-    if(object instanceof GMaps) object = object.map;
+    if(object instanceof GMaps) object = object.map; 
     return google.maps.event.addListener(object, event_name, handler);
   }
   else {
@@ -2031,7 +2028,7 @@ GMaps.on = function(event_name, object, handler) {
 
 GMaps.off = function(event_name, object) {
   if (GMaps.custom_events.indexOf(event_name) == -1) {
-    if(object instanceof GMaps) object = object.map;
+    if(object instanceof GMaps) object = object.map; 
     google.maps.event.clearListeners(object, event_name);
   }
   else {
@@ -2093,99 +2090,97 @@ GMaps.geocode = function(options) {
   delete options.lat;
   delete options.lng;
   delete options.callback;
-
+  
   this.geocoder.geocode(options, function(results, status) {
     callback(results, status);
   });
 };
 
-if (typeof window.google === 'object' && window.google.maps) {
-  //==========================
-  // Polygon containsLatLng
-  // https://github.com/tparkin/Google-Maps-Point-in-Polygon
-  // Poygon getBounds extension - google-maps-extensions
-  // http://code.google.com/p/google-maps-extensions/source/browse/google.maps.Polygon.getBounds.js
-  if (!google.maps.Polygon.prototype.getBounds) {
-    google.maps.Polygon.prototype.getBounds = function(latLng) {
-      var bounds = new google.maps.LatLngBounds();
-      var paths = this.getPaths();
-      var path;
+//==========================
+// Polygon containsLatLng
+// https://github.com/tparkin/Google-Maps-Point-in-Polygon
+// Poygon getBounds extension - google-maps-extensions
+// http://code.google.com/p/google-maps-extensions/source/browse/google.maps.Polygon.getBounds.js
+if (!google.maps.Polygon.prototype.getBounds) {
+  google.maps.Polygon.prototype.getBounds = function(latLng) {
+    var bounds = new google.maps.LatLngBounds();
+    var paths = this.getPaths();
+    var path;
 
-      for (var p = 0; p < paths.getLength(); p++) {
-        path = paths.getAt(p);
-        for (var i = 0; i < path.getLength(); i++) {
-          bounds.extend(path.getAt(i));
-        }
+    for (var p = 0; p < paths.getLength(); p++) {
+      path = paths.getAt(p);
+      for (var i = 0; i < path.getLength(); i++) {
+        bounds.extend(path.getAt(i));
       }
+    }
 
-      return bounds;
-    };
-  }
-
-  if (!google.maps.Polygon.prototype.containsLatLng) {
-    // Polygon containsLatLng - method to determine if a latLng is within a polygon
-    google.maps.Polygon.prototype.containsLatLng = function(latLng) {
-      // Exclude points outside of bounds as there is no way they are in the poly
-      var bounds = this.getBounds();
-
-      if (bounds !== null && !bounds.contains(latLng)) {
-        return false;
-      }
-
-      // Raycast point in polygon method
-      var inPoly = false;
-
-      var numPaths = this.getPaths().getLength();
-      for (var p = 0; p < numPaths; p++) {
-        var path = this.getPaths().getAt(p);
-        var numPoints = path.getLength();
-        var j = numPoints - 1;
-
-        for (var i = 0; i < numPoints; i++) {
-          var vertex1 = path.getAt(i);
-          var vertex2 = path.getAt(j);
-
-          if (vertex1.lng() < latLng.lng() && vertex2.lng() >= latLng.lng() || vertex2.lng() < latLng.lng() && vertex1.lng() >= latLng.lng()) {
-            if (vertex1.lat() + (latLng.lng() - vertex1.lng()) / (vertex2.lng() - vertex1.lng()) * (vertex2.lat() - vertex1.lat()) < latLng.lat()) {
-              inPoly = !inPoly;
-            }
-          }
-
-          j = i;
-        }
-      }
-
-      return inPoly;
-    };
-  }
-
-  if (!google.maps.Circle.prototype.containsLatLng) {
-    google.maps.Circle.prototype.containsLatLng = function(latLng) {
-      if (google.maps.geometry) {
-        return google.maps.geometry.spherical.computeDistanceBetween(this.getCenter(), latLng) <= this.getRadius();
-      }
-      else {
-        return true;
-      }
-    };
-  }
-
-  google.maps.LatLngBounds.prototype.containsLatLng = function(latLng) {
-    return this.contains(latLng);
-  };
-
-  google.maps.Marker.prototype.setFences = function(fences) {
-    this.fences = fences;
-  };
-
-  google.maps.Marker.prototype.addFence = function(fence) {
-    this.fences.push(fence);
-  };
-
-  google.maps.Marker.prototype.getId = function() {
-    return this['__gm_id'];
+    return bounds;
   };
 }
+
+if (!google.maps.Polygon.prototype.containsLatLng) {
+  // Polygon containsLatLng - method to determine if a latLng is within a polygon
+  google.maps.Polygon.prototype.containsLatLng = function(latLng) {
+    // Exclude points outside of bounds as there is no way they are in the poly
+    var bounds = this.getBounds();
+
+    if (bounds !== null && !bounds.contains(latLng)) {
+      return false;
+    }
+
+    // Raycast point in polygon method
+    var inPoly = false;
+
+    var numPaths = this.getPaths().getLength();
+    for (var p = 0; p < numPaths; p++) {
+      var path = this.getPaths().getAt(p);
+      var numPoints = path.getLength();
+      var j = numPoints - 1;
+
+      for (var i = 0; i < numPoints; i++) {
+        var vertex1 = path.getAt(i);
+        var vertex2 = path.getAt(j);
+
+        if (vertex1.lng() < latLng.lng() && vertex2.lng() >= latLng.lng() || vertex2.lng() < latLng.lng() && vertex1.lng() >= latLng.lng()) {
+          if (vertex1.lat() + (latLng.lng() - vertex1.lng()) / (vertex2.lng() - vertex1.lng()) * (vertex2.lat() - vertex1.lat()) < latLng.lat()) {
+            inPoly = !inPoly;
+          }
+        }
+
+        j = i;
+      }
+    }
+
+    return inPoly;
+  };
+}
+
+if (!google.maps.Circle.prototype.containsLatLng) {
+  google.maps.Circle.prototype.containsLatLng = function(latLng) {
+    if (google.maps.geometry) {
+      return google.maps.geometry.spherical.computeDistanceBetween(this.getCenter(), latLng) <= this.getRadius();
+    }
+    else {
+      return true;
+    }
+  };
+}
+
+google.maps.LatLngBounds.prototype.containsLatLng = function(latLng) {
+  return this.contains(latLng);
+};
+
+google.maps.Marker.prototype.setFences = function(fences) {
+  this.fences = fences;
+};
+
+google.maps.Marker.prototype.addFence = function(fence) {
+  this.fences.push(fence);
+};
+
+google.maps.Marker.prototype.getId = function() {
+  return this['__gm_id'];
+};
 
 //==========================
 // Array indexOf

@@ -6,10 +6,10 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 
 .hljs {
   display: block;
-  padding: .5em;
   overflow-x: auto;
-  -webkit-text-size-adjust: none;
+  padding: 0.5em;
   background: #f0f0f0;
+  -webkit-text-size-adjust: none;
 }
 
 .hljs,
@@ -151,5 +151,5 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: .5;
+  opacity: 0.5;
 }

@@ -1,6 +1,32 @@
-/*! Tablesaw - v2.0.1 - 2015-10-09
+/*! Tablesaw - v1.0.4 - 2015-02-19
 * https://github.com/filamentgroup/tablesaw
 * Copyright (c) 2015 Filament Group; Licensed MIT */
+;(function( $ ) {
+	var div = document.createElement('div'),
+		all = div.getElementsByTagName('i'),
+		$doc = $( document.documentElement );
+
+	div.innerHTML = '<!--[if lte IE 8]><i></i><![endif]-->';
+	if( all[ 0 ] ) {
+		$doc.addClass( 'ie-lte8' );
+	}
+
+	// Cut the mustard
+	if( !( 'querySelector' in document ) ||
+			( window.blackberry && !window.WebKitPoint ) ||
+			window.operamini ) {
+		return;
+	} else {
+		$doc.addClass( 'tablesaw-enhanced' );
+
+		// DOM-ready auto-init of plugins.
+		// Many plugins bind to an "enhance" event to init themselves on dom ready, or when new markup is inserted into the DOM
+		$( function(){
+			$( document ).trigger( "enhance.tablesaw" );
+		});
+	}
+
+})( jQuery );
 /*
 * tablesaw: A set of plugins for responsive tables
 * Stack and Column Toggle tables
@@ -16,18 +42,11 @@ if( typeof Tablesaw === "undefined" ) {
 			columnBtnText: 'Columns',
 			columnsDialogError: 'No eligible columns.',
 			sort: 'Sort'
-		},
-		// cut the mustard
-		mustard: 'querySelector' in document &&
-			( !window.blackberry || window.WebKitPoint ) &&
-			!window.operamini
+		}
 	};
 }
 if( !Tablesaw.config ) {
 	Tablesaw.config = {};
-}
-if( Tablesaw.mustard ) {
-	jQuery( document.documentElement ).addClass( 'tablesaw-enhanced' );
 }
 
 ;(function( $ ) {
@@ -91,7 +110,7 @@ if( Tablesaw.mustard ) {
 				}
 
 				// Store "cells" data on header as a reference to all cells in the same column as this TH
-				this.cells = self.$table.find("tr").not( thrs[0] ).not( this ).children().filter( sel );
+				this.cells = self.$table.find("tr").not( $( thrs ).eq( 0 ) ).not( this ).children( sel );
 				coltally++;
 			});
 		});
@@ -108,7 +127,7 @@ if( Tablesaw.mustard ) {
 	Table.prototype.createToolbar = function() {
 		// Insert the toolbar
 		// TODO move this into a separate component
-		var $toolbar = this.$table.prev().filter( '.' + classes.toolbar );
+		var $toolbar = this.$table.prev( '.' + classes.toolbar );
 		if( !$toolbar.length ) {
 			$toolbar = $( '<div>' )
 				.addClass( classes.toolbar )
@@ -123,7 +142,7 @@ if( Tablesaw.mustard ) {
 
 	Table.prototype.destroy = function() {
 		// Don’t remove the toolbar. Some of the table features are not yet destroy-friendly.
-		this.$table.prev().filter( '.' + classes.toolbar ).each(function() {
+		this.$table.prev( '.' + classes.toolbar ).each(function() {
 			this.className = this.className.replace( /\bmode\-\w*\b/gi, '' );
 		});
 
@@ -154,10 +173,7 @@ if( Tablesaw.mustard ) {
 	};
 
 	$( document ).on( "enhance.tablesaw", function( e ) {
-		// Cut the mustard
-		if( Tablesaw.mustard ) {
-			$( e.target ).find( initSelector )[ pluginName ]();
-		}
+		$( e.target ).find( initSelector )[ pluginName ]();
 	});
 
 }( jQuery ));
@@ -204,7 +220,7 @@ if( Tablesaw.mustard ) {
 		// get headers in reverse order so that top-level headers are appended last
 		var reverseHeaders = $( this.allHeaders );
 		var hideempty = this.hideempty;
-
+		
 		// create the hide/show toggles
 		reverseHeaders.each(function(){
 			var $t = $( this ),
@@ -261,6 +277,7 @@ if( Tablesaw.mustard ) {
 }( this, jQuery ));
 ;(function( $ ) {
 	var pluginName = "tablesawbtn",
+		initSelector = ".btn",
 		methods = {
 			_create: function(){
 				return $( this ).each(function() {
@@ -335,6 +352,10 @@ if( Tablesaw.mustard ) {
 
 	// add methods
 	$.extend( $.fn[ pluginName ].prototype, methods );
+
+	$( document ).on( "enhance", function( e ) {
+		$( initSelector, e.target )[ pluginName ]();
+	});
 
 }( jQuery ));
 ;(function( win, $, undefined ){
@@ -416,7 +437,7 @@ if( Tablesaw.mustard ) {
 		});
 
 		$menuButton.appendTo( $btnContain );
-		$btnContain.appendTo( this.$table.prev().filter( '.' + this.classes.toolbar ) );
+		$btnContain.appendTo( this.$table.prev( '.' + this.classes.toolbar ) );
 
 		var closeTimeout;
 		function openPopup() {
@@ -524,15 +545,6 @@ if( Tablesaw.mustard ) {
 		}
 	});
 
-	function isIE8() {
-		var div = document.createElement('div'),
-			all = div.getElementsByTagName('i');
-
-		div.innerHTML = '<!--[if lte IE 8]><i></i><![endif]-->';
-
-		return !!all.length;
-	}
-
 	function createSwipeTable( $table ){
 
 		var $btns = $( "<div class='tablesaw-advance'></div>" ),
@@ -546,7 +558,7 @@ if( Tablesaw.mustard ) {
 			$head = $( document.head || 'head' ),
 			tableId = $table.attr( 'id' ),
 			// TODO switch this to an nth-child feature test
-			supportsNthChild = !isIE8();
+			isIE8 = $( 'html' ).is( '.ie-lte8' );
 
 		if( !$headerCells.length ) {
 			throw new Error( "tablesaw swipe: no header cells found. Are you using <th> inside of <thead>?" );
@@ -559,7 +571,7 @@ if( Tablesaw.mustard ) {
 		});
 		$table.css( 'width', '' );
 
-		$btns.appendTo( $table.prev().filter( '.tablesaw-bar' ) );
+		$btns.appendTo( $table.prev( '.tablesaw-bar' ) );
 
 		$table.addClass( "tablesaw-swipe" );
 
@@ -715,7 +727,7 @@ if( Tablesaw.mustard ) {
 				}
 			});
 
-			if( supportsNthChild ) {
+			if( !isIE8 ) {
 				unmaintainWidths();
 			}
 			$table.trigger( 'tablesawcolumns' );
@@ -733,7 +745,7 @@ if( Tablesaw.mustard ) {
 					}
 				}
 
-				if( supportsNthChild ) {
+				if( !isIE8 ) {
 					maintainWidths();
 				}
 
@@ -803,7 +815,7 @@ if( Tablesaw.mustard ) {
 				var $t = $( this );
 
 				$t.removeClass( 'tablesaw-swipe' );
-				$t.prev().filter( '.tablesaw-bar' ).find( '.tablesaw-advance' ).remove();
+				$t.prev( '.tablesaw-bar' ).find( '.tablesaw-advance' ).remove();
 				$( win ).off( "resize", fakeBreakpoints );
 
 				$t.unbind( ".swipetoggle" );
@@ -948,15 +960,15 @@ if( Tablesaw.mustard ) {
 									}
 								});
 
-								html.push( '<option' + ( isDefaultCol && !isDescending ? ' selected' : '' ) + ' value="' + j + '_asc">' + $t.text() + ' ' + ( isNumeric ? '&#x2191;' : '(A-Z)' ) + '</option>' );
-								html.push( '<option' + ( isDefaultCol && isDescending ? ' selected' : '' ) + ' value="' + j + '_desc">' + $t.text() + ' ' + ( isNumeric ? '&#x2193;' : '(Z-A)' ) + '</option>' );
+								html.push( '<option' + ( isDefaultCol && !isDescending ? ' selected' : '' ) + ' value="' + j + '_asc">' + $t.text() + ' ' + ( isNumeric ? '↑' : '(A-Z)' ) + '</option>' );
+								html.push( '<option' + ( isDefaultCol && isDescending ? ' selected' : '' ) + ' value="' + j + '_desc">' + $t.text() + ' ' + ( isNumeric ? '↓' : '(Z-A)' ) + '</option>' );
 							});
 							html.push( '</select></span></label>' );
 
 							return html.join('');
 						});
 
-						var $toolbar = el.prev().filter( '.tablesaw-bar' ),
+						var $toolbar = el.prev( '.tablesaw-bar' ),
 							$firstChild = $toolbar.children().eq( 0 );
 
 						if( $firstChild.length ) {
@@ -1116,7 +1128,7 @@ if( Tablesaw.mustard ) {
 			$dotNav.append( '<li><i></i></li>' );
 		});
 
-		$btns.appendTo( $table.prev().filter( '.tablesaw-bar' ) );
+		$btns.appendTo( $table.prev( '.tablesaw-bar' ) );
 
 		function showMinimap( $table ) {
 			var mq = $table.attr( MM.attr.init );
@@ -1151,7 +1163,7 @@ if( Tablesaw.mustard ) {
 			.bind( "tablesawdestroy.minimap", function(){
 				var $t = $( this );
 
-				$t.prev().filter( '.tablesaw-bar' ).find( '.tablesaw-advance' ).remove();
+				$t.prev( '.tablesaw-bar' ).find( '.tablesaw-advance' ).remove();
 				$( win ).off( "resize", showHideNav );
 
 				$t.unbind( ".minimap" );
@@ -1188,7 +1200,7 @@ if( Tablesaw.mustard ) {
 		init: function( table ) {
 			var $table = $( table ),
 				ignoreMode = $table.attr( S.attributes.excludeMode ),
-				$toolbar = $table.prev().filter( '.tablesaw-bar' ),
+				$toolbar = $table.prev( '.tablesaw-bar' ),
 				modeVal = '',
 				$switcher = $( '<div>' ).addClass( S.classes.main + ' ' + S.classes.toolbar ).html(function() {
 					var html = [ '<label>' + Tablesaw.i18n.columns + ':' ],

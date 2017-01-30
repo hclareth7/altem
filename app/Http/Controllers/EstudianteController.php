@@ -99,9 +99,20 @@ class EstudianteController extends Controller
 
     public function ejecutarFiltro($id)
     {
-        $filtros = $this->filtro->ejecutar($id);
-        $sql = $this->setRestric() . " " . $filtros;
 
+        $filofinal = "";
+        $filtros = Filtro::where('riesgos_id', $id)->get();
+
+        foreach ($filtros as $key => $value) {
+
+            if ($key == 0) {
+                $filofinal = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            } else {
+                $filofinal .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            }
+        }
+        $sql = $this->setRestric() . " " . $filofinal;
+        //dd($sql);
         $estudiantes = $this->db_sirius->select($sql);
         return response()->json($estudiantes);
     }

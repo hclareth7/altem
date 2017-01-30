@@ -32,7 +32,8 @@ class FiltroController extends Controller
     public function index()
     {
         //$sql="SELECT * FROM sat.filtros group by riesgos_id";
-        $filtro = DB::table('filtros')->groupBy('riesgos_id')->get();
+        $filtro = Filtro::with('riesgo')
+            ->groupBy('riesgos_id')->get();
         return response()->json($filtro);
     }
 

@@ -857,7 +857,7 @@
     fr : {
       OK      : "OK",
       CANCEL  : "Annuler",
-      CONFIRM : "Confirmer"
+      CONFIRM : "D'accord"
     },
     he : {
       OK      : "אישור",

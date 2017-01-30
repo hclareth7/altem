@@ -5,11 +5,11 @@
 
 .hljs {
   display: block;
-  padding: .5em;
+  background:white;
+  padding: 0.5em;
+  color: #333333;
   overflow-x: auto;
-  color: #333;
   -webkit-text-size-adjust: none;
-  background: white;
 }
 
 .hljs-comment,
@@ -148,7 +148,7 @@
 .nginx .hljs-variable,
 .xml .hljs-tag,
 .scss .hljs-variable {
-  color: #333;
+  color: #333333;
 }
 
 .bash .hljs-title,

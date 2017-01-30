@@ -36,7 +36,7 @@
         {
             action: 'validate',
             // Always trigger this action,
-            // even if the previous action was rejected:
+            // even if the previous action was rejected: 
             always: true,
             // Options taken from the global options map:
             acceptFileTypes: '@',

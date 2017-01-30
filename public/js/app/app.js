@@ -347,7 +347,7 @@ satApp.run(['$confirmModalDefaults', 'PermissionStore', 'RoleStore', '$rootScope
 			loginService.getaAuthUser().then(function (response) {
 				$rootScope.usuario = response.data;
 				var permissions = $rootScope.usuario.permissions;
-				console.log($rootScope.usuario);
+				//console.log($rootScope.usuario);
 				PermissionStore.defineManyPermissions(permissions, function (permissionName) {
 					return _.include(permissions, permissionName);
 				});

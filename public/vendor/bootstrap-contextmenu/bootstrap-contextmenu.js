@@ -116,7 +116,7 @@
 		}
 
 		,isDisabled: function() {
-			return this.$element.hasClass('disabled') ||
+			return this.$element.hasClass('disabled') || 
 					this.$element.attr('disabled');
 		}
 
@@ -162,7 +162,7 @@
 			parentOffset = $menu.offsetParent().offset();
 			X.left = X.left - parentOffset.left;
 			Y.top = Y.top - parentOffset.top;
-
+ 
 			return $.extend(tp, Y, X);
 		}
 
@@ -201,5 +201,5 @@
 			e.preventDefault();
 			e.stopPropagation();
 		});
-
+		
 }(jQuery));

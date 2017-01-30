@@ -13,29 +13,11 @@ class Filtro extends Model
 
     protected $fillable = ['nombre', 'campo', 'operador', 'valor', 'tipo', 'riesgos_id'];
 
-    public function tiporiesgo()
+    public function riesgo()
     {
-        return $this->belongsTo('App\Models\TipoRiesgo');
+        return $this->belongsTo('App\Models\Riesgo', 'riesgos_id', 'id');
     }
 
-    public function ejecutar($id)
-    {
-        $sql = "";
-        $filtros = $this->where('riesgos_id', $id)->get();
-        foreach ($filtros as $key => $value) {
-
-            if ($key == 0) {
-                $sql = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
-            } else {
-                $sql .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
-            }
-
-
-        }
-
-        return $sql;
-
-    }
 
     public function getQuery()
     {

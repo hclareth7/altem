@@ -17,15 +17,6 @@
 	<link rel="stylesheet" href="/css/site.min.css">
 	<link rel="stylesheet" href="/css/green.min.css">
 	<!-- Plugins -->
-	<link rel="stylesheet" href="/vendor/animsition/animsition.css">
-	<link rel="stylesheet" href="/vendor/asscrollable/asScrollable.css">
-	<link rel="stylesheet" href="/vendor/switchery/switchery.css">
-	<link rel="stylesheet" href="/vendor/intro-js/introjs.css">
-	<link rel="stylesheet" href="/vendor/slidepanel/slidePanel.css">
-	<link rel="stylesheet" href="/vendor/flag-icon-css/flag-icon.css">
-	<link rel="stylesheet" href="/vendor/chartist-js/chartist.css">
-	<link rel="stylesheet" href="/vendor/jvectormap/jquery-jvectormap.css">
-	<link rel="stylesheet" href="/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
 	<link rel="stylesheet" href="/css/v1.css">
 	<link rel="stylesheet" href="/css/profile.min.css">
 	<link rel="stylesheet" href="/css/team.min.css">

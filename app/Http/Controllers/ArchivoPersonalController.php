@@ -62,13 +62,14 @@ class ArchivoPersonalController extends Controller
         $riegosPersonal = ArchivoPersonal::with(['riesgo.tiporiesgo', 'intervenciones.estrategias.acciones', 'intervenciones.acciones_aplicadas'])
             ->where('estudiantes_altem_codigo', $codigo)
             ->get();
-        $list_archivos = [];
+
         $filtros = $this->filtro->groupBy('riesgos_id')->get();
 
 
         //return response()->json($riegosPersonal);
         foreach ($filtros as $key => $value) {
             $sql = "SELECT * FROM estudiantes_view WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+
             $estudiantes = $this->db_sirius->select($sql);
 
             if (!empty($estudiantes)) {
@@ -86,51 +87,6 @@ class ArchivoPersonalController extends Controller
                 }
             }
         }
-        $test = "";
-        $temp = null;
-        //return response()->json($riegosPersonal);
-        /*foreach ($riegosPersonal as $key => $value) {
-            foreach ($value->intervenciones as $key1 => $value1) {
-
-                foreach ($value1->acciones_aplicadas as $key3 => $value3) {
-
-                        if ($value1->estrategias_id == $value1->estrategias->id and $value1->id == $value3->intervenciones_id) {
-
-                        foreach ($value1->estrategias->acciones as $key2 => $value2) {
-                            if ($value2->id == $value3->acciones_id) {
-                                $test .= $key . " ," . $key1 . ", " . $key2 . "---";
-                                $value2->setAttribute('estado', $value3->estado);
-                                //$riegosPersonal[0]->intervenciones[0]->estrategias->acciones[0]->estado= $value3->estado;
-                            }
-
-                        }
-
-                    }
-                }
-            }
-
-        }*/
-
-        return response()->json($riegosPersonal);
-
-
-        /* $accionesAplicadas = AccionAplicada::with('accion')
-             ->get();
-         foreach ($riegosPersonal as $key1 => $value1) {
-             foreach ($value1->intervenciones as $key2 => $value2) {
-                 foreach ($accionesAplicadas as $key3 => $value3) {
-                     if ($riegosPersonal[$key1]->intervenciones->id === $value3->intervenciones_id  ) {
-
-                         foreach ($value2->estrategias->acciones as $key4 => $value4) {
-                             if ($value4->id === $value3->accion->id) {
-                                 $value2->estrategias->acciones[$key4]->estado = $value3->estado;
-                             }
-                         }
-                     }
-                 }
-             }
-         }
-    */
 
 
         return response()->json($riegosPersonal);

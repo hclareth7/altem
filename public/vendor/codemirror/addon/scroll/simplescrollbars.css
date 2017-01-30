@@ -1,9 +1,9 @@
 .CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
   position: absolute;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
   background: #ccc;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border: 1px solid #bbb;
   border-radius: 2px;
 }
@@ -15,8 +15,7 @@
 }
 
 .CodeMirror-simplescroll-horizontal {
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   height: 8px;
 }
 .CodeMirror-simplescroll-horizontal div {
@@ -25,8 +24,7 @@
 }
 
 .CodeMirror-simplescroll-vertical {
-  top: 0;
-  right: 0;
+  right: 0; top: 0;
   width: 8px;
 }
 .CodeMirror-simplescroll-vertical div {
@@ -51,8 +49,7 @@
 }
 
 .CodeMirror-overlayscroll-horizontal {
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   height: 6px;
 }
 .CodeMirror-overlayscroll-horizontal div {
@@ -61,8 +58,7 @@
 }
 
 .CodeMirror-overlayscroll-vertical {
-  top: 0;
-  right: 0;
+  right: 0; top: 0;
   width: 6px;
 }
 .CodeMirror-overlayscroll-vertical div {
