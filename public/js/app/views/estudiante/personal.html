@@ -155,7 +155,9 @@
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="avatar avatar-online">
-                                                                <img src="/img/avatar.png" alt="...">
+                                                                <img ng-if="archivo.usuarios_codigo"
+                                                                     ng-src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&pass=uws1&wsusername={{archivo.usuarios_codigo}}"
+                                                                     alt="" class="avatar">
                                                             </div>
                                                         </div>
                                                         <div class="media-body">

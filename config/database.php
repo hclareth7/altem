@@ -59,7 +59,7 @@ return [
 
         'mysql2' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
+            'host'      => env('SIRIUS_DB_HOST', 'localhost'),
             'database'  => env('SIRIUS_DB_DATABASE', 'forge'),
             'username'  => env('SIRIUS_DB_USERNAME', 'forge'),
             'password'  => env('SIRIUS_DB_PASSWORD', ''),

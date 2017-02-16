@@ -136,8 +136,10 @@ class EstudianteController extends Controller
         $de = $request->input('de');
         $a = $request->input('a');
         $sql="SELECT count(*) as total FROM sirius.estudiantes_view";
+
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
         $estudiantes = $this->db_sirius->select($this->setRestric() . " limit  " . $de . "," . $a);
+        //dd($this->setRestric() );
         $total=$this->db_sirius->select($sql);
         if($estudiantes){
             $estudiantes[0]->total=$total;
