@@ -47,7 +47,7 @@
 						</div>
 
 						<div class="pull-right search">
-							<input class="form-control input-outline" type="text" placeholder="Buscar">
+							<input class="form-control input-outline" type="text" placeholder="Buscar" ng-model="buscar">
 						</div>
 					</div>
 					<div class="fixed-table-container" style="padding-bottom: 0px;">
@@ -76,7 +76,7 @@
 								</thead>
 								<tbody>
 
-									<tr ng-repeat="estrategia in estrategias">
+									<tr ng-repeat="estrategia in estrategias | filter:buscar">
 										<td>{{estrategia.nombre}}</td>
 
 										<td>{{estrategia.descripcion}}</td>

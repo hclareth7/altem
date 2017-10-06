@@ -24,6 +24,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('eliminar_intervencion', 'IntervencionController@deleteIntervencion');
     Route::post('eliminar_archivo', 'ArchivoPersonalController@deleteArchivo');
     Route::post('riesgo_by_archivo', 'RiesgoController@riesgo_by_archivo');
+    Route::resource('usuario', 'UsuarioController');
 
 
 
@@ -56,13 +57,14 @@ Route::group(['prefix' => 'api'], function () {
             Route::resource('archivo_personal', 'ArchivoPersonalController');
             Route::get('filtro/filtros_riesgo/{id}', 'FiltroController@getByRiesgo');
 
-            Route::post('role', 'ApiAuthController@createRole');
+            Route::post('role', 'UsuarioController@createRole');
 // Route to create a new permission
-            Route::post('permission', 'ApiAuthController@createPermission');
+            Route::post('permission', 'UsuarioController@createPermission');
 // Route to assign role to user
-            Route::post('assign_role', 'ApiAuthController@assignRole');
+            Route::post('assign_role', 'UsuarioController@assignRole');
 // Route to attache permission to a role
-            Route::post('attach_permission', 'ApiAuthController@attachPermission');
+            Route::post('attach_permission', 'UsuarioController@attachPermission');
+
         });
 
     });

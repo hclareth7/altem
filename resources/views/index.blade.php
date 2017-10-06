@@ -67,8 +67,6 @@
 	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 	<script src="/bower_components/angular-click-outside/clickoutside.directive.js"></script>
 	<script src="/bower_components/lodash/lodash.js"></script>
-	<script src="/bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
-	<script src="/bower_components/acute-select/dist/acute-select.js"></script>
 	<script src="/bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
 	<script src="/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 
@@ -76,7 +74,7 @@
 	<script src="/bower_components/angular-permission/dist/angular-permission-ui.min.js"></script>
 
 
-	<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
 
 	<script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
 	<script src="/bower_components/chart.js/dist/Chart.min.js"></script>
@@ -96,6 +94,8 @@
 	<script src="/js/app/services/archivoPersonalService.js"></script>
 	<script src="/js/app/services/intervencionService.js"></script>
 	<script src="/js/app/services/observacionService.js"></script>
+	<script src="/js/app/services/usuarioService.js"></script>
+
 	<!-- Module Controllers -->
 
 	<script src="/js/app/controllers/estrategiaController.js"></script>
@@ -107,6 +107,7 @@
 	<script src="/js/app/controllers/loginController.js"></script>
 	<script src="/js/app/controllers/mainController.js"></script>
 	<script src="/js/app/controllers/reporteController.js"></script>
+	<script src="/js/app/controllers/usuarioController.js"></script>
 
 	<!-- Module App -->
 

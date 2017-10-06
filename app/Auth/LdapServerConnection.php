@@ -24,7 +24,7 @@ class LdapServerConnection
 
     public function verificarUsuario($username, $password)
     {
-        if (!$username or !$password ) {
+        if (!$username or !$password) {
             dd('Datos de acceso faltantes.', 401);
             return false;
         }
@@ -46,14 +46,14 @@ class LdapServerConnection
             $result = ldap_search($conn, $this->rdn, 'uid=' . $username, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
 
-            for ($i=0; $i<$datos["count"]; $i++) {
-                $nombre =$datos[$i]["cn"][0] ;
-                $codigo =  $datos[$i]["uid"][0];
+            for ($i = 0; $i < $datos["count"]; $i++) {
+                $nombre = $datos[$i]["cn"][0];
+                $codigo = $datos[$i]["uid"][0];
                 $correo = $datos[$i]["mail"][0];
             }
 
             $this->usuario = new Usuario();
-           
+
             $this->usuario->codigo = $codigo;
             $this->usuario->password = $password;
             $this->usuario->id = $codigo;
@@ -75,26 +75,30 @@ class LdapServerConnection
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
         }
-        if (!$con = ldap_bind($conn, "uid=readonly"  . ',' . $this->rdn,'read_only_utbvirtual')) {
+        if (!$con = ldap_bind($conn, "uid=readonly" . ',' . $this->rdn, 'read_only_utbvirtual')) {
             dd('Could not bind to AD: ' . ldap_error($conn), 401);
             return false;
         } else {
             $result = ldap_search($conn, $this->rdn, 'uid=' . $codigoUtbId, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
+            if ($datos["count"] > 0) {
 
-            for ($i = 0; $i < $datos["count"]; $i++) {
-                $nombre = $datos[$i]["cn"][0];
-                $codigo = $datos[$i]["uid"][0];
-                $correo = $datos[$i]["mail"][0];
+
+                for ($i = 0; $i < $datos["count"]; $i++) {
+                    $nombre = $datos[$i]["cn"][0];
+                    $codigo = $datos[$i]["uid"][0];
+                    $correo = $datos[$i]["mail"][0];
+                }
+
+                $this->usuario = new Usuario();
+
+                $this->usuario->nombre = $nombre;
+                $this->usuario->codigo = $codigo;
+                $this->usuario->correo = $correo;
+                $this->usuario->id = $codigo;
+            }else{
+                return false;
             }
-
-            $this->usuario = new Usuario();
-
-            $this->usuario->nombre = $nombre;
-            $this->usuario->codigo = $codigo;
-            $this->usuario->correo = $correo;
-            $this->usuario->id = $codigo;
-
         }
 
         // dd($this->usuario);

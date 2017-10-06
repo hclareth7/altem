@@ -1,0 +1,126 @@
+<div class="list-group">
+    <div class="list-group-item">
+        <div class="media">
+            <div class="media-left">
+            </div>
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2 class="media-heading font-size-24">
+                            {{riesgo.nombre}}
+                            <small class="badge badge-success">{{riesgo.tiporiesgo.nombre}}</small>
+                        </h2>
+                        <div class="alert alert-alt alert-danger alert-dismissible" role="alert">
+
+                            <p>
+                                <span>Descripcion: </span> {{riesgo.descripcion}}.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                </div>
+            </div>
+            <div
+                    permission
+                    permission-only="['ADMIN']"
+                    class="media-right">
+                <button type="button" class="btn btn-success" ui-sref="main.riesgo.detalle.crear">
+                    <i class="icon wb-plus" aria-hidden="true"></i> Filtros
+                </button>
+            </div>
+
+        </div>
+        <hr>
+        <div>
+
+            <div class="media">
+                <div class="media-left"></div>
+                <div class="media-body">
+                    <h4>Filtros</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Campo</td>
+                                <td>Operador</td>
+                                <td>Valor</td>
+                                <td
+                                        permission
+                                        permission-only="['ADMIN']"
+                                >Herramientas
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="filtro in filtros">
+                                <td>{{filtro.nombre}}</td>
+                                <td>{{filtro.campo}}</td>
+                                <td>{{filtro.operador}}</td>
+                                <td>{{filtro.valor}}</td>
+                                <td
+                                        permission
+                                        permission-only="['ADMIN']"
+                                >
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default" ui-sref="main.riesgo.detalle.editar({filtroId:filtro.id})" >
+                                        <i class="icon wb-pencil" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"  ng-click="removeFiltro(filtro.id)" >
+                                        <i class="icon wb-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="modal-filtro.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ng-click="cancel()">×</span>
+        </button>
+        <h4 class="modal-title">{{textTitulo}} filtro ({{riesgo.nombre}})</h4>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="guardarFiltro()">
+            <div class="row">
+                <div class="col-lg-12 form-group">
+                    <select class="form-control" ng-model="filtro.campo">
+                        <option ng-repeat="campo in campos" value="{{campo.Field}}">{{campo.Field}}</option>
+                    </select>
+
+                </div>
+                <div class="col-lg-12 form-group">
+                    <select class="form-control" ng-model="filtro.operador">
+                        <option value="=">Igual (=)</option>
+                        <option value=">">Mayor que (>)</option>
+                        <option value=">=">Mayor que (>=)</option>
+                        <option value="<">Menor que (<)</option>
+                        <option value="<=">Menor que (<=)</option>
+                        <option value="!=">Diferente de (!=)</option>
+                        <option value="like">Que contenga (%)</option>
+                    </select>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <input type="text" class="form-control" ng-model="filtro.valor"
+                           placeholder="Valor">
+                </div>
+
+                <div class="col-sm-12 pull-right">
+                    <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</script>

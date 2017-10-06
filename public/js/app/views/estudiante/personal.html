@@ -14,9 +14,11 @@
                         <h4 class="profile-user">{{estudiante.NOMBRES+ ' '+estudiante.APELLIDOS}}</h4>
                         <p class="profile-job">{{estudiante.PROGRAMA}}</p>
                         <address>
+                        <address>
                             <strong>Informacion de contacto</strong>
                             <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.DIRECCION1}}
-                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:{{estudiante.EMAIL}}"> {{estudiante.EMAIL}}</a>
+                            <br> <abbr title="Correo">Correo:</abbr><a href="mailto:{{estudiante.EMAIL}}">
+                            {{estudiante.EMAIL}}</a>
                             <br>
                             <abbr title="Telefono">Telefono: </abbr> {{estudiante.TELEFONO2}}
                         </address>
@@ -64,11 +66,12 @@
                             <div class="tab-content animation-fade col-md-12">
                                 <br>
 
-                                <div class="alert alert-info alert-dismissible" role="alert" ng-if="archivoPersonal.length == 0">
+                                <div class="alert alert-info alert-dismissible" role="alert"
+                                     ng-if="archivoPersonal.length == 0">
                                     <i class="icon  wb-info-circle" aria-hidden="true"></i>
                                     No hay riesgos agregados para este estudiante
                                 </div>
-                                <div class="media is-loading" ng-repeat="archivo in archivoPersonal">
+                                <div class="media is-loading" ng-repeat="archivo in archivoPersonal | reverse">
 
 
                                     <div class="media-left">
@@ -106,6 +109,12 @@
 
                                                             </button>
                                                         </div>
+                                                        <div class=" col-md-1">
+                                                            <button type="button" ng-click="eliminarArchivo(archivo.riesgo.id)" class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                                <i class="icon wb-close" aria-hidden="true"></i>
+
+                                                            </button>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -124,7 +133,7 @@
                                                     class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
-                                                    ></i>
+                                                ></i>
 
                                             </button>
                                         </div>
@@ -132,17 +141,18 @@
                                     <hr>
 
                                     <div uib-collapse="archivo.isShowEstrategias">
-                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts" role="tabpanel">
+                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
+                                             role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
                                             <button type="button"
                                                     ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
-                                                Estragias
+                                                Estrategias
                                             </button>
                                             <br>
 
-                                            <ul class="list-group" >
+                                            <ul class="list-group">
                                                 <div class="alert alert-info alert-dismissible" role="alert"
                                                      ng-if="archivo.intervenciones.length < 1">
                                                     <i class="icon  wb-info-circle" aria-hidden="true"></i>
@@ -268,7 +278,6 @@
                                                             </li>
 
 
-
                                                         </ul>
                                                     </div>
 
@@ -285,16 +294,13 @@
                             </div>
 
 
-
-
-
                         </uib-tab>
 
-                      <!--  <uib-tab index="1" heading="Academica">
-                            <div class="tab-content animation-fade">
-                                Informacion Academica
-                            </div>
-                        </uib-tab>-->
+                        <!--  <uib-tab index="1" heading="Academica">
+                              <div class="tab-content animation-fade">
+                                  Informacion Academica
+                              </div>
+                          </uib-tab>-->
 
                         </uib-tab>
                     </uib-tabset>
@@ -337,7 +343,7 @@
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" ng-click="cancel()">×</span>
+            <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
         <h4 class="modal-title">Agregar estrategia (RAC001)</h4>
     </div>
@@ -372,7 +378,7 @@
 <script type="text/ng-template" id="riesgo-crear.html">
     <div class="modal-header">
         <button type="button" class="close">
-            <span aria-hidden="true" ng-click="cancel()">×</span>
+            <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
         <h3 class="modal-title" id="modal-title">Agregar factor de riesgo</h3>
         <br>
@@ -411,16 +417,12 @@
                                         </div>
                                         <div class=" col-md-1">
                                             <button type="button"
-                                                    ng-click="agregarRiesgo(riesgo.id)" ng-if="!riesgo.estado"
+                                                    ng-click="agregarRiesgo(riesgo.id)"
                                                     class="btn btn-icon btn-success btn-round  pull-right btn-outline">
                                                 <i class="icon wb-check" aria-hidden="true"></i>
                                             </button>
 
-                                            <button type="button" ng-if="riesgo.estado"
-                                                    ng-click="eliminarArchivo(riesgo.id)"
-                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
-                                                <i class="icon wb-close" aria-hidden="true"></i>
-                                            </button>
+
                                         </div>
                                     </div>
 
@@ -433,8 +435,6 @@
             </li>
 
 
-
-
         </ul>
 
     </div>
@@ -444,7 +444,7 @@
 <script type="text/ng-template" id="estrategia-agregar.html">
     <div class="modal-header">
         <button type="button" class="close">
-            <span aria-hidden="true" ng-click="cancel()">×</span>
+            <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
         <h3 class="modal-title" id="modal-title">Agregar estrategias</h3>
         <br>
@@ -510,7 +510,6 @@
     </div>
 
 </script>
-
 
 <script type="text/ng-template" id="config-accion.html">
     <div id="mi-panel" ng-class="{'animation-reverse': isPanel == false}"
@@ -640,7 +639,8 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary"
-                                            ng-click="agregarObservacion(observacion.contenido,configuracion.id)">Agregar
+                                            ng-click="agregarObservacion(observacion.contenido,configuracion.id)">
+                                        Agregar
                                     </button>
 
                                 </div>

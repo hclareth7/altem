@@ -34,6 +34,9 @@ class LdapUserProvider implements UserProvider
         if ($usuario= $this->conect->verificarUsuarioById($identifier)) {
 
             return $usuario;
+        }else{
+
+            return false;
         }
     }
 

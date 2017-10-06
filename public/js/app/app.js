@@ -12,7 +12,6 @@ var satApp = angular.module("satApp", [
 	'ui.bootstrap',
 	'ui.bootstrap.modal',
 	'angular-click-outside',
-	'acute.select',
 	'angular-confirm',
 	'angular-jwt',
 	'permission',
@@ -212,7 +211,40 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			url: '/reporte',
 			templateUrl: '/js/app/views/reporte/base.html',
 			controller: 'reporteController'
-		});
+		})
+
+		//admin de usuarios
+        .state('main.admin-usuarios', {
+            url: '/usuarios',
+            templateUrl: '/js/app/views/usuarios/base.html',
+            controller: 'usuarioController'
+
+        })
+        .state('main.admin-usuarios.editar', {
+            url: '/editar/:riesgoId',
+            templateUrl: '/js/app/views/usuarios/crear.html',
+            controller: 'usuarioEditarController',
+            data: {
+                permissions: {
+                    only: ['ADMIN']
+                }
+            }
+        })
+        .state('main.admin-usuarios.crear', {
+            url: '/crear',
+            templateUrl: '/js/app/views/usuarios/crear.html',
+            controller: 'usuarioCrearController',
+            data: {
+                permissions: {
+                    only: ['ADMIN']
+                }
+            }
+        })
+        .state('main.admin-usuarios.detalle',{
+            url: '/detalle/:riesgoId',
+            templateUrl: '/js/app/views/riesgo/detalle.html',
+            controller: 'usuarioDetalleController'
+        })
 
 
 		modalStateProvider.state('main.personal.riesgo', {
