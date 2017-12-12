@@ -36,6 +36,7 @@
                             <div class="btn-group hidden-xs" id="exampleToolbar" role="group">
                                 <a class="btn btn-outline btn-default" ng-click="open()">
                                     <i class="icon wb-settings" aria-hidden="true"></i>
+                                    Filtrar Búsqueda
                                 </a>
                                 <button type="button" class="btn btn-outline btn-default">
                                     <i class="icon wb-download" aria-hidden="true"></i>
@@ -150,12 +151,12 @@
         <button type="button" class="close">
             <span aria-hidden="true" ng-click="cancel()">×</span>
         </button>
-        <h3 class="modal-title" id="modal-title">Configurar reportes</h3>
+        <h3 class="modal-title" id="modal-title">Configurar Reportes</h3>
     </div>
     <div class="modal-body" id="modal-body">
         <div class="row">
 
-            <div class="col-lg-4 form-group">
+            <div class="col-lg-4 form-group"> Año
                 <select class="form-control" ng-model="condiciones.anio">
                     <option ng-repeat="anio in anios" value="{{anio.anio}}"
                             ng-selected="condiciones.anio==anio.anio"
@@ -163,15 +164,29 @@
                     </option>
                 </select>
             </div>
-            <div class="col-lg-4 form-group">
+            <div class="col-lg-4 form-group">Periódo
                 <select class="form-control" ng-model="condiciones.periodo">
                     <option ng-repeat="periodo in periodos" value="{{periodo.periodo}}"
                             ng-selected="condiciones.periodo==periodo.periodo"
                     >{{periodo.periodo}}
                     </option>
                 </select>
-
-
+            </div>
+            <div class="col-lg-4 form-group">Tipo de Riesgo
+                <select class="form-control" ng-model="condiciones.riesgo">
+                    <option ng-repeat="riesgo in riesgos" value="{{riesgo.nombre}}"
+                            ng-selected="condiciones.riesgo==riesgo.nombre"
+                    >{{riesgo.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-4 form-group">Factores de Riesgo
+                <select class="form-control" ng-model="condiciones.factor">
+                    <option ng-repeat="factor in factores" value="{{factor.nombre}}"
+                            ng-selected="condiciones.factor==factor.nombre"
+                    >{{factor.nombre}}
+                    </option>
+                </select>
             </div>
 
         </div>

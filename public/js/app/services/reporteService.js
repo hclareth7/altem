@@ -7,6 +7,18 @@ servicesModule.factory('reporteService', ['$http', function ($http) {
         },
         getConfigAnio: function () {
             return $http.get(this.apiUrl + 'reporte/config/anio');
+        },
+
+        getRiesgosName: function (){
+            return $http.get(this.apiUrl + 'reporte/config/tipos')
+
+        },
+
+        getFactoresRiesgo: function (){
+            return $http.get(this.apiUrl + 'reporte/config/factores')
+
         }
+
+
     };
 }]);

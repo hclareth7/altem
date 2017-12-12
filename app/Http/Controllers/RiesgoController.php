@@ -35,7 +35,8 @@ class RiesgoController extends Controller
          $riesgo = Riesgo::with('tiporiesgo','estrategias')->get();
 		return response()->json($riesgo);
     }
-    
+
+
     
 
     /**

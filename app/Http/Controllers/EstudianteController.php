@@ -118,7 +118,14 @@ class EstudianteController extends Controller
     }
 
     public function getcolumn()
-    {
+    {   /*
+        Se añadió la columna en la vista directamente.
+
+        `datos_academicos`.`PROMEDIO_PERIODO` AS `PROMEDIO_PERIODO`
+         FROM
+        (`estudiantes`
+        JOIN `datos_academicos` ON ((`estudiantes`.`ID` = `datos_academicos`.`ID`)))
+         */
         $columns = $this->db_sirius->select('SHOW COLUMNS FROM estudiantes_view');
         return response()->json($columns);
     }

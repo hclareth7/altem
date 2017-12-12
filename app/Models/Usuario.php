@@ -34,6 +34,8 @@ class Usuario extends Model implements AuthenticatableContract
 
 
 
+
+
     
     
 

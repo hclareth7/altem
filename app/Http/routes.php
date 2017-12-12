@@ -19,6 +19,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
     Route::post('reporte/estudiante_riesgo_programa', 'ReporteController@archivo_personal');
     Route::get('reporte/config/anio', 'ReporteController@getAnios');
+    Route::get('reporte/config/tipos', 'ReporteController@getRiesgosName');
+    Route::get('reporte/config/factores', 'ReporteController@getFactoresRiesgo');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
     Route::get('riesgos_archivo/{codigo}', 'ArchivoPersonalController@riesgoAgregado');
     Route::post('eliminar_intervencion', 'IntervencionController@deleteIntervencion');

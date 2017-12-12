@@ -34,7 +34,9 @@ controllerModule
 
             $rootScope.condiciones = {
                 anio: new Date().getFullYear(),
-                periodo: '1'
+                periodo: null,
+                riesgo: null,
+                factor: null
             };
 
             $rootScope.getReporte = function () {
@@ -51,8 +53,8 @@ controllerModule
             $rootScope.getReporte();
 
         }])
-    .controller('configReporteCtrl', ['$uibModalInstance', '$scope', 'reporteService', '$rootScope',
-        function ($uibModalInstance, $scope, reporteService, $rootScope) {
+    .controller('configReporteCtrl', ['$uibModalInstance', '$scope', 'reporteService', 'riesgoService' , '$rootScope',
+        function ($uibModalInstance, $scope, reporteService, riesgoService, $rootScope) {
 
             $scope.periodos = [
                 {periodo: 1},
@@ -67,7 +69,46 @@ controllerModule
                     console.log(error);
                 })
             };
+
+            $rootScope.tipoRiesgos = function () {
+                reporteService.getRiesgosName().then(function (response){
+
+                    $scope.riesgos = [];
+                    angular.forEach(response.data, function(value){
+
+                        $scope.riesgos.push(value)
+                    });
+
+
+                    console.log($scope.riesgos)
+
+                })
+
+
+            };
+
+            $rootScope.factorRiesgos = function () {
+                reporteService.getFactoresRiesgo().then(function (response){
+
+                    $scope.factores = [];
+                    angular.forEach(response.data, function(value){
+
+                        $scope.factores.push(value)
+                    });
+
+                    console.log($scope.factores)
+
+                })
+
+
+
+            };
+
             $rootScope.getConfigAnio();
+            $rootScope.factorRiesgos();
+            $rootScope.tipoRiesgos();
+
+
             $scope.ok = function () {
                 $rootScope.getReporte();
                 $uibModalInstance.dismiss('cancel');
