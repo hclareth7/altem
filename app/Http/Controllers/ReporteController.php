@@ -30,16 +30,41 @@ class ReporteController extends Controller
         $riesgo = $request->input('riesgo');
         $factores =  $request->input('factor');
 
-        if ($periodo == 1) {
+        switch($riesgo){
+
+            case 'Académico':
+                $riesgoid = 1;
+                break;
+
+            case 'Institucional':
+                $riesgoid = 2;
+                breaK;
+
+            case 'Económico':
+                $riesgoid = 3;
+                break;
+
+            case 'Personal':
+                $riesgoid = 4;
+                break;
+
+             default:
+                $riesgoid = null;
+
+        }
+
+
+
+        if ($periodo == 1 && $riesgo = null) {
 
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
                 ->whereYear('fecha_reporte', '=', $anio)
                 ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')->get();
         }
-        if ($periodo == 1 && $riesgo == 'Académico') {
+        if ($periodo == 1 && $riesgo != null) {
 
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
-                ->select(\DB::raw('a.*, r.tipo_riesgos_id from altem.archivo_personal as a join altem.riesgos as r on a.riesgos_id = r.id  where tipo_riesgos_id =1'))
+                ->select(\DB::raw('a.*, r.tipo_riesgos_id from altem.archivo_personal as a join altem.riesgos as r on a.riesgos_id = r.id  where tipo_riesgos_id ='.$riesgoid.''))
                 ->get();
         }
 
