@@ -607,7 +607,7 @@
       <workItem from="1513972238315" duration="117000" />
       <workItem from="1513981652782" duration="1000" />
       <workItem from="1516125644397" duration="2180000" />
-      <workItem from="1516127844177" duration="6332000" />
+      <workItem from="1516127844177" duration="6338000" />
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -630,11 +630,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516213282274</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes">
+      <created>1516213287490</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1516213287490</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143350000" />
+    <option name="totallyTimeSpent" value="143356000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
