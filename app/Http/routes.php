@@ -17,10 +17,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'ApiAuthController@authenticate');
     Route::get('riesgos_estudinate/{id}', 'EstudianteController@getRiesgosByEstudiante');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
-    Route::post('reporte/estudiante_riesgo_programa', 'ReporteController@archivo_personal');
+    Route::get('reporte/estudiante_riesgo_programa', 'ReporteController@archivo_personal');
     Route::get('reporte/config/anio', 'ReporteController@getAnios');
+    Route::get('reporte/config/factores/', 'ReporteController@getRiesgos');
+    Route::get('reporte/config/factores/{id}', 'ReporteController@getRiesgosByTipo');
     Route::get('reporte/config/tipos', 'ReporteController@getRiesgosName');
-    Route::get('reporte/config/factores', 'ReporteController@getFactoresRiesgo');
+    Route::post('reporte/config/send', 'ReporteController@filtrarQuery');
     Route::get('personal/{codigo}', 'ArchivoPersonalController@getRiesgosPersonalByEstudiantes');
     Route::get('riesgos_archivo/{codigo}', 'ArchivoPersonalController@riesgoAgregado');
     Route::post('eliminar_intervencion', 'IntervencionController@deleteIntervencion');

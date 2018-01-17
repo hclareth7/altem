@@ -172,19 +172,18 @@
                     </option>
                 </select>
             </div>
+
             <div class="col-lg-4 form-group">Tipo de Riesgo
-                <select class="form-control" ng-model="condiciones.riesgo">
-                    <option ng-repeat="riesgo in riesgos" value="{{riesgo.nombre}}"
-                            ng-selected="condiciones.riesgo==riesgo.nombre"
-                    >{{riesgo.nombre}}
+                <select name="tipo" id="tipo" class="form-control" ng-options="r.id as r.nombre for r in riesgos" ng-model="condiciones.riesgo" ng-change="factorChange(condiciones.riesgo)">
+                    <option ng-selected="condiciones.riesgo==r.id">
+                       Seleccione
                     </option>
                 </select>
             </div>
             <div class="col-lg-4 form-group">Factores de Riesgo
-                <select class="form-control" ng-model="condiciones.factor">
-                    <option ng-repeat="factor in factores" value="{{factor.nombre}}"
-                            ng-selected="condiciones.factor==factor.nombre"
-                    >{{factor.nombre}}
+                <select name="factor" id="factor" class="form-control" ng-options="f.id as f.nombre for f in factores" ng-model="condiciones.factor" ng-change="factoresId">
+                    <option ng-selected="condiciones.factor==f.id">
+                        Seleccione
                     </option>
                 </select>
             </div>

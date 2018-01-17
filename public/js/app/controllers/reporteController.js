@@ -8,7 +8,7 @@ controllerModule
 
         function ($scope, toastr, jwtHelper, $rootScope, reporteService, $state, $uibModal) {
             //var user =jwtHelper.decodeToken(localStorage.getItem(TOKEN_KEY));
-            console.log("Reporte");
+            //console.log("Reporte");
 
 
             $scope.open = function () {
@@ -33,7 +33,7 @@ controllerModule
 
 
             $rootScope.condiciones = {
-                anio: new Date().getFullYear(),
+                anio: null,
                 periodo: null,
                 riesgo: null,
                 factor: null
@@ -41,11 +41,21 @@ controllerModule
 
             $rootScope.getReporte = function () {
 
-                reporteService.getEstudianteRiesgoPrograma($scope.condiciones)
+                reporteService.getEstudianteRiesgoPrograma()
                     .then(function (response) {
                         $scope.reportes = response.data;
                         // console.log($scope.reportes);
                     }, function (error) {
+                        console.log(error);
+                    });
+            };
+
+            $rootScope.getFilteredReporte = function () {
+
+                reporteService.getFilteredRiesgos($scope.condiciones)
+                    .then(function (response) {
+                        $scope.reportes = response.data;
+                    }, function (error){
                         console.log(error);
                     });
             };
@@ -70,8 +80,8 @@ controllerModule
                 })
             };
 
-            $rootScope.tipoRiesgos = function () {
-                reporteService.getRiesgosName().then(function (response){
+            $rootScope.filtroDropDown = function (){
+                reporteService.getTiposRiesgo().then(function (response){
 
                     $scope.riesgos = [];
                     angular.forEach(response.data, function(value){
@@ -79,38 +89,54 @@ controllerModule
                         $scope.riesgos.push(value)
                     });
 
-
                     console.log($scope.riesgos)
 
-                })
+                });
 
 
-            };
+                $scope.factorChange = function (factorId){
 
-            $rootScope.factorRiesgos = function () {
-                reporteService.getFactoresRiesgo().then(function (response){
+                    console.log(factorId)
 
-                    $scope.factores = [];
-                    angular.forEach(response.data, function(value){
+                    if (factorId != null){
 
-                        $scope.factores.push(value)
-                    });
+                        reporteService.getFactoresRiesgoByTipo(factorId).then(function (response){
 
-                    console.log($scope.factores)
+                            $scope.factores = [];
+                            angular.forEach(response.data, function(value){
 
-                })
+                                $scope.factores.push(value)
+                            });
 
+                            console.log($scope.factores)
+
+
+
+                        });
+
+                    }
+
+                    else {
+
+                        $scope.factores = null;
+
+                    }
+
+
+
+                }
 
 
             };
 
             $rootScope.getConfigAnio();
-            $rootScope.factorRiesgos();
-            $rootScope.tipoRiesgos();
+            //$rootScope.factoresRiesgo();
+            //$rootScope.tiposRiesgo();
+            $rootScope.filtroDropDown();
 
 
             $scope.ok = function () {
-                $rootScope.getReporte();
+                $rootScope.getFilteredReporte();
                 $uibModalInstance.dismiss('cancel');
             };
             $scope.cancel = function () {

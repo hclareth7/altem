@@ -8,6 +8,7 @@ use App\Models\Riesgo;
 use App\Models\TipoRiesgo;
 
 use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 
 class ReporteController extends Controller
 {
@@ -22,70 +23,104 @@ class ReporteController extends Controller
 
     }
 
-    public function archivo_personal(Request $request)
-    {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function filtrarQuery(Request $request){
 
         $anio = $request->input('anio');
         $periodo = $request->input('periodo');
         $riesgo = $request->input('riesgo');
-        $factores =  $request->input('factor');
-
-        switch($riesgo){
-
-            case 'Académico':
-                $riesgoid = 1;
-                break;
-
-            case 'Institucional':
-                $riesgoid = 2;
-                breaK;
-
-            case 'Económico':
-                $riesgoid = 3;
-                break;
-
-            case 'Personal':
-                $riesgoid = 4;
-                break;
-
-             default:
-                $riesgoid = null;
-
-        }
+        $factor =  $request->input('factor');
 
 
-
-        if ($periodo == 1 && $riesgo = null) {
+        if ($periodo == 1 and $riesgo != null and $factor == null) {
 
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
+                ->join('riesgos','riesgos.id','=','archivo_personal.riesgos_id')
                 ->whereYear('fecha_reporte', '=', $anio)
-                ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')->get();
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')
+                ->where('tipo_riesgos_id', '=', $riesgo)
+                ->get();
         }
-        if ($periodo == 1 && $riesgo != null) {
+
+        if ($periodo == 2 and $riesgo != null and $factor == null) {
 
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
-                ->select(\DB::raw('a.*, r.tipo_riesgos_id from altem.archivo_personal as a join altem.riesgos as r on a.riesgos_id = r.id  where tipo_riesgos_id ='.$riesgoid.''))
+                ->join('riesgos','riesgos.id','=','archivo_personal.riesgos_id')
+                ->whereYear('fecha_reporte', '=', $anio)
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '>', '6')
+                ->where('tipo_riesgos_id', '=', $riesgo)
                 ->get();
         }
 
 
+        if ($periodo == 1 and $factor != null) {
 
-        if ($periodo == 2) {
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
                 ->whereYear('fecha_reporte', '=', $anio)
-                ->where(\DB::raw('MONTH(fecha_reporte) '), '>', '6')->get();
-
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')
+                ->where('riesgos_id', '=', $factor)
+                ->get();
         }
-        if ($periodo == null) {
+
+        if ($periodo == 2 && $factor != null) {
+
             $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
                 ->whereYear('fecha_reporte', '=', $anio)
-                ->where(\DB::raw('MONTH(fecha_reporte) '), '<=', '12')->get();
-
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '>', '6')
+                ->where('riesgos_id', '=', $factor)
+                ->get();
         }
 
+        if ($periodo == 1 and $riesgo == null and $factor == null) {
 
+            $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
+                ->whereYear('fecha_reporte', '=', $anio)
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '<', '7')
+                ->get();
+        }
+
+        if ($periodo == 2 and $riesgo == null and $factor == null) {
+
+            $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
+                ->whereYear('fecha_reporte', '=', $anio)
+                ->where(\DB::raw('MONTH(fecha_reporte) '), '>', '6')
+                ->get();
+        }
 
         return response()->json($result);
+
+    }
+
+    public function archivo_personal()
+    {
+
+        $result = ArchivoPersonal::with('estudiante_altem','riesgo.tiporiesgo','intervenciones.estrategias')
+                ->get();
+
+        return response()->json($result);
+    }
+
+    public function getRiesgos(){
+        //Misaji
+
+        $result = Riesgo::select('*')->get();
+
+        return response()->json($result);
+
+
+    }
+
+    public function getRiesgosByTipo($id){
+        //Misaji
+
+        $result = Riesgo::select('*')->where('tipo_riesgos_id', $id)->get();
+
+        return response()->json($result);
+
+
     }
 
     public function tipoRiesgos_programas(){
@@ -100,7 +135,7 @@ class ReporteController extends Controller
 
     public function getRiesgosName(){
 
-        $nombres_riesgo = TipoRiesgo::select('nombre')->get();
+        $nombres_riesgo = TipoRiesgo::select('id','nombre')->get();
 
         return response()->json($nombres_riesgo);
 
