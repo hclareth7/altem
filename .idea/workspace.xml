@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="fixes and improvements2">
+    <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" afterPath="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReporteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReporteController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change beforePath="$PROJECT_DIR$/public/js/app/controllers/reporteController.js" afterPath="$PROJECT_DIR$/public/js/app/controllers/reporteController.js" />
-      <change beforePath="$PROJECT_DIR$/public/js/app/services/reporteService.js" afterPath="$PROJECT_DIR$/public/js/app/services/reporteService.js" />
-      <change beforePath="$PROJECT_DIR$/public/js/app/views/reporte/base.html" afterPath="$PROJECT_DIR$/public/js/app/views/reporte/base.html" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/asm89/stack-cors/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-cors/" />
@@ -106,8 +100,8 @@
       <file leaf-file-name="reporteController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/app/controllers/reporteController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1297">
-              <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="292">
+              <caret line="107" column="41" lean-forward="false" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -613,7 +607,7 @@
       <workItem from="1513972238315" duration="117000" />
       <workItem from="1513981652782" duration="1000" />
       <workItem from="1516125644397" duration="2180000" />
-      <workItem from="1516127844177" duration="6266000" />
+      <workItem from="1516127844177" duration="6332000" />
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -629,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513100794841</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes">
+      <created>1516213282274</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1516213282274</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143284000" />
+    <option name="totallyTimeSpent" value="143350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -692,7 +693,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixes and improvements" />
     <MESSAGE value="fixes and improvements2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes and improvements2" />
+    <MESSAGE value="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes" />
+    <option name="LAST_COMMIT_MESSAGE" value="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1072,8 +1074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/controllers/reporteController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1297">
-          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="292">
+          <caret line="107" column="41" lean-forward="false" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="41" />
           <folding />
         </state>
       </provider>
