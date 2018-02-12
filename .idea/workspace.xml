@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sat.iml" afterPath="$PROJECT_DIR$/.idea/sat.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" afterPath="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" afterPath="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/views/main.html" afterPath="$PROJECT_DIR$/public/js/app/views/main.html" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/asm89/stack-cors/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-cors/" />
@@ -87,38 +89,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/app/views/reporte/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="70" column="41" lean-forward="false" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
-              <folding>
-                <marker date="1517605007840" expanded="true" signature="5300:5706" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moduleRegistration.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/app/moduleRegistration.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="reporteController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/app/controllers/reporteController.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -132,8 +102,52 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="50" column="75" lean-forward="false" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="75" />
+            <state relative-caret-position="240">
+              <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArchivoPersonalController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <folding>
+                <marker date="1518468797697" expanded="true" signature="1977:2118" ph="SELECT * FRO... estudiantes_pp_view" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="estudianteController.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="900">
+              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/views/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3548">
+              <caret line="60" column="59" lean-forward="true" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+              <folding>
+                <marker date="1518469539774" expanded="false" signature="7816:7834" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LdapUserProvider.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Auth/LdapUserProvider.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -142,8 +156,8 @@
       <file leaf-file-name="ReporteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReporteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+            <state relative-caret-position="1185">
+              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -159,11 +173,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EstudianteController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EstudianteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="123" column="67" lean-forward="true" selection-start-line="123" selection-start-column="67" selection-end-line="123" selection-end-column="67" />
+            <state relative-caret-position="720">
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <marker date="1517853688382" expanded="true" signature="1132:1178" ph="Select * fro... estudiantes_view" />
                 <marker date="1517853688382" expanded="true" signature="1981:2012" ph="Select * fro... estudiantes_view" />
@@ -175,21 +189,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="riesgoService.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/app/services/riesgoService.js">
+      <file leaf-file-name="LdapServerConnection.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Auth/LdapServerConnection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiAuthController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiAuthController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+            <state relative-caret-position="1170">
+              <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -207,9 +211,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>icon wb-sett</find>
-      <find>settings</find>
-      <find>controller</find>
       <find>s</find>
       <find>usuarioController</find>
       <find>estrategiaCont</find>
@@ -237,6 +238,9 @@
       <find>getest</find>
       <find>estudiantes_all</find>
       <find>estudiante_c</find>
+      <find>getcol</find>
+      <find>estudiante_filtro</find>
+      <find>notificat</find>
     </findStrings>
   </component>
   <component name="FrameworkCommandLineHistory">
@@ -267,7 +271,6 @@
         <option value="$PROJECT_DIR$/public/js/app/views/estrategia/base.html" />
         <option value="$PROJECT_DIR$/app/Auth/LdapUserProvider.php" />
         <option value="$PROJECT_DIR$/public/js/app/views/tiporiesgo/base.html" />
-        <option value="$PROJECT_DIR$/public/js/app/views/main.html" />
         <option value="$PROJECT_DIR$/public/js/app/views/admin-usuarios/crear.html" />
         <option value="$PROJECT_DIR$/public/js/app/views/admin-usuarios/detalle.html" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/riesgoController.js" />
@@ -276,7 +279,6 @@
         <option value="$PROJECT_DIR$/app/Models/Role.php" />
         <option value="$PROJECT_DIR$/app/Models/Poblacion.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" />
-        <option value="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
         <option value="$PROJECT_DIR$/public/js/app/views/estudiante/personal.html" />
         <option value="$PROJECT_DIR$/public/js/app/services/usuarioService.js" />
         <option value="$PROJECT_DIR$/public/js/app/app.js" />
@@ -291,12 +293,15 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReporteController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ApiAuthController.php" />
-        <option value="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" />
         <option value="$PROJECT_DIR$/public/js/app/services/reporteService.js" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/reporteController.js" />
         <option value="$PROJECT_DIR$/public/js/app/views/reporte/base.html" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
+        <option value="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
+        <option value="$PROJECT_DIR$/app/Auth/LdapServerConnection.php" />
+        <option value="$PROJECT_DIR$/public/js/app/views/main.html" />
       </list>
     </option>
   </component>
@@ -390,8 +395,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1432" />
-    <option name="y" value="-8" />
+    <option name="x" value="1250" />
+    <option name="y" value="-14" />
     <option name="width" value="1456" />
     <option name="height" value="886" />
   </component>
@@ -414,7 +419,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -548,15 +552,21 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="SearchEverywhereHistoryKey" value="rout&#9;FILE&#9;file:///home/misaji/PhpstormProjects/altem/app/Http/routes.php" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -617,7 +627,10 @@
       <workItem from="1516125644397" duration="2180000" />
       <workItem from="1516127844177" duration="6338000" />
       <workItem from="1517605020474" duration="4924000" />
-      <workItem from="1517849680753" duration="765000" />
+      <workItem from="1517849680753" duration="3408000" />
+      <workItem from="1517868910818" duration="13000" />
+      <workItem from="1518467095481" duration="281000" />
+      <workItem from="1518468137925" duration="1669000" />
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -647,26 +660,35 @@
       <option name="project" value="LOCAL" />
       <updated>1516213287490</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="añadido PROMEDIO_PERIODO en consulta de filtros">
+      <created>1517853750645</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1517853750645</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149045000" />
+    <option name="totallyTimeSpent" value="153651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1432" y="-8" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20972222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19937041" sideWeight="0.5069444" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1992238" sideWeight="0.5069444" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988358" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289941" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22140609" sideWeight="0.49305555" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2048611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -711,29 +733,16 @@
     <MESSAGE value="fixes and improvements" />
     <MESSAGE value="fixes and improvements2" />
     <MESSAGE value="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- cambio en ldap, haciendo consultas con codigo personal (temp)&#10;- filtro de búsqueda en Reportes" />
+    <MESSAGE value="añadido PROMEDIO_PERIODO en consulta de filtros" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadido PROMEDIO_PERIODO en consulta de filtros" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/app/services/tipoRiesgoService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/controllers/usuarioController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -954,28 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/views/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="136" column="95" lean-forward="false" selection-start-line="136" selection-start-column="91" selection-end-line="136" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Auth/LdapUserProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Auth/LdapServerConnection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="86" column="58" lean-forward="false" selection-start-line="86" selection-start-column="58" selection-end-line="86" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/loginService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1050,24 +1037,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReporteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="50" column="75" lean-forward="false" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="75" />
+        <state relative-caret-position="1185">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="123" column="67" lean-forward="true" selection-start-line="123" selection-start-column="67" selection-end-line="123" selection-end-column="67" />
+        <state relative-caret-position="720">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <marker date="1517853688382" expanded="true" signature="1132:1178" ph="Select * fro... estudiantes_view" />
             <marker date="1517853688382" expanded="true" signature="1981:2012" ph="Select * fro... estudiantes_view" />
@@ -1075,6 +1054,58 @@
             <marker date="1517853688382" expanded="true" signature="2839:3025" ph="SELECT count... estudiantes_view" />
             <marker date="1517853688382" expanded="true" signature="4834:4887" ph="SELECT count... estudiantes_view" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <marker date="1518468797697" expanded="true" signature="1977:2118" ph="SELECT * FRO... estudiantes_pp_view" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Auth/LdapUserProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Auth/LdapServerConnection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3548">
+          <caret line="60" column="59" lean-forward="true" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+          <folding>
+            <marker date="1518469539774" expanded="false" signature="7816:7834" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
