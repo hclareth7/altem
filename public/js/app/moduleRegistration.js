@@ -11,5 +11,4 @@ angular.module('AppServices',[]);
 
 TOKEN_KEY='utb_token';
 UTB_AUSER='utb_auser';
-apiUrl='http://localhost:8000/api/'
 
