@@ -78,8 +78,8 @@ controllerModule
 
         }])
 
-    .filter('reverse', function() {
-        return function(items) {
+    .filter('reverse', function () {
+        return function (items) {
             return items;
         };
     })
@@ -94,8 +94,8 @@ controllerModule
 
             }])
     .controller('estudiantePersonalController',
-        ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService', 'accionService','$confirm',
-            function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService, accionService,$confirm) {
+        ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService', 'accionService', '$confirm',
+            function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService, accionService, $confirm) {
 
 
                 $scope.getEstudiante = function (estudianteId) {
@@ -155,21 +155,6 @@ controllerModule
                 $scope.closePanel = function () {
                     $scope.isPanel = false;
 
-                };
-
-                $scope.open = function () {
-
-                    var modalInstance = $uibModal.open({
-                        animation: $scope.animationsEnabled,
-                        windowTemplateUrl: 'windows.html',
-                        templateUrl: 'modal.html',
-                        controller: 'ModalInstanceCtrl',
-                        resolve: {
-                            items: function () {
-                                return $scope.items;
-                            }
-                        }
-                    });
                 };
 
 
@@ -232,8 +217,8 @@ controllerModule
 
             }])
     .controller('archivoPersonalCrearController',
-        ['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'riesgoService', '$uibModalInstance', '$confirm', 'accionService',
-            function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, riesgoService, $uibModalInstance, $confirm, accionService) {
+        ['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'riesgoService', '$uibModalInstance', '$confirm', 'accionService', '$uibModal',
+            function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, riesgoService, $uibModalInstance, $confirm, accionService, $uibModal) {
                 $rootScope.getAllRiesgos = function () {
                     var data = {
                         codigo_estudiante: $stateParams.estudianteId
@@ -246,9 +231,15 @@ controllerModule
 
                 };
                 $rootScope.getAllRiesgos();
-                $scope.agregarRiesgo = function (id_riesgo) {
+                $rootScope.agregarRiesgo = function (id_riesgo, fecha) {
+
+                    if (!fecha) {
+                        freporte = new Date()
+                    } else {
+                        freporte = fecha
+                    }
                     $scope.archivo = {
-                        fecha_reporte: new Date(),
+                        fecha_reporte: freporte,
                         riesgos_id: id_riesgo,
                         estudiantes_altem_codigo: $rootScope.estudiante.ID.toLowerCase(),
                         programa_estudiante: $rootScope.estudiante.PROGRAMA,
@@ -259,22 +250,54 @@ controllerModule
                     archivoPersonalService.createArchivo($scope.archivo).then(function (response) {
                         $rootScope.getRiesgosByEstudiantes();
                         $rootScope.getAllRiesgos();
-                        toastr.warning('Exito', 'Riesgo agregado');
+                        toastr.success('Exito', 'Riesgo agregado');
                     }, function (error) {
                         console.log(error);
                     });
-                    //console.log($scope.archivo);
+                };
+
+                $scope.cerrarModal = function () {
+                    $uibModalInstance.dismiss();
                 };
 
 
-                $scope.cerrarModal = function () {
-
+                $scope.openModalRiesgoFecha = function (riesgo) {
                     $uibModalInstance.dismiss();
+                    var modal_riesgo_fecha = $uibModal.open({
+                        templateUrl: 'modal-riesgo-fecha.html',
+                        controller: 'ModalCrearRiesgoFechaCtrl',
+                        resolve: {
+                            riesgo: function () {
+                                return riesgo;
+                            }
+                        }
+                    });
+                    modal_riesgo_fecha.result.then(function (selectedItem) {
 
+                    }, function () {
+
+                    });
                 };
 
 
             }])
+
+    .controller('ModalCrearRiesgoFechaCtrl', ['$uibModalInstance', 'riesgo', '$scope', '$rootScope', function ($uibModalInstance, riesgo, $scope, $rootScope) {
+        $scope.nombre_riesgo = riesgo.nombre;
+
+        $scope.cerrarModal = function () {
+            $uibModalInstance.dismiss();
+        };
+        $scope.guardar = function () {
+            console.log($scope.fecha_reporte);
+            $rootScope.agregarRiesgo(riesgo.id, $scope.fecha_reporte);
+            $uibModalInstance.dismiss();
+
+        }
+
+    }])
+
+
     .controller('intervencionCrearController',
         ['$scope', 'archivoPersonalService', '$stateParams', '$location', 'toastr', '$rootScope', 'estrategiaService', 'intervencionesService', '$confirm', '$uibModalInstance',
             function ($scope, archivoPersonalService, $stateParams, $location, toastr, $rootScope, estrategiaService, intervencionesService, $confirm, $uibModalInstance) {
