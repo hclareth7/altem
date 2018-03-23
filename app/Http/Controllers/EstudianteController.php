@@ -34,14 +34,16 @@ class EstudianteController extends Controller
     public function setRestric()
     {
         $restric = "";
-        //dd($roles = Auth::user());
         $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;
         })->first();
+
+
         $restricRole = $roles->roles->map(function ($value) {
             return $value->name;
         });
+
         if ($restricRole[0] == "ADMIN") {
             $this->sql = "Select *  from estudiantes_view where id !=' '";
             return $this->sql;
@@ -101,6 +103,7 @@ class EstudianteController extends Controller
     {
 
         $filofinal = "";
+
         $filtros = Filtro::where('riesgos_id', $id)->get();
 
         foreach ($filtros as $key => $value) {
@@ -110,9 +113,10 @@ class EstudianteController extends Controller
             } else {
                 $filofinal .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             }
+
         }
         $sql = $this->setRestric() . " " . $filofinal;
-        //dd($sql);
+
         $estudiantes = $this->db_sirius->select($sql);
         return response()->json($estudiantes);
     }
@@ -126,7 +130,7 @@ class EstudianteController extends Controller
         (`estudiantes`
         JOIN `datos_academicos` ON ((`estudiantes`.`ID` = `datos_academicos`.`ID`)))
          */
-        $columns = $this->db_sirius->select('SHOW COLUMNS FROM estudiantes_pp_view');
+        $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes_view');
         return response()->json($columns);
     }
 

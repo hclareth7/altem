@@ -14,7 +14,6 @@
                         <h4 class="profile-user">{{estudiante.NOMBRES+ ' '+estudiante.APELLIDOS}}</h4>
                         <p class="profile-job">{{estudiante.PROGRAMA}}</p>
                         <address>
-                        <address>
                             <strong>Informacion de contacto</strong>
                             <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.DIRECCION1}}
                             <br> <abbr title="Correo">Correo:</abbr><a href="mailto:{{estudiante.EMAIL}}">
@@ -22,13 +21,7 @@
                             <br>
                             <abbr title="Telefono">Telefono: </abbr> {{estudiante.TELEFONO2}}
                         </address>
-                        <!--div class="profile-social">
-                            <a class="icon bd-twitter" href="javascript:void(0)"></a>
-                            <a class="icon bd-facebook" href="javascript:void(0)"></a>
-                            <a class="icon bd-dribbble" href="javascript:void(0)"></a>
-                            <a class="icon bd-github" href="javascript:void(0)"></a>
-                        </div-->
-                        <!--button type="button" class="btn btn-primary">Follow</button-->
+
                     </div>
                 </div>
                 <div class="widget-footer">
@@ -56,7 +49,7 @@
             <div class="panel ">
                 <div class="panel-body nav-tabs-animate">
                     <uib-tabset active="">
-                        <uib-tab index="0" heading="Intervenciones">
+                        <uib-tab index="0" heading="Seguimientos">
 
                             <button type="button" ui-sref="main.personal.riesgo"
                                     class="btn btn-icon btn-danger    btn-add-riesgo pull-right">
@@ -71,7 +64,8 @@
                                     <i class="icon  wb-info-circle" aria-hidden="true"></i>
                                     No hay riesgos agregados para este estudiante
                                 </div>
-                                <div class="media is-loading" ng-repeat="archivo in archivoPersonal | reverse">
+                                <div class="media is-loading"
+                                     ng-repeat="archivo in archivoPersonal | orderBy: 'archivo.fecha_reporte': true">
 
 
                                     <div class="media-left">
@@ -110,7 +104,9 @@
                                                             </button>
                                                         </div>
                                                         <div class=" col-md-1">
-                                                            <button type="button" ng-click="eliminarArchivo(archivo.riesgo.id)" class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                            <button type="button"
+                                                                    ng-click="eliminarArchivo(archivo.riesgo.id)"
+                                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-close" aria-hidden="true"></i>
 
                                                             </button>
@@ -380,7 +376,7 @@
         <button type="button" class="close">
             <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
-        <h3 class="modal-title" id="modal-title">Agregar factor de riesgo</h3>
+        <h3 class="modal-title">Agregar factor de riesgo</h3>
         <br>
         <form role="search">
             <div class="form-group">
@@ -394,7 +390,7 @@
             </div>
         </form>
     </div>
-    <div class="modal-body" id="modal-body">
+    <div class="modal-body">
         <ul class="ul-mi-riesgo">
             <li ng-repeat="riesgo in riesgos | filter:buscar_riesgo">
                 <div class="media">
