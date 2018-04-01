@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Models\Filtro;
+use App\Models\Criterio;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\DB;
 
-class FiltroController extends Controller
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class CriterioController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('cors');
@@ -20,22 +19,15 @@ class FiltroController extends Controller
 
     public function find(Route $route)
     {
-        $this->filtro = Filtro::find($route->getParameter('filtro'));
+        $this->criterio = Criterio::find($route->getParameter('criterio'));
     }
 
 
     public function index()
     {
         //$sql="SELECT * FROM sat.filtros group by riesgos_id";
-        $filtro = Filtro::with('riesgo')
-            ->groupBy('riesgos_id')->get();
-        return response()->json($filtro);
-    }
-
-    public function getByRiesgo($id)
-    {
-        $filtro = Filtro::where('riesgos_id', $id)->get();
-        return response()->json($filtro);
+        $criterio = Criterio::all();
+        return response()->json($criterio);
     }
 
 
@@ -47,7 +39,7 @@ class FiltroController extends Controller
      */
     public function store(Request $request)
     {
-        Filtro::create($request->all());
+        Criterio::create($request->all());
         return response()->json(["mensaje" => "Creado correctamente"]);
     }
 
@@ -59,7 +51,7 @@ class FiltroController extends Controller
      */
     public function show($id)
     {
-        return response()->json($this->filtro);
+        return response()->json($this->criterio);
     }
 
 
@@ -72,8 +64,8 @@ class FiltroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->filtro->fill($request->all());
-        $this->filtro->save();
+        $this->criterio->fill($request->all());
+        $this->criterio->save();
         return response()->json(["mensaje" => "Actualizacion exitosa"]);
     }
 
@@ -85,7 +77,7 @@ class FiltroController extends Controller
      */
     public function destroy($id)
     {
-        $this->filtro->delete();
+        $this->criterio->delete();
         return response()->json(["mensaje" => "Borrado correctamente"]);
     }
 }
