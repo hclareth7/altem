@@ -11,13 +11,18 @@ class Filtro extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['nombre', 'campo', 'operador', 'valor', 'tipo', 'riesgos_id'];
+    protected $fillable = ['nombre', 'tabla', 'campo', 'operador', 'valor', 'tipo', 'riesgos_id', 'bases_datos_estudiantes_id'];
 
     public function riesgo()
     {
         return $this->belongsTo('App\Models\Riesgo', 'riesgos_id', 'id');
     }
 
+
+    public function base_datos_estudiantes()
+    {
+        return $this->belongsTo('App\Models\BaseDatosEstudiantes', 'bases_datos_estudiantes_id', 'id');
+    }
 
     public function getQuery()
     {
