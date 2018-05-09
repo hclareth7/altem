@@ -95,6 +95,7 @@
 	<script src="/js/app/services/intervencionService.js"></script>
 	<script src="/js/app/services/observacionService.js"></script>
 	<script src="/js/app/services/usuarioService.js"></script>
+	<script src="/js/app/services/criterioService.js"></script>
 
 	<!-- Module Controllers -->
 

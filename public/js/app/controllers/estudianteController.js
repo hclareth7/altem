@@ -30,7 +30,6 @@ controllerModule
                 return keys;
             };
 
-
             $scope.getFiltrosByEstudiantes = function (id) {
 
                 estudianteService.getEstudiantesByFiltro(id).then(function (response) {
@@ -76,6 +75,13 @@ controllerModule
                 $scope.filtros = response.data;
             });
 
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
+            };
+
+
+
+
         }])
 
     .filter('reverse', function () {
@@ -97,6 +103,7 @@ controllerModule
         ['$scope', 'estudianteService', '$stateParams', '$location', 'toastr', '$state', '$rootScope', '$uibModal', 'archivoPersonalService', 'accionService', '$confirm',
             function ($scope, estudianteService, $stateParams, $location, toastr, $state, $rootScope, $uibModal, archivoPersonalService, accionService, $confirm) {
 
+                $scope.anotaciones = [];
 
                 $scope.getEstudiante = function (estudianteId) {
                     $rootScope.estudiante = {};
@@ -131,6 +138,7 @@ controllerModule
                         });
 
                         $scope.archivoPersonal = archivo;
+                        console.log("$##############################");
                         console.log($scope.archivoPersonal);
                         //$rootScope.idArchivo = response.data[0].id;
                         $rootScope.codigoEstudiante = parseInt($stateParams.estudianteId);
@@ -214,6 +222,16 @@ controllerModule
 
                     });
                 };
+
+                $scope.getAnotacionById = function (codigo) {
+                    estudianteService.getAnotacionById(codigo).then(function (response) {
+                        $scope.anotaciones = response.data;
+                    }, function (response) {
+                        console.log(response);
+                    })
+                };
+
+                $scope.getAnotacionById($stateParams.estudianteId);
 
             }])
     .controller('archivoPersonalCrearController',
@@ -329,6 +347,8 @@ controllerModule
                         archivo_personal_id: parseInt($stateParams.archivoId),
                         usuarios_codigo: $rootScope.usuario.codigo
                     };
+                    console.log($scope.intervencion);
+
                     intervencionesService.createIntervencion($scope.intervencion).then(function (response) {
                         $rootScope.getRiesgosByEstudiantes();
                         $rootScope.cargarEstrategias(data1);

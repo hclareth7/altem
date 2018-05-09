@@ -143,6 +143,10 @@ controllerModule
                 $uibModalInstance.dismiss('cancel');
             };
 
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
+            };
+
         }])
     .controller('graficaReporteCtrl', [ '$scope', 'reporteService', '$rootScope'
         , function ($scope, reporteService, $rootScope) {

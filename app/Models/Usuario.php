@@ -29,7 +29,7 @@ class Usuario extends Model implements AuthenticatableContract
     }
 
     public function poblaciones(){
-        return $this->hasMany('App\Models\Poblacion','usuarios_codigo','id');
+        return $this->hasMany('App\Models\Poblacion','usuarios_codigo','codigo');
     }
 
 

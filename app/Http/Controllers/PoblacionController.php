@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Poblacion;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class PoblacionController extends Controller
 {
@@ -81,3 +79,4 @@ class PoblacionController extends Controller
         return response()->json(["mensaje" => "Borrado correctamente"]);
     }
 }
+

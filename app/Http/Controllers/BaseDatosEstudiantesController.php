@@ -25,11 +25,20 @@ class BaseDatosEstudiantesController extends Controller
 
     public function index()
     {
-        //$sql="SELECT * FROM sat.filtros group by riesgos_id";
-        $db_estudiantes = BaseDatosEstudiantes::all();
+
+        $db_estudiantes = BaseDatosEstudiantes::with(['filtros', 'criterios'])->get();
         return response()->json($db_estudiantes);
     }
 
+    public function getColumn(Request $request)
+    {
+        $connec = new BaseDatosEstudiantes();
+
+
+        $columns = $connec->getConection($request->nombre)->select('SHOW COLUMNS FROM ' . $request->tabla);
+
+        return response()->json($columns);
+    }
 
     /**
      * Store a newly created resource in storage.

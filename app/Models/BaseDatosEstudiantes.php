@@ -10,7 +10,7 @@ class BaseDatosEstudiantes extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['nombre', 'descricion','propiedades'];
+    protected $fillable = ['nombre','tipo', 'descricion','propiedades'];
 
     public function filtros(){
         return $this->hasMany('App\Models\Filtro','bases_datos_estudiantes_id','id');
@@ -18,6 +18,11 @@ class BaseDatosEstudiantes extends Model
 
     public function criterios(){
         return $this->hasMany('App\Models\Criterio','bases_datos_estudiantes_id','id');
+    }
+
+    public function getConection($data_base_name)
+    {
+        return \DB::connection($data_base_name);
     }
 
 }

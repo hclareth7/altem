@@ -19,7 +19,7 @@ class ArchivoPersonalController extends Controller
      */
     public function __construct(Filtro $filtro)
     {
-        $this->db_sirius = \DB::connection('mysql2');
+        $this->db_sirius = \DB::connection('sirius');
         $this->middleware('cors');
         $this->beforeFilter('@find', ['only' => ['show', 'update', 'destroy']]);
         $this->filtro = $filtro;

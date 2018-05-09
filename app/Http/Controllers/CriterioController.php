@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Criterio;
+use App\Models\Poblacion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,7 +40,12 @@ class CriterioController extends Controller
      */
     public function store(Request $request)
     {
-        Criterio::create($request->all());
+        $criterio = Criterio::create($request->all());
+        $poblacion = new Poblacion();
+        $poblacion->usuarios_codigo = $request->codigo;
+        $poblacion->criterios_id = $criterio->id;
+        $poblacion->save();
+
         return response()->json(["mensaje" => "Creado correctamente"]);
     }
 

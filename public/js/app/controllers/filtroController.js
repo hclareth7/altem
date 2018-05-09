@@ -32,6 +32,10 @@ controllerModule
                 });
             };
 
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
+            };
+
         }])
     .controller('filtroEditarController', ['$scope', '$uibModalInstance', 'filtroService', '$rootScope', 'toastr', '$stateParams','$state','estudianteService',
         function ($scope, $uibModalInstance, filtroService, $rootScope, toastr, $stateParams,$state,estudianteService) {

@@ -1,8 +1,9 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-    .controller('riesgoController', ['$scope', 'riesgoService', '$stateParams', 'toastr', '$rootScope', 'filtroService', '$confirm', '$uibModal',
-        function ($scope, riesgoService, $stateParams, toastr, $rootScope, filtroService, $confirm, $uibModal) {
+    .controller('riesgoController',
+        ['$scope', 'riesgoService', '$stateParams', 'toastr', '$rootScope', 'filtroService', '$confirm', '$uibModal','$state',
+        function ($scope, riesgoService, $stateParams, toastr, $rootScope, filtroService, $confirm, $uibModal,$state) {
 
             $rootScope.riesgos = [];
             $scope.getAllRiesgos = function () {
@@ -73,7 +74,11 @@ controllerModule
                         controller: 'asignarEstrategiaController',
                     });
                 }
-            }
+            };
+
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
+            };
 
 
         }])

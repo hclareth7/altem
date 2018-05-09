@@ -1,0 +1,60 @@
+<div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{titulo}} </h3>
+                </div>
+                <div class="panel-body">
+
+
+                    <form class="form-horizontal ng-pristine ng-valid" ng-submit="guardar()">
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Codigo</label>
+
+                            <div class="col-lg-8">
+                                <div class="bs-component">
+                                    <input type="text" class="form-control" ng-model="usuario.codigo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Rol</label>
+
+                            <div class="col-lg-8">
+                                <div class="bs-component">
+                                    <select class="form-control" ng-model="usuario.rol.id">
+                                        <option ng-repeat="role in roles" value="{{role.id}}"
+                                                ng-selected="usuario.rol.id==role.id">{{role.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Estado</label>
+
+                            <div class="col-lg-8">
+                                <div class="bs-component">
+                                    <select class="form-control" ng-model="usuario.estado">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-footer">
+                            <button type="submit" class="btn btn-primary">{{accion}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

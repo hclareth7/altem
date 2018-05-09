@@ -1,28 +1,26 @@
 var servicesModule = angular.module('AppServices');
 servicesModule.factory('estrategiaService', ['$http', function ($http) {
-	return {
-		apiUrl: apiUrl,
-		getAllEstrategias: function () {
-			return $http.get(this.apiUrl + 'estrategia/');
-		},
-		getEstrategiaById: function (estrategiaId) {
-			return $http.get(this.apiUrl + 'estrategia/' + estrategiaId);
+    return {
+        apiUrl: apiUrl,
+        getAllEstrategias: function () {
+            return $http.get(this.apiUrl + 'estrategia/');
+        },
+        getEstrategiaById: function (estrategiaId) {
+            return $http.get(this.apiUrl + 'estrategia/' + estrategiaId);
 
-		},getEstrategiaByRiesgoId: function (data) {
-			return $http.post(this.apiUrl + 'estrategia_by_riesgo/',data);
-		},
-		createEstrategia: function (estrategia) {
-			return $http.post(this.apiUrl + 'estrategia/', estrategia);
-		},
-		updateEstrategia: function (id, estrategia) {
-			console.log(estrategia);
-			return $http.put(this.apiUrl + 'estrategia/' + id, estrategia);
+        }, getEstrategiaByRiesgoId: function (data) {
+            return $http.post(this.apiUrl + 'estrategia_by_riesgo/', data);
+        },
+        createEstrategia: function (estrategia) {
+            return $http.post(this.apiUrl + 'estrategia/', estrategia);
+        },
+        updateEstrategia: function (id, estrategia) {
+            console.log(estrategia);
+            return $http.put(this.apiUrl + 'estrategia/' + id, estrategia);
+        },
+        deleteEstrategia: function (estrategiaId) {
+            return $http.delete(this.apiUrl + 'estrategia/' + estrategiaId);
+        }
 
-
-		},
-		deleteEstrategia: function (estrategiaId) {
-			return $http.delete(this.apiUrl + 'estrategia/' + estrategiaId);
-		}
-
-	};
-    }]);
+    };
+}]);

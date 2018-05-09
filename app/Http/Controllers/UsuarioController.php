@@ -33,44 +33,81 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $usuarios = Usuario::with(['roles','poblaciones'])->get();
+        $usuarios = Usuario::with(['roles', 'poblaciones'])->get();
         return response()->json($usuarios);
     }
 
 
     public function show($id)
     {
-        return response()->json($this->usuario);
+        $ldap_user = Auth::getProvider()->retrieveById($id);
+        $usuario = Usuario::where('codigo', '=', $id)->with(['roles', 'poblaciones.criterio'])->first();
+        $usuario->nombre = $ldap_user->nombre;
+        $usuario->correo = $ldap_user->correo;
+        $usuario->codigo = $ldap_user->codigo;
+        $usuario->rol = $usuario->roles[0];
+        return response()->json($usuario);
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $codigo = $request->codigo;
-        $estado= $request->estado;
+        $estado = $request->estado;
 
         $verify = Auth::getProvider()->retrieveById($codigo);
-        if($verify){
-            $usuario =new  Usuario();
-            $usuario->codigo=$codigo;
-            $usuario->estado=$estado;
+        if ($verify) {
+            $usuario = new  Usuario();
+            $usuario->codigo = $codigo;
+            $usuario->estado = $estado;
             $usuario->save();
-            return response()->json(["mensaje"=>"Creada correctamente"]);
-        }else{
-            return response()->json(["mensaje"=>"El usuario no existe"]);
+
+            $user = Usuario::where('codigo', '=', $request->input('codigo'))->first();
+
+            $role = Role::where('id', '=', $request->input('rol.id'))->first();
+
+            $user->roles()->attach($role->id);
+
+            return response()->json(["mensaje" => "Creada correctamente"]);
+        } else {
+            return response()->json(["mensaje" => "El usuario no existe"]);
 
         }
 
 
-
     }
 
+    public function update(Request $request, $id)
+    {
+
+
+        $estado = $request->estado;
+
+        $verify = Auth::getProvider()->retrieveById($id);
+        if ($verify) {
+
+
+            $user = Usuario::where('codigo', '=', $request->input('codigo'))->first();
+            $user->codigo = $id;
+            $user->estado = $estado;
+
+            //$role = Role::where('id', '=', $request->input('rol.id'))->first();
+
+            $user->roles()->sync(array($request->input('rol.id')));
+            $user->update();
+
+            return response()->json(["mensaje" => "Creada correctamente"]);
+        } else {
+            return response()->json(["mensaje" => "El usuario no existe"]);
+
+        }
+    }
 
 
     public function createRole(Request $request)
@@ -80,6 +117,13 @@ class UsuarioController extends Controller
         $role->save();
 
         return response()->json("created");
+    }
+
+
+    public function getRole(Request $request)
+    {
+        $roles = Role::all();
+        return response()->json($roles);
     }
 
     public function createPermission(Request $request)

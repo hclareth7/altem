@@ -15,7 +15,7 @@ class Poblacion extends Model
 
     public function usuario()
     {
-        return $this->belongsTo('App\Models\Usuario', 'usuarios_codigo', 'id');
+        return $this->belongsTo('App\Models\Usuario', 'usuarios_codigo', 'codigo');
     }
 
     public function criterio()

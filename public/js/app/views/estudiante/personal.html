@@ -43,6 +43,18 @@
                 </div>
             </div>
             <!-- End Page Widget -->
+
+            <section class="page-aside-section">
+                <h5 class="page-aside-title">Anotaciones</h5>
+                <div class="list-group calendar-list">
+                    <a ng-repeat="anotacion in anotaciones" class="list-group-item calendar-event ui-draggable ui-draggable-handle" data-title="Meeting" data-stick="true" data-color="red-600" href="javascript:void(0)">
+                        <i class="wb-medium-point red-600 mr-10" aria-hidden="true"></i>{{anotacion.propiedad}}
+                    </a>
+
+                    <a id="addNewEventBtn" class="list-group-item" href="javascript:void(0)"> <i class="icon wb-plus" aria-hidden="true"></i> Agregar anotación </a>
+                </div>
+            </section>
+
         </div>
         <div class="col-md-9">
             <!-- Panel -->
@@ -103,6 +115,7 @@
                                                         </div>
                                                         <div class=" col-md-1">
                                                             <button type="button"
+                                                                    ng-show="archivo.usuarios_codigo"
                                                                     ng-click="eliminarArchivo(archivo.riesgo.id)"
                                                                     class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-close" aria-hidden="true"></i>
@@ -126,8 +139,9 @@
                                                     ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
                                                     class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
-                                                   ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
-                                                ></i>
+                                                   ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }">
+
+                                                </i>
 
                                             </button>
                                         </div>
@@ -139,6 +153,7 @@
                                              role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
                                             <button type="button"
+                                                    ng-disabled="archivo.id==0"
                                                     ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
@@ -665,15 +680,17 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
-        <h4 class="modal-title">Selecciona una fecha para el rieso <span class="badge badge-danger">{{nombre_riesgo}}</span></h4>
+        <h4 class="modal-title">Selecciona una fecha para el rieso <span
+                class="badge badge-danger">{{nombre_riesgo}}</span></h4>
     </div>
     <div class="modal-body">
         <form ng-submit="guardar()">
             <div class="row">
 
                 <div class="col-lg-12 form-group">
-                    <div >
-                        <div uib-datepicker ng-model="fecha_reporte" class="well well-lg datepicker datepicker-inline" datepicker-options="options"></div>
+                    <div>
+                        <div uib-datepicker ng-model="fecha_reporte" class="well well-lg datepicker datepicker-inline"
+                             datepicker-options="options"></div>
                     </div>
                 </div>
 

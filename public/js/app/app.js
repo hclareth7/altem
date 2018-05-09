@@ -214,15 +214,15 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		})
 
 		//admin de usuarios
-        .state('main.admin-usuarios', {
-            url: '/usuarios',
-            templateUrl: '/js/app/views/usuarios/base.html',
+        .state('main.usuario', {
+            url: '/usuario',
+            templateUrl: '/js/app/views/usuario/base.html',
             controller: 'usuarioController'
 
         })
-        .state('main.admin-usuarios.editar', {
-            url: '/editar/:riesgoId',
-            templateUrl: '/js/app/views/usuarios/crear.html',
+        .state('main.usuario.editar', {
+            url: '/editar/:usuarioId',
+            templateUrl: '/js/app/views/usuario/crear.html',
             controller: 'usuarioEditarController',
             data: {
                 permissions: {
@@ -230,9 +230,9 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
                 }
             }
         })
-        .state('main.admin-usuarios.crear', {
+        .state('main.usuario.crear', {
             url: '/crear',
-            templateUrl: '/js/app/views/usuarios/crear.html',
+            templateUrl: '/js/app/views/usuario/crear.html',
             controller: 'usuarioCrearController',
             data: {
                 permissions: {
@@ -240,12 +240,35 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
                 }
             }
         })
-        .state('main.admin-usuarios.detalle',{
-            url: '/detalle/:riesgoId',
-            templateUrl: '/js/app/views/riesgo/detalle.html',
+        .state('main.usuario.detalle',{
+            url: '/detalle/:usuarioId',
+            templateUrl: '/js/app/views/usuario/detalle.html',
             controller: 'usuarioDetalleController'
-        })
+        });
 
+        modalStateProvider.state('main.usuario.detalle.criterio', {
+            url: '/criterio/crear',
+            templateUrl: 'modal-criterio.html',
+            controller: 'usuarioCriterioCrearController',
+            size: 'lg',
+            data: {
+                permissions: {
+                    only: ['ADMIN']
+                }
+            }
+        });
+
+        modalStateProvider.state('main.usuario.detalle.criterio.editar', {
+            url: '/criterio/editar',
+            templateUrl: 'modal-criterio.html',
+            controller: 'usuarioCriterioEditarController',
+            size: 'lg',
+            data: {
+                permissions: {
+                    only: ['ADMIN']
+                }
+            }
+        });
 
 		modalStateProvider.state('main.personal.riesgo', {
 			url: '/riesgo/crear',

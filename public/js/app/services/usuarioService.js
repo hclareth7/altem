@@ -5,20 +5,26 @@ servicesModule.factory('usuarioService', ['$http', function ($http) {
         getAllUsuario: function () {
             return $http.get(this.apiUrl + 'usuario/');
         },
-        getUsuarioById: function (riesgoId) {
-            return $http.get(this.apiUrl + 'usuario/' + riesgoId);
+        getUsuarioById: function (usuarioId) {
+            return $http.get(this.apiUrl + 'usuario/' + usuarioId);
         },
         createUsuario: function (usuario) {
             return $http.post(this.apiUrl + 'usuario/', usuario);
         },
-        updateRiesgo: function (id, riesgo) {
-            return $http.put(this.apiUrl + 'riesgo/' + id, riesgo);
+        updateUsuario: function (id, usuario) {
+            return $http.put(this.apiUrl + 'usuario/' + id, usuario);
         },
-        deleteRiesgo: function (riesgoId) {
-            return $http.delete(this.apiUrl + 'riesgo/' + riesgoId);
+        updateRole: function (data) {
+            return $http.post(this.apiUrl + 'assign_role/', data);
         },
-        riesgoByArchivo:function (data) {
-            return $http.post(this.apiUrl + 'riesgo_by_archivo/',data);
+        deleteUsuario: function (usuarioId) {
+            return $http.delete(this.apiUrl + 'usuario/' + usuarioId);
+        },
+        getAllRoles: function () {
+            return $http.get(this.apiUrl + 'role/');
         }
+
+
+
     };
 }]);
