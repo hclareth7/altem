@@ -17,20 +17,58 @@ controllerModule
             $scope.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
             };
-            estudianteService.getColumnas().then(function (response) {
+            estudianteService.getEstudianteColumnas().then(function (response) {
                 $scope.campos=response.data;
             });
+
+
             $scope.guardarFiltro = function () {
                 $scope.filtro.nombre=$rootScope.riesgo.nombre;
                 $scope.filtro.riesgos_id = $rootScope.riesgo.id;
                 filtroService.createFiltro($scope.filtro).then(function (response) {
                     filtroService.getFiltroByRiesgoId($rootScope.riesgo.id).then(function (response2) {
                         $rootScope.filtros = response2.data;
+                        console.log($rootScope.filtros);
                         toastr.success('Exito', 'Filtro agregado');
                     });
                     $scope.filtro = {};
                 });
             };
+
+
+            $rootScope.dbChange = function (idb){
+
+                idb = parseInt(idb);
+                console.log("Entro en el dbChange");
+
+                $scope.campos = [];
+                switch(idb){
+
+                    case 0:
+                        console.log("Seleccionado Estudiante");
+                        estudianteService.getEstudianteColumnas().then(function (response){
+                            angular.forEach(response.data, function(value){
+                                $scope.campos.push(value)
+                            });
+                        });
+                        break;
+
+                    case 1:
+                        console.log("Seleccionado Asistencia");
+                        filtroService.getEstadosAsistencia().then(function (response){
+                            angular.forEach(response.data, function(value){
+                                $scope.campos.push(value)
+                            });
+                        });
+                        break;
+
+                    default:
+                        $scope.campos = null;
+
+
+                }
+
+            }
 
         }])
     .controller('filtroEditarController', ['$scope', '$uibModalInstance', 'filtroService', '$rootScope', 'toastr', '$stateParams','$state','estudianteService',
@@ -60,7 +98,7 @@ controllerModule
                 });
             };
             $scope.getFiltro(parseInt($stateParams.filtroId));
-            estudianteService.getColumnas().then(function (response) {
+            estudianteService.getEstudianteColumnas().then(function (response) {
                 $scope.campos=response.data;
             });
 

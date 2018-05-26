@@ -2,6 +2,9 @@ var servicesModule = angular.module('AppServices');
 servicesModule.factory('filtroService', ['$http', function ($http) {
     return {
         apiUrl: apiUrl,
+        getEstadosAsistencia: function (){
+          return $http.get(this.apiUrl + 'estados_asistencia/')
+        },
         getAllFiltros: function () {
             return $http.get(this.apiUrl + 'filtro/');
         },

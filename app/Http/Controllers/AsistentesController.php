@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendees;
+use App\Models\Asistentes;
 use Illuminate\Http\Request;
 use DB;
 
-class AttendeesController extends Controller
+class AsistentesController extends Controller
 {
 
     public function getMissingStudentsByConditions(Request $request){
@@ -21,7 +21,7 @@ class AttendeesController extends Controller
 
         $campos = $request->all();
 
-        $students = Attendees::with('info_estudiante')
+        $students = Asistentes::with('info_estudiante')
                 ->having(DB::raw('faltas'), $campos['operador'], $campos['valor'])
                 ->having('descripcion', '=', $campos['descripcion'])
                 ->groupBy('idEstudiante', 'nrc')
@@ -39,7 +39,7 @@ class AttendeesController extends Controller
 
     public function index()
     {
-        $misslog = Attendees::with(array('info_estudiante'=>function($query){
+        $misslog = Asistentes::with(array('info_estudiante'=>function($query){
             $query->select('ID','NOMBRES','APELLIDOS','TELEFONO1','EMAIL','PROGRAMA');
         }))
                 ->with('estado')
@@ -90,7 +90,7 @@ class AttendeesController extends Controller
 
         $campos = $request->all();
 
-        $estado = Attendees::find($campos['id']);
+        $estado = Asistentes::find($campos['id']);
 
         $estado->estado = $campos['estado'];
 

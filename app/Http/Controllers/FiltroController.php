@@ -39,7 +39,8 @@ class FiltroController extends Controller
 
     public function getByRiesgo($id)
     {
-        $filtro = Filtro::where('riesgos_id', $id)->get();
+        $filtro = Filtro::with('baseDatos')
+            ->where('riesgos_id', $id)->get();
         return response()->json($filtro);
     }
 

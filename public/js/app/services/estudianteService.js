@@ -18,9 +18,11 @@ servicesModule.factory('estudianteService', ['$http', function ($http) {
 		getEstudianteById: function (estudianteId) {
 			
 			return $http.get(this.apiUrl + 'estudiante/' + estudianteId);
-		},getColumnas: function () {
+		},
+		getEstudianteColumnas: function () {
 			return $http.get(this.apiUrl + 'estudiante_colums');
-		},getEstudiantesByFiltro: function (riesgoId) {
+		},
+        getEstudiantesByFiltro: function (riesgoId) {
 			return $http.get(this.apiUrl + 'estudiante_filtro/'+riesgoId);
 		},
 		getRiesgosByEstudiante: function (estudianteId) {

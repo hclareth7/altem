@@ -11,12 +11,19 @@ class Filtro extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['nombre', 'campo', 'operador', 'valor', 'tipo', 'riesgos_id'];
+    protected $fillable = ['nombre', 'campo', 'operador', 'valor', 'tipo', 'riesgos_id', 'base_datos'];
 
     public function riesgo()
     {
         return $this->belongsTo('App\Models\Riesgo', 'riesgos_id', 'id');
     }
+
+
+    public function baseDatos(){
+
+        return $this->belongsTo('App\Models\BaseDatos', 'base_datos', 'idb');
+    }
+
 
 
     public function getQuery()

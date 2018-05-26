@@ -13,19 +13,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class EstadoAtt extends Model
 {
-    protected $connection = 'mysql2';
+    protected $connection = 'mae';
 
-    protected $table = 'estado_att';
+    protected $table = 'estados';
 
     protected $fillable = [
-        'idestado_att',
+        'id',
         'descripcion',
 
     ];
 
     public function attendees(){
 
-        return $this->hasMany('App\Models\Attendees');
+        return $this->hasMany('App\Models\Asistentes');
     }
 
 }
