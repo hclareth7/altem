@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asistentes;
+use App\Models\DatosAcademicos;
 use App\Models\Schedule;
-use App\Models\Docentes;
-use App\Models\Usuario;
+use App\Models\Estudiantes;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DB;
 use JWTAuth;
-use App\Http\Requests;
-
+use PhpSpec\Exception\Example\ExampleException;
 
 
 class ScheduleController extends Controller
 {
     protected static $days=["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
 
+
+
     private function getProfeInfoById($codigo){
 
-        $profe = DB::connection('mysql2')
-            ->table("datos_academicos as da")
-            ->where("ID_DOCENTE",DB::raw("'".$codigo."'" ))
+        $profe = DatosAcademicos::where("ID_DOCENTE",DB::raw("'".$codigo."'" ))
             ->select("ID_DOCENTE","NOMBRES_DOCENTE", "APELLIDOS_DOCENTE")
             ->distinct()->get();
 
-        return $profe;
+        return $profe[0];
 
     }
 
@@ -34,11 +33,9 @@ class ScheduleController extends Controller
 
         $day = 'Lunes';
 
-        $nrcData = DB::connection('mysql2')
-            ->table("datos_academicos as da")
-            ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
+        $nrcData = DatosAcademicos::where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
             ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
-            ->select('da.NRC')
+            ->select('NRC')
             ->distinct()->get();
 
         $nrc = substr(serialize($nrcData), 42, 4);
@@ -52,10 +49,8 @@ class ScheduleController extends Controller
 
         $nrc = $this->getNrc();
 
-        $missing = DB::connection('mysql2')
-            ->table('missing as m')
-            ->where('nrc', '=', $nrc)
-            ->select('m.idEstudiante')
+        $missing = Asistentes::where('nrc', '=', $nrc)
+            ->select('idEstudiante')
             ->distinct()->get();
 
 
@@ -72,7 +67,7 @@ class ScheduleController extends Controller
 
         return $matchThese;
     }
-    private function getAssistants(){
+/*    private function getAssistants(){
 
         $nrc = $this->getNrc();
 
@@ -95,6 +90,13 @@ class ScheduleController extends Controller
         }
 
         return $matchThese;
+    }*/
+
+    public function profeInfo(){
+
+        $profe = $this->getProfeInfoById(ApiAuthController::getCode());
+
+        return response()->json($profe);
     }
 
     public function index(){
@@ -116,6 +118,7 @@ class ScheduleController extends Controller
         return response()->json($data);
     }
 
+
     public function now(Request $request)
     {
         /*
@@ -132,64 +135,84 @@ class ScheduleController extends Controller
           where ID_DOCENTE = 'codigo_profesor'  and
           cast(SUBSTRING(dia,1,LOCATE('-',dia)-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime()
 
-        */
+         *
+         * QUERY REAL ---  DESCOMENTAR LUEGO DE FASE DE TEST
+         *
 
-        /*
-         *
-         * QUERY REAL --- Todo: DESCOMENTAR LUEGO DE FASE DE TEST
-         *
+
+
+         * Todo: Datos quemaos pa prueba... -> Clase de Paralelismo NRC
+        $day = 'Lunes'; // DIA QUEMADO
+
+
+        $classdata = DatosAcademicos::where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
+            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
+            ->select('ASIGNATURA','NRC',DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) as Inicio, cast(SUBSTRING(".$day.",7,LOCATE('-',".$day.")-1) as time ) as Fin "))
+            ->distinct()->get();
+
+        $nrc = $classdata[0]['attributes']["NRC"];
+
+
+        $students=Estudiantes::join("datos_ascademicos as da","estudiantes.id","=","da.id")
+            ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
+            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
+            ->select('estudiantes.ID' ,'estudiantes.NOMBRES','estudiantes.APELLIDOS','estudiantes.PROGRAMA')
+            ->distinct()->get();
+
+         */
+
+
+        //Final query.
         $day=ScheduleController::$days[Carbon::now(-4)->dayOfWeek];
         $hour=Carbon::now(-4)->hour.":".Carbon::now(-4)->minute;
 
+        $classdata = DatosAcademicos::where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
+            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime() "))
+            ->select('ASIGNATURA','NRC',DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) as Inicio, cast(SUBSTRING(".$day.",7,LOCATE('-',".$day.")-1) as time ) as Fin "))
+            ->distinct()->get();
 
+        if ($classdata->isEmpty()){
 
-        $schedule=DB::table("datos_academicos as da")
-            ->join("estudiantes as e","e.id","=","da.id")
-            ->where("ID_DOCENTE",DB::raw("'".\Auth::user()->getCode()."'" ))
+            $end = ["Dia"=>$day,"Hora"=>$hour,"Info"=>'No está en ninguna clase', "Estudiantes"=>[]];
+            return response()->json($end);
+
+        }
+
+        $nrc = $classdata[0]['attributes']["NRC"];
+
+        $students=Estudiantes::join("datos_ascademicos as da","estudiantes.id","=","da.id")
+            ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
             ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime()"))
-            ->select('e.ID' ,'e.NOMBRES','e.APELLIDOS','da.NRC','da.ASIGNATURA',DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) as Inicio, cast(SUBSTRING(".$day.",7,LOCATE('-',".$day.")-1) as time ) as Fin "))
-            ->distinct()->get();*/
-        /**
-
-
-         * Datos quemaos pa prueba... -> Clase de Paralelismo NRC Todo: Eliminar luego de fase de Test
-         */
-
-        $day = 'Lunes'; // DIA QUEMADO
-        $days=ScheduleController::$days[Carbon::now(-4)->dayOfWeek];
-        $hour=Carbon::now(-4)->hour.":".Carbon::now(-4)->minute;
-
-        $classdata = DB::connection('mysql2')
-            ->table("datos_academicos as da")
-            ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
-            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
-            ->select('da.ASIGNATURA','da.NRC',DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) as Inicio, cast(SUBSTRING(".$day.",7,LOCATE('-',".$day.")-1) as time ) as Fin "))
+            ->select('estudiantes.ID' ,'estudiantes.NOMBRES','estudiantes.APELLIDOS','estudiantes.PROGRAMA')
             ->distinct()->get();
 
-        $missing = $this->getMissingStudents();
-        $assis = $this->getAssistants();
-        #dd($missing);
+        forEach ($students as $student) {
 
-        $students=DB::connection('mysql2')
-            ->table("datos_academicos as da")
-            ->join("estudiantes as e","e.id","=","da.id")
-            ->leftJoin("missing as m", "m.idEstudiante", "=", "e.ID")
-            ->whereNotIn('e.ID', $missing)
-            ->leftJoin("assistants as a", "a.idEstudiante", "=", "e.ID")
-            ->whereNotIn('e.ID', $assis)
-            ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
-            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
-            ->select('e.ID' ,'e.NOMBRES','e.APELLIDOS','e.PROGRAMA')
-            ->distinct()->get();
+            $campos = ['idEstudiante' => $student['attributes']['ID'],
+                'nrc' => $nrc];
+            try {
 
-        $data = ["Dia"=>$days,"Hora"=>$hour,"Info"=>$classdata, "Estudiantes"=>$students];
+                $a = Asistentes::where('idEstudiante' , $student['attributes']['ID'])
+                    ->where("nrc", $nrc)
+                    ->whereRaw("created_at between curdate() and concat(curdate(), \" 23:59:59\")")
+                    ->firstOrFail();
 
+            } catch (\Exception $e){
 
+                Asistentes::create($campos);
+            }
+        }
 
+        $attendees = Asistentes::with(array('info_estudiante'=>function($query){
+            $query->select('ID','NOMBRES','APELLIDOS','TELEFONO1','EMAIL','PROGRAMA');
+        }))
+            ->with('estado')
+            ->where("nrc", $nrc)
+            ->whereRaw("created_at between curdate() and concat(curdate(), \" 23:59:59\")")
+            ->select('id','estado','idEstudiante')
+            ->get();
 
-
-
-
+        $data = ["Dia"=>$day,"Hora"=>$hour,"Info"=>$classdata[0], "Estudiantes"=>$attendees];
 
         return response()
             ->json($data);

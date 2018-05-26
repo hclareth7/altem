@@ -6,25 +6,14 @@
  * Time: 12:39 PM
  */
 
-
 namespace App\Http\Controllers;
 use App\Models\BaseDatos;
-
-
+use DB;
 
 class BaseDatosController extends Controller {
 
-    public function getColumns(){
-
-        $columns = BaseDatos::select('SHOW COLUMNS');
-        return response()->json($columns);
-
+    public function getDBs(){
+        return response()->json(BaseDatos::all());
     }
 
-
 };
-
-
-
-
-

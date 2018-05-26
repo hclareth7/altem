@@ -39,18 +39,33 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('anotacion/{codigo}', 'EstudianteController@deleteAnotaciones');
 
 
-
-
-
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
 
+        //endpoints MAE (App Movil) para docentes
+        Route::group(['middleware' => ['role:ADMIN|DOCE']], function() {
+            Route::get('schedules/now', 'ScheduleController@now');
+            Route::resource('schedules', 'ScheduleController', ['only' => ['index', 'show']]);
+            Route::resource('students', 'CursanteController', ['only' => ['show']]);
+            Route::resource('missing', 'AsistentesController', ['only' => ['index', 'show']]);
+            Route::post('missing', 'AsistentesController@update');
+            Route::get('teacher', 'ScheduleController@profeInfo');
+
+        });
+
+
         Route::group(['middleware' => ['role:ADMIN|CONSE|PSICO']], function () {
+            //endpoints MAE para consejeria
+            Route::post('faltas/get', 'AsistentesController@getMissingStudentsByConditions');
+            Route::get('base_datos', 'BaseDatosController@getDBs');
+            Route::get('estados_asistencia', 'EstadoAttController@getEstadosName');
+
+
+            //altem
             Route::post('estudiantes_all', 'EstudianteController@getEstudiantesByUser');
             Route::post('estudiantes_buscar', 'EstudianteController@buscar');
             Route::resource('login', 'ApiAuthController', ['only' => ['index']]);
             Route::get('estudiante_filtro/{id}', 'EstudianteController@ejecutarFiltro');
-
             Route::resource('intervencion', 'IntervencionController');
             Route::resource('observacion', 'ObservacionController');
             Route::resource('accion_aplicada', 'AccionAplicadaController');
@@ -84,10 +99,6 @@ Route::group(['prefix' => 'api'], function () {
         });
 
     });
-
-
-
-
 
 
 });

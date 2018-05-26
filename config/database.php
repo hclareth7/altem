@@ -69,6 +69,19 @@ return [
             'strict'    => false,
         ],
 
+        'mae' => [
+            'driver'    => 'mysql',
+            'host'      => env('MAE_DB_HOST', 'localhost'),
+            'database'  => env('MAE_DB_DATABASE', 'forge'),
+            'username'  => env('MAE_DB_USERNAME', 'forge'),
+            'password'  => env('MAE_DB_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
+
 
 //        'sirius' => [
 //            'driver'    => 'oci8',

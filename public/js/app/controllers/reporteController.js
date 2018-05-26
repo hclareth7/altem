@@ -32,7 +32,7 @@ controllerModule
             };
 
 
-            $rootScope.condiciones = {
+            $rootScope .condiciones = {
                 anio: null,
                 periodo: null,
                 riesgo: null,

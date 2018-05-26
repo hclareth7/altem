@@ -8,17 +8,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EstadoAtt
+use App\Models\EstadoAtt;
 use DB;
 
 
 class EstadoAttController extends Controller
 {
 
-    public function getAttendeesColumns(){
-        $col = DB::connection('mysql2')->select('SHOW COLUMNS from attendees');
+    public function getEstadosName(){
+        $names = EstadoAtt::select('descripcion as Field')->get();
 
-        return response()->json($col);
+        return response()->json($names);
 
     }
 }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\ArchivoPersonal;
 use App\Models\EstudianteAltem;
+use App\Models\Asistentes;
 use App\Models\Filtro;
 use App\Models\Riesgo;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use DB;
 
 class ArchivoPersonalController extends Controller
 {
@@ -56,6 +58,22 @@ class ArchivoPersonalController extends Controller
         return response()->json($newColection);
     }
 
+    private static function crearArchivo($riegosPersonal, $value){
+        $new_archivo = new ArchivoPersonal();
+        $new_archivo->id = 0;
+        $new_archivo->estado = -1;
+        $buenRiesgo = Riesgo::with('tiporiesgo')
+            ->find($value->riesgos_id);
+        $new_archivo->riesgo = $buenRiesgo;
+        if (!$riegosPersonal->contains(function ($key, $value) use ($new_archivo) {
+            return $value->riesgos_id == $new_archivo->riesgo->id;
+        })
+        ) {
+            $riegosPersonal->push($new_archivo);
+        }
+
+    }
+
     public function getRiesgosPersonalByEstudiantes($codigo)
     {
 
@@ -63,8 +81,8 @@ class ArchivoPersonalController extends Controller
             ->where('estudiantes_altem_codigo', $codigo)
             ->get();
 
-        $filtros = $this->filtro->groupBy('riesgos_id')->get();
-
+        $filtro_estudiante = $this->filtro
+            ->groupBy('riesgos_id')->get();
 
         //return response()->json($riegosPersonal);
         foreach ($filtros as $key => $value) {
@@ -85,7 +103,18 @@ class ArchivoPersonalController extends Controller
                 ) {
                     $riegosPersonal->push($new_archivo);
                 }
+
+                foreach ($data as $student){
+                    array_push($estudiantes, $student['relations']['info_estudiante']['original']);
+                }
+
+                if (!empty($estudiantes)) {
+                    $this->crearArchivo($riegosPersonal, $value);
+                }
+
             }
+
+
         }
 
         foreach ($riegosPersonal as $key1 => $value1) {
@@ -99,7 +128,6 @@ class ArchivoPersonalController extends Controller
 
         return response()->json($riegosPersonal);
     }
-
     /**
      * Show the form for creating a new resource.
      *

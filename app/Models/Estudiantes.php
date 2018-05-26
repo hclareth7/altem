@@ -16,9 +16,9 @@ class Estudiantes extends Model
     protected $table = 'estudiantes';
 
 
-    public function missing(){
+    public function attendees(){
 
-        return $this->hasMany('App\Models\Missing');
+        return $this->hasMany('App\Models\Asistentes');
 
     }
 

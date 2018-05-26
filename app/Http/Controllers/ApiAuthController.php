@@ -75,5 +75,21 @@ class ApiAuthController extends Controller
         return response()->json(compact('token'));
     }
 
+    public static function getCode(){
+
+        /**
+         * Retorna el código de la persona que está en sesión
+         *
+         * Codigo de ejemplo profesor Jairo
+         * se puede usar para probar el método ScheduleController@now
+         *
+         *
+         * @return string
+         */
+
+        return Auth::user()->id;
+
+
+    }
 
 }
