@@ -6,11 +6,10 @@ use App\Http\Requests;
 use App\Models\BaseDatosEstudiantes;
 use App\Models\Estudiante;
 use App\Models\Filtro;
-use App\Models\Asistentes;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
-use DB;
+
 
 class EstudianteController extends Controller
 {
@@ -63,6 +62,22 @@ class EstudianteController extends Controller
 
         return response()->json(["mensaje" => "Eliminado con Exito"]);
 
+
+    }
+
+    public function getAnotacionesByCodigo($codigo)
+    {
+
+        $anotaciones = Estudiante::where('codigo', '=', $codigo)->get();
+        return response()->json($anotaciones);
+    }
+
+
+    public function storeAnotaciones(Request $request)
+    {
+        Estudiante::create($request->all());
+
+        return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
 
@@ -149,39 +164,16 @@ class EstudianteController extends Controller
             if ($filtro['base_datos'] == 0){
                 foreach ($filtros as $key => $value) {
 
-                    if ($key == 0) {
-                        $filofinal = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
-                    } else {
-                        $filofinal .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
-                    }
-                }
-                $sql = $this->setRestric() . " " . $filofinal;
-                //dd($sql);
-                $estudiantes = $this->db_sirius->select($sql);
-                return response()->json($estudiantes);
+        $filofinal = "";
 
-            }
+        $filtros = Filtro::where('riesgos_id', $id)->get();
 
-            else if ($filtro['base_datos'] == 1){
+        foreach ($filtros as $key => $value) {
 
-                $data = Asistentes::with('info_estudiante')
-                    ->having(DB::raw('faltas'), $filtro['attributes']['operador'], $filtro['attributes']['valor'])
-                    ->having('descripcion', '=', $filtro['attributes']['campo'])
-                    ->groupBy('idEstudiante', 'nrc', 'descripcion')
-                    ->join('estados as e', 'e.id', '=', 'asistentes.estado' )
-                    ->select('idEstudiante', 'nrc', 'descripcion', DB::raw('count(*) as faltas'))
-                    ->get();
-
-                $students = array();
-
-                foreach ($data as $student){
-
-                    array_push($students, $student['relations']['info_estudiante']['original']);
-
-                }
-
-                return response()->json($students);
-
+            if ($key == 0) {
+                $filofinal = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+            } else {
+                $filofinal .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             }
 
         }

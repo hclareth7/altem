@@ -75,6 +75,7 @@ class ApiAuthController extends Controller
         return response()->json(compact('token'));
     }
 
+
     public static function getCode(){
 
         /**
@@ -91,5 +92,6 @@ class ApiAuthController extends Controller
 
 
     }
+
 
 }

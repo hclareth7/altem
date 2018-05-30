@@ -61,21 +61,17 @@ class AsistentesController extends Controller
          *
          */
 
-        $missed = DB::connection('mysql2')
-            ->table("missing as m")
-            ->join('estudiantes as e','e.id','=','m.idEstudiante')
-            ->where('nrc', $nrc)
-            ->select('m.idEstudiante as CODIGO', 'e.NOMBRES','e.APELLIDOS','e.PROGRAMA', 'm.created_at as FECHA_FALTA')
-            ->distinct()
-
+        $missed = Asistentes::with(array('info_estudiante'=>function($query){
+            $query->select('ID','NOMBRES','APELLIDOS','TELEFONO1','EMAIL','PROGRAMA');
+        }))
+            ->with('estado')
+            ->where('nrc', '=', $nrc)
             ->get();
 
         $data = ["NRC"=>$nrc,"FALTANTES"=>$missed];
 
         return response()
             ->json($data);
-
-        //return response()->json('Curso'=>$nrc ,'Faltantes'=>$missed, 200);
 
     }
 
@@ -95,6 +91,9 @@ class AsistentesController extends Controller
         $estado->estado = $campos['estado'];
 
         $estado->save();
+
+        return response()->json("Asistencia tomada.");
+
 
     }
 
