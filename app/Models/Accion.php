@@ -10,7 +10,7 @@ class Accion extends Model
 	
 	public $timestamps=false;
 	
-	protected $fillable=['nombre','descripcion','estrategias_id','tiempo_estimado','costo_estimado'];
+	protected $fillable=['nombre','descripcion','estrategias_id','tiempo_estimado','costo_estimado','mensaje'];
 
 	public function estrategia()
     {

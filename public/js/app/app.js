@@ -378,7 +378,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			}
 		}
 	});
-	modalStateProvider	.state('main.riesgo.detalle.editar', {
+	modalStateProvider.state('main.riesgo.detalle.editar', {
 		url: '/filtro/editar/:filtroId',
 		templateUrl: 'modal-filtro.html',
 		controller: 'filtroEditarController',
