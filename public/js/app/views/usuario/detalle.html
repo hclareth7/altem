@@ -1,0 +1,253 @@
+<div class="row">
+
+    <div class="col-xxl-4 col-xl-4 col-lg-4">
+        <div id="personalCompletedWidget" class="card card-shadow pb-20">
+            <div class="card-header card-header-transparent cover overlay">
+                <img class="cover-image" src="/img/fn001.jpg">
+                <div class="overlay-panel overlay-background vertical-align">
+                    <div class="vertical-align-middle animation-fade">
+                        <a class="avatar" href="javascript:void(0)">
+                            <img alt=""
+                                 class="animation animation-fade"
+                                 src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&amp;pass=uws1&amp;wsusername={{gues_usuario.codigo}}">
+                        </a>
+                        <div class="font-size-20 mt-10 animation animation-fade font-weight-500">
+                            {{gues_usuario.nombre}}
+                        </div>
+                        <div class="font-size-14"><a class="white font-size-18 animation animation-fade"
+                                                     href="mailto:{{gues_usuario.correo}}">{{gues_usuario.correo}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="row text-center mb-20">
+                    <div class="col-md-6">
+                        <div class="counter">
+                            <div class="counter-label total-completed">TOTAL CASOS</div>
+                            <div class="counter-number red-600">1,628</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="counter">
+                            <div class="counter-label">TOTAL TERMINADOS</div>
+                            <div class="counter-number blue-600">17</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <caption>ESTADISTICAS</caption>
+                        <tbody>
+                        <tr>
+                            <td>
+                                CASOS TERMINADOS
+                            </td>
+                            <td>
+                                <div class="progress progress-xs mb-0">
+                                    <div class="progress-bar progress-bar-info bg-blue-600" role="progressbar"
+                                         aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                90%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                CASOS EN PROGRESO
+                            </td>
+                            <td>
+                                <div class="progress progress-xs mb-0">
+                                    <div class="progress-bar progress-bar-info bg-green-600" role="progressbar"
+                                         aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                86%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                CASOS INTERRUPIDOS
+                            </td>
+                            <td>
+                                <div class="progress progress-xs mb-0">
+                                    <div class="progress-bar progress-bar-info bg-red-600" role="progressbar"
+                                         aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                68%
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list-group col-xxl-8 col-xl-8 col-lg-8">
+        <div class="list-group-item">
+            <div class="media">
+                <div class="media-left">
+                </div>
+                <div class="media-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h2 class="media-heading font-size-24">
+
+                                <small class="badge badge-success">{{}}</small>
+                            </h2>
+                            <div class="alert alert-alt alert-danger alert-dismissible" role="alert">
+
+                                <p>
+                                    <span>Rol del usuario </span>
+                                    <select class="form-control" ng-model="gues_usuario.rol.name" ng-change="updateUsuario">
+                                        <option ng-repeat="role in roles" value="{{role.name}}">{{role.name}}</option>
+                                    </select>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                        </div>
+                    </div>
+                </div>
+                <div permission
+                     permission-only="['ADMIN']"
+                     class="media-right">
+                    <button type="button" class="btn btn-success" ui-sref="main.usuario.detalle.criterio">
+                        <i class="icon wb-plus" aria-hidden="true"></i> Criterios
+                    </button>
+                </div>
+
+            </div>
+            <hr>
+            <div>
+
+                <div class="media">
+                    <div class="media-left"></div>
+                    <div class="media-body">
+                        <h4>Criterios</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td>Nombre</td>
+                                    <td>Campo</td>
+                                    <td>Operador</td>
+                                    <td>Valor</td>
+                                    <td
+                                            permission
+                                            permission-only="['ADMIN']"
+                                    >Herramientas
+                                    </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="poblacion in gues_usuario.poblaciones">
+                                    <td>{{poblacion.criterio.nombre}}</td>
+                                    <td>{{poblacion.criterio.campo}}</td>
+                                    <td>{{poblacion.criterio.operador}}</td>
+                                    <td>{{poblacion.criterio.valor}}</td>
+                                    <td
+                                            permission
+                                            permission-only="['ADMIN']"
+                                    >
+                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
+                                                ui-sref="main.usuario.detalle.editar({filtroId:filtro.id})">
+                                            <i class="icon wb-pencil" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
+                                                ng-click="removeFiltro(filtro.id)">
+                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="modal-criterio.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ng-click="cancel()">×</span>
+        </button>
+        <h4 class="modal-title">Criterios de datos ({{selected_base_datos.nombre}})</h4>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="guardarCriterio()">
+            <div class="row">
+
+                <div class="nav-tabs-animate tabs-database" data-plugin="tabs">
+                    <uib-tabset active="">
+                        <uib-tab ng-repeat="base_datos in base_datos_estudiantes"
+                                 index="base_datos_estudiantes.indexOf(base_datos)"
+                                 heading="{{base_datos.nombre}}"
+                                 select="selectedBaseDatos(base_datos)">
+
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Nombre:
+                                </label>
+                                <input type="text" class="form-control" ng-model="criterio.nombre"
+                                       placeholder="Nombre del criterio">
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Campo:
+                                </label>
+                                <select class="form-control" ng-model="criterio.campo">
+                                    <option ng-repeat="campo in campos" value="{{campo.Field}}">{{campo.Field}}</option>
+                                </select>
+
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Operador:
+                                </label>
+                                <select class="form-control" ng-model="criterio.operador">
+                                    <option value="=">Igual (=)</option>
+                                    <option value=">">Mayor que (>)</option>
+                                    <option value=">=">Mayor que (>=)</option>
+                                    <option value="<">Menor que (<)</option>
+                                    <option value="<=">Menor que (<=)</option>
+                                    <option value="!=">Diferente de (!=)</option>
+                                    <option value="like">Que contenga (%)</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Valor:
+                                </label>
+                                <input type="text" class="form-control" ng-model="criterio.valor"
+                                       placeholder="Valor del criterio">
+                            </div>
+
+                            <div class="col-sm-12 pull-right">
+                                <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">
+                                    Guardar
+                                </button>
+                            </div>
+                        </uib-tab>
+
+
+                    </uib-tabset>
+
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+
+
+</script>
