@@ -14,7 +14,6 @@
                         <h4 class="profile-user">{{estudiante.NOMBRES+ ' '+estudiante.APELLIDOS}}</h4>
                         <p class="profile-job">{{estudiante.PROGRAMA}}</p>
                         <address>
-                        <address>
                             <strong>Informacion de contacto</strong>
                             <br><abbr title="Direccion">Direccion:</abbr> {{estudiante.DIRECCION1}}
                             <br> <abbr title="Correo">Correo:</abbr><a href="mailto:{{estudiante.EMAIL}}">
@@ -22,13 +21,7 @@
                             <br>
                             <abbr title="Telefono">Telefono: </abbr> {{estudiante.TELEFONO2}}
                         </address>
-                        <!--div class="profile-social">
-                            <a class="icon bd-twitter" href="javascript:void(0)"></a>
-                            <a class="icon bd-facebook" href="javascript:void(0)"></a>
-                            <a class="icon bd-dribbble" href="javascript:void(0)"></a>
-                            <a class="icon bd-github" href="javascript:void(0)"></a>
-                        </div-->
-                        <!--button type="button" class="btn btn-primary">Follow</button-->
+
                     </div>
                 </div>
                 <div class="widget-footer">
@@ -50,13 +43,25 @@
                 </div>
             </div>
             <!-- End Page Widget -->
+
+            <section class="page-aside-section">
+                <h5 class="page-aside-title">Anotaciones</h5>
+                <div class="list-group calendar-list">
+                    <a ng-repeat="anotacion in anotaciones" class="list-group-item calendar-event ui-draggable ui-draggable-handle" data-title="Meeting" data-stick="true" data-color="red-600" href="javascript:void(0)">
+                        <i class="wb-medium-point red-600 mr-10" aria-hidden="true"></i>{{anotacion.propiedad}}
+                    </a>
+
+                    <a id="addNewEventBtn" class="list-group-item" href="javascript:void(0)"> <i class="icon wb-plus" aria-hidden="true"></i> Agregar anotación </a>
+                </div>
+            </section>
+
         </div>
         <div class="col-md-9">
             <!-- Panel -->
             <div class="panel ">
                 <div class="panel-body nav-tabs-animate">
                     <uib-tabset active="">
-                        <uib-tab index="0" heading="Intervenciones">
+                        <uib-tab index="0" heading="Seguimientos">
 
                             <button type="button" ui-sref="main.personal.riesgo"
                                     class="btn btn-icon btn-danger    btn-add-riesgo pull-right">
@@ -71,9 +76,8 @@
                                     <i class="icon  wb-info-circle" aria-hidden="true"></i>
                                     No hay riesgos agregados para este estudiante
                                 </div>
-                                <div class="media is-loading" ng-repeat="archivo in archivoPersonal | reverse">
-
-
+                                <div class="media is-loading"
+                                     ng-repeat="archivo in archivoPersonal | orderBy: '-fecha_reporte'">
                                     <div class="media-left">
 
                                         <img ng-if="archivo.usuarios_codigo"
@@ -110,7 +114,10 @@
                                                             </button>
                                                         </div>
                                                         <div class=" col-md-1">
-                                                            <button type="button" ng-click="eliminarArchivo(archivo.riesgo.id)" class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
+                                                            <button type="button"
+                                                                    ng-show="archivo.usuarios_codigo"
+                                                                    ng-click="eliminarArchivo(archivo.riesgo.id)"
+                                                                    class="btn btn-icon btn-danger btn-round  pull-right btn-outline">
                                                                 <i class="icon wb-close" aria-hidden="true"></i>
 
                                                             </button>
@@ -132,8 +139,9 @@
                                                     ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
                                                     class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
-                                                   ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
-                                                ></i>
+                                                   ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }">
+
+                                                </i>
 
                                             </button>
                                         </div>
@@ -145,6 +153,7 @@
                                              role="tabpanel">
                                             <h4 class="example-title">Estrategias aplicadas</h4>
                                             <button type="button"
+                                                    ng-disabled="archivo.id==0"
                                                     ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
                                                     class="btn btn-primary  btn-icon btn-add-estrategia pull-right ">
                                                 <i class="icon wb-extension" aria-hidden="true"></i>
@@ -380,7 +389,7 @@
         <button type="button" class="close">
             <span aria-hidden="true" ng-click="cerrarModal()">×</span>
         </button>
-        <h3 class="modal-title" id="modal-title">Agregar factor de riesgo</h3>
+        <h3 class="modal-title">Agregar factor de riesgo</h3>
         <br>
         <form role="search">
             <div class="form-group">
@@ -394,7 +403,7 @@
             </div>
         </form>
     </div>
-    <div class="modal-body" id="modal-body">
+    <div class="modal-body">
         <ul class="ul-mi-riesgo">
             <li ng-repeat="riesgo in riesgos | filter:buscar_riesgo">
                 <div class="media">
@@ -411,15 +420,22 @@
                                         </small>
                                     </h4>
                                     <div class="row">
-                                        <div class="col-md-11">
+                                        <div class="col-md-10">
                                             <span>Descripcion: </span> {{riesgo.descripcion}}
 
                                         </div>
-                                        <div class=" col-md-1">
+                                        <div class=" col-md-2">
+
                                             <button type="button"
                                                     ng-click="agregarRiesgo(riesgo.id)"
-                                                    class="btn btn-icon btn-success btn-round  pull-right btn-outline">
+                                                    class="btn btn-icon btn-success btn-round  pull-right btn-outline margin-right-10">
                                                 <i class="icon wb-check" aria-hidden="true"></i>
+                                            </button>
+
+                                            <button type="button"
+                                                    ng-click="openModalRiesgoFecha(riesgo)"
+                                                    class="btn btn-icon btn-info btn-round  pull-right btn-outline margin-right-10">
+                                                <i class="icon wb-calendar" aria-hidden="true"></i>
                                             </button>
 
 
@@ -655,5 +671,36 @@
 
 
     </div>
+
+</script>
+
+
+<script type="text/ng-template" id="modal-riesgo-fecha.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" ng-click="cerrarModal()">×</span>
+        </button>
+        <h4 class="modal-title">Selecciona una fecha para el rieso <span
+                class="badge badge-danger">{{nombre_riesgo}}</span></h4>
+    </div>
+    <div class="modal-body">
+        <form ng-submit="guardar()">
+            <div class="row">
+
+                <div class="col-lg-12 form-group">
+                    <div>
+                        <div uib-datepicker ng-model="fecha_reporte" class="well well-lg datepicker datepicker-inline"
+                             datepicker-options="options"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 pull-right">
+                    <button class="btn btn-info btn-outline" data-dismiss="modal" type="submit">Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
 
 </script>

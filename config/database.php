@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'altem'),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     */
 
     'connections' => [
-        'mysql' => [
+        'altem' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'forge'),
@@ -57,7 +57,7 @@ return [
             'strict'    => false,
         ],
 
-        'mysql2' => [
+        'sirius' => [
             'driver'    => 'mysql',
             'host'      => env('SIRIUS_DB_HOST', 'localhost'),
             'database'  => env('SIRIUS_DB_DATABASE', 'forge'),

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudiante extends Model
 {
-   protected $table = 'estudiante';
+    protected $table = 'estudiantes';
+
+    public $timestamps = false;
+
+    protected $fillable = ['codigo', 'propiedad'];
+
 
 }

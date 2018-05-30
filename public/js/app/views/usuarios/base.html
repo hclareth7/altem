@@ -3,13 +3,14 @@
     <h1 class="page-title">Usuarios</h1>
     <ol class="breadcrumb">
         <li><a ui-sref="main">Inicio</a></li>
-        <li><a ui-sref="main.admin-usuarios" ng-click="barra()">Usuarios</a></li>
-        <li ng-hide="titulo == 'NO'" >{{titulo}}</li>
+        <li><a ui-sref="main.usuario" ng-click="barra()">Usuarios</a></li>
+        <li ng-hide="titulo == 'NO'">{{titulo}}</li>
 
     </ol>
 
     <div class="page-header-actions">
-        <a ui-sref="main.admin-usuarios.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
+        <a ui-sref="main.admin-usuarios.crear" class="btn btn-sm btn-icon btn-inverse btn-round" data-toggle="tooltip"
+           data-original-title="Edit">
             <i class="icon wb-plus" aria-hidden="true"></i>
         </a>
         <!--
@@ -46,12 +47,14 @@
                         </div>
 
                         <div class="pull-right search">
-                            <input class="form-control input-outline" type="text" placeholder="Buscar" ng-model="buscar">
+                            <input class="form-control input-outline" type="text" placeholder="Buscar"
+                                   ng-model="buscar">
                         </div>
                     </div>
                     <div class="fixed-table-container" style="padding-bottom: 0px;">
                         <div class="fixed-table-body">
-                            <div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...</div>
+                            <div class="fixed-table-loading" style="top: 37px; display: none;">Loading, please wait...
+                            </div>
                             <table id="exampleTableToolbar" data-mobile-responsive="true" class="table table-hover">
                                 <thead>
                                 <tr>
@@ -81,9 +84,15 @@
                                 <tbody>
 
                                 <tr ng-repeat="usuario in usuarios | filter:buscar">
-                                    <td><span class="avatar avatar-online">
-                                        <img src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&amp;pass=uws1&amp;wsusername={{usuario.codigo}}" alt="...">
-                                        </span> {{usuario.codigo}}</td>
+                                    <td>
+                                        <a class="avatar" href="#">
+                                            <img class="img-fluid"
+                                                 src="http://savio.utbvirtual.edu.co/user/external_render_pic.php?user=uws1&amp;pass=uws1&amp;wsusername={{usuario.codigo}}"
+                                                 alt="...">
+                                        </a>
+                                        {{usuario.codigo}}
+
+                                    </td>
 
 
                                     <td><span class="label label-danger">{{usuario.roles[0].name}}</span></td>
@@ -93,16 +102,19 @@
                                         <a type="button"
                                            permission
                                            permission-only="['ADMIN']"
-                                           class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.admin-usuarios.editar({riesgoId:riesgo.id})">
+                                           class="btn btn-sm btn-icon btn-flat btn-default"
+                                           ui-sref="main.admin-usuarios.editar({riesgoId:riesgo.id})">
                                             <i class="icon wb-pencil" aria-hidden="true"></i>
                                         </a>
                                         <a type="button"
                                            permission
                                            permission-only="['ADMIN']"
-                                           class="btn btn-sm btn-icon btn-flat btn-default" ng-click="remove(riesgo.id)">
+                                           class="btn btn-sm btn-icon btn-flat btn-default"
+                                           ng-click="remove(riesgo.id)">
                                             <i class="icon wb-trash" aria-hidden="true"></i>
                                         </a>
-                                        <a type="button" class="btn btn-sm btn-icon btn-flat btn-default" ui-sref="main.riesgo.detalle({riesgoId:riesgo.id})">
+                                        <a type="button" class="btn btn-sm btn-icon btn-flat btn-default"
+                                           ui-sref="main.riesgo.detalle({riesgoId:riesgo.id})">
                                             <i class="icon wb-eye" aria-hidden="true"></i>
                                         </a>
                                     </td>

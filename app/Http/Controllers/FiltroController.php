@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class FiltroController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('cors');
@@ -27,7 +23,6 @@ class FiltroController extends Controller
         $this->filtro = Filtro::find($route->getParameter('filtro'));
     }
 
-    
 
     public function index()
     {
@@ -39,20 +34,10 @@ class FiltroController extends Controller
 
     public function getByRiesgo($id)
     {
-        $filtro = Filtro::with('baseDatos')
-            ->where('riesgos_id', $id)->get();
+        $filtro = Filtro::where('riesgos_id', $id)->get();
         return response()->json($filtro);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -77,16 +62,6 @@ class FiltroController extends Controller
         return response()->json($this->filtro);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -111,5 +86,6 @@ class FiltroController extends Controller
     public function destroy($id)
     {
         $this->filtro->delete();
+        return response()->json(["mensaje" => "Borrado correctamente"]);
     }
 }

@@ -21,14 +21,14 @@ class ApiAuthController extends Controller
         // Parsing the Token and throw exemptions if error
 
 
-
     }
+
     public function index()
     {
         // = JWTAuth::parseToken()->authenticate();
         //return response()->json($user);
         $user = Auth::user();
-       
+
         $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;
@@ -37,16 +37,17 @@ class ApiAuthController extends Controller
         $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
         // $permission = Permission::with('roles')->get();
 
-        $datos= $permission->map(function ($value){
+        $datos = $permission->map(function ($value) {
             return $value->name;
         });
-        $roleData=$roles->roles->map(function ($value){
+        $roleData = $roles->roles->map(function ($value) {
             return $value->name;
         });
         $user->rol = $roleData[0];
         $user->permissions = $datos;
         return response()->json($user);
     }
+
     /**
      * Return a JWT
      *
@@ -54,9 +55,10 @@ class ApiAuthController extends Controller
      */
     public function authenticate(Request $request)
     {
-        //dd($request);
-        $credentials = $request->only('codigo', 'password');
 
+        $codigo = strtolower($request->codigo);
+        $password = $request->password;
+        $credentials = ['codigo'=>$codigo, 'password'=>$password];
         try {
             // verify the credentials and create a token for the user
             $token = JWTAuth::attempt($credentials);
@@ -70,9 +72,9 @@ class ApiAuthController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
         // if no errors are encountered we can return a JWT
-
         return response()->json(compact('token'));
     }
+
 
     public static function getCode(){
 
@@ -90,5 +92,6 @@ class ApiAuthController extends Controller
 
 
     }
+
 
 }

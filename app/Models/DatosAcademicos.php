@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatosAcademicos extends Model
 {
-    protected $connection = 'mysql2';
+    protected $connection = 'sirius';
 
     public $incrementing = false;
     public $timestamps = false;

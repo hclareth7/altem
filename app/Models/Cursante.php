@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cursante extends Model
 {
-    protected $connection = 'mysql2';
+    protected $connection = 'sirius';
 
     public $incrementing = false;
     public $timestamps = false;

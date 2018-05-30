@@ -2,8 +2,8 @@ var controllerModule = angular.module('AppControllers');
 
 controllerModule
 	.controller('tipoRiesgoController', ['$scope', 'tipoRiesgoService',
-		'$stateParams', 'toastr', '$rootScope', '$confirm',
-		function ($scope, tipoRiesgoService, $stateParams, toastr, $rootScope, $confirm) {
+		'$stateParams', 'toastr', '$rootScope', '$confirm','$state',
+		function ($scope, tipoRiesgoService, $stateParams, toastr, $rootScope, $confirm,$state) {
 
 			$rootScope.tiporiesgos = [];
 			$scope.getAllTipoRiesgos = function () {
@@ -29,6 +29,10 @@ controllerModule
 					});
 				});
 			};
+
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
+            };
 
     }])
 	.controller('tipoRiesgoEditarController', ['$scope', 'tipoRiesgoService',

@@ -43,7 +43,6 @@
                             <thead>
                             <tr>
                                 <td>Nombre</td>
-                                <td>Base de datos</td>
                                 <td>Campo</td>
                                 <td>Operador</td>
                                 <td>Valor</td>
@@ -57,7 +56,6 @@
                             <tbody>
                             <tr ng-repeat="filtro in filtros">
                                 <td>{{filtro.nombre}}</td>
-                                <td>{{filtro.base_datos.descripcion}}</td>
                                 <td>{{filtro.campo}}</td>
                                 <td>{{filtro.operador}}</td>
                                 <td>{{filtro.valor}}</td>
@@ -94,20 +92,13 @@
     <div class="modal-body">
         <form ng-submit="guardarFiltro()">
             <div class="row">
-                <div class="col-lg-12 form-group">Base de datos
-                    <select class="form-control" ng-model="filtro.base_datos" ng-change="dbChange(filtro.base_datos)">
-                        <option value="0">Datos Estudiantes</option>
-                        <option value="1">Datos Asistencias</option>>
-                    </select>
-
-                </div>
-                <div class="col-lg-12 form-group">Campo
-                    <select class="form-control" ng-model="filtro.campo" ng-change="idb">
+                <div class="col-lg-12 form-group">
+                    <select class="form-control" ng-model="filtro.campo">
                         <option ng-repeat="campo in campos" value="{{campo.Field}}">{{campo.Field}}</option>
                     </select>
 
                 </div>
-                <div class="col-lg-12 form-group">Operador
+                <div class="col-lg-12 form-group">
                     <select class="form-control" ng-model="filtro.operador">
                         <option value="=">Igual (=)</option>
                         <option value=">">Mayor que (>)</option>

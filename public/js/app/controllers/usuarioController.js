@@ -17,7 +17,37 @@ controllerModule
                 $rootScope.titulo = "NO";
             };
 
+            $rootScope.getAllRoles = function () {
+                usuarioService.getAllRoles().then(function (response) {
+                    $scope.roles = response.data;
+                }, function (response) {
+                    console.log(response);
+                });
+
+            };
+
         }])
+
+    .controller('usuarioCrearController', ['$scope', 'usuarioService', '$stateParams', '$location', 'toastr', '$rootScope',
+        function ($scope, usuarioService, $stateParams, $location, toastr, $rootScope) {
+            $scope.accion = "Guardar";
+            $rootScope.titulo = "Agrega un nuevo usuario!";
+
+            $rootScope.usuarios_asign = [];
+            $scope.usuario = {};
+            $scope.roles = [];
+
+            $rootScope.getAllRoles();
+            $scope.guardar = function () {
+                usuarioService.createUsuario($scope.usuario).then(function (response) {
+                    toastr.success('Exito', 'Usuario creado!');
+                    $scope.getAllRoles();
+                });
+            };
+
+
+        }])
+
 
     .controller('usuarioEditarController', ['$scope', 'usuarioService',
         '$stateParams', '$location', 'tipoRiesgoService', 'toastr', '$rootScope',
@@ -25,58 +55,29 @@ controllerModule
             $scope.accion = "Actualizar";
             $rootScope.titulo = "Editar";
 
-            $scope.tiporiesgos = [];
-            $scope.getAllTipoRiesgos = function () {
-                tipoRiesgoService.getAllTipoRiesgo().then(function (response) {
-                    //console.log(response.data);
-                    $scope.tiporiesgos = response.data;
-                });
-            };
-            $scope.getUsuario = function (riesgoId) {
-                riesgoService.getUsuarioById(riesgoId).then(function successCallBack(response) {
-                    $scope.riesgo = response.data;
-                    $rootScope.estrategias_asign=$scope.riesgo.estrategias;
+
+            $scope.getUsuario = function (usuarioId) {
+                usuarioService.getUsuarioById(usuarioId).then(function successCallBack(response) {
+                    $scope.usuario = response.data;
                 }, function errorCallBack(response) {
-                    $location.path('/app/riesgo');
+                    console.log(response);
                 });
             };
-            $scope.getAllTipoRiesgos();
-            $scope.getRiesgo(parseInt($stateParams.riesgoId));
+
+            $rootScope.getAllRoles();
+            $scope.getUsuario($stateParams.usuarioId);
 
             $scope.guardar = function () {
-                $scope.riesgo.estrategias = $rootScope.estrategias_asign;
-                riesgoService.updateRiesgo($scope.riesgo.id, $scope.riesgo).then(function (response) {
 
-                    riesgoService.getAllRiesgo().then(function (respose2) {
-                        $rootScope.riesgos = respose2.data;
-                        toastr.success('Exito', 'Riesgo actualizado');
-                        $location.path('/app/riesgo');
-                    });
+                usuarioService.updateUsuario($stateParams.usuarioId, $scope.usuario).then(function (response) {
+                    toastr.success('Exito', 'Usuario actualizado!');
+                }, function (response) {
+                    console.log(response);
+
                 });
             }
 
 
-        }])
-    .controller('usuarioCrearController', ['$scope', 'usuarioService', '$stateParams', '$location', 'toastr', '$rootScope',
-        function ($scope, usuarioService, $stateParams, $location, toastr, $rootScope) {
-            $scope.accion = "Guardar";
-            $rootScope.titulo = "Crear";
-            $rootScope.usuarios_asign=[];
-            $scope.usuario={};
-
-            $scope.guardar = function () {
-
-                //console.log($scope.riesgo.estrategias);
-                usuarioService.createUsuario($scope.usuario).then(function (response) {
-
-                    usuarioService.getAllUsuario().then(function (respose2) {
-                        $rootScope.usuarios = respose2.data;
-                        $scope.usuario = {};
-                        toastr.success('Exito', 'Usuario creado');
-                        $rootScope.usuarios_asign=[];
-                    });
-                });
-            };
         }])
 
 
@@ -84,22 +85,73 @@ controllerModule
         '$stateParams', '$state', 'tipoRiesgoService', 'toastr', '$rootScope', 'filtroService',
         function ($scope, usuarioService, $stateParams, $state, tipoRiesgoService, toastr, $rootScope, filtroService) {
             $rootScope.titulo = "Detalle";
+            $rootScope.gues_usuario = {};
+            $scope.roles = [];
 
-            $scope.getRiesgo = function (riesgoId) {
-                riesgoService.getRiesgoById(riesgoId).then(function (response) {
-                    $rootScope.riesgo = response.data;
+            $rootScope.getUsuario = function (codigo) {
+                usuarioService.getUsuarioById(codigo).then(function (response) {
+                    $rootScope.gues_usuario = response.data;
                 }, function (response) {
-                    //console.log(response);
-                    //$location.path('/app/estrategia');
-                    $state.go('main.riesgo');
+
+                    console.log(response);
                 });
-                filtroService.getFiltroByRiesgoId(riesgoId).then(function (response) {
-                    $rootScope.filtros = response.data;
-                    //console.log($rootScope.acciones);
-                });
+
             };
 
-            $scope.getRiesgo(parseInt($stateParams.riesgoId));
+            $scope.getAllRoles = function () {
+                usuarioService.getAllRoles().then(function (response) {
+                    $scope.roles = response.data;
+                }, function (response) {
 
-            $rootScope.barra();
+                })
+            };
+
+            $scope.getUsuario($stateParams.usuarioId);
+            $scope.getAllRoles();
+
+
         }])
+    .controller('usuarioCriterioCrearController', ['$scope', 'usuarioService',
+        '$stateParams', '$state', 'tipoRiesgoService', 'toastr', '$rootScope', 'criterioService',
+        function ($scope, usuarioService, $stateParams, $state, tipoRiesgoService, toastr, $rootScope, criterioService) {
+
+            $scope.base_datos_estudiantes = [];
+            $scope.campos = [];
+            $scope.selected_base_datos = {};
+            $scope.criterio = {};
+            $scope.getAllBasedatosEstudiantes = function () {
+                criterioService.getAllBasedatosEstudiantes().then(function (response) {
+                    $scope.base_datos_estudiantes = response.data;
+                }, function (response) {
+                    console.log(response.data);
+                })
+            };
+            $scope.selectedBaseDatos = function (base_datos) {
+                $scope.selected_base_datos = base_datos;
+                $scope.getColumn($scope.selected_base_datos);
+            };
+            $scope.getColumn = function (base_datos_estudiantes) {
+                criterioService.getColumn(base_datos_estudiantes).then(function (response) {
+                    $scope.campos = response.data;
+                }, function (response) {
+                    console.log(response.data)
+                });
+
+            };
+            $scope.guardarCriterio = function () {
+                $scope.criterio.codigo = $stateParams.usuarioId;
+                $scope.criterio.bases_datos_estudiantes_id = $scope.selected_base_datos.id;
+
+                criterioService.createCriterio($scope.criterio).then(function (response) {
+                    $rootScope.getUsuario($stateParams.usuarioId);
+                    toastr.success('Exito', 'Criterio Creado!');
+                }, function (response) {
+                    console.log(response.data);
+                });
+            }
+
+            $scope.getAllBasedatosEstudiantes();
+
+
+        }]);
+

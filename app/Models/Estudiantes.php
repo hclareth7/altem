@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudiantes extends Model
 {
-    protected $connection = 'mysql2';
+    protected $connection = 'sirius';
     protected $table = 'estudiantes';
 
 

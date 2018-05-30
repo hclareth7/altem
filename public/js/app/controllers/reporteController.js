@@ -32,7 +32,7 @@ controllerModule
             };
 
 
-            $rootScope .condiciones = {
+            $rootScope.condiciones = {
                 anio: null,
                 periodo: null,
                 riesgo: null,
@@ -141,6 +141,10 @@ controllerModule
             };
             $scope.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
+            };
+
+            $rootScope.getActiveClass = function (state) {
+                return ($state.current.name === state) ? 'active' : '';
             };
 
         }])
