@@ -395,7 +395,8 @@ controllerModule
                     };
                     accionService.getAccionAplicada(data).then(function (response) {
                         $scope.configuracion = response.data;
-                        //console.log($scope.configuracion);
+
+                        console.log($scope.configuracion);
                     }, function (error) {
                         console.log(error);
                     });

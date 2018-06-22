@@ -63,10 +63,12 @@
                                         permission
                                         permission-only="['ADMIN']"
                                 >
-                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default" ui-sref="main.riesgo.detalle.editar({filtroId:filtro.id})" >
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
+                                            ui-sref="main.riesgo.detalle.editar({filtroId:filtro.id})">
                                         <i class="icon wb-pencil" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"  ng-click="removeFiltro(filtro.id)" >
+                                    <button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
+                                            ng-click="removeFiltro(filtro.id)">
                                         <i class="icon wb-trash" aria-hidden="true"></i>
                                     </button>
                                 </td>
@@ -82,45 +84,78 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/ng-template" id="modal-filtro.html">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" ng-click="cancel()">×</span>
         </button>
-        <h4 class="modal-title">{{textTitulo}} filtro ({{riesgo.nombre}})</h4>
+        <h4 class="modal-title">Filtros de datos ({{selected_base_datos.nombre}})</h4>
     </div>
     <div class="modal-body">
         <form ng-submit="guardarFiltro()">
             <div class="row">
-                <div class="col-lg-12 form-group">
-                    <select class="form-control" ng-model="filtro.campo">
-                        <option ng-repeat="campo in campos" value="{{campo.Field}}">{{campo.Field}}</option>
-                    </select>
+
+                <div class="nav-tabs-animate tabs-database" data-plugin="tabs">
+                    <uib-tabset active="">
+                        <uib-tab ng-repeat="base_datos in base_datos_estudiantes"
+                                 index="base_datos_estudiantes.indexOf(base_datos)"
+                                 heading="{{base_datos.nombre}}"
+                                 select="selectedBaseDatos(base_datos)">
+
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Nombre:
+                                </label>
+                                <input type="text" class="form-control" ng-model="filtro.nombre"
+                                       placeholder="Nombre del filtro">
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Campo:
+                                </label>
+                                <select class="form-control" ng-model="filtro.campo">
+                                    <option ng-repeat="campo in campos" value="{{campo.Field}}">{{campo.Field}}</option>
+                                </select>
+
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Operador:
+                                </label>
+                                <select class="form-control" ng-model="filtro.operador">
+                                    <option value="=">Igual (=)</option>
+                                    <option value=">">Mayor que (>)</option>
+                                    <option value=">=">Mayor que (>=)</option>
+                                    <option value="<">Menor que (<)</option>
+                                    <option value="<=">Menor que (<=)</option>
+                                    <option value="!=">Diferente de (!=)</option>
+                                    <option value="like">Que contenga (%)</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label class="col-xl-12 col-md-3 form-control-label">Valor:
+                                </label>
+                                <input type="text" class="form-control" ng-model="filtro.valor"
+                                       placeholder="Valor del filtro">
+                            </div>
+
+                            <div class="col-sm-12 pull-right">
+                                <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">
+                                    Guardar
+                                </button>
+                            </div>
+                        </uib-tab>
+
+
+                    </uib-tabset>
 
                 </div>
-                <div class="col-lg-12 form-group">
-                    <select class="form-control" ng-model="filtro.operador">
-                        <option value="=">Igual (=)</option>
-                        <option value=">">Mayor que (>)</option>
-                        <option value=">=">Mayor que (>=)</option>
-                        <option value="<">Menor que (<)</option>
-                        <option value="<=">Menor que (<=)</option>
-                        <option value="!=">Diferente de (!=)</option>
-                        <option value="like">Que contenga (%)</option>
-                    </select>
-                </div>
-                <div class="col-lg-12 form-group">
-                    <input type="text" class="form-control" ng-model="filtro.valor"
-                           placeholder="Valor">
-                </div>
 
-                <div class="col-sm-12 pull-right">
-                    <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">Guardar
-                    </button>
-                </div>
+
             </div>
         </form>
     </div>
 
 
 </script>
+
+
