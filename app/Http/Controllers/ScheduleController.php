@@ -104,6 +104,14 @@ class ScheduleController extends Controller
 
         $schedules = Schedule::findMany([ApiAuthController::getCode()]);
 
+        if ($schedules->isEmpty()){
+
+            $data = ["Docente"=>$this->getProfeInfoById(ApiAuthController::getCode()), "Clases"=>[]];
+
+            return response()->json($data);
+
+        }
+
         $data = ["Docente"=>$this->getProfeInfoById(ApiAuthController::getCode()), "Clases"=>$schedules];
 
         return response()->json($data);

@@ -10,6 +10,14 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="ac7de33e-6782-49c8-8460-57ffa1fae37c" name="altem ormuco test" url="http://128.75.229.197">
+        <fileTransfer host="128.75.229.197" port="22" privateKey="C:\Users\Misaj\.ssh\id_rsa" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
