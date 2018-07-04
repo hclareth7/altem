@@ -19,7 +19,7 @@ controllerModule
 
             $rootScope.getAllRoles = function () {
                 usuarioService.getAllRoles().then(function (response) {
-                    $scope.roles = response.data;
+                    $rootScope.roles = response.data;
                 }, function (response) {
                     console.log(response);
                 });
@@ -35,7 +35,7 @@ controllerModule
 
             $rootScope.usuarios_asign = [];
             $scope.usuario = {};
-            $scope.roles = [];
+            $rootScope.roles = [];
 
             $rootScope.getAllRoles();
             $scope.guardar = function () {
@@ -86,7 +86,7 @@ controllerModule
         function ($scope, usuarioService, $stateParams, $state, tipoRiesgoService, toastr, $rootScope, filtroService) {
             $rootScope.titulo = "Detalle";
             $rootScope.gues_usuario = {};
-            $scope.roles = [];
+            $rootScope.roles = [];
 
             $rootScope.getUsuario = function (codigo) {
                 usuarioService.getUsuarioById(codigo).then(function (response) {
