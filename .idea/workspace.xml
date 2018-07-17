@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
     <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/public/js/app/views/main.html" afterPath="$PROJECT_DIR$/public/js/app/views/main.html" />
       <change beforePath="$USER_HOME$/mytest/test001" afterPath="$USER_HOME$/mytest/test001" />
@@ -93,6 +94,10 @@
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
 =======
 >>>>>>> 95c4ebf... changed timezone
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/moduleRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app/moduleRegistration.js" afterDir="false" />
+>>>>>>> 84cece6... version before merge
     </list>
     <ignored path="$PROJECT_DIR$/vendor/asm89/stack-cors/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-cors/" />
@@ -174,6 +179,7 @@
     <pharPath>$PROJECT_DIR$/composer_2.phar</pharPath>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
 <<<<<<< HEAD
       <file leaf-file-name="ArchivoPersonalController.php" pinned="false" current-in-tab="false">
@@ -407,6 +413,9 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+>>>>>>> 84cece6... version before merge
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -420,6 +429,7 @@
     <findStrings>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <find>rgba(109, 69, 188, .8)</find>
       <find>alCompletedWidget .card-block {</find>
@@ -430,6 +440,8 @@
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
       <find>interven</find>
       <find>main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})</find>
+=======
+>>>>>>> 84cece6... version before merge
       <find>eliminarArchivo(archivo.riesgo.id)</find>
       <find>all</find>
 <<<<<<< HEAD
@@ -460,6 +472,7 @@
       <find>selectedBaseDatos</find>
       <find>open</find>
       <find>estrate</find>
+<<<<<<< HEAD
       <find>getRiesgosPersonalByEstudiantes</find>
       <find>only: ['ADMIN']</find>
       <find>getEstudiantesByUser</find>
@@ -486,6 +499,11 @@
       <find>riesgoAgregado</find>
       <find>estudiante_filtro</find>
 >>>>>>> b2ea6c2... altem + MAE antes de meterle a lo mal lo de nando nuevo 2
+=======
+      <find>filtro/crear</find>
+      <find>modal</find>
+      <find>base_</find>
+>>>>>>> 84cece6... version before merge
     </findStrings>
     <replaceStrings>
       <replace>only: ['ADMIN','CONSE']</replace>
@@ -535,7 +553,6 @@
         <option value="$PROJECT_DIR$/app/Models/Criterio.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FiltroController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PoblacionController.php" />
-        <option value="$PROJECT_DIR$/public/js/app/moduleRegistration.js" />
         <option value="$PROJECT_DIR$/public/js/app/util/utilFactory.js" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/mainController.js" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/reporteController.js" />
@@ -618,6 +635,7 @@
         <option value="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
         <option value="$PROJECT_DIR$/app/Models/Estudiante.php" />
         <option value="$PROJECT_DIR$/public/js/app/views/estudiante/personal.html" />
+<<<<<<< HEAD
         <option value="$USER_HOME$/mytest/index.html" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BaseDatosEstudiantesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
@@ -648,6 +666,9 @@
         <option value="$PROJECT_DIR$/app/Models/Asistentes.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
 >>>>>>> 95c4ebf... changed timezone
+=======
+        <option value="$PROJECT_DIR$/public/js/app/moduleRegistration.js" />
+>>>>>>> 84cece6... version before merge
       </list>
     </option>
   </component>
@@ -747,6 +768,7 @@
 <<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="x" value="65" />
     <option name="y" value="24" />
     <option name="width" value="1855" />
@@ -769,6 +791,12 @@
     <option name="width" value="1936" />
     <option name="height" value="1059" />
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
+=======
+    <option name="x" value="305" />
+    <option name="y" value="18" />
+    <option name="width" value="974" />
+    <option name="height" value="777" />
+>>>>>>> 84cece6... version before merge
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -809,6 +837,7 @@
               <item name="altem" type="b2602c69:ProjectViewProjectNode" />
               <item name="altem" type="2a2b976b:PhpTreeStructureProvider$1" />
 <<<<<<< HEAD
+<<<<<<< HEAD
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
 =======
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
@@ -816,6 +845,9 @@
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
               <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
 >>>>>>> b2ea6c2... altem + MAE antes de meterle a lo mal lo de nando nuevo 2
+=======
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> 84cece6... version before merge
             </path>
             <path>
               <item name="altem" type="b2602c69:ProjectViewProjectNode" />
@@ -907,10 +939,14 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="Scope" />
       <pane id="Scratches" />
 =======
 >>>>>>> b2ea6c2... altem + MAE antes de meterle a lo mal lo de nando nuevo 2
+=======
+      <pane id="Scope" />
+>>>>>>> 84cece6... version before merge
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -965,11 +1001,12 @@
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/altem/index.html" />
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
+<<<<<<< HEAD
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -985,6 +1022,8 @@
     </recent_temporary>
   </component>
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
+=======
+>>>>>>> 84cece6... version before merge
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -1051,6 +1090,7 @@
       <workItem from="1526933107522" duration="40000" />
       <workItem from="1527308099674" duration="600000" />
       <workItem from="1527639627010" duration="11469000" />
+<<<<<<< HEAD
       <workItem from="1528403269525" duration="72000" />
       <workItem from="1529352072129" duration="5000" />
       <workItem from="1529699435177" duration="5000" />
@@ -1106,6 +1146,11 @@
 =======
       <workItem from="1527641655750" duration="1975000" />
 >>>>>>> 95c4ebf... changed timezone
+=======
+      <workItem from="1529634568126" duration="2468000" />
+      <workItem from="1529637751441" duration="989000" />
+      <workItem from="1531752980433" duration="729000" />
+>>>>>>> 84cece6... version before merge
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -1153,6 +1198,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1222,6 +1268,26 @@
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+=======
+    <option name="totallyTimeSpent" value="273858000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5069444" side_tool="true" weight="0.1992238" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3296355" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.34865293" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info id="Gulp" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27760968" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+>>>>>>> 84cece6... version before merge
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1279,6 +1345,7 @@
   <component name="editorHistoryManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/moduleRegistration.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1287,30 +1354,49 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/TipoRiesgo.php">
+=======
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
+>>>>>>> 84cece6... version before merge
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="675">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Observacion.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1185">
+          <caret line="85" column="56" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
+          <folding>
+            <element signature="e#3233#3516#0#PHP" />
+            <element signature="e#3522#4361#0#PHP" />
+            <element signature="e#4367#5015#0#PHP" />
+            <element signature="e#5021#5193#0#PHP" />
+            <element signature="e#5199#5544#0#PHP" />
+            <element signature="e#5550#6047#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/override.css">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="1170" column="14" lean-forward="false" selection-start-line="1170" selection-start-column="14" selection-end-line="1170" selection-end-column="14" />
+        <state relative-caret-position="675">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="2370">
+          <caret line="158" column="5" lean-forward="true" selection-start-line="158" selection-start-column="5" selection-end-line="158" selection-end-column="5" />
+          <folding>
+            <element signature="e#3233#3516#0#PHP" />
+            <element signature="e#3522#4361#0#PHP" />
+            <element signature="e#4367#5015#0#PHP" />
+            <element signature="e#5021#5193#0#PHP" />
+            <element signature="e#5199#5544#0#PHP" />
+            <element signature="e#5550#6047#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1324,27 +1410,21 @@
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
-          <caret line="3231" column="27" lean-forward="false" selection-start-line="3231" selection-start-column="27" selection-end-line="3231" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/services/criterioService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="64" lean-forward="false" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+          <caret line="3231" column="27" selection-start-line="3231" selection-start-column="27" selection-end-line="3231" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Poblacion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="10" column="59" lean-forward="false" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="59" />
+          <caret line="10" column="59" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Usuario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
+<<<<<<< HEAD
           <caret line="31" column="81" lean-forward="false" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
         </state>
       </provider>
@@ -1366,6 +1446,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" selection-start-line="2" selection-end-line="28" selection-end-column="1" />
+=======
+          <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
@@ -1408,63 +1491,79 @@
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/base.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2178">
           <caret line="99" column="93" lean-forward="false" selection-start-line="99" selection-start-column="93" selection-end-line="99" selection-end-column="93" />
+=======
+        <state relative-caret-position="1782">
+          <caret line="99" column="93" selection-start-line="99" selection-start-column="93" selection-end-line="99" selection-end-column="93" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RiesgoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2646">
-          <caret line="152" column="22" lean-forward="false" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
+          <caret line="152" column="22" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/usuarioService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/crear.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="75" selection-start-line="29" selection-start-column="75" selection-end-line="29" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 84cece6... version before merge
     <entry file="file://$PROJECT_DIR$/app/Models/Role.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="101" column="39" lean-forward="false" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
+          <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TipoRiesgoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1764">
-          <caret line="103" column="37" lean-forward="false" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="37" />
+          <caret line="103" column="37" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/estrategiaService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/estudianteService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
-          <caret line="39" column="56" lean-forward="false" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
+          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Estudiante.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
+<<<<<<< HEAD
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
         </state>
       </provider>
@@ -1488,33 +1587,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1530">
           <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+=======
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/mytest/index.html" />
     <entry file="file://$PROJECT_DIR$/app/Models/ArchivoPersonal.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
+<<<<<<< HEAD
           <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+=======
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1044">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1746">
+<<<<<<< HEAD
           <caret line="97" column="74" lean-forward="false" selection-start-line="96" selection-start-column="46" selection-end-line="97" selection-end-column="74" />
+=======
+          <caret line="97" column="74" selection-start-line="96" selection-start-column="46" selection-end-line="97" selection-end-column="74" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
+<<<<<<< HEAD
           <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="16" />
+=======
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="16" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1062">
+<<<<<<< HEAD
           <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
         </state>
       </provider>
@@ -1523,46 +1646,100 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+=======
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="272" column="35" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IntervencionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
+<<<<<<< HEAD
           <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="37" />
+=======
+          <caret line="52" column="37" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="37" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Criterio.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
+<<<<<<< HEAD
           <caret line="12" column="105" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="105" />
+=======
+          <caret line="12" column="105" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="105" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CriterioController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
+<<<<<<< HEAD
           <caret line="46" column="27" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+=======
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/detalle.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="990">
           <caret line="198" column="56" lean-forward="false" selection-start-line="198" selection-start-column="56" selection-end-line="198" selection-end-column="56" />
+=======
+        <state relative-caret-position="552">
+          <caret line="182" selection-start-line="182" selection-end-line="252" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/filtroService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/filtroController.js">
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/accion/crear.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="288">
+          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+=======
+        <state relative-caret-position="360">
+          <caret line="20" column="71" lean-forward="true" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+>>>>>>> 84cece6... version before merge
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/estudiante/personal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="590" column="144" selection-start-line="590" selection-start-column="144" selection-end-line="590" selection-end-column="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/estrategia/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="36">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
@@ -1600,11 +1777,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
           <caret line="267" column="56" lean-forward="false" selection-start-line="267" selection-start-column="30" selection-end-line="267" selection-end-column="56" />
+=======
+        <state relative-caret-position="143">
+          <caret line="398" selection-start-line="398" selection-end-line="398" />
+>>>>>>> 84cece6... version before merge
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/usuarioController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="142" column="91" selection-start-line="142" selection-start-column="61" selection-end-line="142" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScheduleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2070" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Filtro.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="770">
           <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
         </state>
@@ -1615,18 +1809,28 @@
         <state relative-caret-position="264">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
+=======
+        <state relative-caret-position="180">
+          <caret line="13" column="125" selection-start-line="13" selection-start-column="99" selection-end-line="13" selection-end-column="125" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/Accion.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="990">
           <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+=======
+        <state relative-caret-position="180">
+          <caret line="12" column="101" selection-start-line="12" selection-start-column="101" selection-end-line="12" selection-end-column="108" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/detalle.html">
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/filtroController.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="352">
           <caret line="101" column="80" lean-forward="false" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="80" />
           <folding>
@@ -1645,11 +1849,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+=======
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../altem-v2-master/public/js/app/moduleRegistration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="36" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
 =======
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/services/riesgoService.js">
       <provider selected="true" editor-type-id="text-editor" />
 >>>>>>> 287d838... añadido PROMEDIO_PERIODO en consulta de filtros
@@ -1658,10 +1874,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+=======
+    <entry file="file://$PROJECT_DIR$/public/js/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="372" column="33" lean-forward="true" selection-start-line="372" selection-start-column="33" selection-end-line="372" selection-end-column="33" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
 >>>>>>> 95c4ebf... changed timezone
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AsistentesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1485">
@@ -1762,10 +1985,31 @@
           <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/public/js/app/moduleRegistration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="90" column="22" lean-forward="true" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+          <folding>
+            <element signature="e#3233#3516#0#PHP" />
+            <element signature="e#3522#4361#0#PHP" />
+            <element signature="e#4367#5015#0#PHP" />
+            <element signature="e#5021#5193#0#PHP" />
+            <element signature="e#5199#5544#0#PHP" />
+            <element signature="e#5550#6047#0#PHP" />
+>>>>>>> 84cece6... version before merge
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/views/estudiante/personal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9948" />
@@ -1929,10 +2173,57 @@
           <folding>
             <element signature="e#7#392#0#PHP" expanded="true" />
 >>>>>>> b2ea6c2... altem + MAE antes de meterle a lo mal lo de nando nuevo 2
+=======
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/usuarios/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="887">
+          <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseDatosEstudiantesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="93" column="58" selection-start-line="93" selection-start-column="58" selection-end-line="93" selection-end-column="58" />
+          <folding>
+            <element signature="n#div#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/BaseDatosEstudiantes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/riesgoController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="229" column="37" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
+          <folding>
+            <element signature="e#10811#11079#0" />
+>>>>>>> 84cece6... version before merge
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AccionController.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1996,6 +2287,19 @@
         <state relative-caret-position="300">
           <caret line="41" column="33" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
 >>>>>>> 95c4ebf... changed timezone
+=======
+    <entry file="file://$PROJECT_DIR$/public/js/app/services/criterioService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+>>>>>>> 84cece6... version before merge
         </state>
       </provider>
     </entry>
