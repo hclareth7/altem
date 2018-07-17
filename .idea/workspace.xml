@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app/moduleRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app/moduleRegistration.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/default/virtualbox/vagrant_cwd" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Vagrantfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/controllers/usuarioController.js" afterPath="$PROJECT_DIR$/public/js/app/controllers/usuarioController.js" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/views/usuarios/base.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/views/usuarios/crear.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/views/usuarios/detalle.html" afterPath="" />
+      <change beforePath="$USER_HOME$/mytest/test001" afterPath="$USER_HOME$/mytest/test001" />
+      <change beforePath="$USER_HOME$/mytest/test002" afterPath="$USER_HOME$/mytest/test002" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
     </list>
     <ignored path="$PROJECT_DIR$/vendor/asm89/stack-cors/" />
     <ignored path="$PROJECT_DIR$/vendor/barryvdh/laravel-cors/" />
@@ -85,7 +97,96 @@
     <pharPath>$PROJECT_DIR$/composer_2.phar</pharPath>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Filtro.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Filtro.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArchivoPersonalController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <folding>
+                <marker date="1530725294499" expanded="true" signature="1977:2115" ph="SELECT * FRO... estudiantes_view" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="crear.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/crear.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="29" column="97" lean-forward="false" selection-start-line="29" selection-start-column="93" selection-end-line="29" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="estudianteController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Accion.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Accion.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="101" lean-forward="false" selection-start-line="12" selection-start-column="101" selection-end-line="12" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usuarioController.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/app/controllers/usuarioController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="733">
+              <caret line="88" column="22" lean-forward="false" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FiltroController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detalle.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/detalle.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="101" column="80" lean-forward="false" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="80" />
+              <folding>
+                <element signature="n#div#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -112,7 +213,6 @@
       <find>col</find>
       <find>getColumn</find>
       <find>assignRole</find>
-      <find>getRiesgosPersonalByEstudiantes</find>
       <find>personal</find>
       <find>$stateParams</find>
       <find>where</find>
@@ -124,9 +224,13 @@
       <find>selectedBaseDatos</find>
       <find>open</find>
       <find>estrate</find>
+<<<<<<< HEAD
       <find>filtro/crear</find>
       <find>modal</find>
       <find>base_</find>
+=======
+      <find>getRiesgosPersonalByEstudiantes</find>
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -183,7 +287,6 @@
         <option value="$PROJECT_DIR$/public/js/app/views/usuario/base.html" />
         <option value="$PROJECT_DIR$/public/js/app/views/usuario/crear.html" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsuarioController.php" />
-        <option value="$PROJECT_DIR$/public/js/app/controllers/usuarioController.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/public/js/app/services/estrategiaService.js" />
         <option value="$PROJECT_DIR$/public/js/app/services/estudianteService.js" />
@@ -191,7 +294,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
         <option value="$USER_HOME$/mytest/index.html" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BaseDatosEstudiantesController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
         <option value="$PROJECT_DIR$/public/js/app/views/main.html" />
         <option value="$PROJECT_DIR$/public/js/app/app.js" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/filtroController.js" />
@@ -199,9 +301,14 @@
         <option value="$PROJECT_DIR$/public/js/app/controllers/riesgoController.js" />
         <option value="$PROJECT_DIR$/app/Models/Accion.php" />
         <option value="$PROJECT_DIR$/public/js/app/views/estrategia/detalle.html" />
-        <option value="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
         <option value="$PROJECT_DIR$/public/js/app/views/estudiante/personal.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/public/js/app/moduleRegistration.js" />
+=======
+        <option value="$PROJECT_DIR$/public/js/app/controllers/estudianteController.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
+        <option value="$PROJECT_DIR$/public/js/app/controllers/usuarioController.js" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
       </list>
     </option>
   </component>
@@ -309,6 +416,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+      <pane id="Scratches" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -525,9 +637,16 @@
       <workItem from="1526933107522" duration="40000" />
       <workItem from="1527308099674" duration="600000" />
       <workItem from="1527639627010" duration="11469000" />
+<<<<<<< HEAD
       <workItem from="1529634568126" duration="2468000" />
       <workItem from="1529637751441" duration="989000" />
       <workItem from="1531752980433" duration="729000" />
+=======
+      <workItem from="1528403269525" duration="72000" />
+      <workItem from="1529352072129" duration="5000" />
+      <workItem from="1529699435177" duration="5000" />
+      <workItem from="1530722861857" duration="3197000" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -568,6 +687,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="273858000" />
   </component>
   <component name="ToolWindowManager">
@@ -594,6 +714,34 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32984293" />
+=======
+    <option name="totallyTimeSpent" value="272951000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="24" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1992238" sideWeight="0.5069444" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35497382" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27750137" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,6 +856,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/crear.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -715,6 +864,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
     <entry file="file://$PROJECT_DIR$/app/Models/Role.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -753,7 +904,32 @@
     <entry file="file://$PROJECT_DIR$/app/Models/Estudiante.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
+<<<<<<< HEAD
           <caret line="14" selection-start-line="14" selection-end-line="14" />
+=======
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/mytest/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseDatosEstudiantesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
@@ -761,6 +937,7 @@
     <entry file="file://$PROJECT_DIR$/app/Models/ArchivoPersonal.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
+<<<<<<< HEAD
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
         </state>
       </provider>
@@ -769,76 +946,135 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
           <caret line="64" selection-start-line="64" selection-end-line="64" />
+=======
+          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1746">
+<<<<<<< HEAD
           <caret line="97" column="74" selection-start-line="96" selection-start-column="46" selection-end-line="97" selection-end-column="74" />
+=======
+          <caret line="97" column="74" lean-forward="false" selection-start-line="96" selection-start-column="46" selection-end-line="97" selection-end-column="74" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
+<<<<<<< HEAD
           <caret line="11" column="16" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="16" />
+=======
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="16" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1062">
+<<<<<<< HEAD
           <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+=======
+          <caret line="59" column="13" lean-forward="false" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
+<<<<<<< HEAD
           <caret line="272" column="35" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+=======
+          <caret line="272" column="35" lean-forward="false" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/BaseDatosEstudiantes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IntervencionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
+<<<<<<< HEAD
           <caret line="52" column="37" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="37" />
+=======
+          <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Criterio.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
+<<<<<<< HEAD
           <caret line="12" column="105" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="105" />
+=======
+          <caret line="12" column="105" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="105" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CriterioController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
+<<<<<<< HEAD
           <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+=======
+          <caret line="46" column="27" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/detalle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
+<<<<<<< HEAD
           <caret line="182" selection-start-line="182" selection-end-line="252" selection-end-column="9" />
+=======
+          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="252" selection-end-column="9" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/filtroService.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="288">
           <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+=======
+        <state relative-caret-position="313">
+          <caret line="370" column="55" lean-forward="false" selection-start-line="370" selection-start-column="50" selection-end-line="370" selection-end-column="55" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/views/accion/crear.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="360">
           <caret line="20" column="71" lean-forward="true" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+=======
+        <state relative-caret-position="288">
+          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
@@ -858,6 +1094,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="143">
           <caret line="398" selection-start-line="398" selection-end-line="398" />
         </state>
@@ -900,6 +1137,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="36" />
+=======
+        <state relative-caret-position="36">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/accion/crear.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="71" lean-forward="true" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/estudiante/personal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="606" column="34" lean-forward="true" selection-start-line="606" selection-start-column="34" selection-end-line="606" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/estudiante/intervencion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/estrategia/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="160" column="16" lean-forward="false" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/riesgoController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1584">
+          <caret line="267" column="56" lean-forward="false" selection-start-line="267" selection-start-column="30" selection-end-line="267" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Filtro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
@@ -910,6 +1194,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/public/js/app/moduleRegistration.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -991,6 +1276,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FiltroController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/riesgo/detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="101" column="80" lean-forward="false" selection-start-line="101" selection-start-column="58" selection-end-line="101" selection-end-column="80" />
+          <folding>
+            <element signature="n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/estudianteController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <marker date="1530725294499" expanded="true" signature="1977:2115" ph="SELECT * FRO... estudiantes_view" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/crear.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="97" lean-forward="false" selection-start-line="29" selection-start-column="93" selection-end-line="29" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/controllers/usuarioController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="88" column="22" lean-forward="false" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+          <folding />
+>>>>>>> 0aa697ddb6f620889e3be2d8e3b94c2f74ba1202
         </state>
       </provider>
     </entry>
