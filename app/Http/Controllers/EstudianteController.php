@@ -41,26 +41,26 @@ class EstudianteController extends Controller
     {
         Estudiante::create($request->all());
 
-        return response()->json(["mensaje"=>"Creado correctamente"]);
+        return response()->json(["mensaje" => "Creado correctamente"]);
     }
 
 
     public function updateAnotaciones(Request $request, $codigo)
     {
-        $estudiante=Estudiante::find($codigo);
+        $estudiante = Estudiante::find($codigo);
         $estudiante->fill($request->all());
         $estudiante->save();
-        return response()->json(["mensaje"=>"Actualizacion exitosa"]);
+        return response()->json(["mensaje" => "Actualizacion exitosa"]);
 
     }
 
 
     public function deleteAnotaciones($codigo)
     {
-        $estudiante=Estudiante::find($codigo);
+        $estudiante = Estudiante::find($codigo);
         $estudiante->delete();
 
-        return response()->json(["mensaje"=>"Eliminado con Exito"]);
+        return response()->json(["mensaje" => "Eliminado con Exito"]);
 
     }
 
@@ -96,7 +96,6 @@ class EstudianteController extends Controller
 
 
                 } else {
-
                     if ($key == 0) {
                         $sql = "Select * from " . $base_datos->tabla . " where " . $poblacion->criterio->campo . " " .
                             $poblacion->criterio->operador . " '" . $poblacion->criterio->valor . "' ";
@@ -108,7 +107,9 @@ class EstudianteController extends Controller
 
             }
 
+
             $this->sql = $sql;
+
             return $this->sql;
         }
 
@@ -178,7 +179,9 @@ class EstudianteController extends Controller
         $a = $request->input('a');
         $sql = str_replace("*", " count(*) as total  ", $this->setRestric());
 
-        $estudiantes = $this->db_sirius->select($this->setRestric() . " limit  " . $de . "," . $a);
+        $sql_with_limit = $this->setRestric() . " limit  " . $de . "," . $a;
+
+        $estudiantes = $this->db_sirius->select($sql_with_limit);
         $total = $this->db_sirius->select($sql);
         if ($estudiantes) {
             $estudiantes[0]->total = $total;

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22af96f9-cf9e-42dc-acb5-5aa8b1765353" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/public/js/app/app.js" afterPath="$PROJECT_DIR$/public/js/app/app.js" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
       <change beforePath="$USER_HOME$/mytest/test001" afterPath="$USER_HOME$/mytest/test001" />
       <change beforePath="$USER_HOME$/mytest/test002" afterPath="$USER_HOME$/mytest/test002" />
     </list>
@@ -120,22 +120,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detalle.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/detalle.html">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="198" column="56" lean-forward="true" selection-start-line="198" selection-start-column="56" selection-end-line="198" selection-end-column="56" />
+            <state relative-caret-position="217">
+              <caret line="217" column="18" lean-forward="false" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/app/app.js">
+      <file leaf-file-name="EstudianteController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2769">
-              <caret line="333" column="0" lean-forward="true" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="183">
+              <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+              <folding>
+                <marker date="1532446108745" expanded="true" signature="2133:2199" ph="Select * fro... ${$base_datos_principal-&gt;tabla}" />
+                <marker date="1532446108745" expanded="true" signature="2702:2889" ph="Select * fro... ${$base_datos-&gt;tabla}" />
+                <marker date="1532446108745" expanded="true" signature="3713:3892" ph="SELECT * FRO... estudiantes_view" />
+                <marker date="1532446108745" expanded="true" signature="3969:4171" ph="SELECT count... estudiantes_view" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -204,12 +209,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>estrategias</find>
       <find>interven</find>
       <find>main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})</find>
       <find>eliminarArchivo(archivo.riesgo.id)</find>
       <find>all</find>
-      <find>getEstudiantesByUser</find>
       <find>db_sirius</find>
       <find>firs</find>
       <find>setRestric</find>
@@ -234,6 +237,8 @@
       <find>open</find>
       <find>estrate</find>
       <find>getRiesgosPersonalByEstudiantes</find>
+      <find>only: ['ADMIN']</find>
+      <find>getEstudiantesByUser</find>
     </findStrings>
     <replaceStrings>
       <replace>only: ['ADMIN','CONSE']</replace>
@@ -298,7 +303,6 @@
         <option value="$PROJECT_DIR$/public/js/app/services/estrategiaService.js" />
         <option value="$PROJECT_DIR$/public/js/app/services/estudianteService.js" />
         <option value="$PROJECT_DIR$/app/Models/Estudiante.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
         <option value="$USER_HOME$/mytest/index.html" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BaseDatosEstudiantesController.php" />
         <option value="$PROJECT_DIR$/public/js/app/views/main.html" />
@@ -312,6 +316,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArchivoPersonalController.php" />
         <option value="$PROJECT_DIR$/public/js/app/controllers/usuarioController.js" />
         <option value="$PROJECT_DIR$/public/js/app/app.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php" />
       </list>
     </option>
   </component>
@@ -601,7 +606,7 @@
       <workItem from="1529352072129" duration="5000" />
       <workItem from="1529699435177" duration="5000" />
       <workItem from="1530722861857" duration="3197000" />
-      <workItem from="1532443535914" duration="410000" />
+      <workItem from="1532443535914" duration="2574000" />
     </task>
     <task id="LOCAL-00001" summary="fixes and improvements">
       <created>1513068503531</created>
@@ -642,16 +647,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273990000" />
+    <option name="totallyTimeSpent" value="276154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1841" height="1086" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1992238" sideWeight="0.5069444" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35430464" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35430464" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28193584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -907,13 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="106" column="17" lean-forward="false" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Criterio.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -931,7 +930,7 @@
     <entry file="file://$PROJECT_DIR$/public/js/app/views/usuario/detalle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
-          <caret line="198" column="56" lean-forward="true" selection-start-line="198" selection-start-column="56" selection-end-line="198" selection-end-column="56" />
+          <caret line="198" column="56" lean-forward="false" selection-start-line="198" selection-start-column="56" selection-end-line="198" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1055,9 +1054,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2769">
-          <caret line="333" column="0" lean-forward="true" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+        <state relative-caret-position="217">
+          <caret line="217" column="18" lean-forward="false" selection-start-line="217" selection-start-column="18" selection-end-line="217" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EstudianteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="182" column="0" lean-forward="true" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
+          <folding>
+            <marker date="1532446108745" expanded="true" signature="2133:2199" ph="Select * fro... ${$base_datos_principal-&gt;tabla}" />
+            <marker date="1532446108745" expanded="true" signature="2702:2889" ph="Select * fro... ${$base_datos-&gt;tabla}" />
+            <marker date="1532446108745" expanded="true" signature="3713:3892" ph="SELECT * FRO... estudiantes_view" />
+            <marker date="1532446108745" expanded="true" signature="3969:4171" ph="SELECT count... estudiantes_view" />
+          </folding>
         </state>
       </provider>
     </entry>
