@@ -143,7 +143,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'riesgoEditarController',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+					only: ['ADMIN','CONSE']
 				}
 			}
 		})
@@ -153,7 +153,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'riesgoCrearController',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
 				}
 			}
 		})
@@ -175,7 +175,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'tipoRiesgoEditarController',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
 				}
 			}
 		})
@@ -185,7 +185,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			controller: 'tipoRiesgoCrearController',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
 				}
 			}
 		})
@@ -226,7 +226,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
             controller: 'usuarioEditarController',
             data: {
                 permissions: {
-                    only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
                 }
             }
         })
@@ -236,7 +236,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
             controller: 'usuarioCrearController',
             data: {
                 permissions: {
-                    only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
                 }
             }
         })
@@ -253,7 +253,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
             size: 'lg',
             data: {
                 permissions: {
-                    only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
                 }
             }
         });
@@ -265,7 +265,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
             size: 'lg',
             data: {
                 permissions: {
-                    only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
                 }
             }
         });
@@ -277,7 +277,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			size: 'lg',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
 				}
 			}
 		});
@@ -289,7 +289,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 			size: 'lg',
 			data: {
 				permissions: {
-					only: ['ADMIN']
+                    only: ['ADMIN','CONSE']
 				}
 			}
 		});
@@ -303,7 +303,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 
 			data: {
 				permissions: {
-					only: ['ADMIN']
+					only: ['ADMIN','CONSE']
 				}
 			}
 		});
@@ -353,7 +353,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		controller: 'accionCrearController',
 		data: {
 			permissions: {
-				only: ['ADMIN']
+				only: ['ADMIN','CONSE']
 			}
 		}
 		});
@@ -363,7 +363,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		controller: 'accionEditarController',
 		data: {
 			permissions: {
-				only: ['ADMIN']
+				only: ['ADMIN','CONSE']
 			}
 		}
 		});
@@ -374,7 +374,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		controller: 'filtroCrearController',
 		data: {
 			permissions: {
-				only: ['ADMIN']
+				only: ['ADMIN','CONSE']
 			}
 		}
 	});
@@ -384,7 +384,7 @@ satApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$locatio
 		controller: 'filtroEditarController',
 		data: {
 			permissions: {
-				only: ['ADMIN']
+				only: ['ADMIN','CONSE']
 			}
 		}
 	});
