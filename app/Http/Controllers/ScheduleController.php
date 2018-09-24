@@ -172,7 +172,7 @@ class ScheduleController extends Controller
 
         $nrc = $classdata[0]['attributes']["NRC"];
 
-        $students=Estudiantes::join("datos_ascademicos as da","estudiantes.id","=","da.id")
+        $students=Estudiantes::join("datos_academicos as da","estudiantes.id","=","da.id")
             ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
             ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime()"))
             ->select('estudiantes.ID' ,'estudiantes.NOMBRES','estudiantes.APELLIDOS','estudiantes.PROGRAMA')
