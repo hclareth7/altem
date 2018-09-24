@@ -139,27 +139,11 @@ class ScheduleController extends Controller
 
     public function now(Request $request)
     {
-        /*
-         *
-         * Query -- Muestra los estudiantes durante la primera hora de clase ---
-         *
-         *
-          select distinct
-          e.ID ,e.NOMBRES,e.APELLIDOS, da.NRC,da.ASIGNATURA, da.ID_DOCENTE, da.Miercoles
-			,cast(SUBSTRING(dia,1,LOCATE('-',dia)-1) as time ) as Inicio
-			,cast(SUBSTRING(dia,7,LOCATE('-',dia)-1) as time ) as Fin
-          from datos_academicos as da
-          join estudiantes as e on e.id=da.id
-          where ID_DOCENTE = 'codigo_profesor'  and
-          cast(SUBSTRING(dia,1,LOCATE('-',dia)-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime()
-
-         */
-
-        $day=ScheduleController::$days[Carbon::now(-4)->dayOfWeek];
+        $day = 'Lunes'; // DIA QUEMADO
         $hour=Carbon::now(-4)->hour.":".Carbon::now(-4)->minute;
 
         $classdata = DatosAcademicos::where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
-            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime() "))
+            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
             ->select('ASIGNATURA','NRC',DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) as Inicio, cast(SUBSTRING(".$day.",7,LOCATE('-',".$day.")-1) as time ) as Fin "))
             ->distinct()->get();
 
@@ -172,9 +156,9 @@ class ScheduleController extends Controller
 
         $nrc = $classdata[0]['attributes']["NRC"];
 
-        $students=Estudiantes::join("datos_ascademicos as da","estudiantes.id","=","da.id")
+        $students=Estudiantes::join("datos_academicos as da","estudiantes.id","=","da.id")
             ->where("ID_DOCENTE",DB::raw("'".ApiAuthController::getCode()."'" ))
-            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between CONCAT(LEFT(curtime(),3),'00:00') and curtime()"))
+            ->whereRaw(DB::raw("cast(SUBSTRING(".$day.",1,LOCATE('-',".$day.")-1) as time ) between '13:00' and '13:59'"))
             ->select('estudiantes.ID' ,'estudiantes.NOMBRES','estudiantes.APELLIDOS','estudiantes.PROGRAMA')
             ->distinct()->get();
 
