@@ -33,6 +33,7 @@ class LdapServerConnection
             return false;
         }
         $conn = ldap_connect($this->hostname);
+
         if (!$conn) {
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
@@ -45,10 +46,9 @@ class LdapServerConnection
 
             $result = ldap_search($conn, $this->rdn, 'uid=' . $username, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
-
             for ($i = 0; $i < $datos["count"]; $i++) {
                 $nombre = $datos[$i]["cn"][0];
-                $codigo = $datos[$i]["uid"][0];
+                $codigo = strtolower($datos[$i]["uid"][0]);
                 $correo = $datos[$i]["mail"][0];
             }
 
@@ -58,10 +58,8 @@ class LdapServerConnection
             $this->usuario->password = $password;
             $this->usuario->id = $codigo;
 
-
             return true;
         }
-        return false;
     }
 
     public function verificarUsuarioById($codigoUtbId)
@@ -75,18 +73,16 @@ class LdapServerConnection
             dd("Could not connect to LDAP host $this->hostname: " . ldap_error($conn), 401);
             return false;
         }//usuario readonly que ya no existe... (?), utilizando usario developer...
-        if (!$con = ldap_bind($conn, "uid=readonly" . ',' . $this->rdn, 'read_only_utbvirtual')) {
+        if (!$con = ldap_bind($conn, "uid=t00020904" . ',' . $this->rdn, '777777')) {
             dd('Could not bind to AD: ' . ldap_error($conn), 401);
             return false;
         } else {
             $result = ldap_search($conn, $this->rdn, 'uid=' . $codigoUtbId, array('uid', 'cn', 'mail'));
             $datos = ldap_get_entries($conn, $result);
             if ($datos["count"] > 0) {
-
-
                 for ($i = 0; $i < $datos["count"]; $i++) {
                     $nombre = $datos[$i]["cn"][0];
-                    $codigo = $datos[$i]["uid"][0];
+                    $codigo = strtolower($datos[$i]["uid"][0]);
                     $correo = $datos[$i]["mail"][0];
                 }
 
@@ -96,7 +92,9 @@ class LdapServerConnection
                 $this->usuario->codigo = $codigo;
                 $this->usuario->correo = $correo;
                 $this->usuario->id = $codigo;
-            }else{
+
+                //dd($this->usuario);
+            } else {
                 return false;
             }
         }

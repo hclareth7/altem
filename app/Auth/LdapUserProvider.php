@@ -32,7 +32,6 @@ class LdapUserProvider implements UserProvider
     public function retrieveById($identifier)
     {
         if ($usuario= $this->conect->verificarUsuarioById($identifier)) {
-
             return $usuario;
         }else{
 
@@ -75,10 +74,8 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-
         if ($this->conect->verificarUsuario($credentials['codigo'], $credentials['password'])) {
             $user = $this->conect->getUsuario();
-
             return $user;
         }
 
@@ -94,8 +91,8 @@ class LdapUserProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if ($user->getAuthIdentifier()==$credentials['codigo']&& $user->getAuthPassword()==$credentials['password']){
 
+        if ($user->getAuthIdentifier()==$credentials['codigo']&& $user->getAuthPassword()==$credentials['password']){
             return true;
         }
         return false;
