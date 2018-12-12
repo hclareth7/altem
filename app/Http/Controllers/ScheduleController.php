@@ -106,6 +106,19 @@ class ScheduleController extends Controller
 
         if ($schedules->isEmpty()){
 
+<<<<<<< HEAD
+=======
+            try {
+                $this::getProfeInfoById(ApiAuthController::getCode());}
+
+            catch (\Exception $e)
+            {
+                $data = "El Usuario no es un docente!";
+                return response()->json($data);
+            }
+
+
+>>>>>>> ecb0e50555cb602a22c8157555e2ff656a213536
             $data = ["Docente"=>$this->getProfeInfoById(ApiAuthController::getCode()), "Clases"=>[]];
 
             return response()->json($data);

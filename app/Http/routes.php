@@ -54,6 +54,18 @@ Route::group(['prefix' => 'api'], function () {
         });
 
 
+        //endpoints MAE (App Movil) para docentes
+        Route::group(['middleware' => ['role:ADMIN|DOCE']], function() {
+            Route::get('schedules/now', 'ScheduleController@now');
+            Route::resource('schedules', 'ScheduleController', ['only' => ['index', 'show']]);
+            //Route::resource('students', 'CursanteController', ['only' => ['show']]);
+            Route::resource('missing', 'AsistentesController', ['only' => ['index', 'show']]);
+            Route::post('missing', 'AsistentesController@update');
+            Route::get('teacher', 'ScheduleController@profeInfo');
+
+        });
+
+
         Route::group(['middleware' => ['role:ADMIN|CONSE|PSICO']], function () {
             Route::post('estudiantes_all', 'EstudianteController@getEstudiantesByUser');
             Route::post('estudiantes_buscar', 'EstudianteController@buscar');
