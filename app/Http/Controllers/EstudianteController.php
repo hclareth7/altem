@@ -62,6 +62,22 @@ class EstudianteController extends Controller
 
         return response()->json(["mensaje" => "Eliminado con Exito"]);
 
+
+    }
+
+    public function getAnotacionesByCodigo($codigo)
+    {
+
+        $anotaciones = Estudiante::where('codigo', '=', $codigo)->get();
+        return response()->json($anotaciones);
+    }
+
+
+    public function storeAnotaciones(Request $request)
+    {
+        Estudiante::create($request->all());
+
+        return response()->json(["mensaje"=>"Creado correctamente"]);
     }
 
 
@@ -139,6 +155,14 @@ class EstudianteController extends Controller
 
     public function ejecutarFiltro($id)
     {
+        $filofinal = "";
+
+        $filtros = Filtro::where('riesgos_id', $id)->get();
+
+        foreach ($filtros as $filtro){
+
+            if ($filtro['base_datos'] == 0){
+                foreach ($filtros as $key => $value) {
 
         $filofinal = "";
 

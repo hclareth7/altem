@@ -29,7 +29,11 @@ class AsistentesController extends Controller
                 ->select('idEstudiante', 'nrc', 'descripcion', DB::raw('count(*) as faltas'))
                 ->get();
 
+<<<<<<< HEAD
+        dd($students);
+=======
         // dd($students);
+>>>>>>> ecb0e50555cb602a22c8157555e2ff656a213536
         #dd($students[0]['relations']['estado']['original']);
 
         return response()->json($students);

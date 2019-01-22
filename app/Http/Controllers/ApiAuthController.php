@@ -28,11 +28,11 @@ class ApiAuthController extends Controller
         // = JWTAuth::parseToken()->authenticate();
         //return response()->json($user);
         $user = Auth::user();
-
-        $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
+        $roles = $user->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;
         })->first();
+
         // $permission = Permission::with('roles')->find($roles->roles->first()->id);
         $permission = $roles->roles->first()->with('perms')->get()->first()->find($roles->roles->first()->id)->perms;
         // $permission = Permission::with('roles')->get();
@@ -58,7 +58,7 @@ class ApiAuthController extends Controller
 
         $codigo = strtolower($request->codigo);
         $password = $request->password;
-        $credentials = ['codigo'=>$codigo, 'password'=>$password];
+        $credentials = ['codigo' => $codigo, 'password' => $password];
         try {
             // verify the credentials and create a token for the user
             $token = JWTAuth::attempt($credentials);
@@ -88,7 +88,7 @@ class ApiAuthController extends Controller
          * @return string
          */
 
-        return Auth::user()->id;
+        return "T00010915";
 
 
     }

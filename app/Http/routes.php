@@ -39,11 +39,20 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('anotacion/{codigo}', 'EstudianteController@deleteAnotaciones');
 
 
-
-
-
     // Adding JWT Auth Middleware to prevent invalid access
     Route::group(['middleware' => 'jwt.auth'], function () {
+
+        //endpoints MAE (App Movil) para docentes
+        Route::group(['middleware' => ['role:ADMIN|DOCE']], function() {
+            Route::get('schedules/now', 'ScheduleController@now');
+            Route::resource('schedules', 'ScheduleController', ['only' => ['index', 'show']]);
+            //Route::resource('students', 'CursanteController', ['only' => ['show']]);
+            Route::resource('missing', 'AsistentesController', ['only' => ['index', 'show']]);
+            Route::post('missing', 'AsistentesController@update');
+            Route::get('teacher', 'ScheduleController@profeInfo');
+
+        });
+
 
         //endpoints MAE (App Movil) para docentes
         Route::group(['middleware' => ['role:ADMIN|DOCE']], function() {

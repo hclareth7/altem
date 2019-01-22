@@ -63,8 +63,32 @@ class ArchivoPersonalController extends Controller
             ->where('estudiantes_altem_codigo', $codigo)
             ->get();
 
-        $filtros = $this->filtro->groupBy('riesgos_id')->get();
+        $filtro_estudiante = $this->filtro
+            ->groupBy('riesgos_id')->get();
 
+        //return response()->json($riegosPersonal);
+        foreach ($filtros as $key => $value) {
+            $sql = "SELECT * FROM estudiantes_view WHERE id='" . $codigo . "' and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
+
+            $estudiantes = $this->db_sirius->select($sql);
+
+            if (!empty($estudiantes)) {
+                $new_archivo = new ArchivoPersonal();
+                $new_archivo->id = 0;
+                $new_archivo->estado = -1;
+                $buenRiesgo = Riesgo::with('tiporiesgo')
+                    ->find($value->riesgos_id);
+                $new_archivo->riesgo = $buenRiesgo;
+                if (!$riegosPersonal->contains(function ($key, $value) use ($new_archivo) {
+                    return $value->riesgos_id == $new_archivo->riesgo->id;
+                })
+                ) {
+                    $riegosPersonal->push($new_archivo);
+                }
+
+                foreach ($data as $student){
+                    array_push($estudiantes, $student['relations']['info_estudiante']['original']);
+                }
 
         //return response()->json($riegosPersonal);
         foreach ($filtros as $key => $value) {

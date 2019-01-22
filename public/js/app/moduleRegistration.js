@@ -13,4 +13,4 @@ angular.module('AppFactories',[]);
 TOKEN_KEY='utb_token';
 UTB_AUSER='utb_auser';
 
-apiUrl='http://localhost:8000/api/';
+//apiUrl='http://localhost:8000/api/';
