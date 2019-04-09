@@ -49,7 +49,12 @@ class LdapServerConnection
             for ($i = 0; $i < $datos["count"]; $i++) {
                 $nombre = $datos[$i]["cn"][0];
                 $codigo = strtolower($datos[$i]["uid"][0]);
-                $correo = $datos[$i]["mail"][0];
+                if(isset($datos[$i]["mail"][0])){
+                  $correo = $datos[$i]["mail"][0];
+                    
+                }else{
+                    $correo = "N/A";
+                }
             }
 
             $this->usuario = new Usuario();
@@ -83,7 +88,12 @@ class LdapServerConnection
                 for ($i = 0; $i < $datos["count"]; $i++) {
                     $nombre = $datos[$i]["cn"][0];
                     $codigo = strtolower($datos[$i]["uid"][0]);
-                    $correo = $datos[$i]["mail"][0];
+                    if(isset($datos[$i]["mail"][0])){
+                        $correo = $datos[$i]["mail"][0];
+                          
+                      }else{
+                          $correo = "N/A";
+                      }
                 }
 
                 $this->usuario = new Usuario();
