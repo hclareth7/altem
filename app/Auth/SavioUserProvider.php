@@ -15,12 +15,11 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 
 
-class LdapUserProvider implements UserProvider
+class SavioUserProvider implements UserProvider
 {
     public function __construct()
     {
-        $this->conect = new LdapServerConnection();
-
+        $this->connect = new SavioAuth();
     }
 
     /**
@@ -30,8 +29,12 @@ class LdapUserProvider implements UserProvider
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function retrieveById($identifier)
-    {
-        if ($usuario= $this->conect->verificarUsuarioById($identifier)) {
+    {   
+        // TODO: store savio tokens and change this for retreive by token
+        $usuario= $this->connect->verificarUsuarioById($identifier);
+
+
+        if ( $usuario ) {
             return $usuario;
         }else{
 
@@ -74,8 +77,8 @@ class LdapUserProvider implements UserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        if ($this->conect->verificarUsuario($credentials['codigo'], $credentials['password'])) {
-            $user = $this->conect->getUsuario();
+        if ($this->connect->verificarUsuario($credentials['codigo'], $credentials['password'])) {
+            $user = $this->connect->getUsuario();
             return $user;
         }
 

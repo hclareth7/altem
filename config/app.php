@@ -137,8 +137,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		App\Providers\LdapAuthProvider::class,
-
         /*
          * Application Service Providers...
          */
@@ -148,7 +146,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 		//barra debug
-		Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        
+        // SAVIO Auth Provider
+		App\Providers\SavioAuthProvider::class,
 
 		//JWT Auth Provider
 		Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,

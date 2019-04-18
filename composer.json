@@ -10,7 +10,8 @@
 		"barryvdh/laravel-cors":"0.7.*",
         "barryvdh/laravel-debugbar": "^2.2",
         "zizaco/entrust": "5.2.x-dev",
-        "yajra/laravel-oci8": "5.1.*"
+        "yajra/laravel-oci8": "5.1.*",
+        "rmccue/requests": "^1.7"
 
     },
     "require-dev": {

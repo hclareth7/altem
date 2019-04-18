@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class Usuario extends Model implements AuthenticatableContract
 {
-    use Authenticatable, EntrustUserTrait;
+    use AuthenticableTrait, EntrustUserTrait;
 
     protected $table = 'usuarios';
 
@@ -19,7 +19,7 @@ class Usuario extends Model implements AuthenticatableContract
      * @var array
      */
     
-    protected $fillable = ['nombre', 'correo', 'codigo', 'estado'];
+    protected $fillable = ['nombre', 'correo', 'codigo', 'estado', 'savio_token'];
 
     protected $primaryKey= "codigo";
 
