@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Requests;
 use App\Models\BaseDatosEstudiantes;
 use App\Models\Estudiante;
@@ -9,8 +7,6 @@ use App\Models\Filtro;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
-
-
 class EstudianteController extends Controller
 {
     /**
@@ -25,79 +21,42 @@ class EstudianteController extends Controller
         $this->beforeFilter('@find', ['only' => ['show', 'update', 'destroy']]);
         $this->filtro = $filtro;
         $this->sql = "";
-
-
     }
-
     public function getAnotacionesByCodigo($codigo)
     {
-
         $anotaciones = Estudiante::where('codigo', '=', $codigo)->get();
         return response()->json($anotaciones);
     }
-
-
     public function storeAnotaciones(Request $request)
     {
         Estudiante::create($request->all());
-
         return response()->json(["mensaje" => "Creado correctamente"]);
     }
-
-
     public function updateAnotaciones(Request $request, $codigo)
     {
         $estudiante = Estudiante::find($codigo);
         $estudiante->fill($request->all());
         $estudiante->save();
         return response()->json(["mensaje" => "Actualizacion exitosa"]);
-
     }
-
-
     public function deleteAnotaciones($codigo)
     {
         $estudiante = Estudiante::find($codigo);
         $estudiante->delete();
-
         return response()->json(["mensaje" => "Eliminado con Exito"]);
-
-
     }
-
-    public function getAnotacionesByCodigo($codigo)
-    {
-
-        $anotaciones = Estudiante::where('codigo', '=', $codigo)->get();
-        return response()->json($anotaciones);
-    }
-
-
-    public function storeAnotaciones(Request $request)
-    {
-        Estudiante::create($request->all());
-
-        return response()->json(["mensaje"=>"Creado correctamente"]);
-    }
-
-
     public function getRiesgosByEstudiante($id)
     {
-
     }
-
     public function setRestric()
     {
         $roles = Auth::user()->with('roles')->get()->filter(function ($item) {
             $user = Auth::user();
             return $item->codigo == $user->id;
         })->first();
-
-
         $restricRole = $roles->roles->map(function ($value) {
             return $value->name;
         });
-
         if ($restricRole[0] == "ADMIN") {
             $base_datos_principal = BaseDatosEstudiantes::where('tipo', '=', 'principal')->first();
             $this->sql = "Select *  from " . $base_datos_principal->tabla . " where id !=' '";
@@ -105,12 +64,9 @@ class EstudianteController extends Controller
         } else {
             $poblaciones = Auth::user()->poblaciones()->with('criterio')->get();
             $sql = "";
-
             foreach ($poblaciones as $key => $poblacion) {
                 $base_datos = $poblacion->criterio->base_datos_estudiantes()->first();
                 if ($base_datos->tipo != "principal") {//si la base de datos no es la Principal (Sirius)
-
-
                 } else {
                     if ($key == 0) {
                         $sql = "Select * from " . $base_datos->tabla . " where " . $poblacion->criterio->campo . " " .
@@ -120,23 +76,16 @@ class EstudianteController extends Controller
                             $poblacion->criterio->operador . " '" . $poblacion->criterio->valor . "'";
                     }
                 }
-
             }
-
-
             $this->sql = $sql;
-
             return $this->sql;
         }
-
     }
-
     public function find(Route $route)
     {
         $base_datos_principal = BaseDatosEstudiantes::where('tipo', '=', 'principal')->first();
         $this->estudiante = $this->db_sirius->table($base_datos_principal->tabla)->where('id', $route->getParameter('estudiante'))->first();
     }
-
     public function buscar(Request $request)
     {
         $de = $request->input('de');
@@ -149,46 +98,28 @@ class EstudianteController extends Controller
         if (count($estudiantes) > 0) {
             $estudiantes[0]->total = $total;
         }
-
         return response()->json($estudiantes);
     }
-
     public function ejecutarFiltro($id)
     {
         $filofinal = "";
-
         $filtros = Filtro::where('riesgos_id', $id)->get();
-
-        foreach ($filtros as $filtro){
-
-            if ($filtro['base_datos'] == 0){
-                foreach ($filtros as $key => $value) {
-
-        $filofinal = "";
-
-        $filtros = Filtro::where('riesgos_id', $id)->get();
-
         foreach ($filtros as $key => $value) {
-
             if ($key == 0) {
                 $filofinal = " and " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             } else {
                 $filofinal .= " and  " . $value['campo'] . " " . $value['operador'] . " '" . $value['valor'] . "' ";
             }
-
         }
         $sql = $this->setRestric() . " " . $filofinal;
-
         $estudiantes = $this->db_sirius->select($sql);
         return response()->json($estudiantes);
     }
-
     public function getcolumn()
     {
         $columns = $this->db_sirius->select('SHOW COLUMNS FROM sirius.estudiantes_view');
         return response()->json($columns);
     }
-
     public function index()
     {
         //$estudiante = $this->db_sirius->table('estudiantes')->skip(0)->take(50)->get();
@@ -196,25 +127,19 @@ class EstudianteController extends Controller
         // $results = \DB::connection('mysql2')->select($this->setRestric(),array(1));
         return response()->json($estudiantes);
     }
-
     public function getEstudiantesByUser(Request $request)
     {
         $de = $request->input('de');
         $a = $request->input('a');
         $sql = str_replace("*", " count(*) as total  ", $this->setRestric());
-
         $sql_with_limit = $this->setRestric() . " limit  " . $de . "," . $a;
-
         $estudiantes = $this->db_sirius->select($sql_with_limit);
         $total = $this->db_sirius->select($sql);
         if ($estudiantes) {
             $estudiantes[0]->total = $total;
         }
-
         return response()->json($estudiantes);
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -225,8 +150,6 @@ class EstudianteController extends Controller
     {
         return response()->json($this->estudiante);
     }
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -236,12 +159,10 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $this->estrategia->fill($request->all());
         $this->estrategia->save();
         return response()->json(["mensaje" => "Actualizacion exitosa"]);
     }
-
     /**
      * Remove the specified resource from storage.
      *
