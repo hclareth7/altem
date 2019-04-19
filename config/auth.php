@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => 'ldap',
+    'driver' => 'eloquent',
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-
+    'model' => App\Models\Usuario::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -56,9 +56,6 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
-
-    'model' => App\Models\Usuario::class,
 
     'table' => 'usuarios',
 

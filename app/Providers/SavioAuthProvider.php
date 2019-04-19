@@ -7,19 +7,18 @@
  */
 
 namespace App\Providers;
-use App\Auth\LdapUserProvider;
+use App\Auth\SavioUserProvider;
 use Illuminate\Support\ServiceProvider;
 
-class LdapAuthProvider  extends ServiceProvider
+class SavioAuthProvider extends ServiceProvider
 {
-
 
     public function boot()
     {
 
-        $this->app['auth']->extend('ldap',function()
+        $this->app['auth']->extend('eloquent',function()
         {
-            return new LdapUserProvider();
+            return new SavioUserProvider();
         });
     }
 
