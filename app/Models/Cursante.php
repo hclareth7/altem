@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cursante extends Model
 {
     protected $connection = 'sirius';
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
     public $timestamps = false;

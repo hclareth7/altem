@@ -17,7 +17,6 @@ class Asistentes extends Model
     protected $fillable = [
         'idEstudiante',
         'nrc',
-
     ];
 
     public function info_estudiante(){
