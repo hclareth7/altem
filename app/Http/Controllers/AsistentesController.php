@@ -8,9 +8,7 @@ use DB;
 
 class AsistentesController extends Controller
 {
-
     public function getMissingStudentsByConditions(Request $request){
-
         $rules = [
             'operador' => 'required',
             'valor' => 'required',
@@ -33,9 +31,7 @@ class AsistentesController extends Controller
         #dd($students[0]['relations']['estado']['original']);
 
         return response()->json($students);
-
     }
-
 
     public function index()
     {
@@ -46,11 +42,6 @@ class AsistentesController extends Controller
                 ->get();
 
         return $misslog;
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function show($nrc)
@@ -85,36 +76,11 @@ class AsistentesController extends Controller
         $this->validate($request, $rules);
 
         $campos = $request->all();
-
         $estado = Asistentes::find($campos['id']);
-
         $estado->estado = $campos['estado'];
-
         $estado->save();
 
         return response()->json("Asistencia tomada.");
-
-
     }
-
-/*    public function destroy(Request $request){
-
-        $rules = [
-            'idEstudiante' => 'required',
-            'nrc' => 'required',
-            'created_at' => 'required'
-        ];
-
-        $this->validate($request, $rules);
-
-        $campos = $request->all();
-
-
-
-        return response()->json($falta, 201);
-
-
-
-    }*/
 
 }

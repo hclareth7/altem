@@ -88,9 +88,7 @@ class ApiAuthController extends Controller
          * @return string
          */
 
-        return "T00010915";
-
-
+        return Auth::user();
     }
 
 
