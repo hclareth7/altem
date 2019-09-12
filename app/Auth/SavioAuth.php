@@ -24,7 +24,6 @@ class SavioAuth
 
         // if the credentials are valid, we get the token, else, we get error
         if( !isset($savioResponse->token) ) {
-            dd($savioResponse->error);
             return false;
         }
 

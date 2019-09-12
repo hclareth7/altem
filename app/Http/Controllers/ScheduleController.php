@@ -106,8 +106,6 @@ class ScheduleController extends Controller
 
         if ($schedules->isEmpty()){
 
-<<<<<<< HEAD
-=======
             try {
                 $this::getProfeInfoById(ApiAuthController::getCode());}
 
@@ -118,7 +116,6 @@ class ScheduleController extends Controller
             }
 
 
->>>>>>> ecb0e50555cb602a22c8157555e2ff656a213536
             $data = ["Docente"=>$this->getProfeInfoById(ApiAuthController::getCode()), "Clases"=>[]];
 
             return response()->json($data);
